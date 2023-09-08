@@ -1,0 +1,12 @@
+{
+  "searchFor": "Search for",
+  "cancel": "Cancel",
+  "keepTyping": "Keep typing",
+  "noFoodSearchResultMessage": " is not in the database",
+  "searching": "Searching",
+  "camera": "Camera",
+  "photos": "Photos",
+  "staticImage": "Static Image",
+  "quality": "Quality: %s",
+  "imageNotSupported": "This image type is not supported"
+}

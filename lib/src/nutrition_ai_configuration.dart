@@ -1,0 +1,96 @@
+/// A [PassioConfiguration] object must be constructed to configure the SDK. The
+/// configuration process depends on the location of the files needed for the
+/// SDK to work. There are three different ways to configure the SDK depending
+/// on the attributes of the object.
+class PassioConfiguration {
+  /// Developer key provided by Passio Inc. For obtaining this key contact
+  /// support@passiolife.com.
+  final String key;
+
+  /// If you set this option to true, the SDK will download the models relevant
+  /// for this version from Passio's bucket.
+  final bool sdkDownloadsModels;
+
+  /// If you set allowInternetConnection = false without working with Passio the
+  /// SDK will not work. The SDK will not connect to the internet for key
+  /// validations, barcode data and packaged food data.
+  final bool allowInternetConnection;
+
+  /// If you have chosen to remove the files from the SDK and provide the SDK
+  /// different URLs for this files please use this variable.
+  final List<String>? filesLocalURLs;
+
+  /// Only use provided models. Don't use models previously installed.
+  final bool overrideInstalledVersion;
+
+  /// If you have problems configuring the SDK, set debugMode = 1 to get more
+  /// debugging information.
+  final int debugMode;
+
+  PassioConfiguration(this.key,
+      {this.sdkDownloadsModels = true,
+      this.allowInternetConnection = true,
+      this.filesLocalURLs,
+      this.overrideInstalledVersion = false,
+      this.debugMode = 0});
+}
+
+/// Object that is returned as a result of the configuration process.
+class PassioStatus {
+  /// Indicates the state of the configuration process.
+  final PassioMode mode;
+
+  /// If the SDK is missing files or new files could be used. It will send the
+  /// list of files needed for the update.
+  List<String>? missingFiles;
+
+  /// A string with more verbose information related to the configuration.
+  String? debugMessage;
+
+  /// The error in case the SDK failed to configure
+  PassioSDKError? error;
+
+  /// The version of the latest models that are now used by the SDK.
+  int? activeModels;
+
+  PassioStatus(
+      {this.mode = PassioMode.notReady,
+      this.missingFiles,
+      this.debugMessage,
+      this.error,
+      this.activeModels});
+}
+
+enum PassioMode {
+  /// Indicates that the configuration process has not started yet.
+  notReady,
+
+  /// The configuration process has encountered an error and was not completed
+  /// successfully.
+  failedToConfigure,
+
+  /// The configuration process is still running.
+  isBeingConfigured,
+
+  /// A newer version of files needed by the SDK are being downloaded.
+  isDownloadingModels,
+
+  /// All the files needed by the SDK are present and the SDK can be used to its
+  /// full extent.
+  isReadyForDetection
+}
+
+enum PassioSDKError {
+  canNotRunOnSimulator,
+  keyNotValid,
+  licensedKeyHasExpired,
+  modelsNotValid,
+  modelsDownloadFailed,
+  noModelsFilesFound,
+  noInternetConnection,
+  notLicensedForThisProject,
+  minSDKVersion,
+  licenseDecodingError,
+  missingDependency,
+  platformException
+}
