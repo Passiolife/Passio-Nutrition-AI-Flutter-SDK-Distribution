@@ -10,6 +10,7 @@ import '../models/nutrition_ai_measurement.dart';
 import '../models/nutrition_ai_fooditemdata.dart';
 import '../models/nutrition_ai_recipe.dart';
 import '../models/nutrition_ai_image.dart';
+import '../models/nutrition_ai_nutrient.dart';
 
 extension MapExt on Map {
   T? ifValueNotNull<T>(String key, T Function(Map<String, dynamic> map) op) {
@@ -230,7 +231,7 @@ PassioFoodItemData mapToPassioFoodItemData(Map<String, dynamic> inMap) {
         inMap["servingSizes"], (inMap) => mapToPassioServingSize(inMap)),
     inMap["ingredientsDescription"],
     inMap["barcode"],
-    mapListOfObjects(
+    mapListOfObjectsOptional(
         inMap["foodOrigins"], (inMap) => mapToPassioFoodOrigin(inMap)),
     mapListOfObjectsOptional(
         inMap["parents"], (inMap) => mapToPassioAlternative(inMap)),
@@ -314,4 +315,22 @@ PlatformImage mapToPlatformImage(Map<String, dynamic> inMap) {
   var image = PlatformImage(inMap["width"] as int, inMap["height"] as int,
       inMap["pixels"] as Uint8List);
   return image;
+}
+
+/// Converts a [Map] to a [PassioNutrient] object.
+///
+/// This function takes a [Map] representing a PassioNutrient and constructs
+/// a PassioNutrient instance using the values from the map.
+///
+/// Parameters:
+/// - [inMap]: The input [Map] containing nutrient information.
+///
+/// Returns a [PassioNutrient] object constructed from the provided map.
+PassioNutrient mapToPassioNutrient(Map<String, dynamic> inMap) {
+  return PassioNutrient(
+    inMap["amount"],
+    inMap["inflammatoryEffectScore"],
+    inMap["name"],
+    inMap["unit"],
+  );
 }

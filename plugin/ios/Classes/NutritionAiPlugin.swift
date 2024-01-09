@@ -12,14 +12,26 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         let instance = NutritionAiPlugin()
+        // Get the binary messenger from the Flutter registrar.
+        let binaryMessenger = registrar.messenger()
         let channel = FlutterMethodChannel(name: "nutrition_ai/method",
-                                           binaryMessenger: registrar.messenger())
+                                           binaryMessenger: binaryMessenger)
         registrar.addMethodCallDelegate(instance, channel: channel)
         
+        // Initialize a PassioEventStreamHandler for handling events.
+        let passioEventStreamHandler = PassioEventStreamHandler()
+        
         let eventChannel = FlutterEventChannel(name: "nutrition_ai/event/detection",
-                                               binaryMessenger: registrar.messenger())
-        eventChannel.setStreamHandler(PassioEventStreamHandler())
-        let factory = PassioPreviewFactory(messenger: registrar.messenger())
+                                               binaryMessenger: binaryMessenger)
+        eventChannel.setStreamHandler(passioEventStreamHandler)
+        
+        // Created a FlutterEventChannel named "nutrition_ai/event/status" with the provided binaryMessenger.
+        let statusChannel = FlutterEventChannel(name: "nutrition_ai/event/status",
+                                               binaryMessenger: binaryMessenger)
+        // Set PassioEventStreamHandler as the stream handler for the statusEventChannel.
+        statusChannel.setStreamHandler(passioEventStreamHandler)
+    
+        let factory = PassioPreviewFactory(messenger: binaryMessenger)
         registrar.register(factory, withId: "PassioPreviewViewType")
     }
     
@@ -73,6 +85,10 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             transformCGRectForm(arguments: call.arguments) { flutterResult in
                 result(flutterResult)
             }
+        case "fetchNutrientsFor":
+            fetchNutrientsFor(arguments: call.arguments) { flutterResult in
+                result(flutterResult)
+            }
         default:
             print("call.method = \(call.method) not in the list")
             result(FlutterMethodNotImplemented)
@@ -114,13 +130,7 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
         passioSDK.configure(passioConfiguration: passioConfig) { status in
             if status.mode == .isReadyForDetection ||
                 status.mode == .failedToConfigure {
-                let resultStatus: [String: Any?] = [
-                    "mode": "\(status.mode)",
-                    "missingFiles": status.missingFiles,
-                    "debugMessage": status.debugMessage,
-                    "error": status.error != nil ? "\(status.error!)" : nil,
-                    "activeModels": status.activeModels,
-                ]
+                let resultStatus = self.outputConverter.mapFromPassioStatus(passioStatus: status)
                 result(resultStatus)
             }
         }
@@ -308,6 +318,36 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
         result(fResult)
     }
     
+    /**
+     Fetches nutrients for a given PassioID.
+
+     - Parameters:
+        - arguments: Flutter method call arguments.
+        - result: Closure to report the result back to Flutter.
+
+     - Note: Intended to be called from Flutter using platform channels.
+     */
+    func fetchNutrientsFor(arguments: Any?, result: @escaping FlutterResult) {
+        // Check if the provided argument is a PassioID
+        if let passioID = arguments as? PassioID {
+            // Call PassioSDK to fetch nutrients for the given passioID
+            passioSDK.fetchNutrientsFor(passioID: passioID) { nutrients in
+                // Check if nutrients is not nil
+                if let nutrients = nutrients {
+                    // Map PassioNutrient objects to a new list using mapFromPassioNutrient function
+                    let resultList = nutrients.map { self.outputConverter.mapFromPassioNutrient(nutrient: $0) }
+                    // Call the FlutterResult with the resultList
+                    result(resultList)
+                } else {
+                    // Call the FlutterResult with nil if nutrients is nil
+                    result(nil)
+                }
+            }
+        } else {
+            // Call the FlutterResult with nil if the argument is not a PassioID
+            result(nil)
+        }
+    }
     
 }
 

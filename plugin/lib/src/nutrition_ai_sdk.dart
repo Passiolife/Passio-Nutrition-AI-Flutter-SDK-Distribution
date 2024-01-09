@@ -7,6 +7,7 @@ import 'nutrition_ai_configuration.dart';
 import 'models/nutrition_ai_attributes.dart';
 import 'nutrition_ai_passio_id_name.dart';
 import 'models/nutrition_ai_image.dart';
+import 'models/nutrition_ai_nutrient.dart';
 
 class NutritionAI {
   NutritionAI._privateConstructor();
@@ -137,5 +138,22 @@ class NutritionAI {
       Rectangle<double> boundingBox, Rectangle<double> toRect) {
     return NutritionAIPlatform.instance
         .transformCGRectForm(boundingBox, toRect);
+  }
+
+  /// If not null, the [PassioStatusListener] will provide callbacks
+  /// when the internal state of the SDK's configuration process changes.
+  /// Passing null will unregister the listener.
+  void setPassioStatusListener(PassioStatusListener? listener) {
+    NutritionAIPlatform.instance.setPassioStatusListener(listener);
+  }
+
+  /// Fetches a list of [PassioNutrient] objects for a given [PassioID].
+  ///
+  /// Parameters:
+  /// - [passioID]: The PassioID for which nutrients are to be fetched.
+  ///
+  /// Returns a [Future] containing a list of [PassioNutrient] objects or `null` if the response is empty.
+  Future<List<PassioNutrient>?> fetchNutrientsFor(PassioID passioID) {
+    return NutritionAIPlatform.instance.fetchNutrientsFor(passioID);
   }
 }

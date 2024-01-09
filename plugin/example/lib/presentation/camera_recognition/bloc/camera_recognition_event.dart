@@ -4,6 +4,7 @@ abstract class CameraRecognitionEvent {}
 
 class FoodRecognizedEvent extends CameraRecognitionEvent {
   final FoodCandidates? candidates;
+  final PlatformImage? image;
 
-  FoodRecognizedEvent({required this.candidates});
+  FoodRecognizedEvent({required this.candidates, this.image});
 }

@@ -42,4 +42,8 @@ class PassioPreview: NSObject, FlutterPlatformView {
         }
     }
     
+    deinit {
+        PassioNutritionAI.shared.removeVideoLayer()
+    }
+
 }

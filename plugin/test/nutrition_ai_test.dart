@@ -6,6 +6,7 @@ import 'package:nutrition_ai/nutrition_ai.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'package:nutrition_ai/src/nutrition_ai_platform_interface.dart';
 import 'package:nutrition_ai/src/nutrition_ai_method_channel.dart';
+import 'package:nutrition_ai/src/models/nutrition_ai_nutrient.dart';
 
 class MockNutritionAiPlatform
     with MockPlatformInterfaceMixin
@@ -89,6 +90,17 @@ class MockNutritionAiPlatform
       Rectangle<double> boundingBox, Rectangle<double> toRect) {
     throw UnimplementedError(
         'transformCGRectForm(Rectangle<double> boundingBox, Rectangle<double> toRect');
+  }
+
+  @override
+  void setPassioStatusListener(PassioStatusListener? listener) {
+    throw UnimplementedError(
+        'setPassioStatusListener(PassioStatusListener? listener)');
+  }
+
+  @override
+  Future<List<PassioNutrient>?> fetchNutrientsFor(PassioID passioID) {
+    throw UnimplementedError('fetchNutrientsFor(PassioID passioID)');
   }
 }
 

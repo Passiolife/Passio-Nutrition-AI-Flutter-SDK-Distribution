@@ -46,7 +46,9 @@ internal class NativePreviewView(
 
     override fun getView(): View = previewView
 
-    override fun dispose() {}
+    override fun dispose() {
+        PassioSDK.instance.stopCamera()
+    }
 
     override fun onFlutterViewAttached(flutterView: View) {
         super.onFlutterViewAttached(flutterView)

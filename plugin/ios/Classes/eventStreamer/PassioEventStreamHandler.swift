@@ -5,7 +5,8 @@ class PassioEventStreamHandler: NSObject, FlutterStreamHandler {
     
     let passioSDK = PassioNutritionAI.shared
     private var eventSink: FlutterEventSink?
-    
+    private let outputConverter = OutputConverter()
+
     func onListen(withArguments arguments: Any?,
                   eventSink events: @escaping FlutterEventSink) -> FlutterError?
     {
@@ -19,6 +20,8 @@ class PassioEventStreamHandler: NSObject, FlutterStreamHandler {
         switch method {
         case "startFoodDetection":
             startFoodDetection(args: argMap)
+        case "setPassioStatusListener":
+            passioSDK.statusDelegate = self
         default:
             return FlutterError(code: "method", message: "no method in switch", details: nil)
         }
@@ -33,6 +36,8 @@ class PassioEventStreamHandler: NSObject, FlutterStreamHandler {
         switch method {
         case "startFoodDetection":
             passioSDK.stopFoodDetection()
+        case "setPassioStatusListener":
+            passioSDK.statusDelegate = nil
         default:
             return FlutterError(code: "onCancel", message: "no method in switch", details: nil)
         }
@@ -55,24 +60,128 @@ class PassioEventStreamHandler: NSObject, FlutterStreamHandler {
                                      foodRecognitionDelegate: self){ ready in
         }
     }
-    
+
+    private func getFoodImageData(img: UIImage) -> [String: Any?] {
+
+        var imageMap = [String: Any]()
+
+        if let imageData = img.pngData() {
+            imageMap["width"] = Int(img.size.width)
+            imageMap["height"] = Int(img.size.height)
+            imageMap["pixels"] = FlutterStandardTypedData(bytes: imageData)
+        }
+        return imageMap
+    }
 }
 
 extension PassioEventStreamHandler: FoodRecognitionDelegate {
-    
+
     func recognitionResults(candidates: (PassioNutritionAISDK.FoodCandidates)?,
-                            image _: UIImage?,
-                            nutritionFacts _: PassioNutritionAISDK.PassioNutritionFacts?){
-        if let events = eventSink{
-            if let candidates = candidates {
-                let foodCandidates = OutputConverter().mapFromFoodCandidates(candidates: candidates)
-                events(foodCandidates)
-            } else {
-                events(nil)
+                            image : UIImage?,
+                            nutritionFacts _: PassioNutritionAISDK.PassioNutritionFacts?) {
+
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+
+            guard let self else { return }
+
+            if let events = eventSink {
+                if let candidates = candidates,
+                   let img = image {
+                    var finalEvents = [String: Any]()
+
+                    let foodCandidates = OutputConverter().mapFromFoodCandidates(candidates: candidates)
+                    let foodImg = getFoodImageData(img: img)
+
+                    finalEvents["candidates"] = foodCandidates
+                    finalEvents["image"] = foodImg
+
+                    DispatchQueue.main.async {
+                        events(finalEvents)
+                    }
+
+                } else {
+                    DispatchQueue.main.async {
+                        events(nil)
+                    }
+                }
             }
         }
     }
-    
-    
-    
+}
+
+// MARK: - PassioStatusDelegate Methods
+extension PassioEventStreamHandler: PassioStatusDelegate {
+
+    // MARK: passioStatusChanged Method
+    func passioStatusChanged(status: PassioNutritionAISDK.PassioStatus) {
+        // Check if the eventSink is available
+        if let events = eventSink {
+            // Convert PassioStatus to a map
+            var statusMap = outputConverter.mapFromPassioStatus(passioStatus: status)
+            // Convert the map to a PassioStatusListener map with the event name
+            var statusListenerMap = outputConverter.mapFromPassioStatusListener(event: "passioStatusChanged", data: statusMap)
+            // Dispatch the UI-related operations on the main thread to ensure UI updates happen promptly.
+            DispatchQueue.main.async {
+                // Send the PassioStatusListener map through the eventSink
+                events(statusListenerMap)
+            }
+
+        }
+    }
+
+    // MARK: passioProcessing Method
+    func passioProcessing(filesLeft: Int) {
+        // Check if the eventSink is available
+        if let events = eventSink {
+            // Dispatch the UI-related operations on the main thread to ensure UI updates happen promptly.
+            DispatchQueue.main.async {
+                // Convert filesLeft to a PassioStatusListener map with the event name
+                events(self.outputConverter.mapFromPassioStatusListener(event: "passioProcessing", data: filesLeft))
+            }
+        }
+    }
+
+    // MARK: completedDownloadingAllFiles Method
+    func completedDownloadingAllFiles(filesLocalURLs: [PassioNutritionAISDK.FileLocalURL]) {
+        // Check if the eventSink is available
+        if let events = eventSink {
+            // Convert FileLocalURLs to an array of file URLs as strings
+            var filesMap = filesLocalURLs.map { $0.absoluteString }
+            // Convert the array of file URLs to a PassioStatusListener map with the event name
+            var statusListenerMap = outputConverter.mapFromPassioStatusListener(event: "completedDownloadingAllFiles", data: filesMap)
+            // Dispatch the UI-related operations on the main thread to ensure UI updates happen promptly.
+            DispatchQueue.main.async {
+                // Send the PassioStatusListener map through the eventSink
+                events(statusListenerMap)
+            }
+        }
+    }
+
+    // MARK: completedDownloadingFile Method
+    func completedDownloadingFile(fileLocalURL: PassioNutritionAISDK.FileLocalURL, filesLeft: Int) {
+        // Check if the eventSink is available
+        if let events = eventSink {
+            // Convert the completed downloading file details to a PassioStatusListener map with the event name
+            var downloadingMap = outputConverter.mapFromCompletedDownloadingFile(fileUri: fileLocalURL, filesLeft: filesLeft)
+            var statusListenerMap = outputConverter.mapFromPassioStatusListener(event: "completedDownloadingFile", data: downloadingMap)
+            // Dispatch the UI-related operations on the main thread to ensure UI updates happen promptly.
+            DispatchQueue.main.async {
+                // Send the PassioStatusListener map through the eventSink
+                events(statusListenerMap)
+            }
+        }
+    }
+
+    // MARK: downloadingError Method
+    func downloadingError(message: String) {
+        // Check if the eventSink is available
+        if let events = eventSink {
+            // Dispatch the UI-related operations on the main thread to ensure UI updates happen promptly.
+            DispatchQueue.main.async {
+                // Convert the error message to a PassioStatusListener map with the event name
+                events(self.outputConverter.mapFromPassioStatusListener(event: "downloadingError", data: message))
+            }
+
+        }
+    }
 }

@@ -64,6 +64,11 @@ class CameraRecognitionBloc extends Bloc<CameraRecognitionEvent, CameraRecogniti
 
     emit(UpdateFoodNameState(name: attributes.name));
 
+    if (event.image != null) {
+      emit(UpdateFoodIconState(image: event.image));
+      return;
+    }
+
     var passioIcons = await NutritionAI.instance.lookupIconsFor(attributes.passioID, type: attributes.entityType);
 
     if (passioIcons.cachedIcon != null) {

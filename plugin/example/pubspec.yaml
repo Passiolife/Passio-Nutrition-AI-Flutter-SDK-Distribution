@@ -87,6 +87,10 @@ dependencies:
   # https://pub.dev/packages/flutter_exif_rotation
   flutter_exif_rotation: ^0.5.1
 
+  # The path package provides common operations for manipulating paths: joining, splitting, normalizing, etc.
+  # https://pub.dev/packages/path
+  path: ^1.8.3
+
 dev_dependencies:
   integration_test:
     sdk: flutter

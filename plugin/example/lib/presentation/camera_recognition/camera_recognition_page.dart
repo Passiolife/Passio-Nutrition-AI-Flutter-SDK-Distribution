@@ -37,21 +37,22 @@ class _CameraRecognitionPageState extends State<CameraRecognitionPage> implement
           } else if (state is UpdateFoodIconState) {
             _onUpdateFoodIconState(state);
           }
-      },
-      builder: (context, state) {
-        return Scaffold(
-          body: Stack(
-            children: [
-              const PassioPreview(),
-              Align(
-                  alignment: Alignment.bottomCenter,
-                  child: PassioResult(
-                      foodName: _foodName,
-                      image: _image))
-            ],
-          ),
-        );
-      }
+        },
+        builder: (context, state) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Passio Preview'),
+            ),
+            body: Stack(
+              children: [
+                const PassioPreview(),
+                Align(
+                    alignment: Alignment.bottomCenter,
+                    child: PassioResult(foodName: _foodName, image: _image))
+              ],
+            ),
+          );
+        },
     );
   }
 
@@ -82,8 +83,8 @@ class _CameraRecognitionPageState extends State<CameraRecognitionPage> implement
   }
 
   @override
-  void recognitionResults(FoodCandidates foodCandidates) {
-    _bloc.add(FoodRecognizedEvent(candidates: foodCandidates));
+  void recognitionResults(FoodCandidates foodCandidates, PlatformImage? image) {
+    _bloc.add(FoodRecognizedEvent(candidates: foodCandidates, image: image));
   }
 
   @override

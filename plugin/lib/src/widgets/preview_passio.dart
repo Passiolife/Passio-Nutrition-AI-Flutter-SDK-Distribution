@@ -16,13 +16,8 @@ class PassioPreview extends StatelessWidget {
     // This is used in the platform side to register the view.
     TargetPlatform platform = defaultTargetPlatform;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Passio Preview'),
-      ),
-      body: Center(
-        child: _getBodyContent(platform, context),
-      ),
+    return Center(
+      child: _getBodyContent(platform, context),
     );
   }
 

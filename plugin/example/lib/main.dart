@@ -1,8 +1,5 @@
 import 'dart:async';
 
-//import 'dart:developer';
-import 'dart:math';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +13,6 @@ import 'package:nutrition_ai_example/presentation/camera_recognition/camera_reco
 import 'package:nutrition_ai_example/presentation/food_search/food_search_page.dart';
 import 'package:nutrition_ai_example/presentation/static_image/static_image_page.dart';
 import 'package:nutrition_ai_example/router/routes.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 Future<void> main() async {
   await runZonedGuarded(() async {

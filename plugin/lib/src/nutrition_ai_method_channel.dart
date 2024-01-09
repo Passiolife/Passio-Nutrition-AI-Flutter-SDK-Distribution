@@ -13,6 +13,7 @@ import 'nutrition_ai_passio_id_name.dart';
 import 'converter/platform_input_converter.dart';
 import 'converter/platform_output_converter.dart';
 import 'models/nutrition_ai_image.dart';
+import 'models/nutrition_ai_nutrient.dart';
 
 /// An implementation of [NutritionAIPlatform] that uses method channels.
 class MethodChannelNutritionAI extends NutritionAIPlatform {
@@ -22,7 +23,19 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
   @visibleForTesting
   final detectionChannel = const EventChannel('nutrition_ai/event/detection');
 
+  /// This channel, named 'nutrition_ai/event/status', facilitates communication related to status events.
+  ///
+  /// This declaration is marked with `@visibleForTesting` to indicate that it is intended for testing purposes.
+  @visibleForTesting
+  final statusChannel = const EventChannel('nutrition_ai/event/status');
+
   StreamSubscription? _detectionStream;
+
+  /// A subscription to a stream that listens for events related to Passio status changes.
+  ///
+  /// The [_statusStream] variable holds the subscription to a stream that listens for events related to Passio status changes.
+  /// such as 'onPassioStatusChanged', 'onCompletedDownloadingAllFiles', 'onCompletedDownloadingFile', and 'onDownloadError'.
+  StreamSubscription? _statusStream;
 
   @override
   Future<String?> getSDKVersion() async {
@@ -59,9 +72,21 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
         return;
       }
 
+      // Creating a mutable map to store results
       Map<String, dynamic> resultMap = event.cast<String, dynamic>();
-      var foodCandidates = mapToFoodCandidates(resultMap);
-      listener.recognitionResults(foodCandidates);
+
+      // Retrieving the "candidates" key from the resultMap and casting its value to a Map<String, dynamic>
+      final candidatesMap = resultMap["candidates"].cast<String, dynamic>();
+      // Converting the mapped candidates back to a FoodCandidates
+      final foodCandidates = mapToFoodCandidates(candidatesMap);
+
+      // Retrieving the "image" key from the resultMap and casting its value to a Map<String, dynamic>
+      final imageMap = resultMap["image"].cast<String, dynamic>();
+      // Converting the mapped image properties to a PlatformImage
+      final image = mapToPlatformImage(imageMap);
+
+      // Notifying the listener with recognition results, passing the FoodCandidates and the image
+      listener.recognitionResults(foodCandidates, image);
     });
   }
 
@@ -207,5 +232,78 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
     var finalRect =
         Rectangle<double>(boxArray[0], boxArray[1], boxArray[2], boxArray[3]);
     return finalRect;
+  }
+
+  /// Sets a listener for Passio status changes.
+  ///
+  /// If [listener] is `null`, cancels the existing listener and closes the stream.
+  ///
+  /// The listener is notified when Passio status changes, when all files are downloaded,
+  /// when a single file is completed, or when there's a download error.
+  ///
+  @override
+  void setPassioStatusListener(PassioStatusListener? listener) {
+    if (listener == null) {
+      // Cancel the existing stream and set it to null if the listener is null.
+      _statusStream?.cancel();
+      _statusStream = null;
+      return;
+    }
+
+    // Prepare arguments for setting up the Passio status listener.
+    var args = {'method': 'setPassioStatusListener'};
+
+    // Receive the broadcast stream and listen for events.
+    _statusStream = statusChannel.receiveBroadcastStream(args).listen((event) {
+      if (event == null) {
+        return;
+      }
+
+      // Cast the event data to a map for processing.
+      Map<String, dynamic> resultMap = event.cast<String, dynamic>();
+      final String eventType = resultMap['event'];
+      final dynamic eventData = resultMap['data'];
+
+      // Process the event based on its type and invoke the corresponding listener method.
+      switch (eventType) {
+        case 'passioStatusChanged':
+          final statusMap = eventData.cast<String, dynamic>();
+          listener.onPassioStatusChanged(mapToPassioStatus(statusMap));
+          break;
+        case 'completedDownloadingAllFiles':
+          final fileUris =
+              List<String>.from(eventData).map((e) => Uri.parse(e)).toList();
+          listener.onCompletedDownloadingAllFiles(fileUris);
+          break;
+        case 'completedDownloadingFile':
+          final downloadMap = eventData.cast<String, dynamic>();
+          final fileUri = Uri.parse(downloadMap["fileUri"]);
+          final filesLeft = downloadMap["filesLeft"];
+          listener.onCompletedDownloadingFile(fileUri, filesLeft);
+          break;
+        case 'downloadingError':
+          listener.onDownloadError(eventData);
+          break;
+      }
+    });
+  }
+
+  @override
+  Future<List<PassioNutrient>?> fetchNutrientsFor(PassioID passioID) async {
+    // Invoke native method to fetch nutrients for the given PassioID.
+    final responseList = await methodChannel.invokeMethod<List<Object?>>(
+        'fetchNutrientsFor', passioID);
+
+    // Check if the response list is null.
+    if (responseList == null) {
+      return null;
+    }
+
+    // Map each object in the response list to a PassioNutrient using PassioNutrient.fromJson.
+    var list = mapListOfObjects(
+        responseList, (inMap) => PassioNutrient.fromJson(inMap));
+
+    // Return the resulting list of PassioNutrient objects.
+    return list;
   }
 }

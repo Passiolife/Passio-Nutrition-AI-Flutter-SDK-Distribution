@@ -1,5 +1,9 @@
 import 'dart:math';
 
+import 'models/nutrition_ai_image.dart';
+
+import 'package:nutrition_ai/src/nutrition_ai_configuration.dart';
+
 /// Identifier of food items in the NutritionAI's database.
 typedef PassioID = String;
 
@@ -44,7 +48,29 @@ enum VolumeDetectionMode { auto, dualWideCamera, none }
 
 /// Used as a callback to receive results from analyzing camera frames.
 abstract class FoodRecognitionListener {
-  void recognitionResults(FoodCandidates foodCandidates);
+  void recognitionResults(FoodCandidates foodCandidates, PlatformImage? image);
+}
+
+abstract interface class PassioStatusListener {
+  /// Every time the SDK's configuration process changes
+  /// a state, a new event will be emitted with the
+  /// current [PassioStatus].
+  void onPassioStatusChanged(PassioStatus status);
+
+  /// Will be called once all of the files are downloaded.
+  ///
+  /// This doesn't mean that the SDK will immediately run
+  /// the newly downloaded files.
+  void onCompletedDownloadingAllFiles(List<Uri> fileUris);
+
+  /// Signals the completion of the download process for a
+  /// single files. This method also informs how many files
+  /// are still left in the download queue.
+  void onCompletedDownloadingFile(Uri fileUri, int filesLeft);
+
+  /// If a certain file cannot be downloaded, [onDownloadError]
+  /// will be invoked with the download error message attached.
+  void onDownloadError(String message);
 }
 
 /// Data class that represents the results of the SDK's detection process.

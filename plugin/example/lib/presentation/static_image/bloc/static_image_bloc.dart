@@ -104,7 +104,7 @@ class StaticImageBloc extends Bloc<StaticImageEvent, StaticImageState> {
     else if (packagedFoodCode != null) {
       final attributes = await NutritionAI.instance
           .fetchAttributesForPackagedFoodCode(packagedFoodCode);
-      final box = math.Rectangle(0.0, 0.0, 1.0, 1.0);
+      const box = math.Rectangle(0.0, 0.0, 1.0, 1.0);
       emit(OnImageAttributeFoundState(
           confidence: 1.00,
           relativeBoundingBox: box,

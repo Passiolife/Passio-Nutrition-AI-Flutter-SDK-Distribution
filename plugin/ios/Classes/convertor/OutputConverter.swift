@@ -237,6 +237,62 @@ struct OutputConverter {
         }
         return mapEstimate
     }
+
+    // MARK: - PassioStatus Mapping
+    // This method maps PassioStatus properties to a dictionary for event reporting.
+    func mapFromPassioStatus(passioStatus: PassioStatus) -> [String: Any?] {
+        // Initialize an empty dictionary to store the mapped status information.
+        var statusMap = [String: Any?]()
+        // Map PassioStatus properties to corresponding dictionary keys.
+        statusMap["mode"] = "\(passioStatus.mode)"
+        statusMap["missingFiles"] = passioStatus.missingFiles
+        statusMap["debugMessage"] = passioStatus.debugMessage
+        statusMap["error"] = passioStatus.error != nil ? "\(passioStatus.error!)" : nil
+        statusMap["activeModels"] = passioStatus.activeModels
+        // Return the dictionary containing the mapped PassioStatus information.
+        return statusMap
+    }
+
+    // MARK: - Completed Downloading File Mapping
+    // This method maps completed downloading file details to a dictionary for event reporting.
+    func mapFromCompletedDownloadingFile(fileUri: FileLocalURL, filesLeft: Int) -> [String: Any?] {
+        // Initialize an empty dictionary to store the mapped download information.
+        var downloadMap = [String: Any?]()
+        // Map completed downloading file details to corresponding dictionary keys.
+        downloadMap["fileUri"] = fileUri.absoluteString
+        downloadMap["filesLeft"] = filesLeft
+        // Return the dictionary containing the mapped download information.
+        return downloadMap
+    }
+
+    // MARK: - PassioStatusListener Mapping
+    // This method maps an event and associated data to a dictionary for event reporting.
+    func mapFromPassioStatusListener(event: String, data: Any?) -> [String: Any?] {
+        // Initialize an empty dictionary to store the mapped event and data.
+        var statusListenerMap = [String: Any?]()
+        // Map event and data to corresponding dictionary keys.
+        statusListenerMap["event"] = event
+        statusListenerMap["data"] = data
+        // Return the dictionary containing the mapped event and data.
+        return statusListenerMap
+    }
     
-    
+    /**
+     MARK: - Data Mapping
+
+     Converts a PassioNutrient object into a dictionary.
+     */
+    func mapFromPassioNutrient(nutrient: PassioNutrient) -> [String: Any?] {
+        // Create a mutable map to store the serialized nutrient data.
+        var nutrientMap = [String: Any?]()
+
+        // Add nutrient properties to the map.
+        nutrientMap["amount"] = nutrient.amount
+        nutrientMap["inflammatoryEffectScore"] = nutrient.inflammatoryEffectScore
+        nutrientMap["name"] = nutrient.name
+        nutrientMap["unit"] = nutrient.unit
+
+        // Return the serialized nutrient map.
+        return nutrientMap
+    }
 }

@@ -8,7 +8,7 @@ import 'package:path/path.dart' as p;
 class NutritionAiSDKRepository extends NutritionAiWrapper {
   @override
   Future<FoodCandidates?> detectFoodIn(
-      String? imagePath, FoodDetectionConfiguration config) async {
+      String? imagePath, FoodDetectionConfiguration configuration) async {
     if (imagePath == null) {
       return null;
     }
@@ -16,6 +16,6 @@ class NutritionAiSDKRepository extends NutritionAiWrapper {
     var file = File(imagePath);
     var extension = p.extension(file.path);
     var bytes = file.readAsBytesSync();
-    return NutritionAI.instance.detectFoodIn(bytes, extension, config: config);
+    return NutritionAI.instance.detectFoodIn(bytes, extension, config: configuration);
   }
 }

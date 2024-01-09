@@ -20,12 +20,16 @@ class NutritionAIPlugin: FlutterPlugin, ActivityAware {
   /// when the Flutter Engine is detached from the Activity
   private lateinit var method : MethodChannel
   private lateinit var detectionChannel: EventChannel
+  // Declared a lateinit variable to hold the EventChannel for status updates.
+  private lateinit var statusChannel: EventChannel
   private var activity: ActivityPluginBinding? = null
   private var handler: NutritionAIHandler? = null
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     method = MethodChannel(flutterPluginBinding.binaryMessenger, "nutrition_ai/method")
     detectionChannel = EventChannel(flutterPluginBinding.binaryMessenger, "nutrition_ai/event/detection")
+    // Initialize the statusChannel with the binary messenger and a unique channel name.
+    statusChannel = EventChannel(flutterPluginBinding.binaryMessenger, "nutrition_ai/event/status")
 
     flutterPluginBinding.platformViewRegistry
       .registerViewFactory("native-preview-view", NativePreviewFactory())
@@ -34,6 +38,8 @@ class NutritionAIPlugin: FlutterPlugin, ActivityAware {
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     method.setMethodCallHandler(null)
     detectionChannel.setStreamHandler(null)
+    // Set the stream handler for statusChannel to null, stopping the event stream.
+    statusChannel.setStreamHandler(null)
   }
 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
@@ -41,6 +47,8 @@ class NutritionAIPlugin: FlutterPlugin, ActivityAware {
     handler = NutritionAIHandler(activity!!.activity)
     method.setMethodCallHandler(handler)
     detectionChannel.setStreamHandler(handler)
+    // Set the stream handler for statusChannel to the provided handler, enabling the event stream.
+    statusChannel.setStreamHandler(handler)
   }
 
   override fun onDetachedFromActivityForConfigChanges() {
@@ -54,6 +62,8 @@ class NutritionAIPlugin: FlutterPlugin, ActivityAware {
   override fun onDetachedFromActivity() {
     method.setMethodCallHandler(null)
     detectionChannel.setStreamHandler(null)
+    // Set the stream handler for statusChannel to null, stopping the event stream.
+    statusChannel.setStreamHandler(null)
     handler = null
     activity = null
   }

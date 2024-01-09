@@ -8,6 +8,7 @@ import 'nutrition_ai_detection.dart';
 import 'models/nutrition_ai_attributes.dart';
 import 'nutrition_ai_passio_id_name.dart';
 import 'models/nutrition_ai_image.dart';
+import 'models/nutrition_ai_nutrient.dart';
 
 abstract class NutritionAIPlatform extends PlatformInterface {
   /// Constructs a NutritionAiPlatform.
@@ -91,5 +92,14 @@ abstract class NutritionAIPlatform extends PlatformInterface {
       Rectangle<double> boundingBox, Rectangle<double> toRect) {
     throw UnimplementedError(
         'transformCGRectForm(Rectangle<double> boundingBox, Rectangle<double> toRect');
+  }
+
+  void setPassioStatusListener(PassioStatusListener? listener) {
+    throw UnimplementedError(
+        'setPassioStatusListener(PassioStatusListener? listener)');
+  }
+
+  Future<List<PassioNutrient>?> fetchNutrientsFor(PassioID passioID) {
+    throw UnimplementedError('fetchNutrientsFor(PassioID passioID)');
   }
 }
