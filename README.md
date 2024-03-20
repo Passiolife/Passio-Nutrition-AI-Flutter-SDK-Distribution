@@ -42,12 +42,12 @@ By default the SDK does not record/store any photos or videos. Instead, as the e
 
 ```groovy
 allprojects {
-    repositories {
-        ...
-        flatDir {
-            dirs project(':nutrition_ai').file('libs')
-        }
-    }
+   repositories {
+      ...
+      flatDir {
+         dirs project(':nutrition_ai').file('libs')
+      }
+   }
 }
 ```
 
@@ -55,12 +55,12 @@ allprojects {
 
 ```groovy
 allprojects {
-    repositories {
-        ...
-        flatDir {
-            implementation (name: 'passiolib-release', ext: 'aar')
-        }
-    }
+   repositories {
+      ...
+      flatDir {
+         implementation (name: 'passiolib-release', ext: 'aar')
+      }
+   }
 }
 ```
 
@@ -76,17 +76,17 @@ import 'package:nutrition_ai/nutrition_ai_sdk.dart';
 
 ```dart 
 void configureSDK() async {
-  String passioKey = "Your_PassioSDK_Key";
-  var configuration = PassioConfiguration(passioKey);
-  passioStatus = await NutritionAI.instance.configureSDK(configuration);
-  switch(passioStatus.mode) {
-    // Handle result of the configuration process.
-    case PassioMode.notReady: { break; }
-    case PassioMode.isBeingConfigured: { break; }
-    case PassioMode.failedToConfigure: { break; }
-    case PassioMode.isDownloadingModels: { break; }
-    case PassioMode.isReadyForDetection: { break; }
-  }
+   String passioKey = "Your_PassioSDK_Key";
+   var configuration = PassioConfiguration(passioKey);
+   passioStatus = await NutritionAI.instance.configureSDK(configuration);
+   switch(passioStatus.mode) {
+   // Handle result of the configuration process.
+      case PassioMode.notReady: { break; }
+      case PassioMode.isBeingConfigured: { break; }
+      case PassioMode.failedToConfigure: { break; }
+      case PassioMode.isDownloadingModels: { break; }
+      case PassioMode.isReadyForDetection: { break; }
+   }
 }
 ```
 
@@ -149,7 +149,7 @@ void _startFoodDetection() {
 }
 
 @override
-void recognitionResults(FoodCandidates foodCandidates) {
+void recognitionResults(FoodCandidates? foodCandidates, PlatformImage? image) {
   // Handle recognition results
 }
 ```
@@ -164,10 +164,82 @@ void dispose() {
 }
 ```
 
-6) Get nutritional information for food using a `PassioID` as a food identifier:
+6) Fetch nutritional data:
+
+Depending on the type of recognized candidate, nutritional data is fetched using these two methods:
+- For visual candidates: ```fetchFoodItemForPassioID```
+- For barcode and packaged food: ```fetchFoodItemForProductCode```
+
+Both of these functions have a callback that returns the nutritional data as ```PassioFoodItem``` object, ```null``` if no data is found or the network is unavailable.
+
+7) Search
+
+The SDK's search functionality returns a PassioSearchResponse of a given search text.
 
 ```dart
-var attributes = await NutritionAI.instance.lookupPassioAttributesFor(passioID);
+ Future<PassioSearchResponse> searchForFood(String byText);
+ ```
+
+The ```PassioSearchResponse``` provides a list of search results and a list of search options.
+
+ ```dart
+ class PassioSearchResponse {
+   final List<PassioSearchResult> results;
+   final List<String> alternateNames;
+ }
+ ```
+- PassioSearchResult holds information such as foodName, brandName, iconID and nutritionPreview
+- The alternateNames provide a list of alternate search terms related to the given term. For example if the search term is "apple", a list of alternateNames would include items such as "red apple", "green apple", "apple juice"...
+
+The function ```fetchSearchResult``` is used to retrieve nutritional data for a given ```PassioSearchResult```. Same as in the camera recognition results, the return object is ```PassioFoodItem```.
+
+8) PassioFoodItem
+
+This is top level object that holds all of the nutritional information such as nutrient data, serving sizes, data origins and more.
+
+```dart
+class PassioFoodItem {
+   final PassioFoodAmount amount;
+   final String details;
+   final String iconId;
+   final String id;
+   final List<PassioIngredient> ingredients;
+   final String name;
+   final PassioID? scannedId;
+
+   PassioNutrients nutrients(UnitMass unitMass);
+   PassioNutrients nutrientsSelectedSize();
+   PassioNutrients nutrientsReference();
+   UnitMass weight();
+   String? isOpenFood();
+}
 ```
+
+- Details contain information such as food brand or food category for general food items
+- ```PassioFoodAmount``` can be used to get a list of associated serving units and predefined serving sizes. It's also used to control the currently selected quantity and unit
+- The nutritional data will be stored in the ```PassioIngredient``` object.
+
+
+```dart
+class PassioIngredient {
+   final PassioFoodAmount amount;
+   final String iconId;
+   final String id;
+   final PassioFoodMetadata metadata;
+   final String name;
+   final PassioNutrients referenceNutrients;
+
+   UnitMass weight();
+}
+```
+
+- Each ingredient has it's own nutritional data and serving size.
+- Nutrients like calories, carbs, protein and other can be found in the ```PassioNutrients``` object, but there are three helper functions to easily fetch the nutrients for the appropriate use case
+- ```PassioNutrients nutrients(UnitMass unitMass)``` will return nutrients for a given UnitMass
+- ```PassioNutrients nutrientsSelectedSize()``` will return nutrients for the currently selected unit and quantity in the amount object
+- ```PassioNutrients nutrientsReference()``` will return nutrients for the reference weight of 100 grams
+
+## Use the image below to test recognition
+![passio_recognition_test](./images/passio_recognition_test.jpeg)
 
 <sup>Copyright 2023 Passio Inc</sup>
