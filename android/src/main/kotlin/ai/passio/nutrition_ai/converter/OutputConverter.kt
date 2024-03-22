@@ -1,6 +1,5 @@
 package ai.passio.nutrition_ai.converter
 
-import ai.passio.nutrition_ai.R
 import ai.passio.nutrition_ai.utils.toByteArray
 import ai.passio.passiosdk.core.config.PassioMode
 import ai.passio.passiosdk.core.config.PassioSDKError
@@ -8,9 +7,10 @@ import ai.passio.passiosdk.core.config.PassioStatus
 import ai.passio.passiosdk.passiofood.BarcodeCandidate
 import ai.passio.passiosdk.passiofood.DetectedCandidate
 import ai.passio.passiosdk.passiofood.FoodCandidates
+import ai.passio.passiosdk.passiofood.InflammatoryEffectData
 import ai.passio.passiosdk.passiofood.PackagedFoodCandidate
-import ai.passio.passiosdk.passiofood.PassioID
-import ai.passio.passiosdk.passiofood.PassioNutrient
+import ai.passio.passiosdk.passiofood.PassioSearchNutritionPreview
+import ai.passio.passiosdk.passiofood.PassioSearchResult
 import ai.passio.passiosdk.passiofood.data.measurement.Grams
 import ai.passio.passiosdk.passiofood.data.measurement.KiloCalories
 import ai.passio.passiosdk.passiofood.data.measurement.Kilograms
@@ -20,15 +20,14 @@ import ai.passio.passiosdk.passiofood.data.measurement.Milliliters
 import ai.passio.passiosdk.passiofood.data.measurement.Unit
 import ai.passio.passiosdk.passiofood.data.measurement.UnitEnergy
 import ai.passio.passiosdk.passiofood.data.measurement.UnitMass
-import ai.passio.passiosdk.passiofood.data.model.PassioAlternative
-import ai.passio.passiosdk.passiofood.data.model.PassioFoodItemData
+import ai.passio.passiosdk.passiofood.data.model.PassioFoodAmount
+import ai.passio.passiosdk.passiofood.data.model.PassioFoodItem
+import ai.passio.passiosdk.passiofood.data.model.PassioFoodMetadata
 import ai.passio.passiosdk.passiofood.data.model.PassioFoodOrigin
-import ai.passio.passiosdk.passiofood.data.model.PassioFoodRecipe
-import ai.passio.passiosdk.passiofood.data.model.PassioIDAttributes
-import ai.passio.passiosdk.passiofood.data.model.PassioIDEntityType
+import ai.passio.passiosdk.passiofood.data.model.PassioIngredient
+import ai.passio.passiosdk.passiofood.data.model.PassioNutrients
 import ai.passio.passiosdk.passiofood.data.model.PassioServingSize
 import ai.passio.passiosdk.passiofood.data.model.PassioServingUnit
-import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 
@@ -67,7 +66,9 @@ private fun PassioSDKError.toPlatformString(): String {
     }
 }
 
-fun mapFromFoodCandidates(candidates: FoodCandidates): Map<String, Any?> {
+fun mapFromFoodCandidates(candidates: FoodCandidates?): Map<String, Any?>? {
+    if (candidates == null) return null
+
     val candidatesMap = mutableMapOf<String, Any?>()
     candidatesMap["detectedCandidate"] = candidates.detectedCandidates?.map {
         mapFromDetectedCandidate(it)
@@ -102,24 +103,18 @@ fun mapFromBarcodeCandidate(candidate: BarcodeCandidate): Map<String, Any?> {
 
 private fun mapFromDetectedCandidate(candidate: DetectedCandidate): Map<String, Any?> {
     val candidateMap = mutableMapOf<String, Any?>()
-    candidateMap["passioID"] = candidate.passioID
-    candidateMap["confidence"] = candidate.confidence
+    candidateMap["alternatives"] = candidate.alternatives.map { mapFromDetectedCandidate(it) }
     candidateMap["boundingBox"] = arrayListOf(
         candidate.boundingBox.left,
         candidate.boundingBox.top,
         candidate.boundingBox.width(),
         candidate.boundingBox.height(),
     )
+    candidateMap["confidence"] = candidate.confidence
+    candidateMap["croppedImage"] = mapFromBitmap(candidate.croppedImage)
+    candidateMap["foodName"] = candidate.foodName
+    candidateMap["passioID"] = candidate.passioID
     return candidateMap
-}
-
-fun mapFromAlternatives(alternative: PassioAlternative): Map<String, Any?> {
-    val alternativeMap = mutableMapOf<String, Any?>()
-    alternativeMap["passioID"] = alternative.passioID
-    alternativeMap["name"] = alternative.name
-    alternativeMap["quantity"] = alternative.number
-    alternativeMap["unitName"] = alternative.unit
-    return alternativeMap
 }
 
 fun mapFromServingSize(servingSize: PassioServingSize): Map<String, Any?> {
@@ -154,10 +149,10 @@ private fun mapFromUnitEnergy(unitEnergy: UnitEnergy?): Map<String, Any?>? {
 
 private fun mapFromUnitIU(value: Double?): Map<String, Any?>? {
     if (value == null) return null
-    val unitEnergyMap = mutableMapOf<String, Any?>()
-    unitEnergyMap["unit"] = "iu"
-    unitEnergyMap["value"] = value
-    return unitEnergyMap
+    val unitIUMap = mutableMapOf<String, Any?>()
+    unitIUMap["unit"] = "iu"
+    unitIUMap["value"] = value
+    return unitIUMap
 }
 
 private fun Unit.unitString(): String {
@@ -178,92 +173,6 @@ fun mapFromFoodOrigin(origin: PassioFoodOrigin): Map<String, Any?> {
     originMap["source"] = origin.source
     originMap["licenseCopy"] = origin.licenseCopy
     return originMap
-}
-
-fun mapFromFoodItemData(data: PassioFoodItemData): Map<String, Any?> {
-    val dataMap = mutableMapOf<String, Any?>()
-    val originalQuantity = data.selectedQuantity
-    val originalUnit = data.selectedUnit
-    dataMap["passioID"] = data.passioID
-    dataMap["name"] = data.name
-    dataMap["selectedQuantity"] = data.selectedQuantity
-    dataMap["selectedUnit"] = data.selectedUnit
-    dataMap["entityType"] = data.entityType.name
-    dataMap["servingUnits"] = data.servingUnits.map { mapFromServingUnit(it) }
-    dataMap["servingSizes"] = data.servingSizes.map { mapFromServingSize(it) }
-    dataMap["ingredientsDescription"] = data.ingredientsDescription
-    dataMap["barcode"] = data.barcode
-    dataMap["foodOrigins"] = data.foodOrigins?.map { mapFromFoodOrigin(it) }
-    dataMap["referenceWeight"] = mapFromUnitMass(data.referenceWeight)
-    dataMap["parents"] = data.parents?.map { mapFromAlternatives(it) }
-    dataMap["children"] = data.children?.map { mapFromAlternatives(it) }
-    dataMap["siblings"] = data.siblings?.map { mapFromAlternatives(it) }
-    dataMap["tags"] = data.tags
-    // Map the nutrient per 100 grams
-    data.setServingSize("gram", 100.0)
-    dataMap["calories"] = mapFromUnitEnergy(data.totalCalories())
-    dataMap["carbs"] = mapFromUnitMass(data.totalCarbs())
-    dataMap["fat"] = mapFromUnitMass(data.totalFat())
-    dataMap["proteins"] = mapFromUnitMass(data.totalProtein())
-    dataMap["saturatedFat"] = mapFromUnitMass(data.totalSatFat())
-    dataMap["transFat"] = mapFromUnitMass(data.totalTransFat())
-    dataMap["monounsaturatedFat"] = mapFromUnitMass(data.totalMonounsaturatedFat())
-    dataMap["polyunsaturatedFat"] = mapFromUnitMass(data.totalPolyunsaturatedFat())
-    dataMap["cholesterol"] = mapFromUnitMass(data.totalCholesterol())
-    dataMap["sodium"] = mapFromUnitMass(data.totalSodium())
-    dataMap["fibers"] = mapFromUnitMass(data.totalFibers())
-    dataMap["sugars"] = mapFromUnitMass(data.totalSugars())
-    dataMap["sugarsAdded"] = mapFromUnitMass(data.totalSugarsAdded())
-    dataMap["vitaminD"] = mapFromUnitMass(data.totalVitaminD())
-    dataMap["calcium"] = mapFromUnitMass(data.totalCalcium())
-    dataMap["iron"] = mapFromUnitMass(data.totalIron())
-    dataMap["potassium"] = mapFromUnitMass(data.totalPotassium())
-    dataMap["vitaminA"] = mapFromUnitIU(data.totalVitaminA())
-    dataMap["vitaminC"] = mapFromUnitMass(data.totalVitaminC())
-    dataMap["alcohol"] = mapFromUnitMass(data.totalAlcohol())
-    dataMap["sugarAlcohol"] = mapFromUnitMass(data.totalSugarAlcohol())
-    dataMap["vitaminB12Added"] = mapFromUnitMass(data.totalVitaminB12Added())
-    dataMap["vitaminB12"] = mapFromUnitMass(data.totalVitaminB12())
-    dataMap["vitaminB6"] = mapFromUnitMass(data.totalVitaminB6())
-    dataMap["vitaminE"] = mapFromUnitMass(data.totalVitaminE())
-    dataMap["vitaminEAdded"] = mapFromUnitMass(data.totalVitaminEAdded())
-    dataMap["magnesium"] = mapFromUnitMass(data.totalMagnesium())
-    dataMap["phosphorus"] = mapFromUnitMass(data.totalPhosphorus())
-    dataMap["iodine"] = mapFromUnitMass(data.totalIodine())
-    data.setServingSize(originalUnit, originalQuantity)
-    return dataMap
-}
-
-fun mapFromPassioIDAttributes(attrs: PassioIDAttributes): Map<String, Any?> {
-    val attrMap = mutableMapOf<String, Any?>()
-    attrMap["passioID"] = attrs.passioID
-    attrMap["name"] = attrs.name
-    attrMap["entityType"] = attrs.entityType.name
-    attrMap["foodItem"] = if (attrs.passioFoodItemData != null) mapFromFoodItemData(attrs.passioFoodItemData!!) else null
-    attrMap["recipe"] = if (attrs.passioFoodRecipe != null) mapFromPassioFoodRecipe(attrs.passioFoodRecipe!!) else null
-    attrMap["parents"] = attrs.parents?.map { mapFromAlternatives(it) }
-    attrMap["siblings"] = attrs.siblings?.map { mapFromAlternatives(it) }
-    attrMap["children"] = attrs.children?.map { mapFromAlternatives(it) }
-    return attrMap
-}
-
-fun mapFromPassioFoodRecipe(recipe: PassioFoodRecipe): Map<String, Any?> {
-    val recipeMap = mutableMapOf<String, Any?>()
-    recipeMap["passioID"] = recipe.passioID
-    recipeMap["name"] = recipe.name
-    recipeMap["selectedQuantity"] = recipe.selectedQuantity
-    recipeMap["selectedUnit"] = recipe.selectedUnit
-    recipeMap["servingUnits"] = recipe.servingUnits.map { mapFromServingUnit(it) }
-    recipeMap["servingSizes"] = recipe.servingSizes.map { mapFromServingSize(it) }
-    recipeMap["foodItems"] = recipe.foodItems.map { mapFromFoodItemData(it) }
-    return recipeMap
-}
-
-fun mapFromSearchResult(result: Pair<PassioID, String>): Map<String, Any?> {
-    val searchMap = mutableMapOf<String, Any?>()
-    searchMap["passioID"] = result.first
-    searchMap["name"] = result.second
-    return searchMap
 }
 
 fun mapFromBitmap(image: Bitmap?): MutableMap<String, Any?>? {
@@ -315,21 +224,168 @@ fun mapFromPassioStatusListener(event: String, data: Any?): Map<String, Any?> {
 }
 
 /**
- * Maps a [PassioNutrient] object to a [Map] for serialization.
+ * Maps a [InflammatoryEffectData] object to a [Map] for serialization.
  *
- * @param nutrient The [PassioNutrient] object to be mapped.
- * @return A [Map] containing the serialized representation of the [PassioNutrient].
+ * @param inflammatoryData The [InflammatoryEffectData] object to be mapped.
+ * @return A [Map] containing the serialized representation of the [InflammatoryEffectData].
  */
-fun mapFromPassioNutrient(nutrient: PassioNutrient): Map<String, Any?> {
-    // Create a mutable map to store the serialized nutrient data.
-    val nutrientMap = mutableMapOf<String, Any?>()
+fun mapFromInflammatoryEffectData(inflammatoryData: InflammatoryEffectData): Map<String, Any?> {
+    // Create a mutable map to store the serialized Inflammatory effect data.
+    val inflammatoryMap = mutableMapOf<String, Any?>()
 
-    // Add nutrient properties to the map.
-    nutrientMap["amount"] = nutrient.amount
-    nutrientMap["inflammatoryEffectScore"] = nutrient.inflammatoryEffectScore
-    nutrientMap["name"] = nutrient.name
-    nutrientMap["unit"] = nutrient.unit
+    // Add Inflammatory effect properties to the map.
+    inflammatoryMap["amount"] = inflammatoryData.amount
+    inflammatoryMap["inflammatoryEffectScore"] = inflammatoryData.inflammatoryEffectScore
+    inflammatoryMap["nutrient"] = inflammatoryData.nutrient
+    inflammatoryMap["unit"] = inflammatoryData.unit
 
-    // Return the serialized nutrient map.
-    return nutrientMap
+    // Return the serialized inflammatory map.
+    return inflammatoryMap
+}
+
+/**
+ * Converts a PassioFoodItem object to a Map<String, Any?>.
+ *
+ * @param foodItem The PassioFoodItem object to convert.
+ * @return A Map<String, Any?> representing the properties of the PassioFoodItem.
+ */
+fun mapFromPassioFoodItem(foodItem: PassioFoodItem): Map<String, Any?> {
+    // Create a mutable map to store the properties of the PassioFoodItem
+    val foodItemMap = mutableMapOf<String, Any?>()
+
+    // Add the amount property to the map
+    foodItemMap["amount"] = mapFromPassioFoodAmount(foodItem.amount)
+    // Add the details property to the map
+    foodItemMap["details"] = foodItem.details
+    // Add the iconId property to the map
+    foodItemMap["iconId"] = foodItem.iconId
+    // Add the id property to the map
+    foodItemMap["id"] = foodItem.id
+    // Add the ingredients property to the map
+    foodItemMap["ingredients"] = foodItem.ingredients.map { mapFromPassioIngredient(it) }
+    // Add the name property to the map
+    foodItemMap["name"] = foodItem.name
+
+    // Return the populated map
+    return foodItemMap
+}
+
+/**
+ * Converts a PassioFoodAmount object to a Map<String, Any?>.
+ *
+ * @param amount The PassioFoodAmount object to convert.
+ * @return A Map<String, Any?> representing the properties of the PassioFoodAmount.
+ */
+private fun mapFromPassioFoodAmount(amount: PassioFoodAmount): Map<String, Any?> {
+    // Create a mutable map to store the properties of the PassioFoodAmount
+    val amountMap = mutableMapOf<String, Any?>()
+
+    // Add the selectedQuantity property to the map
+    amountMap["selectedQuantity"] = amount.selectedQuantity
+    // Add the selectedUnit property to the map
+    amountMap["selectedUnit"] = amount.selectedUnit
+    // Convert each serving size to a map and add it to the servingSizes property
+    amountMap["servingSizes"] = amount.servingSizes.map { mapFromServingSize(it) }
+    // Convert each serving unit to a map and add it to the servingUnits property
+    amountMap["servingUnits"] = amount.servingUnits.map { mapFromServingUnit(it) }
+
+    // Return the populated map
+    return amountMap
+}
+
+fun mapFromPassioIngredient(ingredient: PassioIngredient): Map<String, Any?> {
+    val ingredientMap = mutableMapOf<String, Any?>()
+
+    ingredientMap["amount"] = mapFromPassioFoodAmount(ingredient.amount)
+    ingredientMap["iconId"] = ingredient.iconId
+    ingredientMap["id"] = ingredient.id
+    ingredientMap["metadata"] = mapFromPassioFoodMetadata(ingredient.metadata)
+    ingredientMap["name"] = ingredient.name
+    ingredientMap["referenceNutrients"] = mapFromPassioNutrients(ingredient.referenceNutrients)
+
+    return ingredientMap
+}
+
+private fun mapFromPassioFoodMetadata(metadata: PassioFoodMetadata): Map<String, Any?> {
+    val metaDataMap = mutableMapOf<String, Any?>()
+
+    metaDataMap["barcode"] = metadata.barcode
+    metaDataMap["foodOrigins"] = metadata.foodOrigins?.map { mapFromFoodOrigin(it) }
+    metaDataMap["ingredientsDescription"] = metadata.ingredientsDescription
+    metaDataMap["tags"] = metadata.tags
+
+    return metaDataMap
+}
+
+private fun mapFromPassioNutrients(nutrients: PassioNutrients): Map<String, Any?> {
+    val nutrientsMap = mutableMapOf<String, Any?>()
+
+    nutrientsMap["weight"] = mapFromUnitMass(nutrients.weight)
+    nutrientsMap["referenceWeight"] = mapFromUnitMass(nutrients.referenceWeight)
+
+    nutrientsMap["calories"] = mapFromUnitEnergy(nutrients.calories())
+    nutrientsMap["carbs"] = mapFromUnitMass(nutrients.carbs())
+    nutrientsMap["fat"] = mapFromUnitMass(nutrients.fat())
+    nutrientsMap["proteins"] = mapFromUnitMass(nutrients.protein())
+    nutrientsMap["satFat"] = mapFromUnitMass(nutrients.satFat())
+    nutrientsMap["transFat"] = mapFromUnitMass(nutrients.transFat())
+    nutrientsMap["monounsaturatedFat"] = mapFromUnitMass(nutrients.monounsaturatedFat())
+    nutrientsMap["polyunsaturatedFat"] = mapFromUnitMass(nutrients.polyunsaturatedFat())
+    nutrientsMap["cholesterol"] = mapFromUnitMass(nutrients.cholesterol())
+    nutrientsMap["sodium"] = mapFromUnitMass(nutrients.sodium())
+    nutrientsMap["fibers"] = mapFromUnitMass(nutrients.fibers())
+    nutrientsMap["sugars"] = mapFromUnitMass(nutrients.sugars())
+    nutrientsMap["sugarsAdded"] = mapFromUnitMass(nutrients.sugarsAdded())
+    nutrientsMap["vitaminD"] = mapFromUnitMass(nutrients.vitaminD())
+    nutrientsMap["calcium"] = mapFromUnitMass(nutrients.calcium())
+    nutrientsMap["iron"] = mapFromUnitMass(nutrients.iron())
+    nutrientsMap["potassium"] = mapFromUnitMass(nutrients.potassium())
+    nutrientsMap["vitaminA"] = mapFromUnitIU(nutrients.vitaminA())
+    nutrientsMap["vitaminC"] = mapFromUnitMass(nutrients.vitaminC())
+    nutrientsMap["alcohol"] = mapFromUnitMass(nutrients.alcohol())
+    nutrientsMap["sugarAlcohol"] = mapFromUnitMass(nutrients.sugarAlcohol())
+    nutrientsMap["vitaminB12Added"] = mapFromUnitMass(nutrients.vitaminB12Added())
+    nutrientsMap["vitaminB12"] = mapFromUnitMass(nutrients.vitaminB12())
+    nutrientsMap["vitaminB6"] = mapFromUnitMass(nutrients.vitaminB6())
+    nutrientsMap["vitaminE"] = mapFromUnitMass(nutrients.vitaminE())
+    nutrientsMap["vitaminEAdded"] = mapFromUnitMass(nutrients.vitaminEAdded())
+    nutrientsMap["magnesium"] = mapFromUnitMass(nutrients.magnesium())
+    nutrientsMap["phosphorus"] = mapFromUnitMass(nutrients.phosphorus())
+    nutrientsMap["iodine"] = mapFromUnitMass(nutrients.iodine())
+
+    return nutrientsMap
+}
+
+fun mapFromSearchResponse(
+    searchResult: List<PassioSearchResult>,
+    alternative: List<String>
+): Map<String, Any?> {
+    val searchMap = mutableMapOf<String, Any?>()
+    searchMap["results"] = searchResult.map { mapFromPassioSearchResult(it) }
+    searchMap["alternateNames"] = alternative
+    return searchMap
+}
+
+private fun mapFromPassioSearchResult(passioSearchResult: PassioSearchResult): Map<String, Any?> {
+    val searchResult = mutableMapOf<String, Any?>()
+    searchResult["brandName"] = passioSearchResult.brandName
+    searchResult["foodName"] = passioSearchResult.foodName
+    searchResult["iconID"] = passioSearchResult.iconID
+    searchResult["labelId"] = passioSearchResult.labelId
+    searchResult["nutritionPreview"] =
+        mapFromPassioSearchNutritionPreview(passioSearchResult.nutritionPreview)
+    searchResult["resultId"] = passioSearchResult.resultId
+    searchResult["score"] = passioSearchResult.score
+    searchResult["scoredName"] = passioSearchResult.scoredName
+    searchResult["type"] = passioSearchResult.type
+    return searchResult
+}
+
+private fun mapFromPassioSearchNutritionPreview(nutritionPreview: PassioSearchNutritionPreview): Map<String, Any?> {
+    val previewMap = mutableMapOf<String, Any?>()
+    previewMap["calories"] = nutritionPreview.calories
+    previewMap["servingQuantity"] = nutritionPreview.servingQuantity
+    previewMap["servingUnit"] = nutritionPreview.servingUnit
+    previewMap["servingWeight"] = nutritionPreview.servingWeight
+    return previewMap
 }

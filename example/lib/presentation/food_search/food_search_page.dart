@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutrition_ai/nutrition_ai.dart';
@@ -29,7 +31,7 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
   String _searchQuery = '';
 
   /// [_filteredFoodItems] list is use to show the filtered food items which will get from the API.
-  final List<PassioIDAndName> _filteredFoodItems = [];
+  final List<PassioSearchResult> _filteredFoodItems = [];
 
   /// [_filteredFoodItemsImages] map is use to store the platform images.
   final Map<String?, PlatformImage?> _filteredFoodItemsImages = {};
@@ -82,6 +84,12 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
                 },
               ),
               const SizedBox(height: 4),
+              /*ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Chip(label: Text(''));
+                },
+              ),*/
               Expanded(
                 child: ListView.separated(
                   padding: EdgeInsets.zero,
@@ -92,11 +100,11 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
                       key: UniqueKey(),
                       data: _filteredFoodItems.elementAt(index),
                       foodItemsImages: _filteredFoodItemsImages,
-                      onTapItem: (data) {
+                      onTapItem: (data) async {
                         context.hideKeyboard();
                         context.showSnackbar(
                             text:
-                                '${data?.name.toTitleCase()} is added to the logs.');
+                                '${data?.foodName.toTitleCase()} is added to the logs.');
                       },
                     );
                   },
@@ -139,30 +147,55 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
 
   void _handleFoodSearchSuccessState({required FoodSearchSuccessState state}) {
     _filteredFoodItems.clear();
-    _filteredFoodItems.addAll(state.data);
+    _filteredFoodItems.addAll(state.results);
   }
 
   void _handleFoodSearchTypingState({required FoodSearchTypingState state}) {
     _filteredFoodItems.clear();
-    _filteredFoodItems.add(PassioIDAndName(
-      AppConstants.removeIcon,
-      context.localization?.keepTyping ?? '',
+    _filteredFoodItems.add(PassioSearchResult(
+      iconID: AppConstants.removeIcon,
+      foodName: context.localization?.keepTyping ?? '',
+      brandName: '',
+      labelId: '',
+      nutritionPreview: const PassioSearchNutritionPreview(
+          calories: 10, servingUnit: '', servingQuantity: 0, servingWeight: ''),
+      resultId: '',
+      scoredName: '',
+      score: 0,
+      type: '',
     ));
   }
 
   void _handleFoodSearchLoadingState({required FoodSearchLoadingState state}) {
     _filteredFoodItems.clear();
-    _filteredFoodItems.add(PassioIDAndName(
-      AppConstants.searching,
-      context.localization?.searching ?? '',
+    _filteredFoodItems.add(PassioSearchResult(
+      iconID: AppConstants.searching,
+      foodName: context.localization?.searching ?? '',
+      brandName: '',
+      labelId: '',
+      nutritionPreview: const PassioSearchNutritionPreview(
+          calories: 10, servingUnit: '', servingQuantity: 0, servingWeight: ''),
+      resultId: '',
+      scoredName: '',
+      score: 0,
+      type: '',
     ));
   }
 
   void _handleFoodSearchFailureState({required FoodSearchFailureState state}) {
     _filteredFoodItems.clear();
-    _filteredFoodItems.add(PassioIDAndName(
-      AppConstants.removeIcon,
-      '${state.searchQuery} ${context.localization?.noFoodSearchResultMessage ?? ''}',
+    _filteredFoodItems.add(PassioSearchResult(
+      iconID: AppConstants.removeIcon,
+      foodName:
+          '${state.searchQuery} ${context.localization?.noFoodSearchResultMessage ?? ''}',
+      brandName: '',
+      labelId: '',
+      nutritionPreview: const PassioSearchNutritionPreview(
+          calories: 10, servingUnit: '', servingQuantity: 0, servingWeight: ''),
+      resultId: '',
+      scoredName: '',
+      score: 0,
+      type: '',
     ));
   }
 }

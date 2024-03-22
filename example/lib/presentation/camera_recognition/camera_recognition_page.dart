@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutrition_ai/nutrition_ai.dart';
-import 'package:nutrition_ai_example/presentation/camera_recognition/bloc/camera_recognition_bloc.dart';
 import 'package:nutrition_ai_example/inject/injector.dart';
+import 'package:nutrition_ai_example/presentation/camera_recognition/bloc/camera_recognition_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class CameraRecognitionPage extends StatefulWidget {
@@ -76,14 +76,15 @@ class _CameraRecognitionPageState extends State<CameraRecognitionPage>
   }
 
   void _startFoodDetection() {
-    var detectionConfig = FoodDetectionConfiguration(
+    var detectionConfig = const FoodDetectionConfiguration(
         detectBarcodes: true, detectPackagedFood: true);
     NutritionAI.instance.startFoodDetection(detectionConfig, this);
     debugPrint("Start Food Detection from main");
   }
 
   @override
-  void recognitionResults(FoodCandidates foodCandidates, PlatformImage? image) {
+  void recognitionResults(
+      FoodCandidates? foodCandidates, PlatformImage? image) {
     _bloc.add(FoodRecognizedEvent(candidates: foodCandidates, image: image));
   }
 

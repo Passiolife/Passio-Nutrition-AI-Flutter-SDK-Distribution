@@ -9,12 +9,14 @@ class FoodSearchTypingState extends FoodSearchState {}
 class FoodSearchLoadingState extends FoodSearchState {}
 
 class FoodSearchSuccessState extends FoodSearchState {
-  final List<PassioIDAndName> data;
+  final List<PassioSearchResult> results;
+  final List<String> alternatives;
 
-  FoodSearchSuccessState({required this.data});
+  FoodSearchSuccessState({required this.results, required this.alternatives});
 }
 
 class FoodSearchFailureState extends FoodSearchState {
   final String searchQuery;
+
   FoodSearchFailureState({required this.searchQuery});
 }

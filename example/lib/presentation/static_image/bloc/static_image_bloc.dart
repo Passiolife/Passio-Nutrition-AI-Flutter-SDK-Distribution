@@ -72,7 +72,7 @@ class StaticImageBloc extends Bloc<StaticImageEvent, StaticImageState> {
     emit(OnSelectImageState(image: event.image));
 
     /// Here, we will call the SDK for the food detection from image.
-    final detectionConfig = FoodDetectionConfiguration(
+    const detectionConfig = FoodDetectionConfiguration(
         detectBarcodes: true, detectPackagedFood: true);
     FoodCandidates? foodCandidates = await nutritionAiWrapper.detectFoodIn(
         event.image?.path, detectionConfig);
@@ -83,44 +83,44 @@ class StaticImageBloc extends Bloc<StaticImageEvent, StaticImageState> {
 
     emit(OnSelectImageLoadingState(isLoading: false));
 
-    var passioID = foodCandidates.detectedCandidates.firstOrNull?.passioID;
+    var passioID = foodCandidates.detectedCandidates?.firstOrNull?.passioID;
     var barcode = foodCandidates.barcodeCandidates?.firstOrNull?.value;
     var packagedFoodCode =
         foodCandidates.packagedFoodCandidates?.firstOrNull?.packagedFoodCode;
 
     /// If the scan result is Bar code.
     if (barcode != null) {
-      final attributes =
-          await NutritionAI.instance.fetchAttributesForBarcode(barcode);
+      final foodItem =
+          await NutritionAI.instance.fetchFoodItemForProductCode(barcode);
       final candidate = foodCandidates.barcodeCandidates!.firstOrNull!;
       final candidateBB = candidate.boundingBox;
       emit(OnImageAttributeFoundState(
           confidence: 1.00,
           relativeBoundingBox: candidateBB,
-          foodName: attributes?.name ?? 'Unknown'));
+          foodName: foodItem?.name ?? 'Unknown'));
     }
 
     /// If the scan result is food package.
     else if (packagedFoodCode != null) {
-      final attributes = await NutritionAI.instance
-          .fetchAttributesForPackagedFoodCode(packagedFoodCode);
+      final foodItem = await NutritionAI.instance
+          .fetchFoodItemForProductCode(packagedFoodCode);
       const box = math.Rectangle(0.0, 0.0, 1.0, 1.0);
       emit(OnImageAttributeFoundState(
           confidence: 1.00,
           relativeBoundingBox: box,
-          foodName: attributes?.name ?? 'Unknown'));
+          foodName: foodItem?.name ?? 'Unknown'));
     }
 
     /// If the scan result is passioID.
     else if (passioID != null) {
-      final attributes =
-          await NutritionAI.instance.lookupPassioAttributesFor(passioID);
-      final candidate = foodCandidates.detectedCandidates.firstOrNull!;
+      final foodItem =
+          await NutritionAI.instance.fetchFoodItemForPassioID(passioID);
+      final candidate = foodCandidates.detectedCandidates!.first;
       final candidateBB = candidate.boundingBox;
       emit(OnImageAttributeFoundState(
           confidence: 1.00,
           relativeBoundingBox: candidateBB,
-          foodName: attributes?.name ?? 'Unknown'));
+          foodName: foodItem?.name ?? 'Unknown'));
     }
   }
 }

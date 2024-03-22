@@ -1,14 +1,17 @@
-import 'dart:typed_data';
 import 'dart:math';
+import 'dart:typed_data';
+
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'nutrition_ai_method_channel.dart';
+import 'models/inflammatory_effect_data.dart';
+import 'models/passio_id_entity_types.dart';
+import 'models/platform_image.dart';
+import 'models/passio_food_item.dart';
+import 'models/passio_search_response.dart';
+import 'models/passio_search_result.dart';
 import 'nutrition_ai_configuration.dart';
 import 'nutrition_ai_detection.dart';
-import 'models/nutrition_ai_attributes.dart';
-import 'nutrition_ai_passio_id_name.dart';
-import 'models/nutrition_ai_image.dart';
-import 'models/nutrition_ai_nutrient.dart';
+import 'nutrition_ai_method_channel.dart';
 
 abstract class NutritionAIPlatform extends PlatformInterface {
   /// Constructs a NutritionAiPlatform.
@@ -48,13 +51,18 @@ abstract class NutritionAIPlatform extends PlatformInterface {
     throw UnimplementedError('stopFoodDetection() has not been implemented.');
   }
 
-  Future<List<PassioIDAndName>> searchForFood(String byText) {
-    throw UnimplementedError('platformVersion() has not been implemented.');
+  Future<PassioSearchResponse> searchForFood(String byText) {
+    throw UnimplementedError('searchForFood() has not been implemented.');
   }
 
-  Future<PassioIDAttributes?> lookupPassioAttributesFor(PassioID passioID) {
+  Future<PassioFoodItem?> fetchSearchResult(PassioSearchResult searchResult) {
     throw UnimplementedError(
-        'lookupPassioAttributesFor() has not been implemented.');
+        'fetchSearchResult(PassioSearchResult searchResult) has not been implemented.');
+  }
+
+  Future<PassioFoodItem?> fetchFoodItemForPassioID(PassioID passioID) {
+    throw UnimplementedError(
+        'fetchFoodItemForPassioID() has not been implemented.');
   }
 
   Future<PlatformImage?> fetchIconFor(PassioID passioID, IconSize iconSize) {
@@ -70,13 +78,8 @@ abstract class NutritionAIPlatform extends PlatformInterface {
     throw UnimplementedError('iconURLFor(PassioID passioID, IconSize size)');
   }
 
-  Future<PassioIDAttributes?> fetchAttributesForBarcode(Barcode barcode) {
-    throw UnimplementedError('fetchPassioIDAttributesFor(Barcode barcode)');
-  }
-
-  Future<PassioIDAttributes?> fetchAttributesForPackagedFoodCode(
-      PackagedFoodCode packagedFoodCode) {
-    throw UnimplementedError('fetchPassioIDAttributesFor(Barcode barcode)');
+  Future<PassioFoodItem?> fetchFoodItemForProductCode(String productCode) {
+    throw UnimplementedError('fetchFoodItemForProductCode(String productCode)');
   }
 
   Future<List<String>?> fetchTagsFor(PassioID passioID) {
@@ -84,7 +87,7 @@ abstract class NutritionAIPlatform extends PlatformInterface {
   }
 
   Future<FoodCandidates?> detectFoodIn(
-      Uint8List bytes, String extension, FoodDetectionConfiguration? config) {
+      Uint8List bytes, FoodDetectionConfiguration? config) {
     throw UnimplementedError('detectFoodIn(Uint8List bytes, String extension)');
   }
 
@@ -99,7 +102,8 @@ abstract class NutritionAIPlatform extends PlatformInterface {
         'setPassioStatusListener(PassioStatusListener? listener)');
   }
 
-  Future<List<PassioNutrient>?> fetchNutrientsFor(PassioID passioID) {
-    throw UnimplementedError('fetchNutrientsFor(PassioID passioID)');
+  Future<List<InflammatoryEffectData>?> fetchInflammatoryEffectData(
+      PassioID passioID) {
+    throw UnimplementedError('fetchInflammatoryEffectData(PassioID passioID)');
   }
 }

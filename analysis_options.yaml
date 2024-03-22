@@ -6,3 +6,4 @@ include: package:flutter_lints/flutter.yaml
 linter:
   rules:
     - comment_references
+    - prefer_const_constructors

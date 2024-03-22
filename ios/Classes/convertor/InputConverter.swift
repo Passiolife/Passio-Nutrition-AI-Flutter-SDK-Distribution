@@ -76,7 +76,7 @@ struct InputConverter {
         return configuration
     }
     
-    func mapToBoundingBox(box :[String: Any] ) -> CGRect? {
+    func mapToBoundingBox(box :[String: Any]) -> CGRect? {
         guard let x = box["left"] as? Double,
               let y = box["top"] as? Double,
               let width = box["width"] as? Double,
@@ -84,6 +84,20 @@ struct InputConverter {
             return nil
         }
         return CGRect(x: x, y: y, width: width, height: height)
+    }
+    
+    func mapToPassioSearchResult(map: [String: Any?]) -> PassioSearchResult? {
+        guard let type = map["type"] as? String,
+              let foodName = map["foodName"] as? String,
+              let score = map["score"] as? Double,
+              let brandName = map["brandName"] as? String,
+              let iconId = map["iconId"] as? PassioID,
+              let labelId = map["labelId"] as? String,
+              let scoredName = map["scoredName"] as? String,
+              let resultId = map["resultId"] as? String else {
+            return nil;
+        }
+        return PassioSearchResult(type: type, displayName: foodName, shortName: "", score: score, brandName: brandName, iconId: iconId, labelId: labelId, synonymId: "", scoredName: scoredName, recipeId: "", redrenceId: "", resultId: resultId);
     }
     
 }

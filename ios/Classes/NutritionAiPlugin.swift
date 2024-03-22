@@ -61,20 +61,20 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             iconURLFor(arguments: call.arguments) { flutterResult in
                 result(flutterResult)
             }
+        case "fetchFoodItemForPassioID":
+            fetchFoodItemForPassioID(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
+        case "fetchFoodItemForProductCode":
+            fetchFoodItemForProductCode(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
         case "searchForFood":
             searchForFood(arguments: call.arguments) { flutterResult in
                 result(flutterResult)
             }
-        case "lookupPassioAttributesFor":
-            lookupPassioAttributesFor(arguments: call.arguments) { flutterResult in
-                result(flutterResult)
-            }
-        case "fetchAttributesForBarcode":
-            fetchAttributesForBarcode(arguments: call.arguments) { flutterResult in
-                result(flutterResult)
-            }
-        case "fetchAttributesForPackagedFoodCode":
-            fetchAttributesForPackagedFoodCode(arguments: call.arguments) { flutterResult in
+        case "fetchSearchResult":
+            fetchSearchResult(arguments: call.arguments) { flutterResult in
                 result(flutterResult)
             }
         case "fetchTagsFor":
@@ -85,8 +85,8 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             transformCGRectForm(arguments: call.arguments) { flutterResult in
                 result(flutterResult)
             }
-        case "fetchNutrientsFor":
-            fetchNutrientsFor(arguments: call.arguments) { flutterResult in
+        case "fetchInflammatoryEffectData":
+            fetchInflammatoryEffectData(arguments: call.arguments) { flutterResult in
                 result(flutterResult)
             }
         default:
@@ -140,7 +140,6 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
         
         guard let arguments = arguments as? [String: Any],
               let bytes = arguments["bytes"] as? FlutterStandardTypedData,
-              //              let _ = arguments["extension"] as? String,
               let configMap = arguments["config"] as? [String: Any] else {
             result("Fail to configure no arguments")
             return
@@ -233,61 +232,50 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
         result(urlString)
     }
     
+    func fetchFoodItemForPassioID(arguments: Any?, result: @escaping FlutterResult) {
+        if let passioID = arguments as? PassioID {
+            passioSDK.fetchFoodItemFor(passioID: passioID) { passioFoodItem in
+                let passioFoodItemMap = self.outputConverter.mapFromPassioFoodItem(foodItem: passioFoodItem)
+                result(passioFoodItemMap)
+            }
+        } else {
+            result(nil)
+        }
+    }
+    
+    func fetchFoodItemForProductCode(arguments: Any?, result: @escaping FlutterResult) {
+        if let productCode = arguments as? String {
+            passioSDK.fetchFoodItemFor(productCode: productCode) { passioFoodItem in
+                let passioFoodItemMap = self.outputConverter.mapFromPassioFoodItem(foodItem: passioFoodItem)
+                result(passioFoodItemMap)
+            }
+        } else {
+            result(nil)
+        }
+    }
+    
     func searchForFood(arguments: Any?, result: @escaping FlutterResult) {
         if let byText = arguments as? String {
-            passioSDK.searchForFood(byText: byText) { passioIDAndNames in
-                var resultList: [[String: String]] = []
-                for passioIDAndName in passioIDAndNames {
-                    let resultItem: [String: String] = [
-                        "passioID": passioIDAndName.passioID,
-                        "name": passioIDAndName.name,
-                    ]
-                    resultList.append(resultItem)
-                }
-                result(resultList)
-            }
-        } else {
-            result("Fail to searchForFood")
-        }
-    }
-    
-    func lookupPassioAttributesFor(arguments: Any?, result: @escaping FlutterResult) {
-        if let passioID = arguments as? PassioID,
-           let pidATT = passioSDK.lookupPassioIDAttributesFor(passioID: passioID) {
-            let attrMap = outputConverter.mapFromPassioIDAttributes(passioIDAttributes: pidATT)
-            result(attrMap)
-        } else {
-            result(nil)
-        }
-    }
-    
-    func fetchAttributesForBarcode(arguments: Any?, result: @escaping FlutterResult) {
-        if let barcode = arguments as? Barcode{
-            passioSDK.fetchPassioIDAttributesFor(barcode: barcode){ pidATT in
-                if let pidATT = pidATT {
-                    let attrMap = self.outputConverter.mapFromPassioIDAttributes(passioIDAttributes: pidATT)
-                    result(attrMap)
-                } else {
-                    result(nil)
-                }
+            passioSDK.searchForFood(byText: byText) { searchResponse in
+                var searchMap: [String: Any?] = [:]
+                searchMap["results"] = (searchResponse?.results.map{ self.outputConverter.mapFromPassioSearchResult(searchResult: $0) } ?? [] ).compactMap({$0})
+                searchMap["alternateNames"] = searchResponse?.alternateNames ?? []
+                result(searchMap)
             }
         } else {
             result(nil)
         }
     }
     
-    func fetchAttributesForPackagedFoodCode(arguments: Any?, result: @escaping FlutterResult) {
-        if let packagedFoodCode = arguments as? PackagedFoodCode{
-            passioSDK.fetchPassioIDAttributesFor(packagedFoodCode: packagedFoodCode) { pidATT in
-                if let pidATT = pidATT {
-                    let attrMap = self.outputConverter.mapFromPassioIDAttributes(passioIDAttributes: pidATT)
-                    result(attrMap)
-                } else {
-                    result(nil)
-                }
-            }
-        } else {
+    func fetchSearchResult(arguments: Any?, result: @escaping FlutterResult) {
+        guard let searchResultMap = arguments as? [String: Any],
+              let searchResult = inputConverter.mapToPassioSearchResult(map: searchResultMap) else {
             result(nil)
+            return
+        }
+        passioSDK.fetchSearchResult(searchResult: searchResult) { passioFoodItem in
+            let passioFoodItemMap = self.outputConverter.mapFromPassioFoodItem(foodItem: passioFoodItem)
+            result(passioFoodItemMap)
         }
     }
 
@@ -327,15 +315,15 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
 
      - Note: Intended to be called from Flutter using platform channels.
      */
-    func fetchNutrientsFor(arguments: Any?, result: @escaping FlutterResult) {
+    func fetchInflammatoryEffectData(arguments: Any?, result: @escaping FlutterResult) {
         // Check if the provided argument is a PassioID
         if let passioID = arguments as? PassioID {
             // Call PassioSDK to fetch nutrients for the given passioID
-            passioSDK.fetchNutrientsFor(passioID: passioID) { nutrients in
+            passioSDK.fetchInflammatoryEffectData(passioID: passioID) { inflammatoryData in
                 // Check if nutrients is not nil
-                if let nutrients = nutrients {
+                if let inflammatoryEffectData = inflammatoryData {
                     // Map PassioNutrient objects to a new list using mapFromPassioNutrient function
-                    let resultList = nutrients.map { self.outputConverter.mapFromPassioNutrient(nutrient: $0) }
+                    let resultList = inflammatoryEffectData.map { self.outputConverter.mapFromInflammatoryEffectData(inflammatoryEffectData: $0) }
                     // Call the FlutterResult with the resultList
                     result(resultList)
                 } else {

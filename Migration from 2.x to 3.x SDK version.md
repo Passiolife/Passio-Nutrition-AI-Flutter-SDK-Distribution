@@ -1,6 +1,5 @@
 ## Camera recognition
 
-* ```lookupNameFor```, ```lookupPassioAttributesForName``` and ```lookupAllDescendantsFor``` have been removed since these function were querying the local database
 * ```lookupPassioAttributesFor``` has been replaced with ```fetchFoodItemForPassioID``` and now returns a *PassioFoodItem* result
 * ```fetchPassioIDAttributesForBarcode``` and ```fetchPassioIDAttributesForPackagedFood``` have been replaced with ```fetchFoodItemForProductCode``` which now returns a *PassioFoodItem* result
 * Alternative results in the form of *parents*, *siblings* and *children* have been replaced with two types of alternatives:

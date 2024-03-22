@@ -7,15 +7,18 @@ import 'package:nutrition_ai_example/const/app_constants.dart';
 import 'package:nutrition_ai_example/const/app_images.dart';
 import 'package:nutrition_ai_example/const/dimens.dart';
 import 'package:nutrition_ai_example/const/styles.dart';
-import 'package:nutrition_ai_example/util/string_extensions.dart';
 
-typedef OnTapItem = Function(PassioIDAndName? data);
+typedef OnTapItem = Function(PassioSearchResult? data);
 
 class FoodSearchItemRow extends StatefulWidget {
-  const FoodSearchItemRow(
-      {this.data, this.foodItemsImages, this.onTapItem, super.key});
+  const FoodSearchItemRow({
+    this.data,
+    this.foodItemsImages,
+    this.onTapItem,
+    super.key,
+  });
 
-  final PassioIDAndName? data;
+  final PassioSearchResult? data;
 
   final Map<String?, PlatformImage?>? foodItemsImages;
 
@@ -35,6 +38,12 @@ class _FoodSearchItemRowState extends State<FoodSearchItemRow> {
   }
 
   @override
+  void dispose() {
+    _image.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
@@ -46,13 +55,13 @@ class _FoodSearchItemRowState extends State<FoodSearchItemRow> {
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
           child: Row(
             children: [
-              if (widget.data?.passioID.contains(AppConstants.removeIcon) ??
+              if (widget.data?.iconID.contains(AppConstants.removeIcon) ??
                   false)
                 SizedBox(
                   width: Dimens.r52,
                   height: Dimens.r52,
                 )
-              else if (widget.data?.passioID.contains(AppConstants.searching) ??
+              else if (widget.data?.iconID.contains(AppConstants.searching) ??
                   false)
                 SizedBox(
                   width: Dimens.r52,
@@ -82,14 +91,17 @@ class _FoodSearchItemRowState extends State<FoodSearchItemRow> {
                 ),
               const SizedBox(width: 12),
               Expanded(
-                child: Text(widget.data?.name.toTitleCase() ?? '',
+                child: Text(widget.data?.foodName ?? '',
                     style: AppStyles.style18.copyWith(
                       fontWeight: FontWeight.w600,
                     )),
               ),
               Visibility(
-                visible:
-                    !(widget.data?.passioID.contains("removeIcon") ?? false),
+                visible: !(widget.data?.iconID
+                            .contains(AppConstants.removeIcon) ??
+                        false) &&
+                    !(widget.data?.iconID.contains(AppConstants.searching) ??
+                        false),
                 child: SvgPicture.asset(
                   AppImages.icPlusCircle,
                   width: Dimens.r26,
@@ -106,20 +118,19 @@ class _FoodSearchItemRowState extends State<FoodSearchItemRow> {
   void _getFoodIcon() async {
     /// Here, checking value of [passioID], if it is [AppConstants.removeIcon] OR [AppConstants.searching] then do nothing.
     /// else fetch the image using [passioID].
-    if (widget.data?.passioID != AppConstants.removeIcon &&
-        widget.data?.passioID != AppConstants.searching &&
-        !(widget.foodItemsImages?.containsKey(widget.data?.passioID) ??
-            false)) {
+    if (widget.data?.iconID != AppConstants.removeIcon &&
+        widget.data?.iconID != AppConstants.searching &&
+        !(widget.foodItemsImages?.containsKey(widget.data?.iconID) ?? false)) {
       /// Here, wait for the
       SchedulerBinding.instance.addPostFrameCallback((timeStamp) async {
-        PassioID passioID = widget.data?.passioID ?? '';
+        PassioID passioID = widget.data?.iconID ?? '';
         PassioFoodIcons passioIcons =
             await NutritionAI.instance.lookupIconsFor(passioID);
 
         if (passioIcons.cachedIcon != null) {
           _image.value = passioIcons.cachedIcon;
           widget.foodItemsImages
-              ?.putIfAbsent(widget.data?.passioID ?? '', () => _image.value);
+              ?.putIfAbsent(widget.data?.iconID ?? '', () => _image.value);
           return;
         }
 
@@ -131,11 +142,11 @@ class _FoodSearchItemRowState extends State<FoodSearchItemRow> {
 
         /// Storing image into the map, so while scrolling it doesn't calls the API call again.
         widget.foodItemsImages
-            ?.putIfAbsent(widget.data?.passioID ?? '', () => _image.value);
+            ?.putIfAbsent(widget.data?.iconID ?? '', () => _image.value);
       });
     } else {
       /// Fetching stored image using passioID.
-      _image.value = widget.foodItemsImages?[widget.data?.passioID];
+      _image.value = widget.foodItemsImages?[widget.data?.iconID];
     }
   }
 }

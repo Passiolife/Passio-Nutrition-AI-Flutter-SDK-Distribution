@@ -27,12 +27,14 @@ class PassioConfiguration {
   /// debugging information.
   final int debugMode;
 
-  PassioConfiguration(this.key,
-      {this.sdkDownloadsModels = true,
-      this.allowInternetConnection = true,
-      this.filesLocalURLs,
-      this.overrideInstalledVersion = false,
-      this.debugMode = 0});
+  PassioConfiguration(
+    this.key, {
+    this.sdkDownloadsModels = true,
+    this.allowInternetConnection = true,
+    this.filesLocalURLs,
+    this.overrideInstalledVersion = false,
+    this.debugMode = 0,
+  });
 }
 
 /// Object that is returned as a result of the configuration process.
@@ -53,12 +55,13 @@ class PassioStatus {
   /// The version of the latest models that are now used by the SDK.
   int? activeModels;
 
-  PassioStatus(
-      {this.mode = PassioMode.notReady,
-      this.missingFiles,
-      this.debugMessage,
-      this.error,
-      this.activeModels});
+  PassioStatus({
+    this.mode = PassioMode.notReady,
+    this.missingFiles,
+    this.debugMessage,
+    this.error,
+    this.activeModels,
+  });
 }
 
 enum PassioMode {

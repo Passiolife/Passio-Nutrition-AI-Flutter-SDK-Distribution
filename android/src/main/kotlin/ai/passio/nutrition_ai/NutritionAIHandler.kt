@@ -2,22 +2,20 @@ package ai.passio.nutrition_ai
 
 import ai.passio.nutrition_ai.converter.*
 import ai.passio.passiosdk.core.config.Bridge
-import ai.passio.passiosdk.core.config.PassioConfiguration
 import ai.passio.passiosdk.core.config.PassioMode
 import ai.passio.passiosdk.core.config.PassioStatus
-import ai.passio.passiosdk.passiofood.Barcode
 import ai.passio.passiosdk.passiofood.FoodCandidates
 import ai.passio.passiosdk.passiofood.FoodRecognitionListener
-import ai.passio.passiosdk.passiofood.PackagedFoodCode
 import ai.passio.passiosdk.passiofood.PassioID
 import ai.passio.passiosdk.passiofood.PassioSDK
 import ai.passio.passiosdk.passiofood.PassioStatusListener
+import ai.passio.passiosdk.passiofood.data.model.PassioIDAttributes
+import ai.passio.passiosdk.passiofood.data.model.PassioNutrients
 import ai.passio.passiosdk.passiofood.nutritionfacts.PassioNutritionFacts
 import android.app.Activity
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
-import android.util.Log
 import android.net.Uri
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodCall
@@ -41,15 +39,21 @@ class NutritionAIHandler(
             "configureSDK" -> configureSDK(call.arguments as HashMap<String, Any>, result)
             "fetchIconFor" -> fetchIconFor(call.arguments as HashMap<String, Any>, result)
             "lookupIconsFor" -> lookupIconsFor(call.arguments as HashMap<String, Any>, result)
-            "lookupPassioAttributesFor" -> lookupPassioAttributesFor(call.arguments as String, result)
+            "fetchFoodItemForPassioID" -> fetchFoodItemForPassioID(call.arguments as String, result)
             "searchForFood" -> searchForFood(call.arguments as String, result)
-            "fetchAttributesForBarcode" -> fetchAttributesForBarcode(call.arguments as String, result)
-            "fetchAttributesForPackagedFoodCode" -> fetchAttributesForPackagedFoodCode(call.arguments as String, result)
+            "fetchSearchResult" -> fetchSearchResult(call.arguments as HashMap<String, Any>, result)
+            "fetchFoodItemForProductCode" -> fetchFoodItemForProductCode(
+                call.arguments as String,
+                result
+            )
             "detectFoodIn" -> detectFoodIn(call.arguments as HashMap<String, Any>, result)
             "fetchTagsFor" -> fetchTagsFor(call.arguments as String, result)
             "iconURLFor" -> fetchURLFor(call.arguments as HashMap<String, Any>, result)
             "transformCGRectForm" -> transformRect(call.arguments as HashMap<String, Any>, result)
-            "fetchNutrientsFor" -> fetchNutrientsFor(call.arguments as String, result)
+            "fetchInflammatoryEffectData" -> fetchInflammatoryEffectData(
+                call.arguments as String,
+                result
+            )
         }
     }
 
@@ -78,7 +82,11 @@ class NutritionAIHandler(
 
         val icon = iconSizeFromString(iconSizeString)
 
-        PassioSDK.instance.fetchIconFor(activity.applicationContext, passioID, icon) inner@{ drawable ->
+        PassioSDK.instance.fetchIconFor(
+            activity.applicationContext,
+            passioID,
+            icon
+        ) inner@{ drawable ->
             if (drawable == null) {
                 callback.success(null)
                 return@inner
@@ -107,7 +115,8 @@ class NutritionAIHandler(
         val typeString = configMap["type"] as String
         val type = entityTypeFromString(typeString)
 
-        val result = PassioSDK.instance.lookupIconsFor(activity.applicationContext, passioID, iconSize, type)
+        val result =
+            PassioSDK.instance.lookupIconsFor(activity.applicationContext, passioID, iconSize, type)
 
         val firstBitmap = (result.first as BitmapDrawable).bitmap
         val firstStream = ByteArrayOutputStream()
@@ -168,7 +177,7 @@ class NutritionAIHandler(
         val config = mapToFoodDetectionConfiguration(args)
         PassioSDK.instance.startFoodDetection(object : FoodRecognitionListener {
             override fun onRecognitionResults(
-                candidates: FoodCandidates,
+                candidates: FoodCandidates?,
                 image: Bitmap?,
                 nutritionFacts: PassioNutritionFacts?
             ) {
@@ -185,45 +194,44 @@ class NutritionAIHandler(
         }, config)
     }
 
-    private fun lookupPassioAttributesFor(passioID: PassioID, callback: MethodChannel.Result) {
-        val attrs = PassioSDK.instance.lookupPassioAttributesFor(passioID)
-        if (attrs == null) {
-            callback.success(null)
-            return
+    private fun fetchFoodItemForPassioID(passioID: PassioID, callback: MethodChannel.Result) {
+        PassioSDK.instance.fetchFoodItemForPassioID(passioID) { foodItem ->
+            if (foodItem == null) {
+                callback.success(null)
+            } else {
+                val foodItemMap = mapFromPassioFoodItem(foodItem)
+                callback.success(foodItemMap)
+            }
         }
-
-        val attrMap = mapFromPassioIDAttributes(attrs)
-        callback.success(attrMap)
     }
 
     private fun searchForFood(byText: String, callback: MethodChannel.Result) {
-        PassioSDK.instance.searchForFood(byText) { list ->
-            val returnList = list.take(100).map { mapFromSearchResult(it) }
-            callback.success(returnList)
+        PassioSDK.instance.searchForFood(byText) { searchResult, alternatives ->
+            val searchMap = mapFromSearchResponse(searchResult, alternatives)
+            callback.success(searchMap)
         }
     }
 
-    private fun fetchAttributesForBarcode(barcode: Barcode, callback: MethodChannel.Result) {
-        PassioSDK.instance.fetchPassioIDAttributesForBarcode(barcode) { attrs ->
-            if (attrs == null) {
+    private fun fetchSearchResult(args: HashMap<String, Any>, callback: MethodChannel.Result) {
+        val searchResult = mapToPassioSearchResult(args);
+        PassioSDK.instance.fetchSearchResult(searchResult) { foodItem ->
+            if (foodItem == null) {
                 callback.success(null)
-                return@fetchPassioIDAttributesForBarcode
+            } else {
+                val foodItemMap = mapFromPassioFoodItem(foodItem)
+                callback.success(foodItemMap)
             }
-
-            val attrMap = mapFromPassioIDAttributes(attrs)
-            callback.success(attrMap)
-        }
+        };
     }
 
-    private fun fetchAttributesForPackagedFoodCode(code: PackagedFoodCode, callback: MethodChannel.Result) {
-        PassioSDK.instance.fetchPassioIDAttributesForPackagedFood(code) { attrs ->
-            if (attrs == null) {
+    private fun fetchFoodItemForProductCode(productCode: String, callback: MethodChannel.Result) {
+        PassioSDK.instance.fetchFoodItemForProductCode(productCode) { foodItem ->
+            if (foodItem == null) {
                 callback.success(null)
-                return@fetchPassioIDAttributesForPackagedFood
+            } else {
+                val foodItemMap = mapFromPassioFoodItem(foodItem)
+                callback.success(foodItemMap)
             }
-
-            val attrMap = mapFromPassioIDAttributes(attrs)
-            callback.success(attrMap)
         }
     }
 
@@ -239,7 +247,6 @@ class NutritionAIHandler(
 
     private fun detectFoodIn(args: HashMap<String, Any>, callback: MethodChannel.Result) {
         val bytes = args["bytes"] as ByteArray
-        val extension = args["extension"] as String
         val config = if (args.containsKey("config")) {
             mapToFoodDetectionConfiguration(args["config"] as HashMap<String, Any>)
         } else {
@@ -292,18 +299,18 @@ class NutritionAIHandler(
      * @param args A HashMap containing method arguments, with "passioID" as a required key.
      * @param callback A MethodChannel.Result used to communicate the result back to the caller.
      */
-    private fun fetchNutrientsFor(passioID: PassioID, callback: MethodChannel.Result) {
+    private fun fetchInflammatoryEffectData(passioID: PassioID, callback: MethodChannel.Result) {
         // Calling PassioSDK to fetch nutrients for the given passioID
-        PassioSDK.instance.fetchNutrientsFor(passioID) { list ->
+        PassioSDK.instance.fetchInflammatoryEffectData(passioID) { list ->
             // Mapping PassioNutrient objects to a new list using mapFromPassioNutrient function
-            val nutrientList = list?.map { mapFromPassioNutrient(it) }
+            val nutrientList = list?.map { mapFromInflammatoryEffectData(it) }
             // Calling the callback's success method with the nutrientList
             callback.success(nutrientList)
         };
     }
 
     // Define a suspend function named detectionFlow that takes FoodCandidates and a Bitmap image as parameters
-    suspend fun detectionFlow(candidates: FoodCandidates, image: Bitmap?) = flow {
+    suspend fun detectionFlow(candidates: FoodCandidates?, image: Bitmap?) = flow {
 
         // Creating a Map from the FoodCandidates object
         val mapCandidates = mapFromFoodCandidates(candidates)

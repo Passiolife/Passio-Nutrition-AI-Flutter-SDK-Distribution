@@ -1,13 +1,15 @@
-import 'dart:typed_data';
 import 'dart:math';
+import 'dart:typed_data';
 
+import 'models/inflammatory_effect_data.dart';
+import 'models/passio_id_entity_types.dart';
+import 'models/platform_image.dart';
+import 'models/passio_food_item.dart';
+import 'models/passio_search_response.dart';
+import 'models/passio_search_result.dart';
+import 'nutrition_ai_configuration.dart';
 import 'nutrition_ai_detection.dart';
 import 'nutrition_ai_platform_interface.dart';
-import 'nutrition_ai_configuration.dart';
-import 'models/nutrition_ai_attributes.dart';
-import 'nutrition_ai_passio_id_name.dart';
-import 'models/nutrition_ai_image.dart';
-import 'models/nutrition_ai_nutrient.dart';
 
 class NutritionAI {
   NutritionAI._privateConstructor();
@@ -21,7 +23,7 @@ class NutritionAI {
     return NutritionAIPlatform.instance.getSDKVersion();
   }
 
-  /// Initalizes the SDK based on the given [PassioConfiguration]
+  /// Initializes the SDK based on the given [PassioConfiguration]
   ///
   /// The initialization process includes downloading or reading a cached
   /// version of the license and loading the models into the runner. This
@@ -52,16 +54,16 @@ class NutritionAI {
 
   /// Search functions that uses the given [byText] to cross reference the names
   /// of the food items in the nutritional database.
-  Future<List<PassioIDAndName>> searchForFood(String byText) {
+  Future<PassioSearchResponse> searchForFood(String byText) {
     return NutritionAIPlatform.instance.searchForFood(byText);
   }
 
-  /// For a given [PassioID] returns the [PassioIDAttributes] of that food item.
+  /// For a given [PassioID] returns the [PassioFoodItem] of that food item.
   ///
-  /// PassioIDAttributes object represents all of the nutritional data the SDK
+  /// PassioFoodItem object represents all of the nutritional data the SDK
   /// has on a food item corresponding to the passioID, null otherwise.
-  Future<PassioIDAttributes?> lookupPassioAttributesFor(PassioID passioID) {
-    return NutritionAIPlatform.instance.lookupPassioAttributesFor(passioID);
+  Future<PassioFoodItem?> fetchFoodItemForPassioID(PassioID passioID) {
+    return NutritionAIPlatform.instance.fetchFoodItemForPassioID(passioID);
   }
 
   /// Fetch icons from Passio's backend.
@@ -91,22 +93,17 @@ class NutritionAI {
     return NutritionAIPlatform.instance.iconURLFor(passioID, iconSize);
   }
 
-  /// Fetch PassioIDAttributes for barcodes.
+  /// Fetch PassioIDAttributes for product code.
   ///
-  /// For a given [Barcode] creates a networking call to Passio's
-  /// backend that tries to fetch the corresponding [PassioIDAttributes].
-  Future<PassioIDAttributes?> fetchAttributesForBarcode(Barcode barcode) {
-    return NutritionAIPlatform.instance.fetchAttributesForBarcode(barcode);
+  /// For a given [productCode] creates a networking call to Passio's
+  /// backend that tries to fetch the corresponding [PassioFoodItem].
+  Future<PassioFoodItem?> fetchFoodItemForProductCode(String productCode) {
+    return NutritionAIPlatform.instance
+        .fetchFoodItemForProductCode(productCode);
   }
 
-  /// Fetch PassioIDAttributes for packaged food.
-  ///
-  /// For a given [PackagedFoodCode] creates a networking call to Passio's
-  /// backend that tries to fetch the corresponding [PassioIDAttributes].
-  Future<PassioIDAttributes?> fetchAttributesForPackagedFoodCode(
-      PackagedFoodCode packagedFoodCode) {
-    return NutritionAIPlatform.instance
-        .fetchAttributesForPackagedFoodCode(packagedFoodCode);
+  Future<PassioFoodItem?> fetchSearchResult(PassioSearchResult searchResult) {
+    return NutritionAIPlatform.instance.fetchSearchResult(searchResult);
   }
 
   /// List of tags for food item.
@@ -119,13 +116,13 @@ class NutritionAI {
 
   /// Run detection on an image.
   ///
-  /// Runs object detection on a given image (respresented as a byte array). The
+  /// Runs object detection on a given image (represented as a byte array). The
   /// process will run on the same background thread as object detection process
   /// from the [startFoodDetection] method. The results will be delivered on the
   /// main thread. The image extension should be one of: png, jpg, jpeg.
-  Future<FoodCandidates?> detectFoodIn(Uint8List bytes, String extension,
+  Future<FoodCandidates?> detectFoodIn(Uint8List bytes,
       {FoodDetectionConfiguration? config}) {
-    return NutritionAIPlatform.instance.detectFoodIn(bytes, extension, config);
+    return NutritionAIPlatform.instance.detectFoodIn(bytes, config);
   }
 
   /// Transforms the bounding box of the camera frame to the coordinates
@@ -147,13 +144,14 @@ class NutritionAI {
     NutritionAIPlatform.instance.setPassioStatusListener(listener);
   }
 
-  /// Fetches a list of [PassioNutrient] objects for a given [PassioID].
+  /// Fetches a list of [InflammatoryEffectData] objects for a given [PassioID].
   ///
   /// Parameters:
   /// - [passioID]: The PassioID for which nutrients are to be fetched.
   ///
-  /// Returns a [Future] containing a list of [PassioNutrient] objects or `null` if the response is empty.
-  Future<List<PassioNutrient>?> fetchNutrientsFor(PassioID passioID) {
-    return NutritionAIPlatform.instance.fetchNutrientsFor(passioID);
+  /// Returns a [Future] containing a list of [InflammatoryEffectData] objects or `null` if the response is empty.
+  Future<List<InflammatoryEffectData>?> fetchInflammatoryEffectData(
+      PassioID passioID) {
+    return NutritionAIPlatform.instance.fetchInflammatoryEffectData(passioID);
   }
 }

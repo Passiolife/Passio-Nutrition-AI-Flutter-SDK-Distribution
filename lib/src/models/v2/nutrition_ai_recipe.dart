@@ -1,9 +1,9 @@
-import '../converter/platform_input_converter.dart';
-import '../converter/platform_output_converter.dart';
-import '../models/nutrition_ai_measurement.dart';
-import 'nutrition_ai_serving.dart';
+import '../../converter/platform_output_converter.dart';
+import '../../models/nutrition_ai_measurement.dart';
+import '../passio_serving_size.dart';
+import '../passio_serving_unit.dart';
 import 'nutrition_ai_fooditemdata.dart';
-import '../nutrition_ai_detection.dart';
+import '../../nutrition_ai_detection.dart';
 
 /// Data class the holds the nutritional information of a food item that is
 /// classified as a recipe. A recipe has multiple ingredients, but their
@@ -42,9 +42,25 @@ class PassioFoodRecipe {
   }
 
   factory PassioFoodRecipe.fromJson(Map<String, dynamic> json) =>
-      mapToPassioFoodRecipe(json);
+      PassioFoodRecipe(
+        json["passioID"],
+        json["name"],
+        mapListOfObjects(json["servingSizes"], PassioServingSize.fromJson),
+        mapListOfObjects(json["servingUnits"], PassioServingUnit.fromJson),
+        json["selectedUnit"],
+        json["selectedQuantity"],
+        mapListOfObjects(json["foodItems"], PassioFoodItemData.fromJson),
+      );
 
-  Map<String, dynamic> toJson() => mapOfPassioFoodRecipe(this);
+  Map<String, dynamic> toJson() => {
+        'passioID': passioID,
+        'name': name,
+        'servingSizes': servingSizes.map((e) => e.toJson()).toList(),
+        'servingUnits': servingUnits.map((e) => e.toJson()).toList(),
+        'selectedUnit': selectedUnit,
+        'selectedQuantity': selectedQuantity,
+        'foodItems': foodItems.map((e) => e.toJson()).toList(),
+      };
 
   bool isOpenFood() {
     for (var item in foodItems) {

@@ -4,16 +4,18 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'models/nutrition_ai_attributes.dart';
 
-import 'nutrition_ai_detection.dart';
-import 'nutrition_ai_platform_interface.dart';
-import 'nutrition_ai_configuration.dart';
-import 'nutrition_ai_passio_id_name.dart';
 import 'converter/platform_input_converter.dart';
 import 'converter/platform_output_converter.dart';
-import 'models/nutrition_ai_image.dart';
-import 'models/nutrition_ai_nutrient.dart';
+import 'models/inflammatory_effect_data.dart';
+import 'models/passio_id_entity_types.dart';
+import 'models/platform_image.dart';
+import 'models/passio_food_item.dart';
+import 'models/passio_search_response.dart';
+import 'models/passio_search_result.dart';
+import 'nutrition_ai_configuration.dart';
+import 'nutrition_ai_detection.dart';
+import 'nutrition_ai_platform_interface.dart';
 
 /// An implementation of [NutritionAIPlatform] that uses method channels.
 class MethodChannelNutritionAI extends NutritionAIPlatform {
@@ -78,12 +80,11 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
       // Retrieving the "candidates" key from the resultMap and casting its value to a Map<String, dynamic>
       final candidatesMap = resultMap["candidates"].cast<String, dynamic>();
       // Converting the mapped candidates back to a FoodCandidates
-      final foodCandidates = mapToFoodCandidates(candidatesMap);
+      final foodCandidates = FoodCandidates.fromJson(candidatesMap);
 
-      // Retrieving the "image" key from the resultMap and casting its value to a Map<String, dynamic>
-      final imageMap = resultMap["image"].cast<String, dynamic>();
       // Converting the mapped image properties to a PlatformImage
-      final image = mapToPlatformImage(imageMap);
+      final image = resultMap.ifValueNotNull('image',
+          (map) => PlatformImage.fromJson(map.cast<String, dynamic>()));
 
       // Notifying the listener with recognition results, passing the FoodCandidates and the image
       listener.recognitionResults(foodCandidates, image);
@@ -98,30 +99,28 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
   }
 
   @override
-  Future<List<PassioIDAndName>> searchForFood(String byText) async {
-    final responseList = await methodChannel.invokeMethod<List<Object?>>(
-        'searchForFood', byText);
+  Future<PassioSearchResponse> searchForFood(String byText) async {
+    final response = await methodChannel.invokeMethod('searchForFood', byText);
 
-    if (responseList == null) {
-      return [];
+    if (response == null) {
+      return const PassioSearchResponse(results: [], alternateNames: []);
     }
-    var list =
-        mapListOfObjects(responseList, (inMap) => mapToPassioIDAndName(inMap));
 
-    return list;
+    Map<String, dynamic> responseMap = response!.cast<String, dynamic>();
+
+    return PassioSearchResponse.fromJson(responseMap);
   }
 
   @override
-  Future<PassioIDAttributes?> lookupPassioAttributesFor(
-      PassioID passioID) async {
+  Future<PassioFoodItem?> fetchFoodItemForPassioID(PassioID passioID) async {
     var responseMap =
-        await methodChannel.invokeMethod('lookupPassioAttributesFor', passioID);
+        await methodChannel.invokeMethod('fetchFoodItemForPassioID', passioID);
     if (responseMap == null) {
       return null;
     }
 
-    Map<String, dynamic> attrsMap = responseMap!.cast<String, dynamic>();
-    return mapToPassioIDAttributes(attrsMap);
+    Map<String, dynamic> foodItemMap = responseMap!.cast<String, dynamic>();
+    return PassioFoodItem.fromJson(foodItemMap);
   }
 
   @override
@@ -138,7 +137,7 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
     }
 
     Map<String, dynamic> iconMap = responseMap!.cast<String, dynamic>();
-    return mapToPlatformImage(iconMap);
+    return PlatformImage.fromJson(iconMap);
   }
 
   @override
@@ -164,28 +163,16 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
   }
 
   @override
-  Future<PassioIDAttributes?> fetchAttributesForBarcode(Barcode barcode) async {
-    var responseMap =
-        await methodChannel.invokeMethod('fetchAttributesForBarcode', barcode);
-    if (responseMap == null) {
-      return null;
-    }
-
-    Map<String, dynamic> attrsMap = responseMap!.cast<String, dynamic>();
-    return mapToPassioIDAttributes(attrsMap);
-  }
-
-  @override
-  Future<PassioIDAttributes?> fetchAttributesForPackagedFoodCode(
-      PackagedFoodCode packagedFoodCode) async {
+  Future<PassioFoodItem?> fetchFoodItemForProductCode(
+      String productCode) async {
     var responseMap = await methodChannel.invokeMethod(
-        'fetchAttributesForPackagedFoodCode', packagedFoodCode);
+        'fetchFoodItemForProductCode', productCode);
     if (responseMap == null) {
       return null;
     }
 
-    Map<String, dynamic> attrsMap = responseMap!.cast<String, dynamic>();
-    return mapToPassioIDAttributes(attrsMap);
+    Map<String, dynamic> foodItemMap = responseMap!.cast<String, dynamic>();
+    return PassioFoodItem.fromJson(foodItemMap);
   }
 
   @override
@@ -200,13 +187,9 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
   }
 
   @override
-  Future<FoodCandidates?> detectFoodIn(Uint8List bytes, String extension,
-      FoodDetectionConfiguration? config) async {
-    var cleanedExt = extension.replaceAll(".", "").toLowerCase();
-    var args = {
-      'bytes': bytes,
-      'extension': cleanedExt,
-    };
+  Future<FoodCandidates?> detectFoodIn(
+      Uint8List bytes, FoodDetectionConfiguration? config) async {
+    Map<String, dynamic> args = {'bytes': bytes};
     if (config != null) {
       args['config'] = mapOfFoodDetectionConfiguration(config);
     }
@@ -216,7 +199,7 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
     }
 
     Map<String, dynamic> resultMap = response.cast<String, dynamic>();
-    return mapToFoodCandidates(resultMap);
+    return FoodCandidates.fromJson(resultMap);
   }
 
   @override
@@ -289,10 +272,11 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
   }
 
   @override
-  Future<List<PassioNutrient>?> fetchNutrientsFor(PassioID passioID) async {
+  Future<List<InflammatoryEffectData>?> fetchInflammatoryEffectData(
+      PassioID passioID) async {
     // Invoke native method to fetch nutrients for the given PassioID.
     final responseList = await methodChannel.invokeMethod<List<Object?>>(
-        'fetchNutrientsFor', passioID);
+        'fetchInflammatoryEffectData', passioID);
 
     // Check if the response list is null.
     if (responseList == null) {
@@ -301,9 +285,23 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
 
     // Map each object in the response list to a PassioNutrient using PassioNutrient.fromJson.
     var list = mapListOfObjects(
-        responseList, (inMap) => PassioNutrient.fromJson(inMap));
+        responseList, (inMap) => InflammatoryEffectData.fromJson(inMap));
 
     // Return the resulting list of PassioNutrient objects.
     return list;
+  }
+
+  @override
+  Future<PassioFoodItem?> fetchSearchResult(
+      PassioSearchResult searchResult) async {
+    final args = searchResult.toJson();
+    var responseMap =
+        await methodChannel.invokeMethod('fetchSearchResult', args);
+    if (responseMap == null) {
+      return null;
+    }
+
+    Map<String, dynamic> foodItemMap = responseMap!.cast<String, dynamic>();
+    return PassioFoodItem.fromJson(foodItemMap);
   }
 }

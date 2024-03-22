@@ -61,17 +61,17 @@ class PassioEventStreamHandler: NSObject, FlutterStreamHandler {
         }
     }
 
-    private func getFoodImageData(img: UIImage) -> [String: Any?] {
-
-        var imageMap = [String: Any]()
-
-        if let imageData = img.pngData() {
-            imageMap["width"] = Int(img.size.width)
-            imageMap["height"] = Int(img.size.height)
-            imageMap["pixels"] = FlutterStandardTypedData(bytes: imageData)
-        }
-        return imageMap
-    }
+//    private func getFoodImageData(img: UIImage) -> [String: Any?] {
+//
+//        var imageMap = [String: Any]()
+//
+//        if let imageData = img.pngData() {
+//            imageMap["width"] = Int(img.size.width)
+//            imageMap["height"] = Int(img.size.height)
+//            imageMap["pixels"] = FlutterStandardTypedData(bytes: imageData)
+//        }
+//        return imageMap
+//    }
 }
 
 extension PassioEventStreamHandler: FoodRecognitionDelegate {
@@ -89,8 +89,8 @@ extension PassioEventStreamHandler: FoodRecognitionDelegate {
                    let img = image {
                     var finalEvents = [String: Any]()
 
-                    let foodCandidates = OutputConverter().mapFromFoodCandidates(candidates: candidates)
-                    let foodImg = getFoodImageData(img: img)
+                    let foodCandidates = self.outputConverter.mapFromFoodCandidates(candidates: candidates)
+                    let foodImg = self.outputConverter.mapFromImage(img)
 
                     finalEvents["candidates"] = foodCandidates
                     finalEvents["image"] = foodImg

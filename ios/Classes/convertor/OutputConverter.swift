@@ -1,4 +1,5 @@
 import PassioNutritionAISDK
+import Flutter
 
 struct OutputConverter {
 
@@ -29,13 +30,16 @@ struct OutputConverter {
     
     func mapFromDetectedCandidate(detectedCandidate: DetectedCandidate) -> [String: Any?] {
         var candidateMap: [String: Any?] = [:]
-        candidateMap["passioID"] = detectedCandidate.passioID
-        candidateMap["confidence"] = detectedCandidate.confidence
-        let boundingBox = detectedCandidate.boundingBox
-        candidateMap["boundingBox"] = mapFromBoundingBox(boundingBox: boundingBox)
+        candidateMap["alternatives"] = detectedCandidate.alternatives.map{ mapFromDetectedCandidate(detectedCandidate: $0)}
         if let amountEstimate = detectedCandidate.amountEstimate {
             candidateMap["amountEstimate"] = mapAmounteEstimage(amountEstimate: amountEstimate )
         }
+        candidateMap["boundingBox"] = mapFromBoundingBox(boundingBox: detectedCandidate.boundingBox)
+        candidateMap["confidence"] = detectedCandidate.confidence
+        candidateMap["croppedImage"] = mapFromImage(detectedCandidate.croppedImage)
+        candidateMap["foodName"] = detectedCandidate.name
+        candidateMap["passioID"] = detectedCandidate.passioID
+        
         return candidateMap
     }
     
@@ -63,109 +67,21 @@ struct OutputConverter {
         return candidateMap
     }
     
-    
-    func mapFromPassioIDAttributes(passioIDAttributes: PassioIDAttributes) -> [String: Any?] {
-        var attrMap = [String: Any?]()
-        attrMap["passioID"] = passioIDAttributes.passioID
-        attrMap["name"] = passioIDAttributes.name
-        attrMap["entityType"] = passioIDAttributes.entityType.rawValue
-        attrMap["foodItem"] = passioIDAttributes.passioFoodItemData != nil ?
-        mapFromFoodItemData(itemData: passioIDAttributes.passioFoodItemData!) : nil
-        attrMap["recipe"] = passioIDAttributes.recipe != nil ?
-        mapFromPassioFoodRecipe(recipe: passioIDAttributes.recipe!) : nil
-        attrMap["parents"] = passioIDAttributes.parents?.map { mapFromAlternatives($0) }
-        attrMap["siblings"] = passioIDAttributes.siblings?.map { mapFromAlternatives($0) }
-        attrMap["children"] = passioIDAttributes.children?.map { mapFromAlternatives($0) }
-        return attrMap
-    }
-    
-    func mapFromFoodItemData(itemData: PassioFoodItemData) -> [String: Any?] {
-        var data = itemData
-        var dataMap = [String: Any?]()
-        dataMap["passioID"] = data.passioID
-        dataMap["name"] = data.name
-        dataMap["selectedQuantity"] = data.selectedQuantity
-        dataMap["selectedUnit"] = data.selectedUnit
-        dataMap["entityType"] = data.entityType.rawValue
-        dataMap["servingUnits"] = data.servingUnits.map { mapFromServingUnit($0) }
-        dataMap["servingSizes"] = data.servingSizes.map { mapFromServingSize($0) }
-        dataMap["ingredientsDescription"] = data.ingredientsDescription
-        dataMap["barcode"] = data.barcode
-        dataMap["foodOrigins"] = data.foodOrigins?.map { mapFromFoodOrigin($0) } ?? []
-        dataMap["parents"] = data.parents?.map { mapFromAlternatives($0) }
-        dataMap["children"] = data.children?.map { mapFromAlternatives($0) }
-        dataMap["siblings"] = data.siblings?.map { mapFromAlternatives($0) }
-        dataMap["tags"] = data.tags?.map { $0 }
-        // Map the nutrient per 100 grams
-        _ = data.setFoodItemDataServingSize(unit: "gram", quantity: 100)
-        dataMap["calories"] = mapFromUnitEnergy(data.totalCalories)
-        dataMap["carbs"] = mapFromUnitMass(data.totalCarbs)
-        dataMap["fat"] = mapFromUnitMass(data.totalFat)
-        dataMap["proteins"] = mapFromUnitMass(data.totalProteins)
-        dataMap["saturatedFat"] = mapFromUnitMass(data.totalSaturatedFat)
-        dataMap["transFat"] = mapFromUnitMass(data.totalTransFat)
-        dataMap["monounsaturatedFat"] = mapFromUnitMass(data.totalMonounsaturatedFat)
-        dataMap["polyunsaturatedFat"] = mapFromUnitMass(data.totalPolyunsaturatedFat)
-        dataMap["cholesterol"] = mapFromUnitMass(data.totalCholesterol)
-        dataMap["sodium"] = mapFromUnitMass(data.totalSodium)
-        dataMap["fibers"] = mapFromUnitMass(data.totalFibers)
-        dataMap["sugars"] = mapFromUnitMass(data.totalSugars)
-        dataMap["sugarsAdded"] = mapFromUnitMass(data.totalSugarsAdded)
-        dataMap["vitaminD"] = mapFromUnitMass(data.totalVitaminD)
-        dataMap["calcium"] = mapFromUnitMass(data.totalCalcium)
-        dataMap["iron"] = mapFromUnitMass(data.totalIron)
-        dataMap["potassium"] = mapFromUnitMass(data.totalPotassium)
-        dataMap["vitaminA"] = mapFromUnitIU(data.totalVitaminA?.value)
-        dataMap["vitaminC"] = mapFromUnitMass(data.totalVitaminC)
-        dataMap["alcohol"] = mapFromUnitMass(data.totalAlcohol)
-        dataMap["sugarAlcohol"] = mapFromUnitMass(data.totalSugarAlcohol)
-        dataMap["vitaminB12Added"] = mapFromUnitMass(data.totalVitaminB12Added)
-        dataMap["vitaminB12"] = mapFromUnitMass(data.totalVitaminB12)
-        dataMap["vitaminB6"] = mapFromUnitMass(data.totalVitaminB6)
-        dataMap["vitaminE"] = mapFromUnitMass(data.totalVitaminE)
-        dataMap["vitaminEAdded"] = mapFromUnitMass(data.totalVitaminEAdded)
-        dataMap["magnesium"] = mapFromUnitMass(data.totalMagnesium)
-        dataMap["phosphorus"] = mapFromUnitMass(data.totalPhosphorus)
-        dataMap["iodine"] = mapFromUnitMass(data.totalIodine)
-        return dataMap
-    }
-    
-    func mapFromPassioFoodRecipe(recipe: PassioFoodRecipe) -> [String: Any?] {
-        var recipeMap = [String: Any?]()
-        recipeMap["passioID"] = recipe.passioID
-        recipeMap["name"] = recipe.name
-        recipeMap["selectedQuantity"] = recipe.selectedQuantity
-        recipeMap["selectedUnit"] = recipe.selectedUnit
-        recipeMap["servingUnits"] = recipe.servingUnits.map { mapFromServingUnit($0) }
-        recipeMap["servingSizes"] = recipe.servingSizes.map { mapFromServingSize($0) }
-        recipeMap["foodItems"] = recipe.foodItems.map { mapFromFoodItemData(itemData: $0) }
-        return recipeMap
-    }
-    
-    func mapFromAlternatives(_ alternative: PassioAlternative) -> [String: Any?] {
-        var alternativeMap = [String: Any?]()
-        alternativeMap["passioID"] = alternative.passioID
-        alternativeMap["name"] = alternative.name
-        alternativeMap["quantity"] = alternative.quantity
-        alternativeMap["unitName"] = alternative.unitName
-        return alternativeMap
-    }
-    
-    func mapFromServingSize(_ servingSize: PassioServingSize) -> [String: Any?] {
+    private func mapFromServingSize(_ servingSize: PassioServingSize) -> [String: Any?] {
         var servingSizeMap = [String: Any?]()
         servingSizeMap["quantity"] = servingSize.quantity
         servingSizeMap["unitName"] = servingSize.unitName
         return servingSizeMap
     }
     
-    func mapFromServingUnit(_ servingUnit: PassioServingUnit) -> [String: Any?] {
+    private func mapFromServingUnit(_ servingUnit: PassioServingUnit) -> [String: Any?] {
         var servingUnitMap = [String: Any?]()
         servingUnitMap["unitName"] = servingUnit.unitName
         servingUnitMap["weight"] = mapFromUnitMass(servingUnit.weight)
         return servingUnitMap
     }
     
-    func mapFromFoodOrigin(_ origin: PassioFoodOrigin) -> [String: Any?] {
+    private func mapFromFoodOrigin(_ origin: PassioFoodOrigin) -> [String: Any?] {
         var originMap = [String: Any?]()
         originMap["id"] = origin.id
         originMap["source"] = origin.source
@@ -173,7 +89,7 @@ struct OutputConverter {
         return originMap
     }
     
-    func mapFromUnitEnergy(_ unitEnergy: Measurement<UnitEnergy>?) -> [String: Any?]? {
+    private func mapFromUnitEnergy(_ unitEnergy: Measurement<UnitEnergy>?) -> [String: Any?]? {
         guard let unitEnergy = unitEnergy else { return nil }
         var unitEnergyMap = [String: Any?]()
         unitEnergyMap["unit"] = convertEnergyUnit(unitEnergy: unitEnergy.unit)
@@ -190,7 +106,7 @@ struct OutputConverter {
         return unitMassMap
     }
     
-    func mapFromUnitIU(_ value: Double?) -> [String: Any?]? {
+    private func mapFromUnitIU(_ value: Double?) -> [String: Any?]? {
         guard let value = value else { return nil }
         var unitEnergyMap = [String: Any?]()
         unitEnergyMap["unit"] = "iu"
@@ -198,11 +114,11 @@ struct OutputConverter {
         return unitEnergyMap
     }
     
-    func convertEnergyUnit(unitEnergy: UnitEnergy) -> String {
+    private func convertEnergyUnit(unitEnergy: UnitEnergy) -> String {
         unitEnergy.symbol.description == "kCal" ? "kilocalories" : unitEnergy.symbol.description
     }
     
-    func convertMashUnit(unitMass: UnitMass) -> String {
+    private func convertMashUnit(unitMass: UnitMass) -> String {
         switch unitMass.symbol.description {
         case "g","gr","ml":
             return "grams"
@@ -218,7 +134,7 @@ struct OutputConverter {
     }
     
     
-    func mapAmounteEstimage(amountEstimate: AmountEstimate ) -> [String: Any?] {
+    private func mapAmounteEstimage(amountEstimate: AmountEstimate ) -> [String: Any?] {
         var mapEstimate = [String: Any?]()
         if let volumeEstimate = amountEstimate.volumeEstimate {
             mapEstimate["volumeEstimate"] = volumeEstimate
@@ -282,17 +198,169 @@ struct OutputConverter {
 
      Converts a PassioNutrient object into a dictionary.
      */
-    func mapFromPassioNutrient(nutrient: PassioNutrient) -> [String: Any?] {
+    func mapFromInflammatoryEffectData(inflammatoryEffectData: InflammatoryEffectData) -> [String: Any?] {
         // Create a mutable map to store the serialized nutrient data.
-        var nutrientMap = [String: Any?]()
+        var inflammatoryMap = [String: Any?]()
 
         // Add nutrient properties to the map.
-        nutrientMap["amount"] = nutrient.amount
-        nutrientMap["inflammatoryEffectScore"] = nutrient.inflammatoryEffectScore
-        nutrientMap["name"] = nutrient.name
-        nutrientMap["unit"] = nutrient.unit
+        inflammatoryMap["amount"] = inflammatoryEffectData.amount
+        inflammatoryMap["inflammatoryEffectScore"] = inflammatoryEffectData.inflammatoryEffectScore
+        inflammatoryMap["nutrient"] = inflammatoryEffectData.name
+        inflammatoryMap["unit"] = inflammatoryEffectData.unit
 
         // Return the serialized nutrient map.
-        return nutrientMap
+        return inflammatoryMap
+    }
+    
+    func mapFromPassioFoodItem(foodItem: PassioFoodItem?) -> [String: Any?]? {
+        guard let foodItem else { return nil }
+        
+        var dataMap = [String: Any?]()
+        dataMap["amount"] = mapFromPassioFoodAmount(foodItem.amount)
+        dataMap["details"] = foodItem.details
+        dataMap["foodItemName"] = foodItem.foodItemName
+        dataMap["iconId"] = foodItem.iconId
+        dataMap["id"] = foodItem.id
+        dataMap["ingredients"] = foodItem.ingredients.map { mapFromPassioIngredient($0) }
+        dataMap["licenseCopy"] = foodItem.licenseCopy
+        dataMap["name"] = foodItem.name
+        dataMap["scannedId"] = foodItem.scannedId
+        return dataMap
+    }
+    
+    /// Maps a `PassioFoodAmount` object to a dictionary with optional values.
+    ///
+    /// - Parameters:
+    ///   - amount: The `PassioFoodAmount` object to map.
+    /// - Returns: A dictionary containing the mapped values.
+    private func mapFromPassioFoodAmount(_ amount: PassioFoodAmount) -> [String: Any?] {
+        // Initialize an empty dictionary to hold the mapped values
+        var amountMap = [String: Any?]()
+        // Map selected quantity to the dictionary
+        amountMap["selectedQuantity"] = amount.selectedQuantity
+        // Map selected unit to the dictionary
+        amountMap["selectedUnit"] = amount.selectedUnit
+        // Map serving sizes to the dictionary, converting each serving size object to a dictionary using `mapFromServingSize` function
+        amountMap["servingSizes"] = amount.servingSizes.map { mapFromServingSize($0) }
+        // Map serving units to the dictionary, converting each serving unit object to a dictionary using `mapFromServingUnit` function
+        amountMap["servingUnits"] = amount.servingUnits.map { mapFromServingUnit($0) }
+        // Return the mapped dictionary
+        return amountMap
+    }
+    
+    private func mapFromPassioIngredient(_ ingredient: PassioIngredient) -> [String: Any?] {
+        var ingredientMap = [String: Any?]()
+        ingredientMap["amount"] = mapFromPassioFoodAmount(ingredient.amount)
+        ingredientMap["iconId"] = ingredient.iconId
+        ingredientMap["id"] = ingredient.id
+        ingredientMap["metadata"] = mapFromPassioFoodMetadata(ingredient.metadata)
+        ingredientMap["name"] = ingredient.name
+        ingredientMap["referenceNutrients"] = mapFromPassioNutrients(ingredient.referenceNutrients)
+        return ingredientMap
+    }
+    
+    private func mapFromPassioFoodMetadata(_ metadata: PassioFoodMetadata) -> [String: Any?] {
+        var metadataMap = [String: Any?]()
+        metadataMap["barcode"] = metadata.barcode
+        metadataMap["foodOrigins"] = metadata.foodOrigins?.map { mapFromFoodOrigin($0) } ?? []
+        metadataMap["ingredientsDescription"] = metadata.ingredientsDescription
+        metadataMap["tags"] = metadata.tags?.map { $0 }
+        return metadataMap
+    }
+    
+    private func mapFromPassioNutrients(_ nutrients: PassioNutrients) -> [String: Any?] {
+        var nutrientsMap = [String: Any?]()
+        nutrientsMap["weight"] = mapFromUnitMass(nutrients.weight)
+    
+        nutrientsMap["calories"] = mapFromUnitEnergy(nutrients.calories())
+        nutrientsMap["carbs"] = mapFromUnitMass(nutrients.carbs())
+        nutrientsMap["fat"] = mapFromUnitMass(nutrients.fat())
+        nutrientsMap["proteins"] = mapFromUnitMass(nutrients.protein())
+        nutrientsMap["satFat"] = mapFromUnitMass(nutrients.satFat())
+        nutrientsMap["transFat"] = mapFromUnitMass(nutrients.transFat())
+        nutrientsMap["monounsaturatedFat"] = mapFromUnitMass(nutrients.monounsaturatedFat())
+        nutrientsMap["polyunsaturatedFat"] = mapFromUnitMass(nutrients.polyunsaturatedFat())
+        nutrientsMap["cholesterol"] = mapFromUnitMass(nutrients.cholesterol())
+        nutrientsMap["sodium"] = mapFromUnitMass(nutrients.sodium())
+        nutrientsMap["fibers"] = mapFromUnitMass(nutrients.fibers())
+        nutrientsMap["sugars"] = mapFromUnitMass(nutrients.sugars())
+        nutrientsMap["sugarsAdded"] = mapFromUnitMass(nutrients.sugarsAdded())
+        nutrientsMap["vitaminD"] = mapFromUnitMass(nutrients.vitaminD())
+        nutrientsMap["calcium"] = mapFromUnitMass(nutrients.calcium())
+        nutrientsMap["iron"] = mapFromUnitMass(nutrients.iron())
+        nutrientsMap["potassium"] = mapFromUnitMass(nutrients.potassium())
+        nutrientsMap["vitaminA"] = mapFromUnitIU(nutrients.vitaminA())
+        nutrientsMap["vitaminC"] = mapFromUnitMass(nutrients.vitaminC())
+        nutrientsMap["alcohol"] = mapFromUnitMass(nutrients.alcohol())
+        nutrientsMap["sugarAlcohol"] = mapFromUnitMass(nutrients.sugarAlcohol())
+        nutrientsMap["vitaminB12Added"] = mapFromUnitMass(nutrients.vitaminB12Added())
+        nutrientsMap["vitaminB12"] = mapFromUnitMass(nutrients.vitaminB12())
+        nutrientsMap["vitaminB6"] = mapFromUnitMass(nutrients.vitaminB6())
+        nutrientsMap["vitaminE"] = mapFromUnitMass(nutrients.vitaminE())
+        nutrientsMap["vitaminEAdded"] = mapFromUnitMass(nutrients.vitaminEAdded())
+        nutrientsMap["magnesium"] = mapFromUnitMass(nutrients.magnesium())
+        nutrientsMap["phosphorus"] = mapFromUnitMass(nutrients.phosphorus())
+        nutrientsMap["iodine"] = mapFromUnitMass(nutrients.iodine())
+        
+        return nutrientsMap
+    }
+    
+    func mapFromImage(_ image: UIImage?) -> [String: Any?]? {
+        guard let image else { return nil }
+        
+        var imageMap = [String: Any]()
+
+        if let imageData = image.pngData() {
+            imageMap["width"] = Int(image.size.width)
+            imageMap["height"] = Int(image.size.height)
+            imageMap["pixels"] = FlutterStandardTypedData(bytes: imageData)
+        }
+        return imageMap
+    }
+    
+    // Search related
+    func mapFromPassioSearchResult(searchResult: PassioSearchResult) -> [String: Any?]? {
+        if let nutritionPreview = searchResult.nutritionPreview {
+            var searchResultMap = [String: Any?]()
+            searchResultMap["brandName"] = searchResult.brandName
+            searchResultMap["foodName"] = searchResult.displayName
+            searchResultMap["iconID"] = searchResult.iconId
+            searchResultMap["labelId"] = searchResult.labelId
+            searchResultMap["nutritionPreview"] = mapFromPassioSearchNutritionPreview(nutritionPreview)
+            searchResultMap["resultId"] = searchResult.resultId
+            searchResultMap["score"] = searchResult.score
+            searchResultMap["scoredName"] = searchResult.scoredName
+            searchResultMap["type"] = searchResult.type
+            return searchResultMap
+        }
+        return nil
+    }
+    
+    private func mapFromPassioSearchNutritionPreview(_ nutritionPreview: PassioSearchNutritionPreview) -> [String: Any?] {
+        var nutritionPreviewMap = [String: Any?]()
+        nutritionPreviewMap["calories"] = nutritionPreview.calories
+        nutritionPreviewMap["servingUnit"] = nutritionPreview.servingUnit
+        nutritionPreviewMap["servingQuantity"] = nutritionPreview.servingQuantity
+        nutritionPreviewMap["servingWeight"] = nutritionPreview.servingWeight
+        return nutritionPreviewMap
+    }
+}
+
+extension Encodable {
+
+    /// Converting object to postable dictionary
+    func toDictionary(_ encoder: JSONEncoder = JSONEncoder()) -> [String: Any?] {
+        
+        var map = [String: Any?]()
+        do {
+            let data = try encoder.encode(self)
+            let object = try JSONSerialization.jsonObject(with: data)
+            if let json = object as? [String: Any?]  {
+                map = json
+            }
+        } catch {
+            print("Error:- \(error.localizedDescription)")
+        }
+        return map
     }
 }

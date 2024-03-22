@@ -1,8 +1,11 @@
-import '../converter/platform_output_converter.dart';
-import '../models/nutrition_ai_attributes.dart';
-import '../nutrition_ai_detection.dart';
-import 'nutrition_ai_serving.dart';
-import 'nutrition_ai_measurement.dart';
+import '../../converter/platform_output_converter.dart';
+import '../nutrition_ai_measurement.dart';
+import 'passio_alternative.dart';
+import '../passio_food_origin.dart';
+import '../../nutrition_ai_detection.dart';
+import '../passio_id_entity_types.dart';
+import '../passio_serving_size.dart';
+import '../passio_serving_unit.dart';
 
 /// Data class that contains the nutritional information for a single food item.
 class PassioFoodItemData {
@@ -127,7 +130,52 @@ class PassioFoodItemData {
   );
 
   factory PassioFoodItemData.fromJson(Map<String, dynamic> json) =>
-      mapToPassioFoodItemData(json);
+      PassioFoodItemData(
+        json["passioID"],
+        json["name"],
+        mapDynamicListToListOfString(json["tags"]),
+        json["selectedQuantity"],
+        json["selectedUnit"],
+        PassioIDEntityType.values.byName(json["entityType"]),
+        mapListOfObjects(json["servingUnits"], PassioServingUnit.fromJson),
+        mapListOfObjects(json["servingSizes"], PassioServingSize.fromJson),
+        json["ingredientsDescription"],
+        json["barcode"],
+        mapListOfObjectsOptional(
+            json["foodOrigins"], PassioFoodOrigin.fromJson),
+        mapListOfObjectsOptional(json["parents"], PassioAlternative.fromJson),
+        mapListOfObjectsOptional(json["siblings"], PassioAlternative.fromJson),
+        mapListOfObjectsOptional(json["children"], PassioAlternative.fromJson),
+        json.ifValueNotNull("calories", UnitEnergy.fromJson),
+        json.ifValueNotNull("carbs", UnitMass.fromJson),
+        json.ifValueNotNull("fat", UnitMass.fromJson),
+        json.ifValueNotNull("proteins", UnitMass.fromJson),
+        json.ifValueNotNull("saturatedFat", UnitMass.fromJson),
+        json.ifValueNotNull("transFat", UnitMass.fromJson),
+        json.ifValueNotNull("monounsaturatedFat", UnitMass.fromJson),
+        json.ifValueNotNull("polyunsaturatedFat", UnitMass.fromJson),
+        json.ifValueNotNull("cholesterol", UnitMass.fromJson),
+        json.ifValueNotNull("sodium", UnitMass.fromJson),
+        json.ifValueNotNull("fibers", UnitMass.fromJson),
+        json.ifValueNotNull("sugars", UnitMass.fromJson),
+        json.ifValueNotNull("sugarsAdded", UnitMass.fromJson),
+        json.ifValueNotNull("vitaminD", UnitMass.fromJson),
+        json.ifValueNotNull("calcium", UnitMass.fromJson),
+        json.ifValueNotNull("iron", UnitMass.fromJson),
+        json.ifValueNotNull("potassium", UnitMass.fromJson),
+        json.ifValueNotNull("vitaminA", UnitIU.fromJson),
+        json.ifValueNotNull("vitaminC", UnitMass.fromJson),
+        json.ifValueNotNull("alcohol", UnitMass.fromJson),
+        json.ifValueNotNull("sugarAlcohol", UnitMass.fromJson),
+        json.ifValueNotNull("vitaminB12Added", UnitMass.fromJson),
+        json.ifValueNotNull("vitaminB12", UnitMass.fromJson),
+        json.ifValueNotNull("vitaminB6", UnitMass.fromJson),
+        json.ifValueNotNull("vitaminE", UnitMass.fromJson),
+        json.ifValueNotNull("vitaminEAdded", UnitMass.fromJson),
+        json.ifValueNotNull("magnesium", UnitMass.fromJson),
+        json.ifValueNotNull("phosphorus", UnitMass.fromJson),
+        json.ifValueNotNull("iodine", UnitMass.fromJson),
+      );
 
   Map<String, dynamic> toJson() => _mapOfPassioFoodItemData();
 

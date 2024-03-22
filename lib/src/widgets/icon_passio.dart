@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/nutrition_ai_image.dart';
+import '../models/platform_image.dart';
 
 class PassioIcon extends StatelessWidget {
   final PlatformImage? image;

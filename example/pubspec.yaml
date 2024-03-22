@@ -31,11 +31,19 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.6
+  cupertino_icons: ^1.0.2
 
   # https://pub.dev/packages/intl
   # Provides internationalization and localization facilities
-  intl: ^0.18.1
+  intl: ^0.18.0
+
+  # https://pub.dev/packages/cached_network_image
+  # A flutter library to show images from the internet and keep them in the cache directory.
+  cached_network_image: ^3.2.3
+
+  # https://pub.dev/packages/path_provider
+  # A Flutter plugin for finding commonly used locations on the filesystem.
+  path_provider: ^2.0.15
 
   path: any
 
@@ -45,34 +53,40 @@ dependencies:
 
   # https://pub.dev/packages/flutter_screenutil
   # A flutter plugin for adapting screen and font size.Let your UI display a reasonable layout on different screen sizes!
-  flutter_screenutil: ^5.9.0
+  flutter_screenutil: ^5.8.4
+
+  # https://pub.dev/packages/json_serializable
+  # Provides Dart Build System builders for handling JSON.
+  json_serializable: ^6.7.0
+
+  # https://pub.dev/packages/json_annotation
+  # Defines the annotations used by json_serializable to create code for JSON serialization and deserialization.
+  json_annotation: ^4.8.1
 
   # https://pub.dev/packages/get_it
   # This is a simple Service Locator for Dart and Flutter projects.
-  get_it: ^7.6.6
+  get_it: ^7.6.0
 
   # https://pub.dev/packages/flutter_svg
   # Draw SVG files on a Flutter Widget.
-  flutter_svg: ^2.0.9
+  flutter_svg: ^2.0.7
 
-  # https://pub.dev/packages/permission_handler
-  # This plugin provides a cross-platform (iOS, Android) API to request permissions and check their status.
-  permission_handler: ^11.1.0
+  permission_handler: ^10.4.3
 
   # https://pub.dev/packages/envied
   # A cleaner way to handle your environment variables in Dart/Flutter.
-  envied: ^0.5.3
+  envied: ^0.3.0+3
 
   # https://pub.dev/packages/image_picker
   # A Flutter plugin for iOS and Android for picking images from the image library, and taking new pictures with the camera.
-  image_picker: ^1.0.7
+  image_picker: ^1.0.2
 
-  # https://pub.dev/packages/device_info_plus
   # Get current device information from within the Flutter application.
-  device_info_plus: ^9.1.1
+  # https://pub.dev/packages/device_info_plus
+  device_info_plus: ^9.0.3
 
-  # https://pub.dev/packages/flutter_exif_rotation
   # Flutter plugin that fixes the picture orientation for some devices
+  # https://pub.dev/packages/flutter_exif_rotation
   flutter_exif_rotation: ^0.5.1
 
 dev_dependencies:
@@ -90,11 +104,11 @@ dev_dependencies:
 
   # https://pub.dev/packages/build_runner
   # The build_runner package provides a concrete way of generating files using Dart code
-  build_runner: ^2.4.8
+  build_runner: ^2.4.5
 
   # https://pub.dev/packages/envied_generator
   # Generator is use to generate the code for .env file.
-  envied_generator: ^0.5.3
+  envied_generator: ^0.3.0+3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

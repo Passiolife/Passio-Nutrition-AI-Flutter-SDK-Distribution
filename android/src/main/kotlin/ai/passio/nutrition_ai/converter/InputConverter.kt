@@ -3,7 +3,10 @@ package ai.passio.nutrition_ai.converter
 import ai.passio.passiosdk.core.config.PassioConfiguration
 import ai.passio.passiosdk.core.icons.IconSize
 import ai.passio.passiosdk.passiofood.FoodDetectionConfiguration
+import ai.passio.passiosdk.passiofood.PassioID
 import ai.passio.passiosdk.passiofood.PassioSDK
+import ai.passio.passiosdk.passiofood.PassioSearchNutritionPreview
+import ai.passio.passiosdk.passiofood.PassioSearchResult
 import ai.passio.passiosdk.passiofood.data.model.PassioIDEntityType
 import android.content.Context
 import android.graphics.RectF
@@ -41,7 +44,9 @@ fun mapToFoodDetectionConfiguration(map: Map<String, Any?>): FoodDetectionConfig
         map.mapContains<Boolean>("detectBarcodes") { this.detectBarcodes = it }
         map.mapContains<Boolean>("detectPackagedFood") { this.detectPackagedFood = it }
         map.mapContains<Boolean>("detectNutritionFacts") { this.detectNutritionFacts = it }
-        map.mapContains<String>("framesPerSecond") { this.framesPerSecond = framesPerSecondFromString(it) }
+        map.mapContains<String>("framesPerSecond") {
+            this.framesPerSecond = framesPerSecondFromString(it)
+        }
     }
 }
 
@@ -84,4 +89,27 @@ fun mapToRectF(map: Map<String, Any?>): RectF {
         ((map["left"] as? Double) ?: 0.0).toFloat() + ((map["width"] as? Double) ?: 0.0).toFloat(),
         ((map["top"] as? Double) ?: 0.0).toFloat() + ((map["height"] as? Double) ?: 0.0).toFloat(),
     )
+}
+
+fun mapToPassioSearchResult(map: Map<String, Any?>): PassioSearchResult {
+    return PassioSearchResult(
+        map["foodName"] as String,
+        map["brandName"] as String,
+        map["iconId"] as PassioID,
+        map["score"] as Double,
+        map["scoredName"] as String,
+        map["labelId"] as String,
+        map["type"] as String,
+        map["resultId"] as String,
+        mapToPassioSearchNutritionPreview(map["nutritionPreview"] as Map<String, Any?>),
+    );
+}
+
+private  fun mapToPassioSearchNutritionPreview(map: Map<String, Any?>): PassioSearchNutritionPreview {
+    return PassioSearchNutritionPreview(
+        map["calories"] as Int,
+        map["servingUnit"] as String,
+        map["servingQuantity"] as Double,
+        map["servingWeight"] as String
+    );
 }

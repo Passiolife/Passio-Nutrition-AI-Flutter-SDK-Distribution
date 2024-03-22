@@ -24,17 +24,17 @@ class CameraRecognitionBloc
     var barcodeCandidate = event.candidates!.barcodeCandidates?.firstOrNull;
     var packagedFoodCandidate =
         event.candidates!.packagedFoodCandidates?.firstOrNull;
-    var visualCandidate = event.candidates!.detectedCandidates.firstOrNull;
+    var visualCandidate = event.candidates!.detectedCandidates?.firstOrNull;
 
-    PassioIDAttributes? attributes;
+    PassioFoodItem? foodItem;
     if (barcodeCandidate != null) {
       if (barcodeCandidate.value == currentPassioID) {
         return;
       }
 
-      attributes = await NutritionAI.instance
-          .fetchAttributesForBarcode(barcodeCandidate.value);
-      if (attributes != null) {
+      foodItem = await NutritionAI.instance
+          .fetchFoodItemForProductCode(barcodeCandidate.value);
+      if (foodItem != null) {
         currentPassioID = barcodeCandidate.value;
       }
     } else if (packagedFoodCandidate != null) {
@@ -42,10 +42,9 @@ class CameraRecognitionBloc
         return;
       }
 
-      attributes = await NutritionAI.instance
-          .fetchAttributesForPackagedFoodCode(
-              packagedFoodCandidate.packagedFoodCode);
-      if (attributes != null) {
+      foodItem = await NutritionAI.instance
+          .fetchFoodItemForProductCode(packagedFoodCandidate.packagedFoodCode);
+      if (foodItem != null) {
         currentPassioID = packagedFoodCandidate.packagedFoodCode;
       }
     } else if (visualCandidate != null) {
@@ -53,20 +52,20 @@ class CameraRecognitionBloc
         return;
       }
 
-      attributes = await NutritionAI.instance
-          .lookupPassioAttributesFor(visualCandidate.passioID);
-      if (attributes != null) {
+      foodItem = await NutritionAI.instance
+          .fetchFoodItemForPassioID(visualCandidate.passioID);
+      if (foodItem != null) {
         currentPassioID = visualCandidate.passioID;
       }
     }
 
-    if (attributes == null) {
+    if (foodItem == null) {
       currentPassioID = null;
       emit(SearchingState());
       return;
     }
 
-    emit(UpdateFoodNameState(name: attributes.name));
+    emit(UpdateFoodNameState(name: foodItem.name));
 
     if (event.image != null) {
       emit(UpdateFoodIconState(image: event.image));
@@ -74,7 +73,7 @@ class CameraRecognitionBloc
     }
 
     var passioIcons = await NutritionAI.instance
-        .lookupIconsFor(attributes.passioID, type: attributes.entityType);
+        .lookupIconsFor(foodItem.iconId, type: PassioIDEntityType.item);
 
     if (passioIcons.cachedIcon != null) {
       emit(UpdateFoodIconState(image: passioIcons.cachedIcon));
@@ -83,8 +82,7 @@ class CameraRecognitionBloc
 
     emit(UpdateFoodIconState(image: passioIcons.defaultIcon));
 
-    var remoteIcon =
-        await NutritionAI.instance.fetchIconFor(attributes.passioID);
+    var remoteIcon = await NutritionAI.instance.fetchIconFor(foodItem.iconId);
     if (remoteIcon != null) {
       emit(UpdateFoodIconState(image: remoteIcon));
     }

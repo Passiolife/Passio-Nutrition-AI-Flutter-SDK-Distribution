@@ -1,6 +1,3 @@
-import '../converter/platform_input_converter.dart';
-import '../converter/platform_output_converter.dart';
-
 /// Base class used to create units for mass, energy, etc.
 abstract class Unit {
   double value = 1.0;
@@ -11,57 +8,164 @@ abstract class Unit {
 
   Unit operator *(double mult) => times(mult);
 
+  Unit operator +(UnitMass? add) => plus(add);
+
+  double operator /(UnitMass divide) => division(divide);
+
   Unit times(double mult);
+
+  Unit plus(Unit? add);
+
+  double division(Unit divide);
 }
 
 /// Class that represents a measurement of mass.
 class UnitMass extends Unit {
+  /// The type of unit used for the mass measurement.
   final UnitMassType unit;
 
+  /// Creates a new `UnitMass` object.
   UnitMass(double value, this.unit) : super(value, unit.converter, unit.symbol);
 
+  /// Converts the mass value to grams.
   double gramsValue() => value * unit.converter * 1000;
 
+  /// Multiplies the mass value by a scalar.
   @override
   Unit times(double mult) {
     return UnitMass(value * mult, unit);
   }
 
-  factory UnitMass.fromJson(Map<String, dynamic> json) => mapToUnitMass(json);
+  /// Creates a `UnitMass` object from a JSON map.
+  factory UnitMass.fromJson(Map<String, dynamic> json) =>
+      UnitMass(json["value"], UnitMassType.values.byName(json["unit"]));
 
-  Map<String, dynamic> toJson() => mapOfUnitMass(this);
+  /// Converts the `UnitMass` object to a JSON map.
+  Map<String, dynamic> toJson() => {
+        'value': value,
+        'unit': unit.name,
+      };
+
+  /// Compares two `UnitMass` objects for equality.
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! UnitMass) return false;
+    return value == other.value && unit == other.unit;
+  }
+
+  /// Calculates the hash code for this `UnitMass` object.
+  @override
+  int get hashCode => Object.hash(value, unit);
+
+  /// Adds another unit to the current unit.
+  @override
+  Unit plus(Unit? add) {
+    if (add == null || (add is! UnitMass)) return this;
+    return (unit == add.unit)
+        ? UnitMass(value + add.value, unit)
+        : UnitMass(
+            gramsValue() + add.gramsValue(),
+            UnitMassType.grams,
+          );
+  }
+
+  /// Divides the current unit by another unit.
+  @override
+  double division(Unit divide) {
+    return gramsValue() / (divide as UnitMass).gramsValue();
+  }
 }
 
 /// Class that represents a measurement of energy.
 class UnitEnergy extends Unit {
+  /// The type of unit used for the energy measurement.
   final UnitEnergyType unit;
 
+  /// Converts the energy value to kilocalories (kcal).
+  double kcalValue() => value * unit.converter;
+
+  /// Creates a new `UnitEnergy` object with a specific value and unit type.
   UnitEnergy(double value, this.unit)
       : super(value, unit.converter, unit.symbol);
 
+  /// Creates a `UnitEnergy` object from a JSON map.
+  factory UnitEnergy.fromJson(Map<String, dynamic> json) =>
+      UnitEnergy(json["value"], UnitEnergyType.values.byName(json["unit"]));
+
+  /// Converts the `UnitEnergy` object to a JSON map.
+  Map<String, dynamic> toJson() => {'value': value, 'unit': unit.name};
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! UnitEnergy) return false;
+    return value == other.value && unit == other.unit;
+  }
+
+  @override
+  int get hashCode => Object.hash(value, unit);
+
+  /// Multiplies the energy value by a scalar.
   @override
   Unit times(double mult) {
     return UnitEnergy(value * mult, unit);
   }
 
-  factory UnitEnergy.fromJson(Map<String, dynamic> json) =>
-      mapToUnitEnergy(json);
+  /// Currently not implemented. Throws an exception if called.
+  @override
+  double division(Unit divide) {
+    throw ("UnitEnergy division(Unit divide) has not been implemented.");
+  }
 
-  Map<String, dynamic> toJson() => mapOfUnitEnergy(this);
+  /// Adds another unit to the current unit.
+  @override
+  Unit plus(Unit? add) {
+    if (add == null || add is! UnitEnergy) return this;
+    return (unit == add.unit)
+        ? UnitEnergy(value + add.value, unit)
+        : UnitEnergy(
+            kcalValue() + add.kcalValue(), UnitEnergyType.kilocalories);
+  }
 }
 
 /// Class that represents a measurement of IU.
 class UnitIU extends Unit {
+  /// Creates a new `UnitIU` object with a specific value.
   UnitIU(double value) : super(value, 1.0, "iu");
 
+  factory UnitIU.fromJson(Map<String, dynamic> json) => UnitIU(json["value"]);
+
+  Map<String, dynamic> toJson() => {'value': value};
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! UnitIU) return false;
+    return value == other.value;
+  }
+
+  @override
+  int get hashCode => value.hashCode;
+
+  /// Multiplies the energy value by a scalar.
   @override
   Unit times(double mult) {
     return UnitIU(value * mult);
   }
 
-  factory UnitIU.fromJson(Map<String, dynamic> json) => mapToUnitIU(json);
+  /// Currently not implemented. Throws an exception if called.
+  @override
+  double division(Unit divide) {
+    throw ("UnitIU division(Unit divide) has not been implemented.");
+  }
 
-  Map<String, dynamic> toJson() => mapOfUnitIU(this);
+  /// Adds another unit to the current unit.
+  @override
+  Unit plus(Unit? add) {
+    if (add == null) return this;
+    return UnitIU(value + add.value);
+  }
 }
 
 enum UnitMassType {

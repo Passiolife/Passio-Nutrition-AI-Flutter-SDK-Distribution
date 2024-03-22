@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,9 @@ Future<void> main() async {
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
               localeResolutionCallback: (deviceLocale, supportedLocales) {
-                if (supportedLocales.map((e) => e.languageCode).contains(deviceLocale?.languageCode)) {
+                if (supportedLocales
+                    .map((e) => e.languageCode)
+                    .contains(deviceLocale?.languageCode)) {
                   return deviceLocale;
                 } else {
                   return const Locale('en', '');
@@ -41,7 +44,8 @@ Future<void> main() async {
               initialRoute: Routes.initialRoute,
               routes: {
                 // When navigating to the [Routes.foodSearchPage] route, build the [FoodSearchPage] widget.
-                Routes.cameraRecognitionPage: (context) => const CameraRecognitionPage(),
+                Routes.cameraRecognitionPage: (context) =>
+                    const CameraRecognitionPage(),
                 Routes.foodSearchPage: (context) => const FoodSearchPage(),
                 Routes.staticImagePage: (context) => const StaticImagePage(),
               },
@@ -53,7 +57,7 @@ Future<void> main() async {
     if (kReleaseMode) {
       /// Here we can track our error into the crashlytics.
     } else {
-      // log('error: ${error.toString()}');
+      log('error: ${error.toString()}');
     }
   });
 }
@@ -81,7 +85,8 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
 
     try {
-      platformVersion = await NutritionAI.instance.getSDKVersion() ?? 'Unknown SDK version';
+      platformVersion =
+          await NutritionAI.instance.getSDKVersion() ?? 'Unknown SDK version';
     } on PlatformException {
       platformVersion = 'Failed to get SDK version.';
     }
@@ -110,13 +115,16 @@ class _MyAppState extends State<MyApp> {
               child: Text('SDK Version: $_platformVersion\n'),
             ),
             Center(
-              child: _passioStatus == null ? const Text("Configuring SDK") : Text(_passioStatus!.mode.name),
+              child: _passioStatus == null
+                  ? const Text("Configuring SDK")
+                  : Text(_passioStatus!.mode.name),
             ),
             _sdkIsReady
                 ? // Adds space of 20 units
                 ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, Routes.cameraRecognitionPage);
+                      Navigator.pushNamed(
+                          context, Routes.cameraRecognitionPage);
                     },
                     child: const Text('Camera Recognition'),
                   )

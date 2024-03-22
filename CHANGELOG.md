@@ -1,3 +1,22 @@
+## 3.0.1
+
+* Version 3 of the Passio SDK introduces major changes to the nutritional data class and the search functionality. The SDK no longer supports offline work, there is no more local database.
+
+### Deprecated APIs
+* `lookupPassioAttributesFor` has been removed because it was querying the local database.
+* PassioIDAttributes, PassioFoodItemData and PassioFoodRecipe have been removed. The new data model that will handle nutritional data is called PassioFoodItem
+### Refactored APIs
+* `searchForFood` now returns PassioSearchResponse. In PassioSearchResponse you will get list of PassioSearchResult and a list of search options. The PassioSearchResult represent a specific food item associated with the search term.
+* `fetchPassioIDAttributesForBarcode` and `fetchPassioIDAttributesForPackagedFood` have been replaced with `fetchFoodItemForProductCode` than now returns a PassioFoodItem result
+* `DetectedCandidate` now has an attribute called foodName
+* `FoodRecognitionListener` method `onRecognitionResults` can now return nullable FoodCandidates
+* `fetchNutrientsFor` has been renamed to `fetchInflammatoryEffectData`, and PassioNutrient has been renamed to InflammatoryEffectData
+### Added APIs
+* `fetchSearchResult` returns a PassioFoodItem object for a given PassioSearchResult
+* `fetchFoodItemForPassioID` returns a PassioFoodItem object for a given passioID corresponding to a result from the visual detection
+* Added class PassioSearchResult that represents a result from the searchForFood function
+* Added class PassioFoodItem that represent a food item from the Passio Nutritional database. It has a list of PassioIngredients, with their respective PassioFoodAmounts and PassioNutrients
+
 ## 2.3.15
 
 * Added `fetchNutrientsFor` method to retrieve a map of nutrients for a 100 grams of a specific food item.
