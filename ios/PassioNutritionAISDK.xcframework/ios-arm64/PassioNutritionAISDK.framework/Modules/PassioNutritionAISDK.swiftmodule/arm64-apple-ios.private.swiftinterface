@@ -81,7 +81,7 @@ public protocol BarcodeCandidate {
   var value: Swift.String { get }
   var boundingBox: CoreFoundation.CGRect { get }
 }
-public struct PassioMetadataService {
+public class PassioMetadataService {
   public var passioMetadata: PassioNutritionAISDK.PassioMetadata? {
     get
   }
@@ -94,6 +94,7 @@ public struct PassioMetadataService {
   public func getPassioIDs(byModelName: Swift.String) -> [PassioNutritionAISDK.PassioID]?
   public func getLabel(passioID: PassioNutritionAISDK.PassioID, languageCode: Swift.String = "en") -> Swift.String?
   public init(metatadataURL: Foundation.URL? = nil)
+  @objc deinit
 }
 public class PassioNutritionFacts {
   public init()
@@ -192,7 +193,12 @@ public struct PassioSearchNutritionPreview : Swift.Codable {
   public var servingUnit: Swift.String
   public var servingQuantity: Swift.Double
   public var servingWeight: Swift.String
+  public var name: Swift.String
+  public let carbs: Swift.Double?
+  public let fat: Swift.Double?
+  public let protein: Swift.Double?
   public init(result: PassioNutritionAISDK.NutritionPreviewResult)
+  public init(calories: Swift.Int, servingUnit: Swift.String, servingQuantity: Swift.Double, servingWeight: Swift.String, name: Swift.String, carbs: Swift.Double?, fat: Swift.Double?, protein: Swift.Double?)
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -294,6 +300,10 @@ public struct PersonalizedAlternative : Swift.Codable, Swift.Equatable {
   public func fetchFoodItemFor(passioID: PassioNutritionAISDK.PassioID, completion: @escaping (PassioNutritionAISDK.PassioFoodItem?) -> Swift.Void)
   public func searchForFood(byText: Swift.String, completion: @escaping (PassioNutritionAISDK.SearchResponse?) -> Swift.Void)
   public func fetchSearchResult(searchResult: PassioNutritionAISDK.PassioSearchResult, completion: @escaping (PassioNutritionAISDK.PassioFoodItem?) -> Swift.Void)
+  public func fetchSuggestions(mealTime: PassioNutritionAISDK.MealTime, completion: @escaping ([PassioNutritionAISDK.PassioSearchResult]) -> Swift.Void)
+  public func fetchFoodItemForSuggestion(suggestion: PassioNutritionAISDK.PassioSearchResult, completion: @escaping (PassioNutritionAISDK.PassioFoodItem?) -> Swift.Void)
+  public func fetchMealPlans(completion: @escaping ([PassioNutritionAISDK.PassioMealPlan]) -> Swift.Void)
+  public func fetchMealPlanForDay(mealPlanLabel: Swift.String, day: Swift.Int, completion: @escaping ([PassioNutritionAISDK.PassioMealPlanItem]) -> Swift.Void)
   public func fetchFoodItemFor(productCode: Swift.String, completion: @escaping ((PassioNutritionAISDK.PassioFoodItem?) -> Swift.Void))
   public func lookupIconsFor(passioID: PassioNutritionAISDK.PassioID, size: PassioNutritionAISDK.IconSize = IconSize.px90, entityType: PassioNutritionAISDK.PassioIDEntityType = .item) -> (placeHolderIcon: UIKit.UIImage, icon: UIKit.UIImage?)
   public func fetchIconFor(passioID: PassioNutritionAISDK.PassioID, size: PassioNutritionAISDK.IconSize = IconSize.px90, completion: @escaping (UIKit.UIImage?) -> Swift.Void)
@@ -747,6 +757,28 @@ public protocol PassioStatusDelegate : AnyObject {
 public protocol FoodRecognitionWithTextObservations : AnyObject {
   func recognitionResults(candidates: (any PassioNutritionAISDK.FoodCandidates)?, image: UIKit.UIImage?, nutritionFacts: PassioNutritionAISDK.PassioNutritionFacts?, observations: [Vision.VNRecognizedTextObservation])
 }
+public struct PassioMealPlan : Swift.Codable, Swift.Equatable {
+  public var mealPlanLabel: Swift.String?
+  public var mealPlanTitle: Swift.String?
+  public var carbsTarget: Swift.Int? {
+    get
+  }
+  public var proteinTarget: Swift.Int? {
+    get
+  }
+  public var fatTarget: Swift.Int? {
+    get
+  }
+  public static func == (a: PassioNutritionAISDK.PassioMealPlan, b: PassioNutritionAISDK.PassioMealPlan) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct PassioMealPlanItem {
+  public var dayNumber: Swift.Int?
+  public var dayTitle: Swift.String?
+  public var mealTime: PassioNutritionAISDK.MealTime?
+  public var meal: PassioNutritionAISDK.PassioSearchResult?
+}
 public struct PassioServingSize : Swift.Codable, Swift.Equatable, Swift.Hashable {
   public let quantity: Swift.Double
   public let unitName: Swift.String
@@ -822,19 +854,6 @@ public struct Weight : Swift.Codable {
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
 }
-public enum Unit : Swift.String, Swift.Codable {
-  case g
-  case iu
-  case kJ
-  case kcal
-  case mg
-  case ug
-  public init?(rawValue: Swift.String)
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
-    get
-  }
-}
 public enum IconSize : Swift.String {
   case px90, px180, px360
   public init?(rawValue: Swift.String)
@@ -859,41 +878,35 @@ public struct PassioFoodAmount : Swift.Codable {
   public let servingUnits: [PassioNutritionAISDK.PassioServingUnit]
   public let selectedUnit: Swift.String
   public let selectedQuantity: Swift.Double
+  public static let SERVING_UNIT_NAME: Swift.String
   public init(servingSizes: [PassioNutritionAISDK.PassioServingSize], servingUnits: [PassioNutritionAISDK.PassioServingUnit])
   public func weight() -> Foundation.Measurement<Foundation.UnitMass>
   public func weightGrams() -> Swift.Double
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct SearchResponse : Swift.Codable {
+public struct SearchResponse {
   public let alternateNames: [Swift.String]
   public let results: [PassioNutritionAISDK.PassioSearchResult]
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
 }
-public struct PassioSearchResult : Swift.Codable {
-  public let type: Swift.String
-  public let displayName: Swift.String
-  public let shortName: Swift.String
-  public let score: Swift.Double
+public struct PassioSearchResult {
   public let brandName: Swift.String
-  public let iconId: PassioNutritionAISDK.PassioID
+  public let foodName: Swift.String
+  public let iconID: PassioNutritionAISDK.PassioID
   public let labelId: Swift.String
-  public let synonymId: Swift.String
-  public let scoredName: Swift.String
-  public let recipeId: Swift.String
-  public let referenceId: Swift.String
   public let resultId: Swift.String
-  public var nutritionPreview: PassioNutritionAISDK.PassioSearchNutritionPreview? {
-    get
-  }
-  public init(type: Swift.String, displayName: Swift.String, shortName: Swift.String, score: Swift.Double, brandName: Swift.String, iconId: Swift.String, labelId: Swift.String, synonymId: Swift.String, scoredName: Swift.String, recipeId: Swift.String, redrenceId: Swift.String, resultId: Swift.String)
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+  public let score: Swift.Double
+  public let scoredName: Swift.String
+  public let type: Swift.String
+  public let nutritionPreview: PassioNutritionAISDK.PassioSearchNutritionPreview?
+  public init(foodName: Swift.String, brandName: Swift.String, iconID: PassioNutritionAISDK.PassioID, score: Swift.Double, scoredName: Swift.String, labelId: Swift.String, type: Swift.String, resultId: Swift.String, nutritionPreview: PassioNutritionAISDK.PassioSearchNutritionPreview?)
 }
 public struct NutritionPreviewResult : Swift.Codable {
   public let portion: PassioNutritionAISDK.Portion?
   public let calories: Swift.Double?
+  public let carbs: Swift.Double?
+  public let fat: Swift.Double?
+  public let protein: Swift.Double?
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
 }
@@ -1003,7 +1016,7 @@ public struct PassioNutrients : Swift.Codable, Swift.Equatable {
   public let weight: Foundation.Measurement<Foundation.UnitMass>
   public var referenceWeight: Foundation.Measurement<Foundation.UnitMass>
   public init(weight: Foundation.Measurement<Foundation.UnitMass>)
-  public init(fat: Foundation.Measurement<Foundation.UnitMass>? = nil, satFat: Foundation.Measurement<Foundation.UnitMass>? = nil, monounsaturatedFat: Foundation.Measurement<Foundation.UnitMass>? = nil, polyunsaturatedFat: Foundation.Measurement<Foundation.UnitMass>? = nil, proteins: Foundation.Measurement<Foundation.UnitMass>? = nil, carbs: Foundation.Measurement<Foundation.UnitMass>? = nil, calories: Foundation.Measurement<Foundation.UnitEnergy>? = nil, cholesterol: Foundation.Measurement<Foundation.UnitMass>? = nil, sodium: Foundation.Measurement<Foundation.UnitMass>? = nil, fibers: Foundation.Measurement<Foundation.UnitMass>? = nil, transFat: Foundation.Measurement<Foundation.UnitMass>? = nil, sugars: Foundation.Measurement<Foundation.UnitMass>? = nil, sugarsAdded: Foundation.Measurement<Foundation.UnitMass>? = nil, alcohol: Foundation.Measurement<Foundation.UnitMass>? = nil, iron: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminC: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminA: Swift.Double? = nil, vitaminD: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminB6: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminB12: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminB12Added: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminE: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminEAdded: Foundation.Measurement<Foundation.UnitMass>? = nil, iodine: Foundation.Measurement<Foundation.UnitMass>? = nil, calcium: Foundation.Measurement<Foundation.UnitMass>? = nil, potassium: Foundation.Measurement<Foundation.UnitMass>? = nil, magnesium: Foundation.Measurement<Foundation.UnitMass>? = nil, phosphorus: Foundation.Measurement<Foundation.UnitMass>? = nil, sugarAlcohol: Foundation.Measurement<Foundation.UnitMass>? = nil, weight: Foundation.Measurement<Foundation.UnitMass> = Measurement<UnitMass>(value: 100.0, unit: .grams))
+  public init(fat: Foundation.Measurement<Foundation.UnitMass>? = nil, satFat: Foundation.Measurement<Foundation.UnitMass>? = nil, monounsaturatedFat: Foundation.Measurement<Foundation.UnitMass>? = nil, polyunsaturatedFat: Foundation.Measurement<Foundation.UnitMass>? = nil, proteins: Foundation.Measurement<Foundation.UnitMass>? = nil, carbs: Foundation.Measurement<Foundation.UnitMass>? = nil, calories: Foundation.Measurement<Foundation.UnitEnergy>? = nil, cholesterol: Foundation.Measurement<Foundation.UnitMass>? = nil, sodium: Foundation.Measurement<Foundation.UnitMass>? = nil, fibers: Foundation.Measurement<Foundation.UnitMass>? = nil, transFat: Foundation.Measurement<Foundation.UnitMass>? = nil, sugars: Foundation.Measurement<Foundation.UnitMass>? = nil, sugarsAdded: Foundation.Measurement<Foundation.UnitMass>? = nil, alcohol: Foundation.Measurement<Foundation.UnitMass>? = nil, iron: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminC: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminA: Swift.Double? = nil, vitaminD: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminB6: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminB12: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminB12Added: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminE: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminEAdded: Foundation.Measurement<Foundation.UnitMass>? = nil, iodine: Foundation.Measurement<Foundation.UnitMass>? = nil, calcium: Foundation.Measurement<Foundation.UnitMass>? = nil, potassium: Foundation.Measurement<Foundation.UnitMass>? = nil, magnesium: Foundation.Measurement<Foundation.UnitMass>? = nil, phosphorus: Foundation.Measurement<Foundation.UnitMass>? = nil, sugarAlcohol: Foundation.Measurement<Foundation.UnitMass>? = nil, zinc: Foundation.Measurement<Foundation.UnitMass>? = nil, selenium: Foundation.Measurement<Foundation.UnitMass>? = nil, folicAcid: Foundation.Measurement<Foundation.UnitMass>? = nil, chromium: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminKPhylloquinone: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminKMenaquinone4: Foundation.Measurement<Foundation.UnitMass>? = nil, vitaminKDihydrophylloquinone: Foundation.Measurement<Foundation.UnitMass>? = nil, weight: Foundation.Measurement<Foundation.UnitMass> = Measurement<UnitMass>(value: 100.0, unit: .grams))
   public init(referenceNutrients: PassioNutritionAISDK.PassioNutrients, weight: Foundation.Measurement<Foundation.UnitMass> = Measurement<UnitMass>(value: 100.0, unit: .grams))
   public init(ingredientsData: [(PassioNutritionAISDK.PassioNutrients, Swift.Double)], weight: Foundation.Measurement<Foundation.UnitMass>)
   public func fat() -> Foundation.Measurement<Foundation.UnitMass>?
@@ -1035,6 +1048,13 @@ public struct PassioNutrients : Swift.Codable, Swift.Equatable {
   public func magnesium() -> Foundation.Measurement<Foundation.UnitMass>?
   public func phosphorus() -> Foundation.Measurement<Foundation.UnitMass>?
   public func sugarAlcohol() -> Foundation.Measurement<Foundation.UnitMass>?
+  public func zinc() -> Foundation.Measurement<Foundation.UnitMass>?
+  public func selenium() -> Foundation.Measurement<Foundation.UnitMass>?
+  public func folicAcid() -> Foundation.Measurement<Foundation.UnitMass>?
+  public func chromium() -> Foundation.Measurement<Foundation.UnitMass>?
+  public func vitaminKPhylloquinone() -> Foundation.Measurement<Foundation.UnitMass>?
+  public func vitaminKMenaquinone4() -> Foundation.Measurement<Foundation.UnitMass>?
+  public func vitaminKDihydrophylloquinone() -> Foundation.Measurement<Foundation.UnitMass>?
   public static func == (a: PassioNutritionAISDK.PassioNutrients, b: PassioNutritionAISDK.PassioNutrients) -> Swift.Bool
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
@@ -1090,6 +1110,18 @@ public struct PassioFoodRecipe : Swift.Equatable, Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
+public enum MealTime : Swift.String, Swift.Codable {
+  case breakfast
+  case lunch
+  case dinner
+  case snack
+  public static func currentMealTime() -> PassioNutritionAISDK.MealTime
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
 extension PassioNutritionAISDK.MoveDirection : Swift.Equatable {}
 extension PassioNutritionAISDK.MoveDirection : Swift.Hashable {}
 extension PassioNutritionAISDK.MoveDirection : Swift.RawRepresentable {}
@@ -1110,9 +1142,6 @@ extension PassioNutritionAISDK.PassioFoodItemDataError : Swift.Hashable {}
 extension PassioNutritionAISDK.VolumeDetectionMode : Swift.Equatable {}
 extension PassioNutritionAISDK.VolumeDetectionMode : Swift.Hashable {}
 extension PassioNutritionAISDK.VolumeDetectionMode : Swift.RawRepresentable {}
-extension PassioNutritionAISDK.Unit : Swift.Equatable {}
-extension PassioNutritionAISDK.Unit : Swift.Hashable {}
-extension PassioNutritionAISDK.Unit : Swift.RawRepresentable {}
 extension PassioNutritionAISDK.IconSize : Swift.Equatable {}
 extension PassioNutritionAISDK.IconSize : Swift.Hashable {}
 extension PassioNutritionAISDK.IconSize : Swift.RawRepresentable {}
@@ -1124,3 +1153,6 @@ extension PassioNutritionAISDK.PassioMode : Swift.Hashable {}
 extension PassioNutritionAISDK.Bridge : Swift.Equatable {}
 extension PassioNutritionAISDK.Bridge : Swift.Hashable {}
 extension PassioNutritionAISDK.Bridge : Swift.RawRepresentable {}
+extension PassioNutritionAISDK.MealTime : Swift.Equatable {}
+extension PassioNutritionAISDK.MealTime : Swift.Hashable {}
+extension PassioNutritionAISDK.MealTime : Swift.RawRepresentable {}

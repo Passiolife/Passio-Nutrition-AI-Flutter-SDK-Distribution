@@ -97,11 +97,7 @@ class _FoodSearchItemRowState extends State<FoodSearchItemRow> {
                     )),
               ),
               Visibility(
-                visible: !(widget.data?.iconID
-                            .contains(AppConstants.removeIcon) ??
-                        false) &&
-                    !(widget.data?.iconID.contains(AppConstants.searching) ??
-                        false),
+                visible: !(widget.data?.iconID.contains("removeIcon") ?? false),
                 child: SvgPicture.asset(
                   AppImages.icPlusCircle,
                   width: Dimens.r26,

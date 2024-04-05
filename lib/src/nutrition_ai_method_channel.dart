@@ -7,12 +7,12 @@ import 'package:flutter/services.dart';
 
 import 'converter/platform_input_converter.dart';
 import 'converter/platform_output_converter.dart';
+import 'models/enums.dart';
 import 'models/inflammatory_effect_data.dart';
-import 'models/passio_id_entity_types.dart';
-import 'models/platform_image.dart';
 import 'models/passio_food_item.dart';
 import 'models/passio_search_response.dart';
 import 'models/passio_search_result.dart';
+import 'models/platform_image.dart';
 import 'nutrition_ai_configuration.dart';
 import 'nutrition_ai_detection.dart';
 import 'nutrition_ai_platform_interface.dart';
@@ -292,11 +292,43 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
   }
 
   @override
-  Future<PassioFoodItem?> fetchSearchResult(
+  Future<PassioFoodItem?> fetchFoodItemForSearchResult(
       PassioSearchResult searchResult) async {
     final args = searchResult.toJson();
     var responseMap =
-        await methodChannel.invokeMethod('fetchSearchResult', args);
+        await methodChannel.invokeMethod('fetchFoodItemForSearchResult', args);
+    if (responseMap == null) {
+      return null;
+    }
+
+    Map<String, dynamic> foodItemMap = responseMap!.cast<String, dynamic>();
+    return PassioFoodItem.fromJson(foodItemMap);
+  }
+
+  @override
+  Future<List<PassioSearchResult>> fetchSuggestions(MealTime mealTime) async {
+    var responseList = await methodChannel.invokeMethod<List<Object?>>(
+        'fetchSuggestions', mealTime.name);
+
+    // Check if the response list is null.
+    if (responseList == null) {
+      return [];
+    }
+
+    // Map each object in the response list to a PassioSearchResult using PassioSearchResult.fromJson.
+    var list = mapListOfObjects(
+        responseList, (inMap) => PassioSearchResult.fromJson(inMap));
+
+    // Return the resulting list of PassioSearchResult objects.
+    return list;
+  }
+
+  @override
+  Future<PassioFoodItem?> fetchFoodItemForSuggestion(
+      PassioSearchResult suggestion) async {
+    final args = suggestion.toJson();
+    var responseMap =
+        await methodChannel.invokeMethod('fetchFoodItemForSuggestion', args);
     if (responseMap == null) {
       return null;
     }

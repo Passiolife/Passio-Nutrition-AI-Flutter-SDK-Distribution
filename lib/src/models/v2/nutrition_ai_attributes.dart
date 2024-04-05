@@ -1,7 +1,7 @@
 import '../../converter/platform_output_converter.dart';
 import '../../nutrition_ai_detection.dart';
+import '../enums.dart';
 import 'passio_alternative.dart';
-import '../passio_id_entity_types.dart';
 import 'nutrition_ai_fooditemdata.dart';
 import 'nutrition_ai_recipe.dart';
 

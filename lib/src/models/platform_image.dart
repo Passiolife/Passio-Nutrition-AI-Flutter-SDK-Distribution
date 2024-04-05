@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:nutrition_ai/src/models/enums.dart';
 
 /// Native representation of an image.
 class PlatformImage {

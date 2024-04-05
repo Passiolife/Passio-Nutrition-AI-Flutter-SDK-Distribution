@@ -1,14 +1,14 @@
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:nutrition_ai/src/models/enums.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'models/inflammatory_effect_data.dart';
-import 'models/passio_id_entity_types.dart';
-import 'models/platform_image.dart';
 import 'models/passio_food_item.dart';
 import 'models/passio_search_response.dart';
 import 'models/passio_search_result.dart';
+import 'models/platform_image.dart';
 import 'nutrition_ai_configuration.dart';
 import 'nutrition_ai_detection.dart';
 import 'nutrition_ai_method_channel.dart';
@@ -55,9 +55,10 @@ abstract class NutritionAIPlatform extends PlatformInterface {
     throw UnimplementedError('searchForFood() has not been implemented.');
   }
 
-  Future<PassioFoodItem?> fetchSearchResult(PassioSearchResult searchResult) {
+  Future<PassioFoodItem?> fetchFoodItemForSearchResult(
+      PassioSearchResult searchResult) {
     throw UnimplementedError(
-        'fetchSearchResult(PassioSearchResult searchResult) has not been implemented.');
+        'fetchFoodItemForSearchResult(PassioSearchResult searchResult) has not been implemented.');
   }
 
   Future<PassioFoodItem?> fetchFoodItemForPassioID(PassioID passioID) {
@@ -105,5 +106,15 @@ abstract class NutritionAIPlatform extends PlatformInterface {
   Future<List<InflammatoryEffectData>?> fetchInflammatoryEffectData(
       PassioID passioID) {
     throw UnimplementedError('fetchInflammatoryEffectData(PassioID passioID)');
+  }
+
+  Future<List<PassioSearchResult>> fetchSuggestions(MealTime mealTime) {
+    throw UnimplementedError('fetchSuggestions(MealTime mealTime)');
+  }
+
+  Future<PassioFoodItem?> fetchFoodItemForSuggestion(
+      PassioSearchResult suggestion) {
+    throw UnimplementedError(
+        'fetchFoodItemForSuggestion(PassioSearchResult suggestion)');
   }
 }

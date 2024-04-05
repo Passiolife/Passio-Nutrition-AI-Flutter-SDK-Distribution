@@ -1,12 +1,12 @@
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'models/enums.dart';
 import 'models/inflammatory_effect_data.dart';
-import 'models/passio_id_entity_types.dart';
-import 'models/platform_image.dart';
 import 'models/passio_food_item.dart';
 import 'models/passio_search_response.dart';
 import 'models/passio_search_result.dart';
+import 'models/platform_image.dart';
 import 'nutrition_ai_configuration.dart';
 import 'nutrition_ai_detection.dart';
 import 'nutrition_ai_platform_interface.dart';
@@ -102,8 +102,20 @@ class NutritionAI {
         .fetchFoodItemForProductCode(productCode);
   }
 
-  Future<PassioFoodItem?> fetchSearchResult(PassioSearchResult searchResult) {
-    return NutritionAIPlatform.instance.fetchSearchResult(searchResult);
+  /// A function to fetch detailed information about a food item based on a search result.
+  ///
+  /// This function takes a [PassioSearchResult] object representing a search result
+  /// and returns a [Future] containing a [PassioFoodItem] object representing
+  /// detailed information about the food item.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// var foodItem = await fetchFoodItemForSearchResult(searchResult);
+  /// ```
+  Future<PassioFoodItem?> fetchFoodItemForSearchResult(
+      PassioSearchResult searchResult) {
+    return NutritionAIPlatform.instance
+        .fetchFoodItemForSearchResult(searchResult);
   }
 
   /// List of tags for food item.
@@ -153,5 +165,33 @@ class NutritionAI {
   Future<List<InflammatoryEffectData>?> fetchInflammatoryEffectData(
       PassioID passioID) {
     return NutritionAIPlatform.instance.fetchInflammatoryEffectData(passioID);
+  }
+
+  /// A function to fetch meal suggestions for a given meal time.
+  ///
+  /// This function takes a [MealTime] parameter and returns a [Future] containing
+  /// a list of [PassioSearchResult] objects, representing meal suggestions.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// var suggestions = await fetchSuggestions(MealTime.breakfast);
+  /// ```
+  Future<List<PassioSearchResult>> fetchSuggestions(MealTime mealTime) {
+    return NutritionAIPlatform.instance.fetchSuggestions(mealTime);
+  }
+
+  /// A function to fetch detailed information about a food item based on a suggestion.
+  ///
+  /// This function takes a [PassioSearchResult] object representing a meal suggestion
+  /// and returns a [Future] containing a [PassioFoodItem] object representing
+  /// detailed information about the food item.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// var foodItem = await fetchFoodItemForSuggestion(suggestion);
+  /// ```
+  Future<PassioFoodItem?> fetchFoodItemForSuggestion(
+      PassioSearchResult suggestion) {
+    return NutritionAIPlatform.instance.fetchFoodItemForSuggestion(suggestion);
   }
 }

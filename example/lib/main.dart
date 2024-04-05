@@ -13,6 +13,7 @@ import 'package:nutrition_ai_example/inject/injector.dart';
 import 'package:nutrition_ai_example/presentation/camera_recognition/camera_recognition_page.dart';
 import 'package:nutrition_ai_example/presentation/food_search/food_search_page.dart';
 import 'package:nutrition_ai_example/presentation/static_image/static_image_page.dart';
+import 'package:nutrition_ai_example/presentation/suggestion/suggestion_page.dart';
 import 'package:nutrition_ai_example/router/routes.dart';
 
 Future<void> main() async {
@@ -48,6 +49,7 @@ Future<void> main() async {
                     const CameraRecognitionPage(),
                 Routes.foodSearchPage: (context) => const FoodSearchPage(),
                 Routes.staticImagePage: (context) => const StaticImagePage(),
+                Routes.suggestionsPage: (context) => const SuggestionPage(),
               },
               home: const MyApp(),
             );
@@ -145,6 +147,15 @@ class _MyAppState extends State<MyApp> {
                       Navigator.pushNamed(context, Routes.staticImagePage);
                     },
                     child: const Text('Static image'),
+                  )
+                : const SizedBox(),
+            const SizedBox(height: 20), // Adds space of 20 units
+            _sdkIsReady
+                ? ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.suggestionsPage);
+                    },
+                    child: const Text('Suggestions'),
                   )
                 : const SizedBox(),
 

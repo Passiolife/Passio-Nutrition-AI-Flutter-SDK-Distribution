@@ -104,9 +104,23 @@ class MockNutritionAiPlatform
   }
 
   @override
-  Future<PassioFoodItem?> fetchSearchResult(PassioSearchResult searchResult) {
+  Future<PassioFoodItem?> fetchFoodItemForSearchResult(
+      PassioSearchResult searchResult) {
     throw UnimplementedError(
-        'fetchSearchResult(PassioSearchResult searchResult)');
+        'fetchFoodItemForSearchResult(PassioSearchResult searchResult)');
+  }
+
+  @override
+  Future<PassioFoodItem?> fetchFoodItemForSuggestion(
+      PassioSearchResult suggestion) {
+    // TODO: implement fetchFoodItemForSuggestion
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<PassioSearchResult>> fetchSuggestions(MealTime mealTime) {
+    // TODO: implement fetchSuggestions
+    throw UnimplementedError();
   }
 }
 

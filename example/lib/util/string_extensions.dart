@@ -21,4 +21,7 @@ extension Util on String? {
     }
     return result ?? '';
   }
+
+  String get toUpperCaseWord =>
+      this?.split(" ").map((str) => str.toTitleCase()).join(" ") ?? '';
 }

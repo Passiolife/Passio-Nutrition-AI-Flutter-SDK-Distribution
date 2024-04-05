@@ -63,6 +63,7 @@ private fun PassioSDKError.toPlatformString(): String {
         PassioSDKError.NO_MODELS_FILES_FOUND -> "noModelsFilesFound"
         PassioSDKError.NOT_LICENSED_FOR_THIS_PROJECT -> "notLicensedForThisProject"
         PassioSDKError.MISSING_DEPENDENCY -> "missingDependency"
+        PassioSDKError.METADATA_ERROR -> "metadataError"
     }
 }
 
@@ -352,6 +353,14 @@ private fun mapFromPassioNutrients(nutrients: PassioNutrients): Map<String, Any?
     nutrientsMap["magnesium"] = mapFromUnitMass(nutrients.magnesium())
     nutrientsMap["phosphorus"] = mapFromUnitMass(nutrients.phosphorus())
     nutrientsMap["iodine"] = mapFromUnitMass(nutrients.iodine())
+    nutrientsMap["zinc"] = mapFromUnitMass(nutrients.zinc())
+    nutrientsMap["selenium"] = mapFromUnitMass(nutrients.selenium())
+    nutrientsMap["folicAcid"] = mapFromUnitMass(nutrients.folicAcid())
+    nutrientsMap["chromium"] = mapFromUnitMass(nutrients.chromium())
+    nutrientsMap["vitaminKPhylloquinone"] = mapFromUnitMass(nutrients.vitaminKPhylloquinone())
+    nutrientsMap["vitaminKMenaquinone4"] = mapFromUnitMass(nutrients.vitaminKMenaquinone4())
+    nutrientsMap["vitaminKDihydrophylloquinone"] =
+        mapFromUnitMass(nutrients.vitaminKDihydrophylloquinone())
 
     return nutrientsMap
 }
@@ -366,7 +375,7 @@ fun mapFromSearchResponse(
     return searchMap
 }
 
-private fun mapFromPassioSearchResult(passioSearchResult: PassioSearchResult): Map<String, Any?> {
+fun mapFromPassioSearchResult(passioSearchResult: PassioSearchResult): Map<String, Any?> {
     val searchResult = mutableMapOf<String, Any?>()
     searchResult["brandName"] = passioSearchResult.brandName
     searchResult["foodName"] = passioSearchResult.foodName

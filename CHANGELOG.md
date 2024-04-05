@@ -1,3 +1,35 @@
+## 3.0.2
+
+### Added APIs
+
+* Added API to fetch suggestion for a certain meal time. To fetch the full nutritional data for a suggestion item use `fetchFoodItemForSuggestion`.
+```dart
+enum MealTime {
+  breakfast,
+  lunch,
+  dinner,
+  snack,
+}
+
+Future<List<PassioSearchResult>> fetchSuggestions(MealTime mealTime)
+
+Future<PassioFoodItem?> fetchFoodItemForSuggestion(PassioSearchResult suggestion)
+```
+
+### Added Micronutrients:
+
+* Zinc
+* Selenium
+* Folic acid
+* Chromium
+* Vitamin-K Phylloquinone
+* Vitamin-K Menaquinone4
+* Vitamin-K Dihydrophylloquinone
+
+### Refactored APIs
+
+* Renamed ```fetchSearchResult``` to ```fetchFoodItemForSearchResult```.
+
 ## 3.0.1
 
 * Version 3 of the Passio SDK introduces major changes to the nutritional data class and the search functionality. The SDK no longer supports offline work, there is no more local database.

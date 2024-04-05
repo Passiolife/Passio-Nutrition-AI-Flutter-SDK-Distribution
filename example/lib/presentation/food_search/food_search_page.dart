@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutrition_ai/nutrition_ai.dart';
@@ -100,7 +98,7 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
                       key: UniqueKey(),
                       data: _filteredFoodItems.elementAt(index),
                       foodItemsImages: _filteredFoodItemsImages,
-                      onTapItem: (data) async {
+                      onTapItem: (data) {
                         context.hideKeyboard();
                         context.showSnackbar(
                             text:

@@ -94,10 +94,23 @@ struct InputConverter {
               let iconId = map["iconId"] as? PassioID,
               let labelId = map["labelId"] as? String,
               let scoredName = map["scoredName"] as? String,
-              let resultId = map["resultId"] as? String else {
+              let resultId = map["resultId"] as? String,
+              let nutritionPreview = mapToPassioSearchNutritionPreview(map: map["nutritionPreview"] as? [String : Any]) else {
             return nil;
         }
-        return PassioSearchResult(type: type, displayName: foodName, shortName: "", score: score, brandName: brandName, iconId: iconId, labelId: labelId, synonymId: "", scoredName: scoredName, recipeId: "", redrenceId: "", resultId: resultId);
+        return PassioSearchResult(foodName: foodName, brandName: brandName, iconID: iconId, score: score, scoredName: scoredName, labelId: labelId, type: type, resultId: resultId, nutritionPreview: nutritionPreview)
     }
     
+    private func mapToPassioSearchNutritionPreview(map :[String: Any?]?) -> PassioSearchNutritionPreview? {
+        guard let map = map,
+              let calories = map["calories"] as? Int,
+              let servingUnit = map["servingUnit"] as? String,
+              let servingQuantity = map["servingQuantity"] as? Double,
+              let servingWeight = map["servingWeight"] as? String else {
+            return nil
+        }
+        return PassioSearchNutritionPreview(calories: calories, servingUnit: servingUnit, servingQuantity: servingQuantity, servingWeight: servingWeight, name: "", carbs: nil, fat: nil, protein: nil)
+    }
+    
+
 }

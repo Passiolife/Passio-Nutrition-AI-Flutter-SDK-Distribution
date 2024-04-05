@@ -23,11 +23,17 @@ class PassioNutrients {
   /// The amount of cholesterol in the food.
   final UnitMass? _cholesterol;
 
-  /// The amount of fibers in the food.
-  final UnitMass? _fibers;
+  /// The amount of chromium in the food.
+  final UnitMass? _chromium;
 
   /// The amount of fat in the food.
   final UnitMass? _fat;
+
+  /// The amount of fibers in the food.
+  final UnitMass? _fibers;
+
+  /// The amount of folicAcid in the food.
+  final UnitMass? _folicAcid;
 
   /// The amount of iodine in the food.
   final UnitMass? _iodine;
@@ -55,6 +61,9 @@ class PassioNutrients {
 
   /// The amount of satFat in the food.
   final UnitMass? _satFat;
+
+  /// The amount of selenium in the food.
+  final UnitMass? _selenium;
 
   /// The amount of sodium in the food.
   final UnitMass? _sodium;
@@ -95,6 +104,18 @@ class PassioNutrients {
   /// The amount of vitaminEAdded in the food.
   final UnitMass? _vitaminEAdded;
 
+  /// The amount of vitaminKDihydrophylloquinone in the food.
+  final UnitMass? _vitaminKDihydrophylloquinone;
+
+  /// The amount of vitaminKMenaquinone4 in the food.
+  final UnitMass? _vitaminKMenaquinone4;
+
+  /// The amount of vitaminKPhylloquinone in the food.
+  final UnitMass? _vitaminKPhylloquinone;
+
+  /// The amount of zinc in the food.
+  final UnitMass? _zinc;
+
   /// Reference weight used for scaling nutrient values (100 grams by default).
   final UnitMass _referenceWeight = UnitMass(100.0, UnitMassType.grams);
 
@@ -111,9 +132,13 @@ class PassioNutrients {
 
   UnitMass? get cholesterol => _scaleByAmount(_cholesterol);
 
-  UnitMass? get fibers => _scaleByAmount(_fibers);
+  UnitMass? get chromium => _scaleByAmount(_chromium);
 
   UnitMass? get fat => _scaleByAmount(_fat);
+
+  UnitMass? get fibers => _scaleByAmount(_fibers);
+
+  UnitMass? get folicAcid => _scaleByAmount(_folicAcid);
 
   UnitMass? get iodine => _scaleByAmount(_iodine);
 
@@ -132,6 +157,8 @@ class PassioNutrients {
   UnitMass? get proteins => _scaleByAmount(_proteins);
 
   UnitMass? get satFat => _scaleByAmount(_satFat);
+
+  UnitMass? get selenium => _scaleByAmount(_selenium);
 
   UnitMass? get sodium => _scaleByAmount(_sodium);
 
@@ -159,6 +186,15 @@ class PassioNutrients {
 
   UnitMass? get vitaminEAdded => _scaleByAmount(_vitaminEAdded);
 
+  UnitMass? get vitaminKDihydrophylloquinone =>
+      _scaleByAmount(_vitaminKDihydrophylloquinone);
+
+  UnitMass? get vitaminKMenaquinone4 => _scaleByAmount(_vitaminKMenaquinone4);
+
+  UnitMass? get vitaminKPhylloquinone => _scaleByAmount(_vitaminKPhylloquinone);
+
+  UnitMass? get zinc => _scaleByAmount(_zinc);
+
   /// Creates a new `PassioNutrients` instance.
   PassioNutrients._(
     this.weight,
@@ -167,8 +203,10 @@ class PassioNutrients {
     this._calories,
     this._carbs,
     this._cholesterol,
-    this._fibers,
+    this._chromium,
     this._fat,
+    this._fibers,
+    this._folicAcid,
     this._iodine,
     this._iron,
     this._magnesium,
@@ -178,6 +216,7 @@ class PassioNutrients {
     this._potassium,
     this._proteins,
     this._satFat,
+    this._selenium,
     this._sodium,
     this._sugars,
     this._sugarsAdded,
@@ -191,11 +230,22 @@ class PassioNutrients {
     this._vitaminD,
     this._vitaminE,
     this._vitaminEAdded,
+    this._vitaminKDihydrophylloquinone,
+    this._vitaminKMenaquinone4,
+    this._vitaminKPhylloquinone,
+    this._zinc,
   );
 
   factory PassioNutrients.fromWeight(UnitMass weight) {
     return PassioNutrients._(
       weight,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
       null,
       null,
       null,
@@ -234,8 +284,10 @@ class PassioNutrients {
     UnitEnergy? calories,
     UnitMass? carbs,
     UnitMass? cholesterol,
-    UnitMass? fibers,
+    UnitMass? chromium,
     UnitMass? fat,
+    UnitMass? fibers,
+    UnitMass? folicAcid,
     UnitMass? iodine,
     UnitMass? iron,
     UnitMass? magnesium,
@@ -245,6 +297,7 @@ class PassioNutrients {
     UnitMass? potassium,
     UnitMass? proteins,
     UnitMass? satFat,
+    UnitMass? selenium,
     UnitMass? sodium,
     UnitMass? sugars,
     UnitMass? sugarsAdded,
@@ -258,6 +311,10 @@ class PassioNutrients {
     UnitMass? vitaminD,
     UnitMass? vitaminE,
     UnitMass? vitaminEAdded,
+    UnitMass? vitaminKDihydrophylloquinone,
+    UnitMass? vitaminKMenaquinone4,
+    UnitMass? vitaminKPhylloquinone,
+    UnitMass? zinc,
   }) {
     return PassioNutrients._(
       UnitMass(100, UnitMassType.grams),
@@ -266,8 +323,10 @@ class PassioNutrients {
       calories,
       carbs,
       cholesterol,
-      fibers,
+      chromium,
       fat,
+      fibers,
+      folicAcid,
       iodine,
       iron,
       magnesium,
@@ -277,6 +336,7 @@ class PassioNutrients {
       potassium,
       proteins,
       satFat,
+      selenium,
       sodium,
       sugars,
       sugarsAdded,
@@ -290,6 +350,10 @@ class PassioNutrients {
       vitaminD,
       vitaminE,
       vitaminEAdded,
+      vitaminKDihydrophylloquinone,
+      vitaminKMenaquinone4,
+      vitaminKPhylloquinone,
+      zinc,
     );
   }
 
@@ -307,8 +371,10 @@ class PassioNutrients {
       referenceNutrients._calories,
       referenceNutrients._carbs,
       referenceNutrients._cholesterol,
-      referenceNutrients._fibers,
+      referenceNutrients._chromium,
       referenceNutrients._fat,
+      referenceNutrients._fibers,
+      referenceNutrients._folicAcid,
       referenceNutrients._iodine,
       referenceNutrients._iron,
       referenceNutrients._magnesium,
@@ -318,6 +384,7 @@ class PassioNutrients {
       referenceNutrients._potassium,
       referenceNutrients._proteins,
       referenceNutrients._satFat,
+      referenceNutrients._selenium,
       referenceNutrients._sodium,
       referenceNutrients._sugars,
       referenceNutrients._sugarsAdded,
@@ -331,6 +398,10 @@ class PassioNutrients {
       referenceNutrients._vitaminD,
       referenceNutrients._vitaminE,
       referenceNutrients._vitaminEAdded,
+      referenceNutrients._vitaminKDihydrophylloquinone,
+      referenceNutrients._vitaminKMenaquinone4,
+      referenceNutrients._vitaminKPhylloquinone,
+      referenceNutrients._zinc,
     );
   }
 
@@ -360,11 +431,19 @@ class PassioNutrients {
               .reduce((value, element) => value?.plus(element) ?? element)
           as UnitMass?,
       ingredientsData
-              .map((e) => e.$1._fibers?.times(e.$2))
+              .map((e) => e.$1._chromium?.times(e.$2))
               .reduce((value, element) => value?.plus(element) ?? element)
           as UnitMass?,
       ingredientsData
               .map((e) => e.$1._fat?.times(e.$2))
+              .reduce((value, element) => value?.plus(element) ?? element)
+          as UnitMass?,
+      ingredientsData
+              .map((e) => e.$1._fibers?.times(e.$2))
+              .reduce((value, element) => value?.plus(element) ?? element)
+          as UnitMass?,
+      ingredientsData
+              .map((e) => e.$1._folicAcid?.times(e.$2))
               .reduce((value, element) => value?.plus(element) ?? element)
           as UnitMass?,
       ingredientsData
@@ -401,6 +480,10 @@ class PassioNutrients {
           as UnitMass?,
       ingredientsData
               .map((e) => e.$1._satFat?.times(e.$2))
+              .reduce((value, element) => value?.plus(element) ?? element)
+          as UnitMass?,
+      ingredientsData
+              .map((e) => e.$1._selenium?.times(e.$2))
               .reduce((value, element) => value?.plus(element) ?? element)
           as UnitMass?,
       ingredientsData
@@ -455,6 +538,22 @@ class PassioNutrients {
               .map((e) => e.$1._vitaminEAdded?.times(e.$2))
               .reduce((value, element) => value?.plus(element) ?? element)
           as UnitMass?,
+      ingredientsData
+              .map((e) => e.$1._vitaminKDihydrophylloquinone?.times(e.$2))
+              .reduce((value, element) => value?.plus(element) ?? element)
+          as UnitMass?,
+      ingredientsData
+              .map((e) => e.$1._vitaminKMenaquinone4?.times(e.$2))
+              .reduce((value, element) => value?.plus(element) ?? element)
+          as UnitMass?,
+      ingredientsData
+              .map((e) => e.$1._vitaminKPhylloquinone?.times(e.$2))
+              .reduce((value, element) => value?.plus(element) ?? element)
+          as UnitMass?,
+      ingredientsData
+              .map((e) => e.$1._zinc?.times(e.$2))
+              .reduce((value, element) => value?.plus(element) ?? element)
+          as UnitMass?,
     );
   }
 
@@ -468,8 +567,10 @@ class PassioNutrients {
         json.ifValueNotNull("calories", (it) => UnitEnergy.fromJson(it)),
         json.ifValueNotNull("carbs", (it) => UnitMass.fromJson(it)),
         json.ifValueNotNull("cholesterol", (it) => UnitMass.fromJson(it)),
-        json.ifValueNotNull("fibers", (it) => UnitMass.fromJson(it)),
+        json.ifValueNotNull("chromium", (it) => UnitMass.fromJson(it)),
         json.ifValueNotNull("fat", (it) => UnitMass.fromJson(it)),
+        json.ifValueNotNull("fibers", (it) => UnitMass.fromJson(it)),
+        json.ifValueNotNull("folicAcid", (it) => UnitMass.fromJson(it)),
         json.ifValueNotNull("iodine", (it) => UnitMass.fromJson(it)),
         json.ifValueNotNull("iron", (it) => UnitMass.fromJson(it)),
         json.ifValueNotNull("magnesium", (it) => UnitMass.fromJson(it)),
@@ -481,6 +582,7 @@ class PassioNutrients {
         json.ifValueNotNull("potassium", (it) => UnitMass.fromJson(it)),
         json.ifValueNotNull("proteins", (it) => UnitMass.fromJson(it)),
         json.ifValueNotNull("satFat", (it) => UnitMass.fromJson(it)),
+        json.ifValueNotNull("selenium", (it) => UnitMass.fromJson(it)),
         json.ifValueNotNull("sodium", (it) => UnitMass.fromJson(it)),
         json.ifValueNotNull("sugars", (it) => UnitMass.fromJson(it)),
         json.ifValueNotNull("sugarsAdded", (it) => UnitMass.fromJson(it)),
@@ -494,6 +596,13 @@ class PassioNutrients {
         json.ifValueNotNull("vitaminD", (it) => UnitMass.fromJson(it)),
         json.ifValueNotNull("vitaminE", (it) => UnitMass.fromJson(it)),
         json.ifValueNotNull("vitaminEAdded", (it) => UnitMass.fromJson(it)),
+        json.ifValueNotNull(
+            "vitaminKDihydrophylloquinone", (it) => UnitMass.fromJson(it)),
+        json.ifValueNotNull(
+            "vitaminKMenaquinone4", (it) => UnitMass.fromJson(it)),
+        json.ifValueNotNull(
+            "vitaminKPhylloquinone", (it) => UnitMass.fromJson(it)),
+        json.ifValueNotNull("zinc", (it) => UnitMass.fromJson(it)),
       );
 
   /// Converts the `PassioNutrients` object to a JSON map.
@@ -504,8 +613,10 @@ class PassioNutrients {
         'calories': _calories?.toJson(),
         'carbs': _carbs?.toJson(),
         'cholesterol': _cholesterol?.toJson(),
-        'fibers': _fibers?.toJson(),
+        'chromium': _chromium?.toJson(),
         'fat': _fat?.toJson(),
+        'fibers': _fibers?.toJson(),
+        'folicAcid': _folicAcid?.toJson(),
         'iodine': _iodine?.toJson(),
         'iron': _iron?.toJson(),
         'magnesium': _magnesium?.toJson(),
@@ -514,7 +625,8 @@ class PassioNutrients {
         'polyunsaturatedFat': _polyunsaturatedFat?.toJson(),
         'potassium': _potassium?.toJson(),
         'proteins': _proteins?.toJson(),
-        'saturatedFat': _satFat?.toJson(),
+        'satFat': _satFat?.toJson(),
+        'selenium': _selenium?.toJson(),
         'sodium': _sodium?.toJson(),
         'sugars': _sugars?.toJson(),
         'sugarsAdded': _sugarsAdded?.toJson(),
@@ -528,6 +640,10 @@ class PassioNutrients {
         'vitaminD': _vitaminD?.toJson(),
         'vitaminE': _vitaminE?.toJson(),
         'vitaminEAdded': _vitaminEAdded?.toJson(),
+        'vitaminKDihydrophylloquinone': _vitaminKDihydrophylloquinone?.toJson(),
+        'vitaminKMenaquinone4': _vitaminKMenaquinone4?.toJson(),
+        'vitaminKPhylloquinone': _vitaminKPhylloquinone?.toJson(),
+        'zinc': _zinc?.toJson(),
       };
 
   /// Compares two `PassioNutrients` objects for equality.
@@ -542,8 +658,10 @@ class PassioNutrients {
         _calories == other._calories &&
         _carbs == other._carbs &&
         _cholesterol == other._cholesterol &&
-        _fibers == other._fibers &&
+        _chromium == other._chromium &&
         _fat == other._fat &&
+        _fibers == other._fibers &&
+        _folicAcid == other._folicAcid &&
         _iodine == other._iodine &&
         _iron == other._iron &&
         _magnesium == other._magnesium &&
@@ -553,6 +671,7 @@ class PassioNutrients {
         _potassium == other._potassium &&
         _proteins == other._proteins &&
         _satFat == other._satFat &&
+        _selenium == other._selenium &&
         _sodium == other._sodium &&
         _sugars == other._sugars &&
         _sugarsAdded == other._sugarsAdded &&
@@ -565,7 +684,11 @@ class PassioNutrients {
         _vitaminC == other._vitaminC &&
         _vitaminD == other._vitaminD &&
         _vitaminE == other._vitaminE &&
-        _vitaminEAdded == other._vitaminEAdded;
+        _vitaminEAdded == other._vitaminEAdded &&
+        _vitaminKDihydrophylloquinone == other._vitaminKDihydrophylloquinone &&
+        _vitaminKMenaquinone4 == other._vitaminKMenaquinone4 &&
+        _vitaminKPhylloquinone == other._vitaminKPhylloquinone &&
+        _zinc == other._zinc;
   }
 
   /// Calculates the hash code for this `PassioNutrients` object.
@@ -578,8 +701,10 @@ class PassioNutrients {
     hash ^= _calories?.hashCode ?? 0;
     hash ^= _carbs?.hashCode ?? 0;
     hash ^= _cholesterol?.hashCode ?? 0;
-    hash ^= _fibers?.hashCode ?? 0;
+    hash ^= _chromium?.hashCode ?? 0;
     hash ^= _fat?.hashCode ?? 0;
+    hash ^= _fibers?.hashCode ?? 0;
+    hash ^= _folicAcid?.hashCode ?? 0;
     hash ^= _iodine?.hashCode ?? 0;
     hash ^= _iron?.hashCode ?? 0;
     hash ^= _magnesium?.hashCode ?? 0;
@@ -589,6 +714,7 @@ class PassioNutrients {
     hash ^= _potassium?.hashCode ?? 0;
     hash ^= _proteins?.hashCode ?? 0;
     hash ^= _satFat?.hashCode ?? 0;
+    hash ^= _selenium?.hashCode ?? 0;
     hash ^= _sodium?.hashCode ?? 0;
     hash ^= _sugars?.hashCode ?? 0;
     hash ^= _sugarsAdded?.hashCode ?? 0;
@@ -602,6 +728,10 @@ class PassioNutrients {
     hash ^= _vitaminD?.hashCode ?? 0;
     hash ^= _vitaminE?.hashCode ?? 0;
     hash ^= _vitaminEAdded?.hashCode ?? 0;
+    hash ^= _vitaminKDihydrophylloquinone?.hashCode ?? 0;
+    hash ^= _vitaminKMenaquinone4?.hashCode ?? 0;
+    hash ^= _vitaminKPhylloquinone?.hashCode ?? 0;
+    hash ^= _zinc?.hashCode ?? 0;
     return hash;
   }
 

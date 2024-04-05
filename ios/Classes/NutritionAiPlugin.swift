@@ -73,8 +73,8 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             searchForFood(arguments: call.arguments) { flutterResult in
                 result(flutterResult)
             }
-        case "fetchSearchResult":
-            fetchSearchResult(arguments: call.arguments) { flutterResult in
+        case "fetchFoodItemForSearchResult":
+            fetchFoodItemForSearchResult(arguments: call.arguments) { flutterResult in
                 result(flutterResult)
             }
         case "fetchTagsFor":
@@ -87,6 +87,14 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             }
         case "fetchInflammatoryEffectData":
             fetchInflammatoryEffectData(arguments: call.arguments) { flutterResult in
+                result(flutterResult)
+            }
+        case "fetchSuggestions":
+            fetchSuggestions(arguments: call.arguments) { flutterResult in
+                result(flutterResult)
+            }
+        case "fetchFoodItemForSuggestion":
+            fetchFoodItemForSuggestion(arguments: call.arguments) { flutterResult in
                 result(flutterResult)
             }
         default:
@@ -267,7 +275,7 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
         }
     }
     
-    func fetchSearchResult(arguments: Any?, result: @escaping FlutterResult) {
+    func fetchFoodItemForSearchResult(arguments: Any?, result: @escaping FlutterResult) {
         guard let searchResultMap = arguments as? [String: Any],
               let searchResult = inputConverter.mapToPassioSearchResult(map: searchResultMap) else {
             result(nil)
@@ -334,6 +342,33 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
         } else {
             // Call the FlutterResult with nil if the argument is not a PassioID
             result(nil)
+        }
+    }
+    
+    func fetchSuggestions(arguments: Any?, result: @escaping FlutterResult) {
+        // Check if the provided argument is a PassioID
+        if let mealTimeString = arguments as? String, let mealTime = MealTime(rawValue: mealTimeString) {
+            passioSDK.fetchSuggestions(mealTime: mealTime) { suggestions in
+                let resultList = suggestions.map {
+                    self.outputConverter.mapFromPassioSearchResult(searchResult: $0)
+                }
+                result(resultList)
+            }
+        } else {
+            // Call the FlutterResult with empty list if the argument is not a mealTime
+            result([])
+        }
+    }
+    
+    func fetchFoodItemForSuggestion(arguments: Any?, result: @escaping FlutterResult) {
+        guard let searchResultMap = arguments as? [String: Any],
+              let searchResult = inputConverter.mapToPassioSearchResult(map: searchResultMap) else {
+            result(nil)
+            return
+        }
+        passioSDK.fetchFoodItemForSuggestion(suggestion: searchResult) { passioFoodItem in
+            let passioFoodItemMap = self.outputConverter.mapFromPassioFoodItem(foodItem: passioFoodItem)
+            result(passioFoodItemMap)
         }
     }
     

@@ -301,7 +301,13 @@ struct OutputConverter {
         nutrientsMap["magnesium"] = mapFromUnitMass(nutrients.magnesium())
         nutrientsMap["phosphorus"] = mapFromUnitMass(nutrients.phosphorus())
         nutrientsMap["iodine"] = mapFromUnitMass(nutrients.iodine())
-        
+        nutrientsMap["zinc"] = mapFromUnitMass(nutrients.zinc())
+        nutrientsMap["selenium"] = mapFromUnitMass(nutrients.selenium())
+        nutrientsMap["folicAcid"] = mapFromUnitMass(nutrients.folicAcid())
+        nutrientsMap["chromium"] = mapFromUnitMass(nutrients.chromium())
+        nutrientsMap["vitaminKPhylloquinone"] = mapFromUnitMass(nutrients.vitaminKPhylloquinone())
+        nutrientsMap["vitaminKMenaquinone4"] = mapFromUnitMass(nutrients.vitaminKMenaquinone4())
+        nutrientsMap["vitaminKDihydrophylloquinone"] = mapFromUnitMass(nutrients.vitaminKDihydrophylloquinone())
         return nutrientsMap
     }
     
@@ -323,8 +329,8 @@ struct OutputConverter {
         if let nutritionPreview = searchResult.nutritionPreview {
             var searchResultMap = [String: Any?]()
             searchResultMap["brandName"] = searchResult.brandName
-            searchResultMap["foodName"] = searchResult.displayName
-            searchResultMap["iconID"] = searchResult.iconId
+            searchResultMap["foodName"] = searchResult.foodName
+            searchResultMap["iconID"] = searchResult.iconID
             searchResultMap["labelId"] = searchResult.labelId
             searchResultMap["nutritionPreview"] = mapFromPassioSearchNutritionPreview(nutritionPreview)
             searchResultMap["resultId"] = searchResult.resultId
@@ -344,6 +350,7 @@ struct OutputConverter {
         nutritionPreviewMap["servingWeight"] = nutritionPreview.servingWeight
         return nutritionPreviewMap
     }
+    
 }
 
 extension Encodable {
