@@ -4,7 +4,7 @@ import 'package:nutrition_ai_example/const/app_colors.dart';
 import 'package:nutrition_ai_example/const/app_images.dart';
 import 'package:nutrition_ai_example/const/dimens.dart';
 import 'package:nutrition_ai_example/const/styles.dart';
-import 'package:nutrition_ai_example/util/context_extension.dart';
+import 'package:nutrition_ai_example/common/util/context_extension.dart';
 
 class SearchWidget extends StatefulWidget {
   const SearchWidget({this.searchController, this.onTapCancel, super.key});

@@ -4,8 +4,10 @@ import 'dart:typed_data';
 import 'models/enums.dart';
 import 'models/inflammatory_effect_data.dart';
 import 'models/passio_food_item.dart';
+import 'models/passio_meal_plan.dart';
+import 'models/passio_meal_plan_item.dart';
 import 'models/passio_search_response.dart';
-import 'models/passio_search_result.dart';
+import 'models/passio_food_data_info.dart';
 import 'models/platform_image.dart';
 import 'nutrition_ai_configuration.dart';
 import 'nutrition_ai_detection.dart';
@@ -104,18 +106,18 @@ class NutritionAI {
 
   /// A function to fetch detailed information about a food item based on a search result.
   ///
-  /// This function takes a [PassioSearchResult] object representing a search result
+  /// This function takes a [PassioFoodDataInfo] object representing a search result
   /// and returns a [Future] containing a [PassioFoodItem] object representing
   /// detailed information about the food item.
   ///
   /// Example usage:
   /// ```dart
-  /// var foodItem = await fetchFoodItemForSearchResult(searchResult);
+  /// var foodItem = await fetchFoodItemForDataInfo(passioFoodDataInfo);
   /// ```
-  Future<PassioFoodItem?> fetchFoodItemForSearchResult(
-      PassioSearchResult searchResult) {
+  Future<PassioFoodItem?> fetchFoodItemForDataInfo(
+      PassioFoodDataInfo passioFoodDataInfo) {
     return NutritionAIPlatform.instance
-        .fetchFoodItemForSearchResult(searchResult);
+        .fetchFoodItemForDataInfo(passioFoodDataInfo);
   }
 
   /// List of tags for food item.
@@ -169,29 +171,45 @@ class NutritionAI {
 
   /// A function to fetch meal suggestions for a given meal time.
   ///
-  /// This function takes a [MealTime] parameter and returns a [Future] containing
-  /// a list of [PassioSearchResult] objects, representing meal suggestions.
+  /// This function takes a [PassioMealTime] parameter and returns a [Future] containing
+  /// a list of [PassioFoodDataInfo] objects, representing meal suggestions.
   ///
   /// Example usage:
   /// ```dart
   /// var suggestions = await fetchSuggestions(MealTime.breakfast);
   /// ```
-  Future<List<PassioSearchResult>> fetchSuggestions(MealTime mealTime) {
+  Future<List<PassioFoodDataInfo>> fetchSuggestions(PassioMealTime mealTime) {
     return NutritionAIPlatform.instance.fetchSuggestions(mealTime);
   }
 
-  /// A function to fetch detailed information about a food item based on a suggestion.
+  /// Retrieves the list of all available meal plans.
   ///
-  /// This function takes a [PassioSearchResult] object representing a meal suggestion
-  /// and returns a [Future] containing a [PassioFoodItem] object representing
-  /// detailed information about the food item.
+  /// Returns a Future that resolves to a list of [PassioMealPlan] objects.
+  Future<List<PassioMealPlan>> fetchMealPlans() {
+    return NutritionAIPlatform.instance.fetchMealPlans();
+  }
+
+  /// Retrieves the meal plan for a specific day.
   ///
-  /// Example usage:
-  /// ```dart
-  /// var foodItem = await fetchFoodItemForSuggestion(suggestion);
-  /// ```
-  Future<PassioFoodItem?> fetchFoodItemForSuggestion(
-      PassioSearchResult suggestion) {
-    return NutritionAIPlatform.instance.fetchFoodItemForSuggestion(suggestion);
+  /// [mealPlanLabel] is the label of the meal plan.
+  /// [day] is the day for which the meal plan is requested.
+  ///
+  /// Returns a Future that resolves to a list of [PassioMealPlanItem] objects for the specified day.
+  Future<List<PassioMealPlanItem>> fetchMealPlanForDay(
+      String mealPlanLabel, int day) {
+    return NutritionAIPlatform.instance.fetchMealPlanForDay(mealPlanLabel, day);
+  }
+
+  /// A function to fetch a PassioFoodItem using a reference code.
+  ///
+  /// This function asynchronously retrieves a PassioFoodItem using the provided reference code.
+  ///
+  /// Parameters:
+  ///   refCode: The reference code of the food item to fetch.
+  ///
+  /// Returns:
+  ///   A Future that completes with a PassioFoodItem if found, otherwise completes with null.
+  Future<PassioFoodItem?> fetchFoodItemForRefCode(String refCode) {
+    return NutritionAIPlatform.instance.fetchFoodItemForRefCode(refCode);
   }
 }

@@ -11,11 +11,11 @@ import 'package:nutrition_ai_example/const/dimens.dart';
 import 'package:nutrition_ai_example/const/styles.dart';
 import 'package:nutrition_ai_example/inject/injector.dart';
 import 'package:nutrition_ai_example/presentation/static_image/bloc/static_image_bloc.dart';
-import 'package:nutrition_ai_example/util/context_extension.dart';
-import 'package:nutrition_ai_example/util/double_extension.dart';
+import 'package:nutrition_ai_example/common/util/context_extension.dart';
+import 'package:nutrition_ai_example/common/util/double_extension.dart';
 import 'package:nutrition_ai_example/util/permission_manager_utility.dart';
 import 'package:nutrition_ai_example/util/snackbar_extension.dart';
-import 'package:nutrition_ai_example/util/string_extensions.dart';
+import 'package:nutrition_ai_example/common/util/string_extensions.dart';
 
 class StaticImagePage extends StatefulWidget {
   const StaticImagePage({super.key});

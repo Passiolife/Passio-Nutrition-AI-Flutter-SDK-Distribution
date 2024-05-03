@@ -9,7 +9,7 @@ class FoodSearchTypingState extends FoodSearchState {}
 class FoodSearchLoadingState extends FoodSearchState {}
 
 class FoodSearchSuccessState extends FoodSearchState {
-  final List<PassioSearchResult> results;
+  final List<PassioFoodDataInfo> results;
   final List<String> alternatives;
 
   FoodSearchSuccessState({required this.results, required this.alternatives});

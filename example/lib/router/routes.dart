@@ -7,4 +7,5 @@ class Routes {
   static const foodSearchPage = '/foodSearchPage';
   static const staticImagePage = '/staticImagePage';
   static const suggestionsPage = '/suggestionsPage';
+  static const mealPlansPage = '/mealPlansPage';
 }

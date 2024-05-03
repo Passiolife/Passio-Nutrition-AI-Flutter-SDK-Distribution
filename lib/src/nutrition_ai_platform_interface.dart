@@ -6,8 +6,10 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'models/inflammatory_effect_data.dart';
 import 'models/passio_food_item.dart';
+import 'models/passio_meal_plan.dart';
+import 'models/passio_meal_plan_item.dart';
 import 'models/passio_search_response.dart';
-import 'models/passio_search_result.dart';
+import 'models/passio_food_data_info.dart';
 import 'models/platform_image.dart';
 import 'nutrition_ai_configuration.dart';
 import 'nutrition_ai_detection.dart';
@@ -55,10 +57,10 @@ abstract class NutritionAIPlatform extends PlatformInterface {
     throw UnimplementedError('searchForFood() has not been implemented.');
   }
 
-  Future<PassioFoodItem?> fetchFoodItemForSearchResult(
-      PassioSearchResult searchResult) {
+  Future<PassioFoodItem?> fetchFoodItemForDataInfo(
+      PassioFoodDataInfo passioFoodDataInfo) {
     throw UnimplementedError(
-        'fetchFoodItemForSearchResult(PassioSearchResult searchResult) has not been implemented.');
+        'fetchFoodItemForDataInfo(PassioFoodDataInfo passioFoodDataInfo) has not been implemented.');
   }
 
   Future<PassioFoodItem?> fetchFoodItemForPassioID(PassioID passioID) {
@@ -108,13 +110,21 @@ abstract class NutritionAIPlatform extends PlatformInterface {
     throw UnimplementedError('fetchInflammatoryEffectData(PassioID passioID)');
   }
 
-  Future<List<PassioSearchResult>> fetchSuggestions(MealTime mealTime) {
+  Future<List<PassioFoodDataInfo>> fetchSuggestions(PassioMealTime mealTime) {
     throw UnimplementedError('fetchSuggestions(MealTime mealTime)');
   }
 
-  Future<PassioFoodItem?> fetchFoodItemForSuggestion(
-      PassioSearchResult suggestion) {
+  Future<List<PassioMealPlan>> fetchMealPlans() {
+    throw UnimplementedError('fetchMealPlans()');
+  }
+
+  Future<List<PassioMealPlanItem>> fetchMealPlanForDay(
+      String mealPlanLabel, int day) {
     throw UnimplementedError(
-        'fetchFoodItemForSuggestion(PassioSearchResult suggestion)');
+        'fetchMealPlanForDay(String mealPlanLabel, int day)');
+  }
+
+  Future<PassioFoodItem?> fetchFoodItemForRefCode(String refCode) {
+    throw UnimplementedError('fetchFoodItemForRefCode(String refCode)');
   }
 }

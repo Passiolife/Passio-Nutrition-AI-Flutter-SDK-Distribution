@@ -86,7 +86,7 @@ struct InputConverter {
         return CGRect(x: x, y: y, width: width, height: height)
     }
     
-    func mapToPassioSearchResult(map: [String: Any?]) -> PassioSearchResult? {
+    func mapToPassioFoodDataInfo(map: [String: Any?]) -> PassioFoodDataInfo? {
         guard let type = map["type"] as? String,
               let foodName = map["foodName"] as? String,
               let score = map["score"] as? Double,
@@ -95,21 +95,26 @@ struct InputConverter {
               let labelId = map["labelId"] as? String,
               let scoredName = map["scoredName"] as? String,
               let resultId = map["resultId"] as? String,
+              let useShortName = map["useShortName"] as? Bool,
               let nutritionPreview = mapToPassioSearchNutritionPreview(map: map["nutritionPreview"] as? [String : Any]) else {
             return nil;
         }
-        return PassioSearchResult(foodName: foodName, brandName: brandName, iconID: iconId, score: score, scoredName: scoredName, labelId: labelId, type: type, resultId: resultId, nutritionPreview: nutritionPreview)
+        return PassioFoodDataInfo(foodName: foodName, brandName: brandName, iconID: iconId, score: score, scoredName: scoredName, labelId: labelId, type: type, resultId: resultId, nutritionPreview: nutritionPreview, isShortName: useShortName)
     }
     
     private func mapToPassioSearchNutritionPreview(map :[String: Any?]?) -> PassioSearchNutritionPreview? {
         guard let map = map,
               let calories = map["calories"] as? Int,
+              let carbs = map["carbs"] as? Double,
+              let fat = map["fat"] as? Double,
+              let protein = map["protein"] as? Double,
               let servingUnit = map["servingUnit"] as? String,
               let servingQuantity = map["servingQuantity"] as? Double,
-              let servingWeight = map["servingWeight"] as? String else {
+              let weightQuantity = map["weightQuantity"] as? Double,
+              let weightUnit = map["weightUnit"] as? String else {
             return nil
         }
-        return PassioSearchNutritionPreview(calories: calories, servingUnit: servingUnit, servingQuantity: servingQuantity, servingWeight: servingWeight, name: "", carbs: nil, fat: nil, protein: nil)
+        return PassioSearchNutritionPreview(calories: calories, carbs: carbs, fat: fat, protein: protein, servingUnit: servingUnit, servingQuantity: servingQuantity, weightUnit: weightUnit, weightQuantity: weightQuantity)
     }
     
 

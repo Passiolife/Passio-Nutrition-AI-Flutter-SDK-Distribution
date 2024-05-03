@@ -73,8 +73,8 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             searchForFood(arguments: call.arguments) { flutterResult in
                 result(flutterResult)
             }
-        case "fetchFoodItemForSearchResult":
-            fetchFoodItemForSearchResult(arguments: call.arguments) { flutterResult in
+        case "fetchFoodItemForDataInfo":
+            fetchFoodItemForDataInfo(arguments: call.arguments) { flutterResult in
                 result(flutterResult)
             }
         case "fetchTagsFor":
@@ -93,9 +93,17 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             fetchSuggestions(arguments: call.arguments) { flutterResult in
                 result(flutterResult)
             }
-        case "fetchFoodItemForSuggestion":
-            fetchFoodItemForSuggestion(arguments: call.arguments) { flutterResult in
+        case "fetchMealPlans":
+            fetchMealPlans(arguments: call.arguments) { flutterResult in
                 result(flutterResult)
+            }
+        case "fetchMealPlanForDay":
+            fetchMealPlanForDay(arguments: call.arguments) { flutterResult in
+                result(flutterResult)
+            }
+        case "fetchFoodItemForRefCode":
+            fetchFoodItemForRefCode(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
             }
         default:
             print("call.method = \(call.method) not in the list")
@@ -266,7 +274,7 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
         if let byText = arguments as? String {
             passioSDK.searchForFood(byText: byText) { searchResponse in
                 var searchMap: [String: Any?] = [:]
-                searchMap["results"] = (searchResponse?.results.map{ self.outputConverter.mapFromPassioSearchResult(searchResult: $0) } ?? [] ).compactMap({$0})
+                searchMap["results"] = (searchResponse?.results.map{ self.outputConverter.mapFromPassioFoodDataInfo(passioFoodDataInfo: $0) } ?? [] ).compactMap({$0})
                 searchMap["alternateNames"] = searchResponse?.alternateNames ?? []
                 result(searchMap)
             }
@@ -275,13 +283,13 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
         }
     }
     
-    func fetchFoodItemForSearchResult(arguments: Any?, result: @escaping FlutterResult) {
-        guard let searchResultMap = arguments as? [String: Any],
-              let searchResult = inputConverter.mapToPassioSearchResult(map: searchResultMap) else {
+    func fetchFoodItemForDataInfo(arguments: Any?, result: @escaping FlutterResult) {
+        guard let passioFoodDataMap = arguments as? [String: Any],
+              let passioFoodDataInfo = inputConverter.mapToPassioFoodDataInfo(map: passioFoodDataMap) else {
             result(nil)
             return
         }
-        passioSDK.fetchSearchResult(searchResult: searchResult) { passioFoodItem in
+        passioSDK.fetchFoodItemFor(foodItem: passioFoodDataInfo) { passioFoodItem in
             let passioFoodItemMap = self.outputConverter.mapFromPassioFoodItem(foodItem: passioFoodItem)
             result(passioFoodItemMap)
         }
@@ -347,10 +355,10 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
     
     func fetchSuggestions(arguments: Any?, result: @escaping FlutterResult) {
         // Check if the provided argument is a PassioID
-        if let mealTimeString = arguments as? String, let mealTime = MealTime(rawValue: mealTimeString) {
+        if let mealTimeString = arguments as? String, let mealTime = PassioMealTime(rawValue: mealTimeString) {
             passioSDK.fetchSuggestions(mealTime: mealTime) { suggestions in
                 let resultList = suggestions.map {
-                    self.outputConverter.mapFromPassioSearchResult(searchResult: $0)
+                    self.outputConverter.mapFromPassioFoodDataInfo(passioFoodDataInfo: $0)
                 }
                 result(resultList)
             }
@@ -360,18 +368,42 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
         }
     }
     
-    func fetchFoodItemForSuggestion(arguments: Any?, result: @escaping FlutterResult) {
-        guard let searchResultMap = arguments as? [String: Any],
-              let searchResult = inputConverter.mapToPassioSearchResult(map: searchResultMap) else {
-            result(nil)
-            return
-        }
-        passioSDK.fetchFoodItemForSuggestion(suggestion: searchResult) { passioFoodItem in
-            let passioFoodItemMap = self.outputConverter.mapFromPassioFoodItem(foodItem: passioFoodItem)
-            result(passioFoodItemMap)
+    func fetchMealPlans(arguments: Any?, result: @escaping FlutterResult) {
+        passioSDK.fetchMealPlans() { mealPlans in
+            let resultList = mealPlans.map {
+                self.outputConverter.mapFromPassioMealPlan(passioMealPlan: $0)
+            }
+            result(resultList)
         }
     }
     
+    func fetchMealPlanForDay(arguments: Any?, result: @escaping FlutterResult) {
+        
+        guard let args = arguments as? [String: Any],
+              let mealPlanLabel = args["mealPlanLabel"] as? String,
+              let day = args["day"] as? Int
+                else {
+            result([])
+            return
+        }
+        passioSDK.fetchMealPlanForDay(mealPlanLabel: mealPlanLabel, day: day) { mealPlanItems in
+            let resultList = mealPlanItems.map {
+                self.outputConverter.mapFromPassioMealPlanItem(passioMealPlanItem: $0)
+            }
+            result(resultList)
+        }
+    }
+    
+    func fetchFoodItemForRefCode(arguments: Any?, result: @escaping FlutterResult) {
+        if let refCode = arguments as? String {
+            passioSDK.fetchFoodItemFor(refCode: refCode) { passioFoodItem in
+                let passioFoodItemMap = self.outputConverter.mapFromPassioFoodItem(foodItem: passioFoodItem)
+                result(passioFoodItemMap)
+            }
+        } else {
+            result(nil)
+        }
+    }
 }
 
 

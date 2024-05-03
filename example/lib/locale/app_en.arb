@@ -8,5 +8,15 @@
   "photos": "Photos",
   "staticImage": "Static Image",
   "quality": "Quality: %s",
-  "imageNotSupported": "This image type is not supported"
+  "imageNotSupported": "This image type is not supported",
+  "breakfast": "Breakfast",
+  "lunch": "Lunch",
+  "dinner": "Dinner",
+  "snack": "Snack",
+  "mealPlan": "Meal Plan",
+  "loggedEntireMealMessage": "Meal logged successfully",
+  "balancedDiet": "Balanced Diet",
+  "day": "Day",
+  "logEntireMeal": "Log Entire Meal",
+  "cal": "cal"
 }

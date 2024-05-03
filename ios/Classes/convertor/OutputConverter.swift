@@ -224,6 +224,7 @@ struct OutputConverter {
         dataMap["ingredients"] = foodItem.ingredients.map { mapFromPassioIngredient($0) }
         dataMap["licenseCopy"] = foodItem.licenseCopy
         dataMap["name"] = foodItem.name
+        dataMap["refCode"] = foodItem.refCode
         dataMap["scannedId"] = foodItem.scannedId
         return dataMap
     }
@@ -255,6 +256,7 @@ struct OutputConverter {
         ingredientMap["id"] = ingredient.id
         ingredientMap["metadata"] = mapFromPassioFoodMetadata(ingredient.metadata)
         ingredientMap["name"] = ingredient.name
+        ingredientMap["refCode"] = ingredient.refCode
         ingredientMap["referenceNutrients"] = mapFromPassioNutrients(ingredient.referenceNutrients)
         return ingredientMap
     }
@@ -325,18 +327,19 @@ struct OutputConverter {
     }
     
     // Search related
-    func mapFromPassioSearchResult(searchResult: PassioSearchResult) -> [String: Any?]? {
-        if let nutritionPreview = searchResult.nutritionPreview {
+    func mapFromPassioFoodDataInfo(passioFoodDataInfo: PassioFoodDataInfo) -> [String: Any?]? {
+        if let nutritionPreview = passioFoodDataInfo.nutritionPreview {
             var searchResultMap = [String: Any?]()
-            searchResultMap["brandName"] = searchResult.brandName
-            searchResultMap["foodName"] = searchResult.foodName
-            searchResultMap["iconID"] = searchResult.iconID
-            searchResultMap["labelId"] = searchResult.labelId
+            searchResultMap["brandName"] = passioFoodDataInfo.brandName
+            searchResultMap["foodName"] = passioFoodDataInfo.foodName
+            searchResultMap["iconID"] = passioFoodDataInfo.iconID
+            searchResultMap["labelId"] = passioFoodDataInfo.labelId
             searchResultMap["nutritionPreview"] = mapFromPassioSearchNutritionPreview(nutritionPreview)
-            searchResultMap["resultId"] = searchResult.resultId
-            searchResultMap["score"] = searchResult.score
-            searchResultMap["scoredName"] = searchResult.scoredName
-            searchResultMap["type"] = searchResult.type
+            searchResultMap["resultId"] = passioFoodDataInfo.resultId
+            searchResultMap["score"] = passioFoodDataInfo.score
+            searchResultMap["scoredName"] = passioFoodDataInfo.scoredName
+            searchResultMap["type"] = passioFoodDataInfo.type
+            searchResultMap["useShortName"] = passioFoodDataInfo.isShortName
             return searchResultMap
         }
         return nil
@@ -345,10 +348,35 @@ struct OutputConverter {
     private func mapFromPassioSearchNutritionPreview(_ nutritionPreview: PassioSearchNutritionPreview) -> [String: Any?] {
         var nutritionPreviewMap = [String: Any?]()
         nutritionPreviewMap["calories"] = nutritionPreview.calories
+        nutritionPreviewMap["carbs"] = nutritionPreview.carbs
+        nutritionPreviewMap["fat"] = nutritionPreview.fat
+        nutritionPreviewMap["protein"] = nutritionPreview.protein
         nutritionPreviewMap["servingUnit"] = nutritionPreview.servingUnit
         nutritionPreviewMap["servingQuantity"] = nutritionPreview.servingQuantity
-        nutritionPreviewMap["servingWeight"] = nutritionPreview.servingWeight
+        nutritionPreviewMap["weightQuantity"] = nutritionPreview.weightQuantity
+        nutritionPreviewMap["weightUnit"] = nutritionPreview.weightUnit
         return nutritionPreviewMap
+    }
+    
+    func mapFromPassioMealPlan(passioMealPlan: PassioMealPlan) -> [String: Any?] {
+        var map = [String: Any?]()
+        map["carbTarget"] = passioMealPlan.carbsTarget
+        map["fatTarget"] = passioMealPlan.fatTarget
+        map["mealPlanLabel"] = passioMealPlan.mealPlanLabel
+        map["mealPlanTitle"] = passioMealPlan.mealPlanTitle
+        map["proteinTarget"] = passioMealPlan.proteinTarget
+        return map
+    }
+    
+    func mapFromPassioMealPlanItem(passioMealPlanItem: PassioMealPlanItem) -> [String: Any?] {
+        var map = [String: Any?]()
+        map["dayNumber"] = passioMealPlanItem.dayNumber
+        map["dayTitle"] = passioMealPlanItem.dayTitle
+        if let meal = passioMealPlanItem.meal {
+            map["meal"] = mapFromPassioFoodDataInfo(passioFoodDataInfo: meal)
+        }
+        map["mealTime"] = passioMealPlanItem.mealTime?.rawValue
+        return map
     }
     
 }

@@ -4,7 +4,7 @@ import 'package:nutrition_ai/nutrition_ai.dart';
 import 'package:nutrition_ai_example/common/passio_image_widget.dart';
 import 'package:nutrition_ai_example/presentation/suggestion/bloc/suggestion_bloc.dart';
 import 'package:nutrition_ai_example/util/snackbar_extension.dart';
-import 'package:nutrition_ai_example/util/string_extensions.dart';
+import 'package:nutrition_ai_example/common/util/string_extensions.dart';
 
 class SuggestionPage extends StatefulWidget {
   const SuggestionPage({super.key});
@@ -17,11 +17,11 @@ class _SuggestionPageState extends State<SuggestionPage>
     with SingleTickerProviderStateMixin {
   final _bloc = SuggestionBloc();
 
-  final List<MealTime> _mealTimeList = MealTime.values;
+  final List<PassioMealTime> _mealTimeList = PassioMealTime.values;
 
   late final _controller = TabController(length: 4, vsync: this);
 
-  final List<PassioSearchResult> _resultList = [];
+  final List<PassioFoodDataInfo> _resultList = [];
 
   @override
   void initState() {

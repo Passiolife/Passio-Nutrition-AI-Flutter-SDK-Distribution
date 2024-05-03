@@ -9,8 +9,8 @@ import ai.passio.passiosdk.passiofood.DetectedCandidate
 import ai.passio.passiosdk.passiofood.FoodCandidates
 import ai.passio.passiosdk.passiofood.InflammatoryEffectData
 import ai.passio.passiosdk.passiofood.PackagedFoodCandidate
+import ai.passio.passiosdk.passiofood.PassioFoodDataInfo
 import ai.passio.passiosdk.passiofood.PassioSearchNutritionPreview
-import ai.passio.passiosdk.passiofood.PassioSearchResult
 import ai.passio.passiosdk.passiofood.data.measurement.Grams
 import ai.passio.passiosdk.passiofood.data.measurement.KiloCalories
 import ai.passio.passiosdk.passiofood.data.measurement.Kilograms
@@ -25,6 +25,8 @@ import ai.passio.passiosdk.passiofood.data.model.PassioFoodItem
 import ai.passio.passiosdk.passiofood.data.model.PassioFoodMetadata
 import ai.passio.passiosdk.passiofood.data.model.PassioFoodOrigin
 import ai.passio.passiosdk.passiofood.data.model.PassioIngredient
+import ai.passio.passiosdk.passiofood.data.model.PassioMealPlan
+import ai.passio.passiosdk.passiofood.data.model.PassioMealPlanItem
 import ai.passio.passiosdk.passiofood.data.model.PassioNutrients
 import ai.passio.passiosdk.passiofood.data.model.PassioServingSize
 import ai.passio.passiosdk.passiofood.data.model.PassioServingUnit
@@ -266,6 +268,8 @@ fun mapFromPassioFoodItem(foodItem: PassioFoodItem): Map<String, Any?> {
     foodItemMap["ingredients"] = foodItem.ingredients.map { mapFromPassioIngredient(it) }
     // Add the name property to the map
     foodItemMap["name"] = foodItem.name
+    // Add the refCode property to the map
+    foodItemMap["refCode"] = foodItem.refCode
 
     // Return the populated map
     return foodItemMap
@@ -302,6 +306,7 @@ fun mapFromPassioIngredient(ingredient: PassioIngredient): Map<String, Any?> {
     ingredientMap["id"] = ingredient.id
     ingredientMap["metadata"] = mapFromPassioFoodMetadata(ingredient.metadata)
     ingredientMap["name"] = ingredient.name
+    ingredientMap["refCode"] = ingredient.refCode
     ingredientMap["referenceNutrients"] = mapFromPassioNutrients(ingredient.referenceNutrients)
 
     return ingredientMap
@@ -366,35 +371,81 @@ private fun mapFromPassioNutrients(nutrients: PassioNutrients): Map<String, Any?
 }
 
 fun mapFromSearchResponse(
-    searchResult: List<PassioSearchResult>,
+    searchResult: List<PassioFoodDataInfo>,
     alternative: List<String>
 ): Map<String, Any?> {
     val searchMap = mutableMapOf<String, Any?>()
-    searchMap["results"] = searchResult.map { mapFromPassioSearchResult(it) }
+    searchMap["results"] = searchResult.map { mapFromPassioFoodDataInfo(it) }
     searchMap["alternateNames"] = alternative
     return searchMap
 }
 
-fun mapFromPassioSearchResult(passioSearchResult: PassioSearchResult): Map<String, Any?> {
+fun mapFromPassioFoodDataInfo(passioFoodDataInfo: PassioFoodDataInfo): Map<String, Any?> {
     val searchResult = mutableMapOf<String, Any?>()
-    searchResult["brandName"] = passioSearchResult.brandName
-    searchResult["foodName"] = passioSearchResult.foodName
-    searchResult["iconID"] = passioSearchResult.iconID
-    searchResult["labelId"] = passioSearchResult.labelId
+    searchResult["brandName"] = passioFoodDataInfo.brandName
+    searchResult["foodName"] = passioFoodDataInfo.foodName
+    searchResult["iconID"] = passioFoodDataInfo.iconID
+    searchResult["labelId"] = passioFoodDataInfo.labelId
     searchResult["nutritionPreview"] =
-        mapFromPassioSearchNutritionPreview(passioSearchResult.nutritionPreview)
-    searchResult["resultId"] = passioSearchResult.resultId
-    searchResult["score"] = passioSearchResult.score
-    searchResult["scoredName"] = passioSearchResult.scoredName
-    searchResult["type"] = passioSearchResult.type
+        mapFromPassioSearchNutritionPreview(passioFoodDataInfo.nutritionPreview)
+    searchResult["resultId"] = passioFoodDataInfo.resultId
+    searchResult["score"] = passioFoodDataInfo.score
+    searchResult["scoredName"] = passioFoodDataInfo.scoredName
+    searchResult["type"] = passioFoodDataInfo.type
+    searchResult["useShortName"] = passioFoodDataInfo.useShortName
     return searchResult
 }
 
 private fun mapFromPassioSearchNutritionPreview(nutritionPreview: PassioSearchNutritionPreview): Map<String, Any?> {
     val previewMap = mutableMapOf<String, Any?>()
     previewMap["calories"] = nutritionPreview.calories
+    previewMap["carbs"] = nutritionPreview.carbs
+    previewMap["fat"] = nutritionPreview.fat
+    previewMap["protein"] = nutritionPreview.protein
     previewMap["servingQuantity"] = nutritionPreview.servingQuantity
     previewMap["servingUnit"] = nutritionPreview.servingUnit
-    previewMap["servingWeight"] = nutritionPreview.servingWeight
+    previewMap["weightUnit"] = nutritionPreview.weightUnit
+    previewMap["weightQuantity"] = nutritionPreview.weightQuantity
     return previewMap
+}
+
+/**
+ * Maps data from a PassioMealPlan object to a map with String keys and nullable Any values.
+ *
+ * @param passioMealPlan The PassioMealPlan object to map from.
+ * @return A map containing mapped data.
+ */
+fun mapFromPassioMealPlan(passioMealPlan: PassioMealPlan): Map<String, Any?> {
+    // Create a mutable map to store mapped data
+    val map = mutableMapOf<String, Any?>()
+
+    // Map individual properties from PassioMealPlan object
+    map["carbTarget"] = passioMealPlan.carbTarget
+    map["fatTarget"] = passioMealPlan.fatTarget
+    map["mealPlanLabel"] = passioMealPlan.mealPlanLabel
+    map["mealPlanTitle"] = passioMealPlan.mealPlanTitle
+    map["proteinTarget"] = passioMealPlan.proteinTarget
+
+    // Return the mapped data
+    return map
+}
+
+/**
+ * Maps data from a PassioMealPlanItem object to a map with String keys and nullable Any values.
+ *
+ * @param passioMealPlanItem The PassioMealPlanItem object to map from.
+ * @return A map containing mapped data.
+ */
+fun mapFromPassioMealPlanItem(passioMealPlanItem: PassioMealPlanItem): Map<String, Any?> {
+    // Create a mutable map to store mapped data
+    val map = mutableMapOf<String, Any?>()
+
+    // Map individual properties from PassioMealPlanItem object
+    map["dayNumber"] = passioMealPlanItem.dayNumber
+    map["dayTitle"] = passioMealPlanItem.dayTitle
+    map["meal"] = mapFromPassioFoodDataInfo( passioMealPlanItem.meal)
+    map["mealTime"] = passioMealPlanItem.mealTime.mealName
+
+    // Return the mapped data
+    return map
 }

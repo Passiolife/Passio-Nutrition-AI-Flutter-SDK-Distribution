@@ -1,3 +1,38 @@
+## 3.0.3
+
+### Added APIs
+* Added two functions to fetch a list of meal plans and fetch a meal plan for a certain day.
+```dart
+Future<List<PassioMealPlan>> fetchMealPlans()
+Future<List<PassioMealPlanItem>> fetchMealPlanForDay(String mealPlanLabel, int day)
+```
+* Added `refCode` as an attribute to the `PassioFoodItem` and `PassioIngredient` classes.
+* Added method to fetch a food item using just the `refCode` attribute
+```dart
+Future<PassioFoodItem?> fetchFoodItemForRefCode(String refCode)
+```
+
+### Refactored APIs
+* Refactored PassioSearchNutritionPreview
+```dart
+class PassioSearchNutritionPreview {
+  final int calories;
+  final double carbs;
+  final double fat;
+  final double protein;
+  final double servingQuantity;
+  final String servingUnit;
+  final double weightQuantity;
+  final String weightUnit;
+}
+```
+* Renamed `PassioSearchResult` to `PassioFoodDataInfo`.
+* Renamed `fetchFoodItemForSearchResult` to `fetchFoodItemForDataInfo`.
+* Renamed `MealTime` to `PassioMealTime`.
+
+### Deprecated APIs
+* Removed `fetchFoodItemForSuggestion`. Now `fetchFoodItemForDataInfo` is used.
+
 ## 3.0.2
 
 ### Added APIs

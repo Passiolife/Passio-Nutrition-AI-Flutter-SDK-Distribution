@@ -6,8 +6,8 @@ import ai.passio.passiosdk.core.config.PassioMode
 import ai.passio.passiosdk.core.config.PassioStatus
 import ai.passio.passiosdk.passiofood.FoodCandidates
 import ai.passio.passiosdk.passiofood.FoodRecognitionListener
-import ai.passio.passiosdk.passiofood.MealTime
 import ai.passio.passiosdk.passiofood.PassioID
+import ai.passio.passiosdk.passiofood.PassioMealTime
 import ai.passio.passiosdk.passiofood.PassioSDK
 import ai.passio.passiosdk.passiofood.PassioStatusListener
 import ai.passio.passiosdk.passiofood.nutritionfacts.PassioNutritionFacts
@@ -40,7 +40,7 @@ class NutritionAIHandler(
             "lookupIconsFor" -> lookupIconsFor(call.arguments as HashMap<String, Any>, result)
             "fetchFoodItemForPassioID" -> fetchFoodItemForPassioID(call.arguments as String, result)
             "searchForFood" -> searchForFood(call.arguments as String, result)
-            "fetchFoodItemForSearchResult" -> fetchFoodItemForSearchResult(
+            "fetchFoodItemForDataInfo" -> fetchFoodItemForDataInfo(
                 call.arguments as HashMap<String, Any>,
                 result
             )
@@ -57,10 +57,12 @@ class NutritionAIHandler(
                 result
             )
             "fetchSuggestions" -> fetchSuggestions(call.arguments as String, result)
-            "fetchFoodItemForSuggestion" -> fetchFoodItemForSuggestion(
+            "fetchMealPlans" -> fetchMealPlans(result)
+            "fetchMealPlanForDay" -> fetchMealPlanForDay(
                 call.arguments as HashMap<String, Any>,
                 result
             )
+            "fetchFoodItemForRefCode" -> fetchFoodItemForRefCode(call.arguments as String, result)
         }
     }
 
@@ -219,12 +221,12 @@ class NutritionAIHandler(
         }
     }
 
-    private fun fetchFoodItemForSearchResult(
+    private fun fetchFoodItemForDataInfo(
         args: HashMap<String, Any>,
         callback: MethodChannel.Result
     ) {
-        val searchResult = mapToPassioSearchResult(args)
-        PassioSDK.instance.fetchFoodItemForSearchResult(searchResult) { foodItem ->
+        val searchResult = mapToPassioFoodDataInfo(args)
+        PassioSDK.instance.fetchFoodItemForDataInfo(searchResult) { foodItem ->
             if (foodItem == null) {
                 callback.success(null)
             } else {
@@ -306,7 +308,7 @@ class NutritionAIHandler(
     /**
      * Fetches nutrients for a given passioID and communicates the result through the provided callback.
      *
-     * @param args A HashMap containing method arguments, with "passioID" as a required key.
+     * @param passioID The PassioID for which inflammatory effect data is to be fetched.
      * @param callback A MethodChannel.Result used to communicate the result back to the caller.
      */
     private fun fetchInflammatoryEffectData(passioID: PassioID, callback: MethodChannel.Result) {
@@ -400,19 +402,50 @@ class NutritionAIHandler(
     }
 
     private fun fetchSuggestions(mealTimeString: String, callback: MethodChannel.Result) {
-        val mealTime = MealTime.valueOf(mealTimeString.uppercase());
+        val mealTime = PassioMealTime.valueOf(mealTimeString.uppercase())
         PassioSDK.instance.fetchSuggestions(mealTime) { searchResult ->
-            val resultListMap = searchResult.map { mapFromPassioSearchResult(it) }
-            callback.success(resultListMap);
+            val resultListMap = searchResult.map { mapFromPassioFoodDataInfo(it) }
+            callback.success(resultListMap)
         }
     }
 
-    private fun fetchFoodItemForSuggestion(
-        arguments: HashMap<String, Any>,
-        callback: MethodChannel.Result
-    ) {
-        val searchResult = mapToPassioSearchResult(arguments)
-        PassioSDK.instance.fetchFoodItemForSuggestion(searchResult) { foodItem ->
+    /**
+     * Fetches meal plans using PassioSDK and sends the result via callback.
+     *
+     * @param args Arguments for the meal plan fetch operation (not used in this function).
+     * @param callback Callback to send the fetched meal plans.
+     */
+    private fun fetchMealPlans(callback: MethodChannel.Result) {
+        PassioSDK.instance.fetchMealPlans { mealPlans ->
+            // Map fetched meal plans to a list of mapped meal plan data
+            val mappedMealPlans = mealPlans.map { mapFromPassioMealPlan(it) }
+            // Send the mapped meal plans via callback
+            callback.success(mappedMealPlans)
+        }
+    }
+
+    /**
+     * Fetches meal plan items for a specific day using PassioSDK and sends the result via callback.
+     *
+     * @param args Arguments containing meal plan label and day.
+     * @param callback Callback to send the fetched meal plan items.
+     */
+    private fun fetchMealPlanForDay(args: Map<String, Any>, callback: MethodChannel.Result) {
+        // Extract meal plan label and day from arguments
+        val mealPlanLabel = args["mealPlanLabel"] as String
+        val day = args["day"] as Int
+
+        // Fetch meal plan items for the specified day using PassioSDK
+        PassioSDK.instance.fetchMealPlanForDay(mealPlanLabel, day) { mealPlanItems ->
+            // Map fetched meal plan items to a list of mapped meal plan item data
+            val mappedMealPlanItems = mealPlanItems.map { mapFromPassioMealPlanItem(it) }
+            // Send the mapped meal plan items via callback
+            callback.success(mappedMealPlanItems)
+        }
+    }
+
+    private fun fetchFoodItemForRefCode(refCode: String, callback: MethodChannel.Result) {
+        PassioSDK.instance.fetchFoodItemForRefCode(refCode) { foodItem ->
             if (foodItem == null) {
                 callback.success(null)
             } else {
@@ -421,5 +454,4 @@ class NutritionAIHandler(
             }
         }
     }
-
 }

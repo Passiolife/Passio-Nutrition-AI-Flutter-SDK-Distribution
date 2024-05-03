@@ -11,7 +11,7 @@ final class FetchSuggestionLoadingState extends SuggestionState {
 }
 
 final class FetchSuggestionSuccessState extends SuggestionState {
-  final List<PassioSearchResult> data;
+  final List<PassioFoodDataInfo> data;
 
   const FetchSuggestionSuccessState({required this.data});
 }

@@ -89,6 +89,18 @@ dependencies:
   # https://pub.dev/packages/flutter_exif_rotation
   flutter_exif_rotation: ^0.5.1
 
+  # https://pub.dev/packages/shimmer
+  # A package provides an easy way to add shimmer effect in Flutter project
+  shimmer: ^3.0.0
+
+  # https://pub.dev/packages/loading_indicator
+  # A collection of out of the box loading animations written in pure dart, no extra dependency
+  loading_indicator: ^3.1.1
+
+  # https://pub.dev/packages/equatable
+  # Being able to compare objects in Dart often involves having to override the == operator as well as hashCode.
+  equatable: ^2.0.5
+
 dev_dependencies:
   integration_test:
     sdk: flutter

@@ -20,7 +20,7 @@ enum PassioIDEntityType {
 }
 
 /// Represents the different times of day for meals.
-enum MealTime {
+enum PassioMealTime {
   /// Represents breakfast time.
   breakfast,
 

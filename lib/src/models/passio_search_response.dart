@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
-import 'package:nutrition_ai/src/models/passio_search_result.dart';
 
 import '../converter/platform_output_converter.dart';
+import 'passio_food_data_info.dart';
 
 /// Represents the response from a food search API, containing search results
 /// and alternate names for the searched food item.
 class PassioSearchResponse {
   /// A list of search results matching the query.
-  final List<PassioSearchResult> results;
+  final List<PassioFoodDataInfo> results;
 
   /// A list of possible alternative names for the searched food item.
   final List<String> alternateNames;
@@ -20,7 +20,7 @@ class PassioSearchResponse {
   factory PassioSearchResponse.fromJson(Map<String, dynamic> json) =>
       PassioSearchResponse(
         results: mapListOfObjects(
-            json["results"], (inMap) => PassioSearchResult.fromJson(inMap)),
+            json["results"], (inMap) => PassioFoodDataInfo.fromJson(inMap)),
         alternateNames:
             mapDynamicListToListOfString(json["alternateNames"]) ?? [],
       );

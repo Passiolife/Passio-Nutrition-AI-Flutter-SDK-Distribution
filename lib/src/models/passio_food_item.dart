@@ -24,10 +24,13 @@ class PassioFoodItem {
   /// A list of ingredients that make up the food item.
   final List<PassioIngredient> ingredients;
 
-  // final String licenseCopy;
+  // final String? licenseCopy;
 
   /// The name of the food item.
   final String name;
+
+  /// A reference code serving as a unique identifier for the food item.
+  final String refCode;
 
   /// Variable to store the final PassioID scanned during volume detection on iOS.
   final PassioID? scannedId;
@@ -38,8 +41,9 @@ class PassioFoodItem {
     required this.iconId,
     required this.id,
     required this.ingredients,
-    // required this.licenseCopy,
     required this.name,
+    required this.refCode,
+    // this.licenseCopy,
     this.scannedId,
   });
 
@@ -54,6 +58,7 @@ class PassioFoodItem {
             json["ingredients"], (inMap) => PassioIngredient.fromJson(inMap)),
         // licenseCopy: json['licenseCopy'],
         name: json['name'],
+        refCode: json['refCode'],
         scannedId: json['scannedId'],
       );
 
@@ -67,6 +72,7 @@ class PassioFoodItem {
             ingredients.map((ingredient) => ingredient.toJson()).toList(),
         // 'licenseCopy': licenseCopy,
         'name': name,
+        'refCode': refCode,
         'scannedId': scannedId,
       };
 
@@ -82,6 +88,7 @@ class PassioFoodItem {
         listEquals(ingredients, other.ingredients) &&
         // licenseCopy == other.licenseCopy &&
         name == other.name &&
+        refCode == other.refCode &&
         scannedId == other.scannedId;
   }
 
@@ -95,6 +102,7 @@ class PassioFoodItem {
       ingredients.hashCode ^
       // licenseCopy.hashCode ^
       name.hashCode ^
+      refCode.hashCode ^
       scannedId.hashCode;
 
   /// Calculates the nutrients based on the selected amount and unit.

@@ -24,7 +24,7 @@ class SuggestionBloc extends Bloc<SuggestionEvent, SuggestionState> {
       FetchFoodItemForSuggestionEvent event,
       Emitter<SuggestionState> emit) async {
     final foodItem =
-        await NutritionAI.instance.fetchFoodItemForSuggestion(event.result);
+        await NutritionAI.instance.fetchFoodItemForDataInfo(event.result);
     emit(FetchFoodItemForSuggestionState(foodItem: foodItem));
   }
 }

@@ -3,10 +3,10 @@ package ai.passio.nutrition_ai.converter
 import ai.passio.passiosdk.core.config.PassioConfiguration
 import ai.passio.passiosdk.core.icons.IconSize
 import ai.passio.passiosdk.passiofood.FoodDetectionConfiguration
+import ai.passio.passiosdk.passiofood.PassioFoodDataInfo
 import ai.passio.passiosdk.passiofood.PassioID
 import ai.passio.passiosdk.passiofood.PassioSDK
 import ai.passio.passiosdk.passiofood.PassioSearchNutritionPreview
-import ai.passio.passiosdk.passiofood.PassioSearchResult
 import ai.passio.passiosdk.passiofood.data.model.PassioIDEntityType
 import android.content.Context
 import android.graphics.RectF
@@ -91,8 +91,8 @@ fun mapToRectF(map: Map<String, Any?>): RectF {
     )
 }
 
-fun mapToPassioSearchResult(map: Map<String, Any?>): PassioSearchResult {
-    return PassioSearchResult(
+fun mapToPassioFoodDataInfo(map: Map<String, Any?>): PassioFoodDataInfo {
+    return PassioFoodDataInfo(
         map["foodName"] as String,
         map["brandName"] as String,
         map["iconId"] as PassioID,
@@ -101,15 +101,20 @@ fun mapToPassioSearchResult(map: Map<String, Any?>): PassioSearchResult {
         map["labelId"] as String,
         map["type"] as String,
         map["resultId"] as String,
+        map["useShortName"] as Boolean,
         mapToPassioSearchNutritionPreview(map["nutritionPreview"] as Map<String, Any?>),
     );
 }
 
-private  fun mapToPassioSearchNutritionPreview(map: Map<String, Any?>): PassioSearchNutritionPreview {
+private fun mapToPassioSearchNutritionPreview(map: Map<String, Any?>): PassioSearchNutritionPreview {
     return PassioSearchNutritionPreview(
         map["calories"] as Int,
+        map["carbs"] as Double,
+        map["fat"] as Double,
+        map["protein"] as Double,
         map["servingUnit"] as String,
         map["servingQuantity"] as Double,
-        map["servingWeight"] as String
+        map["weightUnit"] as String,
+        map["weightQuantity"] as Double,
     );
 }

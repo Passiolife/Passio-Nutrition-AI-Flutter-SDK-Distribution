@@ -8,7 +8,7 @@ import 'package:nutrition_ai_example/const/app_images.dart';
 import 'package:nutrition_ai_example/const/dimens.dart';
 import 'package:nutrition_ai_example/const/styles.dart';
 
-typedef OnTapItem = Function(PassioSearchResult? data);
+typedef OnTapItem = Function(PassioFoodDataInfo? data);
 
 class FoodSearchItemRow extends StatefulWidget {
   const FoodSearchItemRow({
@@ -18,7 +18,7 @@ class FoodSearchItemRow extends StatefulWidget {
     super.key,
   });
 
-  final PassioSearchResult? data;
+  final PassioFoodDataInfo? data;
 
   final Map<String?, PlatformImage?>? foodItemsImages;
 

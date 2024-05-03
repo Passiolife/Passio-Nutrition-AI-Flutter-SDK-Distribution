@@ -9,9 +9,11 @@ import 'converter/platform_input_converter.dart';
 import 'converter/platform_output_converter.dart';
 import 'models/enums.dart';
 import 'models/inflammatory_effect_data.dart';
+import 'models/passio_food_data_info.dart';
 import 'models/passio_food_item.dart';
+import 'models/passio_meal_plan.dart';
+import 'models/passio_meal_plan_item.dart';
 import 'models/passio_search_response.dart';
-import 'models/passio_search_result.dart';
 import 'models/platform_image.dart';
 import 'nutrition_ai_configuration.dart';
 import 'nutrition_ai_detection.dart';
@@ -292,11 +294,11 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
   }
 
   @override
-  Future<PassioFoodItem?> fetchFoodItemForSearchResult(
-      PassioSearchResult searchResult) async {
-    final args = searchResult.toJson();
+  Future<PassioFoodItem?> fetchFoodItemForDataInfo(
+      PassioFoodDataInfo passioFoodDataInfo) async {
+    final args = passioFoodDataInfo.toJson();
     var responseMap =
-        await methodChannel.invokeMethod('fetchFoodItemForSearchResult', args);
+        await methodChannel.invokeMethod('fetchFoodItemForDataInfo', args);
     if (responseMap == null) {
       return null;
     }
@@ -306,7 +308,8 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
   }
 
   @override
-  Future<List<PassioSearchResult>> fetchSuggestions(MealTime mealTime) async {
+  Future<List<PassioFoodDataInfo>> fetchSuggestions(
+      PassioMealTime mealTime) async {
     var responseList = await methodChannel.invokeMethod<List<Object?>>(
         'fetchSuggestions', mealTime.name);
 
@@ -317,18 +320,56 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
 
     // Map each object in the response list to a PassioSearchResult using PassioSearchResult.fromJson.
     var list = mapListOfObjects(
-        responseList, (inMap) => PassioSearchResult.fromJson(inMap));
+        responseList, (inMap) => PassioFoodDataInfo.fromJson(inMap));
 
     // Return the resulting list of PassioSearchResult objects.
     return list;
   }
 
   @override
-  Future<PassioFoodItem?> fetchFoodItemForSuggestion(
-      PassioSearchResult suggestion) async {
-    final args = suggestion.toJson();
+  Future<List<PassioMealPlan>> fetchMealPlans() async {
+    var responseList =
+        await methodChannel.invokeMethod<List<Object?>>('fetchMealPlans');
+
+    // Check if the response list is null.
+    if (responseList == null) {
+      return [];
+    }
+
+    // Map each object in the response list to a PassioMealPlan using PassioMealPlan.fromJson.
+    var list = mapListOfObjects(
+        responseList, (inMap) => PassioMealPlan.fromJson(inMap));
+
+    // Return the resulting list of PassioMealPlan objects.
+    return list;
+  }
+
+  @override
+  Future<List<PassioMealPlanItem>> fetchMealPlanForDay(
+      String mealPlanLabel, int day) async {
+    // Prepare arguments for method call
+    var args = {'mealPlanLabel': mealPlanLabel, 'day': day};
+
+    var responseList = await methodChannel.invokeMethod<List<Object?>>(
+        'fetchMealPlanForDay', args);
+
+    // Check if the response list is null.
+    if (responseList == null) {
+      return [];
+    }
+
+    // Map each object in the response list to a PassioMealPlanItem using PassioMealPlanItem.fromJson.
+    var list = mapListOfObjects(
+        responseList, (inMap) => PassioMealPlanItem.fromJson(inMap));
+
+    // Return the resulting list of PassioMealPlanItem objects.
+    return list;
+  }
+
+  @override
+  Future<PassioFoodItem?> fetchFoodItemForRefCode(String refCode) async {
     var responseMap =
-        await methodChannel.invokeMethod('fetchFoodItemForSuggestion', args);
+        await methodChannel.invokeMethod('fetchFoodItemForRefCode', refCode);
     if (responseMap == null) {
       return null;
     }

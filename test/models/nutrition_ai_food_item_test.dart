@@ -22,6 +22,7 @@ void main() {
         ingredients: [],
         // licenseCopy: 'Sample license copy',
         name: 'Sample Name',
+        refCode: '',
         scannedId: '',
         // scannedId: 'sample_scanned_id',
       );

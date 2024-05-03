@@ -3,6 +3,8 @@ import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nutrition_ai/nutrition_ai.dart';
+import 'package:nutrition_ai/src/models/passio_meal_plan.dart';
+import 'package:nutrition_ai/src/models/passio_meal_plan_item.dart';
 import 'package:nutrition_ai/src/nutrition_ai_method_channel.dart';
 import 'package:nutrition_ai/src/nutrition_ai_platform_interface.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
@@ -61,12 +63,6 @@ class MockNutritionAiPlatform
     throw UnimplementedError('fetchPassioIDAttributesFor(Barcode barcode)');
   }
 
-  /* @override
-  Future<PassioIDAttributes?> fetchAttributesForPackagedFoodCode(
-      PackagedFoodCode packagedFoodCode) {
-    throw UnimplementedError('fetchPassioIDAttributesFor(Barcode barcode)');
-  }*/
-
   @override
   Future<List<String>?> fetchTagsFor(PassioID passioID) {
     throw UnimplementedError('fetchTagsFor(PassioID passioID)');
@@ -104,22 +100,34 @@ class MockNutritionAiPlatform
   }
 
   @override
-  Future<PassioFoodItem?> fetchFoodItemForSearchResult(
-      PassioSearchResult searchResult) {
+  Future<PassioFoodItem?> fetchFoodItemForDataInfo(
+      PassioFoodDataInfo passioFoodDataInfo) {
     throw UnimplementedError(
-        'fetchFoodItemForSearchResult(PassioSearchResult searchResult)');
+        'fetchFoodItemForDataInfo(PassioFoodDataInfo passioFoodDataInfo)');
   }
 
   @override
-  Future<PassioFoodItem?> fetchFoodItemForSuggestion(
-      PassioSearchResult suggestion) {
-    // TODO: implement fetchFoodItemForSuggestion
+  Future<List<PassioFoodDataInfo>> fetchSuggestions(PassioMealTime mealTime) {
+    // TODO: implement fetchSuggestions
     throw UnimplementedError();
   }
 
   @override
-  Future<List<PassioSearchResult>> fetchSuggestions(MealTime mealTime) {
-    // TODO: implement fetchSuggestions
+  Future<List<PassioMealPlanItem>> fetchMealPlanForDay(
+      String mealPlanLabel, int day) {
+    // TODO: implement fetchMealPlanForDay
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<PassioMealPlan>> fetchMealPlans() {
+    // TODO: implement fetchMealPlans
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PassioFoodItem?> fetchFoodItemForRefCode(String refCode) {
+    // TODO: implement fetchFoodItemForRefCode
     throw UnimplementedError();
   }
 }

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutrition_ai/nutrition_ai.dart';
+import 'package:nutrition_ai_example/common/util/context_extension.dart';
+import 'package:nutrition_ai_example/common/util/string_extensions.dart';
 import 'package:nutrition_ai_example/const/app_colors.dart';
 import 'package:nutrition_ai_example/const/app_constants.dart';
 import 'package:nutrition_ai_example/inject/injector.dart';
 import 'package:nutrition_ai_example/presentation/food_search/bloc/food_search_bloc.dart';
 import 'package:nutrition_ai_example/presentation/food_search/widgets/food_search_item_row.dart';
 import 'package:nutrition_ai_example/presentation/food_search/widgets/search_widget.dart';
-import 'package:nutrition_ai_example/util/context_extension.dart';
 import 'package:nutrition_ai_example/util/debouncer.dart';
 import 'package:nutrition_ai_example/util/keyboard_extension.dart';
 import 'package:nutrition_ai_example/util/snackbar_extension.dart';
-import 'package:nutrition_ai_example/util/string_extensions.dart';
 
 class FoodSearchPage extends StatefulWidget {
   const FoodSearchPage({super.key});
@@ -29,7 +29,7 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
   String _searchQuery = '';
 
   /// [_filteredFoodItems] list is use to show the filtered food items which will get from the API.
-  final List<PassioSearchResult> _filteredFoodItems = [];
+  final List<PassioFoodDataInfo> _filteredFoodItems = [];
 
   /// [_filteredFoodItemsImages] map is use to store the platform images.
   final Map<String?, PlatformImage?> _filteredFoodItemsImages = {};
@@ -103,6 +103,9 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
                         context.showSnackbar(
                             text:
                                 '${data?.foodName.toTitleCase()} is added to the logs.');
+                        if (data != null) {
+                          NutritionAI.instance.fetchFoodItemForDataInfo(data);
+                        }
                       },
                     );
                   },
@@ -150,50 +153,77 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
 
   void _handleFoodSearchTypingState({required FoodSearchTypingState state}) {
     _filteredFoodItems.clear();
-    _filteredFoodItems.add(PassioSearchResult(
+    _filteredFoodItems.add(PassioFoodDataInfo(
       iconID: AppConstants.removeIcon,
       foodName: context.localization?.keepTyping ?? '',
       brandName: '',
       labelId: '',
       nutritionPreview: const PassioSearchNutritionPreview(
-          calories: 10, servingUnit: '', servingQuantity: 0, servingWeight: ''),
+        calories: 10,
+        carbs: 0,
+        fat: 0,
+        protein: 0,
+        servingUnit: '',
+        servingQuantity: 0,
+        weightUnit: '',
+        weightQuantity: 0,
+      ),
       resultId: '',
       scoredName: '',
       score: 0,
       type: '',
+      useShortName: false,
     ));
   }
 
   void _handleFoodSearchLoadingState({required FoodSearchLoadingState state}) {
     _filteredFoodItems.clear();
-    _filteredFoodItems.add(PassioSearchResult(
+    _filteredFoodItems.add(PassioFoodDataInfo(
       iconID: AppConstants.searching,
       foodName: context.localization?.searching ?? '',
       brandName: '',
       labelId: '',
       nutritionPreview: const PassioSearchNutritionPreview(
-          calories: 10, servingUnit: '', servingQuantity: 0, servingWeight: ''),
+        calories: 10,
+        carbs: 0,
+        fat: 0,
+        protein: 0,
+        servingUnit: '',
+        servingQuantity: 0,
+        weightUnit: '',
+        weightQuantity: 0,
+      ),
       resultId: '',
       scoredName: '',
       score: 0,
       type: '',
+      useShortName: false,
     ));
   }
 
   void _handleFoodSearchFailureState({required FoodSearchFailureState state}) {
     _filteredFoodItems.clear();
-    _filteredFoodItems.add(PassioSearchResult(
+    _filteredFoodItems.add(PassioFoodDataInfo(
       iconID: AppConstants.removeIcon,
       foodName:
           '${state.searchQuery} ${context.localization?.noFoodSearchResultMessage ?? ''}',
       brandName: '',
       labelId: '',
       nutritionPreview: const PassioSearchNutritionPreview(
-          calories: 10, servingUnit: '', servingQuantity: 0, servingWeight: ''),
+        calories: 10,
+        carbs: 0,
+        fat: 0,
+        protein: 0,
+        servingUnit: '',
+        servingQuantity: 0,
+        weightUnit: '',
+        weightQuantity: 0,
+      ),
       resultId: '',
       scoredName: '',
       score: 0,
       type: '',
+      useShortName: false,
     ));
   }
 }

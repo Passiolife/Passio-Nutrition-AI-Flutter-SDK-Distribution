@@ -12,6 +12,7 @@ import 'package:nutrition_ai_example/domain/entity/app_secret/app_secret.dart';
 import 'package:nutrition_ai_example/inject/injector.dart';
 import 'package:nutrition_ai_example/presentation/camera_recognition/camera_recognition_page.dart';
 import 'package:nutrition_ai_example/presentation/food_search/food_search_page.dart';
+import 'package:nutrition_ai_example/presentation/meal_plan/meal_plan_page.dart';
 import 'package:nutrition_ai_example/presentation/static_image/static_image_page.dart';
 import 'package:nutrition_ai_example/presentation/suggestion/suggestion_page.dart';
 import 'package:nutrition_ai_example/router/routes.dart';
@@ -24,36 +25,38 @@ Future<void> main() async {
 
     runApp(
       ScreenUtilInit(
-          designSize: const Size(Dimens.designWidth, Dimens.designHeight),
-          minTextAdapt: true,
-          splitScreenMode: true,
-          builder: (context, child) {
-            return MaterialApp(
-              localizationsDelegates: AppLocalizations.localizationsDelegates,
-              supportedLocales: AppLocalizations.supportedLocales,
-              localeResolutionCallback: (deviceLocale, supportedLocales) {
-                if (supportedLocales
-                    .map((e) => e.languageCode)
-                    .contains(deviceLocale?.languageCode)) {
-                  return deviceLocale;
-                } else {
-                  return const Locale('en', '');
-                }
-              },
-              // Start the app with the "/" named route. In this case, the app starts
-              // on the FirstScreen widget.
-              initialRoute: Routes.initialRoute,
-              routes: {
-                // When navigating to the [Routes.foodSearchPage] route, build the [FoodSearchPage] widget.
-                Routes.cameraRecognitionPage: (context) =>
-                    const CameraRecognitionPage(),
-                Routes.foodSearchPage: (context) => const FoodSearchPage(),
-                Routes.staticImagePage: (context) => const StaticImagePage(),
-                Routes.suggestionsPage: (context) => const SuggestionPage(),
-              },
-              home: const MyApp(),
-            );
-          }),
+        designSize: const Size(Dimens.designWidth, Dimens.designHeight),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp(
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            localeResolutionCallback: (deviceLocale, supportedLocales) {
+              if (supportedLocales
+                  .map((e) => e.languageCode)
+                  .contains(deviceLocale?.languageCode)) {
+                return deviceLocale;
+              } else {
+                return const Locale('en', '');
+              }
+            },
+            // Start the app with the "/" named route. In this case, the app starts
+            // on the FirstScreen widget.
+            initialRoute: Routes.initialRoute,
+            routes: {
+              // When navigating to the [Routes.foodSearchPage] route, build the [FoodSearchPage] widget.
+              Routes.cameraRecognitionPage: (context) =>
+                  const CameraRecognitionPage(),
+              Routes.foodSearchPage: (context) => const FoodSearchPage(),
+              Routes.staticImagePage: (context) => const StaticImagePage(),
+              Routes.suggestionsPage: (context) => const SuggestionPage(),
+              Routes.mealPlansPage: (context) => const MealPlanPage(),
+            },
+            home: const MyApp(),
+          );
+        },
+      ),
     );
   }, (error, stackTrace) async {
     if (kReleaseMode) {
@@ -156,6 +159,15 @@ class _MyAppState extends State<MyApp> {
                       Navigator.pushNamed(context, Routes.suggestionsPage);
                     },
                     child: const Text('Suggestions'),
+                  )
+                : const SizedBox(),
+            const SizedBox(height: 20), // Adds space of 20 units
+            _sdkIsReady
+                ? ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.mealPlansPage);
+                    },
+                    child: const Text('Meal Plans'),
                   )
                 : const SizedBox(),
 

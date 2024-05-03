@@ -3,39 +3,63 @@ class PassioSearchNutritionPreview {
   /// The number of calories in the specified serving size.
   final int calories;
 
-  /// The unit of measurement for the serving size (e.g., "cup", "gram").
-  final String servingUnit;
+  /// The amount of carbohydrates.
+  final double carbs;
+
+  /// The amount of fat.
+  final double fat;
+
+  /// The amount of protein.
+  final double protein;
 
   /// The quantity of the serving size (e.g., 1.5, 100).
   final double servingQuantity;
 
-  /// The weight of the serving size as a string (e.g., "1.5 cups", "100 grams").
-  final String servingWeight;
+  /// The unit of measurement for the serving size (e.g., "cup", "gram").
+  final String servingUnit;
+
+  /// The weight of the serving size as a quantity.
+  final double weightQuantity;
+
+  /// The unit of measurement for the weight of the serving size (e.g., "gram").
+  final String weightUnit;
 
   /// Creates a new instance of `PassioSearchNutritionPreview`.
   const PassioSearchNutritionPreview({
     required this.calories,
-    required this.servingUnit,
+    required this.carbs,
+    required this.fat,
+    required this.protein,
     required this.servingQuantity,
-    required this.servingWeight,
+    required this.servingUnit,
+    required this.weightQuantity,
+    required this.weightUnit,
   });
 
   /// Creates a new instance of `PassioSearchNutritionPreview` from a JSON map.
   factory PassioSearchNutritionPreview.fromJson(Map<String, dynamic> json) {
     return PassioSearchNutritionPreview(
       calories: json['calories'] as int,
+      carbs: json['carbs'] as double,
+      fat: json['fat'] as double,
+      protein: json['protein'] as double,
       servingUnit: json['servingUnit'] as String,
       servingQuantity: json['servingQuantity'] as double,
-      servingWeight: json['servingWeight'] as String,
+      weightUnit: json['weightUnit'],
+      weightQuantity: json['weightQuantity'],
     );
   }
 
   /// Converts the `PassioSearchNutritionPreview` object to a JSON map.
   Map<String, dynamic> toJson() => {
         'calories': calories,
+        'carbs': carbs,
+        'fat': fat,
+        'protein': protein,
         'servingUnit': servingUnit,
         'servingQuantity': servingQuantity,
-        'servingWeight': servingWeight,
+        'weightUnit': weightUnit,
+        'weightQuantity': weightQuantity,
       };
 
   /// Compares two `PassioSearchNutritionPreview` objects for equality.
@@ -45,17 +69,25 @@ class PassioSearchNutritionPreview {
     if (identical(this, other)) return true;
 
     return calories == other.calories &&
+        carbs == other.carbs &&
+        fat == other.fat &&
+        protein == other.protein &&
         servingUnit == other.servingUnit &&
         servingQuantity == other.servingQuantity &&
-        servingWeight == other.servingWeight;
+        weightUnit == other.weightUnit &&
+        weightQuantity == other.weightQuantity;
   }
 
   /// Calculates the hash code for this `PassioSearchNutritionPreview` object.
   @override
   int get hashCode {
     return calories.hashCode ^
+        carbs.hashCode ^
+        fat.hashCode ^
+        protein.hashCode ^
         servingUnit.hashCode ^
         servingQuantity.hashCode ^
-        servingWeight.hashCode;
+        weightUnit.hashCode ^
+        weightQuantity.hashCode;
   }
 }

@@ -21,6 +21,9 @@ class PassioIngredient {
   /// The name of the ingredient.
   final String name;
 
+  /// A reference code serving as a unique identifier for the ingredient.
+  final String refCode;
+
   /// The reference nutrients of the ingredient, typically per 100 grams.
   final PassioNutrients referenceNutrients;
 
@@ -31,6 +34,7 @@ class PassioIngredient {
     required this.id,
     required this.metadata,
     required this.name,
+    required this.refCode,
     required this.referenceNutrients,
   });
 
@@ -45,6 +49,7 @@ class PassioIngredient {
             (json['metadata'] as Map<Object?, Object?>)
                 .cast<String, dynamic>()),
         name: json['name'],
+        refCode: json["refCode"],
         referenceNutrients: PassioNutrients.fromJson(
             (json['referenceNutrients'] as Map<Object?, Object?>)
                 .cast<String, dynamic>()),
@@ -57,6 +62,7 @@ class PassioIngredient {
         'id': id,
         'metadata': metadata.toJson(),
         'name': name,
+        'refCode': refCode,
         'referenceNutrients': referenceNutrients.toJson(),
       };
 
@@ -70,6 +76,7 @@ class PassioIngredient {
         id == other.id &&
         metadata == other.metadata &&
         name == other.name &&
+        refCode == other.refCode &&
         referenceNutrients == other.referenceNutrients;
   }
 
@@ -81,6 +88,7 @@ class PassioIngredient {
       id.hashCode ^
       metadata.hashCode ^
       name.hashCode ^
+      refCode.hashCode ^
       referenceNutrients.hashCode;
 
   /// Calculates the weight of the ingredient by calling the `weight` method of its `amount`.

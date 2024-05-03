@@ -5,13 +5,13 @@ sealed class SuggestionEvent {
 }
 
 final class FetchSuggestionsEvent extends SuggestionEvent {
-  final MealTime mealTime;
+  final PassioMealTime mealTime;
 
   const FetchSuggestionsEvent({required this.mealTime});
 }
 
 final class FetchFoodItemForSuggestionEvent extends SuggestionEvent {
-  final PassioSearchResult result;
+  final PassioFoodDataInfo result;
 
   const FetchFoodItemForSuggestionEvent({required this.result});
 }
