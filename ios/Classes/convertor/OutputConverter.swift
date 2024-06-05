@@ -339,7 +339,7 @@ struct OutputConverter {
             searchResultMap["score"] = passioFoodDataInfo.score
             searchResultMap["scoredName"] = passioFoodDataInfo.scoredName
             searchResultMap["type"] = passioFoodDataInfo.type
-            searchResultMap["useShortName"] = passioFoodDataInfo.isShortName
+            searchResultMap["isShortName"] = passioFoodDataInfo.isShortName
             return searchResultMap
         }
         return nil
@@ -379,10 +379,93 @@ struct OutputConverter {
         return map
     }
     
+    func mapFromPassioSpeechRecognitionModel(passioSpeechRecognitionModel: PassioSpeechRecognitionModel) -> [String: Any?] {
+        var map = [String: Any?]()
+        map["action"] = passioSpeechRecognitionModel.action?.rawValue
+        map["advisorInfo"] = mapFromPassioAdvisorFoodInfo(passioAdvisorFoodInfo: passioSpeechRecognitionModel.advisorFoodInfo)
+        map["date"] = passioSpeechRecognitionModel.date
+        map["mealTime"] = passioSpeechRecognitionModel.meal?.rawValue
+        return map
+    }
+    
+    func mapFromPassioAdvisorFoodInfo(passioAdvisorFoodInfo: PassioAdvisorFoodInfo) -> [String: Any?] {
+        var map = [String: Any?]()
+        map["foodDataInfo"] = mapFromPassioFoodDataInfo(passioFoodDataInfo: passioAdvisorFoodInfo.foodDataInfo)
+        map["portionSize"] = passioAdvisorFoodInfo.portionSize
+        map["recognisedName"] = passioAdvisorFoodInfo.recognisedName
+        map["weightGrams"] = passioAdvisorFoodInfo.weightGrams
+        return map
+    }
+    
+    func mapFromNutritionFactsRecognitionListener(nutritionFacts: PassioNutritionFacts?, text: String?) -> [String: Any?] {
+        var map = [String: Any?]()
+        map["nutritionFacts"] = mapFromPassioNutritionFacts(nutritionFacts: nutritionFacts)
+        map["text"] = text
+        return map
+    }
+    
+    func mapFromPassioNutritionFacts(nutritionFacts: PassioNutritionFacts?) -> [String: Any?]? {
+        guard let nutritionFacts else  { return nil }
+        
+        var map = [String: Any?]()
+        map["addedSugar"] = nutritionFacts.addedSugar
+        map["calcium"] = nutritionFacts.calcium
+        map["calories"] = nutritionFacts.calories
+        map["carbs"] = nutritionFacts.carbs
+        map["cholesterol"] = nutritionFacts.cholesterol
+        map["dietaryFiber"] = nutritionFacts.dietaryFiber
+        map["fat"] = nutritionFacts.fat
+        map["ingredients"] = nutritionFacts.ingredients
+        map["iron"] = nutritionFacts.iron
+        map["potassium"] = nutritionFacts.potassium
+        map["protein"] = nutritionFacts.protein
+        map["saturatedFat"] = nutritionFacts.saturatedFat
+        map["servingSize"] = nutritionFacts.servingSizeText
+        map["servingSizeQuantity"] = nutritionFacts.servingSizeQuantity
+        map["servingSizeUnitName"] = nutritionFacts.servingSizeUnitName
+        map["sodium"] = nutritionFacts.sodium
+        map["sugarAlcohol"] = nutritionFacts.sugarAlcohol
+        map["sugars"] = nutritionFacts.sugars
+        map["transFat"] = nutritionFacts.transFat
+        map["vitaminD"] = nutritionFacts.vitaminD
+        return map
+    }
+
+    func mapFromPassioResult<T: Any>(nutritionAdvisorStatus: Result<T, PassioNutritionAISDK.NetworkError>) -> [String: Any?] {
+        var map = [String: Any?]()
+        switch nutritionAdvisorStatus {
+        case .success(let success):
+            map["status"] = "success"
+            map["message"] = nil
+            map["value"] = if success is PassioAdvisorResponse {
+                mapFromPassioAdvisorResponse(passioAdvisorResponse: success as! PassioAdvisorResponse)
+            } else {
+                nil
+            }
+            break
+        case .failure(let error):
+            map["status"] = "error"
+            map["message"] = error.errorMessage
+            map["value"] = nil
+            break
+        }
+        return map
+    }
+    
+    func mapFromPassioAdvisorResponse(passioAdvisorResponse: PassioAdvisorResponse) -> [String: Any?] {
+        var map = [String: Any?]()
+        map["extractedIngredients"] = passioAdvisorResponse.extractedIngredients?.map { mapFromPassioAdvisorFoodInfo(passioAdvisorFoodInfo: $0) }
+        map["markupContent"] = passioAdvisorResponse.markupContent
+        map["messageId"] = passioAdvisorResponse.messageId
+        map["rawContent"] = passioAdvisorResponse.rawContent
+        map["threadId"] = ""
+        map["tools"] = passioAdvisorResponse.tools
+        return map
+    }
 }
 
 extension Encodable {
-
+    
     /// Converting object to postable dictionary
     func toDictionary(_ encoder: JSONEncoder = JSONEncoder()) -> [String: Any?] {
         
@@ -397,5 +480,47 @@ extension Encodable {
             print("Error:- \(error.localizedDescription)")
         }
         return map
+    }
+    
+    func toJSON() -> String? {
+        
+        var jsonString: String?
+        do {
+            let jsonData = try JSONEncoder().encode(self)
+            if let string = String(data: jsonData, encoding: .utf8) {
+                jsonString = string
+            }
+        } catch {
+            print("Unable to convert to json strin:- \(error.localizedDescription)")
+        }
+        return jsonString
+    }
+}
+
+extension Dictionary {
+    
+    func getDecodableFrom<T>(type: T.Type) -> T? where T : Decodable {
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
+            
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                
+                if let jsonData = jsonString.data(using: .utf8) {
+                    do {
+                        // Decode the JSON data into PassioAdvisorResponse
+                        let response = try JSONDecoder().decode(type.self, from: jsonData)
+                        return response
+                    } catch {
+                        return nil
+                    }
+                } else {
+                    return nil
+                }
+            }
+        } catch {
+            print("Unable to convert to json strin:- \(error.localizedDescription)")
+        }
+        return nil
     }
 }

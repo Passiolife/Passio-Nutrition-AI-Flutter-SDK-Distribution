@@ -18,6 +18,11 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
                                            binaryMessenger: binaryMessenger)
         registrar.addMethodCallDelegate(instance, channel: channel)
         
+        let nutritionAdvisorHandler = NutritionAdvisorHandler()
+        let advisorChannel = FlutterMethodChannel(name: "nutrition_advisor/method",
+                                           binaryMessenger: binaryMessenger)
+        registrar.addMethodCallDelegate(nutritionAdvisorHandler, channel: advisorChannel)
+        
         // Initialize a PassioEventStreamHandler for handling events.
         let passioEventStreamHandler = PassioEventStreamHandler()
         
@@ -30,6 +35,10 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
                                                binaryMessenger: binaryMessenger)
         // Set PassioEventStreamHandler as the stream handler for the statusEventChannel.
         statusChannel.setStreamHandler(passioEventStreamHandler)
+        
+        let nutritionFactChannel = FlutterEventChannel(name: "nutrition_ai/event/nutritionFact",
+                                               binaryMessenger: binaryMessenger)
+        nutritionFactChannel.setStreamHandler(passioEventStreamHandler)
     
         let factory = PassioPreviewFactory(messenger: binaryMessenger)
         registrar.register(factory, withId: "PassioPreviewViewType")
@@ -103,6 +112,18 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             }
         case "fetchFoodItemForRefCode":
             fetchFoodItemForRefCode(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
+        case "fetchFoodItemLegacy":
+            fetchFoodItemLegacy(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
+        case "recognizeSpeechRemote":
+            recognizeSpeechRemote(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
+        case "recognizeImageRemote":
+            recognizeImageRemote(arguments: call.arguments) { FlutterResult in
                 result(FlutterResult)
             }
         default:
@@ -399,6 +420,47 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             passioSDK.fetchFoodItemFor(refCode: refCode) { passioFoodItem in
                 let passioFoodItemMap = self.outputConverter.mapFromPassioFoodItem(foodItem: passioFoodItem)
                 result(passioFoodItemMap)
+            }
+        } else {
+            result(nil)
+        }
+    }
+    
+    func fetchFoodItemLegacy(arguments: Any?, result: @escaping FlutterResult) {
+        if let passioID = arguments as? PassioID {
+            passioSDK.fetchFoodItemLegacy(from: passioID) { passioFoodItem in
+                let passioFoodItemMap = self.outputConverter.mapFromPassioFoodItem(foodItem: passioFoodItem)
+                result(passioFoodItemMap)
+            }
+        } else {
+            result(nil)
+        }
+    }
+    
+    func recognizeSpeechRemote(arguments: Any?, result: @escaping FlutterResult) {
+        if let text = arguments as? String {
+            passioSDK.recognizeSpeechRemote(from: text) { speechRecognitionModel in
+                let resultList = speechRecognitionModel.map {
+                    self.outputConverter.mapFromPassioSpeechRecognitionModel(passioSpeechRecognitionModel: $0)
+                }
+                result(resultList)
+            }
+        } else {
+            result(nil)
+        }
+    }
+    
+    func recognizeImageRemote(arguments: Any?, result: @escaping FlutterResult) {
+        if let bytes = arguments as? FlutterStandardTypedData {
+            guard let image = UIImage(data: bytes.data) else {
+                result(nil)
+                return
+            }
+            passioSDK.recognizeImageRemote(image: image) { imageRecognitionModel in
+                let resultList = imageRecognitionModel.map {
+                    self.outputConverter.mapFromPassioAdvisorFoodInfo(passioAdvisorFoodInfo: $0)
+                }
+                result(resultList)
             }
         } else {
             result(nil)

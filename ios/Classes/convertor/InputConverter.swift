@@ -64,9 +64,6 @@ struct InputConverter {
         if let detectPackagedFood = map["detectPackagedFood"] as? Int {
             configuration.detectPackagedFood = detectPackagedFood == 1 ? true : false
         }
-        if let detectNutritionFacts = map["detectNutritionFacts"] as? Int {
-            configuration.detectNutritionFacts = detectNutritionFacts == 1 ? true : false
-        }
         if let framesPerSecondString = map["framesPerSecond"] as? String {
             configuration.framesPerSecond = mapToFPS(fromString: framesPerSecondString)
         }
@@ -95,11 +92,11 @@ struct InputConverter {
               let labelId = map["labelId"] as? String,
               let scoredName = map["scoredName"] as? String,
               let resultId = map["resultId"] as? String,
-              let useShortName = map["useShortName"] as? Bool,
+              let isShortName = map["isShortName"] as? Bool,
               let nutritionPreview = mapToPassioSearchNutritionPreview(map: map["nutritionPreview"] as? [String : Any]) else {
             return nil;
         }
-        return PassioFoodDataInfo(foodName: foodName, brandName: brandName, iconID: iconId, score: score, scoredName: scoredName, labelId: labelId, type: type, resultId: resultId, nutritionPreview: nutritionPreview, isShortName: useShortName)
+        return PassioFoodDataInfo(foodName: foodName, brandName: brandName, iconID: iconId, score: score, scoredName: scoredName, labelId: labelId, type: type, resultId: resultId, nutritionPreview: nutritionPreview, isShortName: isShortName)
     }
     
     private func mapToPassioSearchNutritionPreview(map :[String: Any?]?) -> PassioSearchNutritionPreview? {
@@ -116,6 +113,20 @@ struct InputConverter {
         }
         return PassioSearchNutritionPreview(calories: calories, carbs: carbs, fat: fat, protein: protein, servingUnit: servingUnit, servingQuantity: servingQuantity, weightUnit: weightUnit, weightQuantity: weightQuantity)
     }
+}
+
+extension Dictionary {
     
+    var toJSON: String? {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                return jsonString
+            }
+        } catch {
+            print("Unable to convert to json strin:- \(error.localizedDescription)")
+        }
+        return nil
+    }
 
 }

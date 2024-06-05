@@ -18,5 +18,9 @@
   "balancedDiet": "Balanced Diet",
   "day": "Day",
   "logEntireMeal": "Log Entire Meal",
-  "cal": "cal"
+  "cal": "cal",
+  "searchPassioID": "Search PassioID",
+  "enterText": "Enter text",
+  "stopDetection": "Stop Detection",
+  "recognizeImage": "Recognize Image"
 }

@@ -7,6 +7,8 @@ import ai.passio.passiosdk.passiofood.PassioFoodDataInfo
 import ai.passio.passiosdk.passiofood.PassioID
 import ai.passio.passiosdk.passiofood.PassioSDK
 import ai.passio.passiosdk.passiofood.PassioSearchNutritionPreview
+import ai.passio.passiosdk.passiofood.data.model.PassioAdvisorFoodInfo
+import ai.passio.passiosdk.passiofood.data.model.PassioAdvisorResponse
 import ai.passio.passiosdk.passiofood.data.model.PassioIDEntityType
 import android.content.Context
 import android.graphics.RectF
@@ -43,7 +45,6 @@ fun mapToFoodDetectionConfiguration(map: Map<String, Any?>): FoodDetectionConfig
         map.mapContains<Boolean>("detectVisual") { this.detectVisual = it }
         map.mapContains<Boolean>("detectBarcodes") { this.detectBarcodes = it }
         map.mapContains<Boolean>("detectPackagedFood") { this.detectPackagedFood = it }
-        map.mapContains<Boolean>("detectNutritionFacts") { this.detectNutritionFacts = it }
         map.mapContains<String>("framesPerSecond") {
             this.framesPerSecond = framesPerSecondFromString(it)
         }
@@ -101,9 +102,9 @@ fun mapToPassioFoodDataInfo(map: Map<String, Any?>): PassioFoodDataInfo {
         map["labelId"] as String,
         map["type"] as String,
         map["resultId"] as String,
-        map["useShortName"] as Boolean,
+        map["isShortName"] as Boolean,
         mapToPassioSearchNutritionPreview(map["nutritionPreview"] as Map<String, Any?>),
-    );
+    )
 }
 
 private fun mapToPassioSearchNutritionPreview(map: Map<String, Any?>): PassioSearchNutritionPreview {
@@ -116,5 +117,26 @@ private fun mapToPassioSearchNutritionPreview(map: Map<String, Any?>): PassioSea
         map["servingQuantity"] as Double,
         map["weightUnit"] as String,
         map["weightQuantity"] as Double,
-    );
+    )
+}
+
+fun mapToPassioAdvisorResponse(map: Map<String, Any?>): PassioAdvisorResponse {
+    var tools: List<String>? = null
+    var extractedIngredients: List<PassioAdvisorFoodInfo>? = null
+
+    map.mapContainsOptional<List<String>?>("tools") { tool ->
+        tools = tool
+    }
+    map.mapContainsOptional<List<PassioAdvisorFoodInfo>?>("extractedIngredients") { ingredients ->
+        extractedIngredients = ingredients
+    }
+
+    return PassioAdvisorResponse(
+        map["threadId"] as String,
+        map["messageId"] as String,
+        map["markupContent"] as String,
+        map["rawContent"] as String,
+        tools,
+        extractedIngredients
+    )
 }

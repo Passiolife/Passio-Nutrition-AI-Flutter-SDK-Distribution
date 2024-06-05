@@ -172,7 +172,7 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
       scoredName: '',
       score: 0,
       type: '',
-      useShortName: false,
+      isShortName: false,
     ));
   }
 
@@ -197,7 +197,7 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
       scoredName: '',
       score: 0,
       type: '',
-      useShortName: false,
+      isShortName: false,
     ));
   }
 
@@ -223,7 +223,7 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
       scoredName: '',
       score: 0,
       type: '',
-      useShortName: false,
+      isShortName: false,
     ));
   }
 }

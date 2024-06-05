@@ -1,23 +1,31 @@
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:nutrition_ai/src/listeners/nutrition_facts_recognition_listener.dart';
+import 'package:nutrition_ai/src/models/passio_advisor_food_info.dart';
+
 import 'models/enums.dart';
 import 'models/inflammatory_effect_data.dart';
+import 'models/passio_food_data_info.dart';
 import 'models/passio_food_item.dart';
 import 'models/passio_meal_plan.dart';
 import 'models/passio_meal_plan_item.dart';
 import 'models/passio_search_response.dart';
-import 'models/passio_food_data_info.dart';
+import 'models/passio_speech_recognition_model.dart';
 import 'models/platform_image.dart';
 import 'nutrition_ai_configuration.dart';
 import 'nutrition_ai_detection.dart';
 import 'nutrition_ai_platform_interface.dart';
 
+/// Singleton class to interact with NutritionAI SDK.
 class NutritionAI {
+  // Private constructor to enforce singleton pattern.
   NutritionAI._privateConstructor();
 
+  // Singleton instance.
   static final NutritionAI _instance = NutritionAI._privateConstructor();
 
+  // Getter to access the singleton instance.
   static NutritionAI get instance => _instance;
 
   /// Current version of the Passio SDK.
@@ -155,7 +163,7 @@ class NutritionAI {
   /// when the internal state of the SDK's configuration process changes.
   /// Passing null will unregister the listener.
   void setPassioStatusListener(PassioStatusListener? listener) {
-    NutritionAIPlatform.instance.setPassioStatusListener(listener);
+    return NutritionAIPlatform.instance.setPassioStatusListener(listener);
   }
 
   /// Fetches a list of [InflammatoryEffectData] objects for a given [PassioID].
@@ -211,5 +219,70 @@ class NutritionAI {
   ///   A Future that completes with a PassioFoodItem if found, otherwise completes with null.
   Future<PassioFoodItem?> fetchFoodItemForRefCode(String refCode) {
     return NutritionAIPlatform.instance.fetchFoodItemForRefCode(refCode);
+  }
+
+  /// Fetches a food item using the legacy method.
+  ///
+  /// This function asynchronously retrieves a [PassioFoodItem] using the provided [PassioID].
+  ///
+  /// Parameters:
+  /// - [passioID]: The PassioID of the food item to fetch.
+  ///
+  /// Returns:
+  /// - A [Future] that completes with a [PassioFoodItem] if found, otherwise completes with `null`.
+  Future<PassioFoodItem?> fetchFoodItemLegacy(PassioID passioID) {
+    return NutritionAIPlatform.instance.fetchFoodItemLegacy(passioID);
+  }
+
+  /// Recognizes speech remotely using the provided text.
+  ///
+  /// This function sends the provided [text] to a remote service for speech recognition
+  /// and returns a list of [PassioSpeechRecognitionModel] containing the recognition results.
+  ///
+  /// Parameters:
+  /// - [text]: The text to be recognized.
+  ///
+  /// Returns:
+  /// - A [Future] that completes with a [List] of [PassioSpeechRecognitionModel] containing the recognition results.
+  Future<List<PassioSpeechRecognitionModel>> recognizeSpeechRemote(
+      String text) {
+    return NutritionAIPlatform.instance.recognizeSpeechRemote(text);
+  }
+
+  /// Recognizes an image remotely using the provided byte data.
+  ///
+  /// This function sends the provided [bytes] to a remote service for image recognition
+  /// and returns a list of [PassioAdvisorFoodInfo] containing the recognition results.
+  ///
+  /// Parameters:
+  /// - [bytes]: The byte data of the image to be recognized.
+  ///
+  /// Returns:
+  /// - A [Future] that completes with a [List] of [PassioAdvisorFoodInfo] containing the recognition results.
+  Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(Uint8List bytes) {
+    return NutritionAIPlatform.instance.recognizeImageRemote(bytes);
+  }
+
+  /// Starts the nutrition facts detection process.
+  ///
+  /// This function sets up a listener to receive nutrition facts recognition events
+  /// and invokes the provided [listener] with the recognition results as they are received.
+  ///
+  /// Parameters:
+  /// - [listener]: An instance of [NutritionFactsRecognitionListener] to handle recognition events.
+  void startNutritionFactsDetection(
+      NutritionFactsRecognitionListener listener) {
+    return NutritionAIPlatform.instance.startNutritionFactsDetection(listener);
+  }
+
+  /// Stops the nutrition facts detection process.
+  ///
+  /// This function stops the ongoing nutrition facts detection and cleans up any resources
+  /// associated with the detection process.
+  ///
+  /// Returns:
+  /// - A [Future] that completes when the nutrition facts detection has been successfully stopped.
+  Future<void> stopNutritionFactsDetection() async {
+    return NutritionAIPlatform.instance.stopNutritionFactsDetection();
   }
 }

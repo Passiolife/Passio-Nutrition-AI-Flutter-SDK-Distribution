@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,12 +11,19 @@ import 'package:nutrition_ai/nutrition_ai.dart';
 import 'package:nutrition_ai_example/const/dimens.dart';
 import 'package:nutrition_ai_example/domain/entity/app_secret/app_secret.dart';
 import 'package:nutrition_ai_example/inject/injector.dart';
+import 'package:nutrition_ai_example/presentation/advisor_image/advisor_image_page.dart';
 import 'package:nutrition_ai_example/presentation/camera_recognition/camera_recognition_page.dart';
 import 'package:nutrition_ai_example/presentation/food_search/food_search_page.dart';
 import 'package:nutrition_ai_example/presentation/meal_plan/meal_plan_page.dart';
+import 'package:nutrition_ai_example/presentation/recognize_speech/recognize_speech_page.dart';
 import 'package:nutrition_ai_example/presentation/static_image/static_image_page.dart';
 import 'package:nutrition_ai_example/presentation/suggestion/suggestion_page.dart';
 import 'package:nutrition_ai_example/router/routes.dart';
+
+import 'presentation/advisor_message/advisor_message_page.dart';
+import 'presentation/legacy_api/legacy_api_page.dart';
+import 'presentation/nutrition_facts/nutrition_facts_page.dart';
+import 'presentation/recognize_image/recognize_image_page.dart';
 
 Future<void> main() async {
   await runZonedGuarded(() async {
@@ -52,6 +60,16 @@ Future<void> main() async {
               Routes.staticImagePage: (context) => const StaticImagePage(),
               Routes.suggestionsPage: (context) => const SuggestionPage(),
               Routes.mealPlansPage: (context) => const MealPlanPage(),
+              Routes.legacyApiPage: (context) => const LegacyApiPage(),
+              Routes.recognizedSpeechPage: (context) =>
+                  const RecognizeSpeechPage(),
+              Routes.recognizedImagePage: (context) =>
+                  const RecognizeImagePage(),
+              Routes.nutritionFactsPage: (context) =>
+                  const NutritionFactsPage(),
+              Routes.advisorMessagePage: (context) =>
+                  const AdvisorMessagePage(),
+              Routes.advisorImagePage: (context) => const AdvisorImagePage(),
             },
             home: const MyApp(),
           );
@@ -76,13 +94,17 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
+  String _advisorError = '';
   PassioStatus? _passioStatus;
   bool _sdkIsReady = false;
+  bool _advisorSDKIsReady = false;
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      initPlatformState();
+    });
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -107,13 +129,13 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Passio SDK Plugin'),
-        ),
-        body: Column(
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: const Text('Passio SDK Plugin'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
           children: [
             const SizedBox(height: 20), // Adds space of 20 units
             Center(
@@ -124,6 +146,12 @@ class _MyAppState extends State<MyApp> {
                   ? const Text("Configuring SDK")
                   : Text(_passioStatus!.mode.name),
             ),
+            const SizedBox(height: 20), // Adds space of 20 units
+            Center(
+              child: Text(
+                  "Advisor SDK: ${_advisorSDKIsReady ? 'is Ready' : _advisorError.isNotEmpty ? _advisorError : ''}"),
+            ),
+            const SizedBox(height: 20), // Adds space of 20 units
             _sdkIsReady
                 ? // Adds space of 20 units
                 ElevatedButton(
@@ -170,8 +198,61 @@ class _MyAppState extends State<MyApp> {
                     child: const Text('Meal Plans'),
                   )
                 : const SizedBox(),
-
-            // Text(_passioStatus?.mode.toString() ?? 'Not setup yet')
+            const SizedBox(height: 20), // Adds space of 20 units
+            _sdkIsReady
+                ? ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.legacyApiPage);
+                    },
+                    child: const Text('Legacy API'),
+                  )
+                : const SizedBox(),
+            const SizedBox(height: 20), // Adds space of 20 units
+            _sdkIsReady
+                ? ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.recognizedSpeechPage);
+                    },
+                    child: const Text('Recognize Speech'),
+                  )
+                : const SizedBox(),
+            const SizedBox(height: 20), // Adds space of 20 units
+            _sdkIsReady
+                ? ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.recognizedImagePage);
+                    },
+                    child: const Text('Recognize Image'),
+                  )
+                : const SizedBox(),
+            const SizedBox(height: 20), // Adds space of 20 units
+            _sdkIsReady
+                ? ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.nutritionFactsPage);
+                    },
+                    child: const Text('Nutrition Facts'),
+                  )
+                : const SizedBox(),
+            const SizedBox(height: 20), // Adds space of 20 units
+            _advisorSDKIsReady
+                ? ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.advisorMessagePage);
+                    },
+                    child: const Text('Advisor Message'),
+                  )
+                : const SizedBox(),
+            const SizedBox(height: 20), // Adds space of 20 units
+            _advisorSDKIsReady
+                ? ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.advisorImagePage);
+                    },
+                    child: const Text('Advisor Image'),
+                  )
+                : const SizedBox(),
+            const SizedBox(height: 20), // Adds space of 20 units
           ],
         ),
       ),
@@ -184,6 +265,18 @@ class _MyAppState extends State<MyApp> {
     var passioStatus = await NutritionAI.instance.configureSDK(configuration);
     if (passioStatus.mode == PassioMode.isReadyForDetection) {
       _sdkIsReady = true;
+    }
+
+    String advisorKey = AppSecret.advisorKey;
+    final result = await NutritionAdvisor.instance.configure(advisorKey);
+    switch (result) {
+      case Error():
+        _advisorError = result.message;
+        _advisorSDKIsReady = false;
+        break;
+      case Success():
+        _advisorSDKIsReady = true;
+        break;
     }
 
     setState(() {

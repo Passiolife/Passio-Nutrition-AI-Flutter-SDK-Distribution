@@ -52,6 +52,7 @@ class PassioFoodItemData {
   final List<String>? tags;
 
   final UnitMass _referenceWeight = UnitMass(100.0, UnitMassType.grams);
+
   // Nutrients per 100 grams
   final UnitEnergy? _calories;
   final UnitMass? _carbs;
@@ -83,6 +84,7 @@ class PassioFoodItemData {
   final UnitMass? _phosphorus;
   final UnitMass? _iodine;
 
+  /// Creates a new instance of `PassioFoodItemData`.
   PassioFoodItemData(
     this.passioID,
     this.name,
@@ -129,6 +131,7 @@ class PassioFoodItemData {
     this._iodine,
   );
 
+  /// Creates a `PassioFoodItemData` instance from a JSON map.
   factory PassioFoodItemData.fromJson(Map<String, dynamic> json) =>
       PassioFoodItemData(
         json["passioID"],
@@ -177,6 +180,7 @@ class PassioFoodItemData {
         json.ifValueNotNull("iodine", UnitMass.fromJson),
       );
 
+  /// Converts the `PassioFoodItemData` instance to a JSON map.
   Map<String, dynamic> toJson() => _mapOfPassioFoodItemData();
 
   Map<String, dynamic> _mapOfPassioFoodItemData() {
@@ -227,10 +231,12 @@ class PassioFoodItemData {
     };
   }
 
+  /// Checks if the food item is sourced from OpenFood.
   bool isOpenFood() {
     return foodOrigins?.map((e) => e.source).contains('openfood') ?? false;
   }
 
+  /// Retrieves the OpenFood license associated with the food item.
   String? openFoodLicense() {
     return foodOrigins
         ?.cast<PassioFoodOrigin?>()
@@ -239,6 +245,7 @@ class PassioFoodItemData {
         ?.licenseCopy;
   }
 
+  /// Computes the total weight of the food item.
   UnitMass computedWeight() {
     PassioServingUnit? servingUnit = servingUnits
         .cast<PassioServingUnit?>()
@@ -251,6 +258,9 @@ class PassioFoodItemData {
     return (servingUnit.weight * selectedQuantity) as UnitMass;
   }
 
+  /// Sets the serving size of the food item.
+  ///
+  /// Returns `true` if the serving size was successfully set, otherwise `false`.
   bool setServingSize(String unit, double quantity) {
     PassioServingUnit? servingUnit = servingUnits
         .cast<PassioServingUnit?>()
@@ -264,6 +274,9 @@ class PassioFoodItemData {
     return true;
   }
 
+  /// Sets the serving unit of the food item while keeping the weight constant.
+  ///
+  /// Returns `true` if the serving unit was successfully set, otherwise `false`.
   bool setServingUnitKeepWeight(String unit) {
     PassioServingUnit? servingUnit = servingUnits
         .cast<PassioServingUnit?>()
@@ -278,6 +291,9 @@ class PassioFoodItemData {
     return true;
   }
 
+  /// Scales a nutritional unit by the computed weight of the food item.
+  ///
+  /// Returns `null` if the unit is `null`, otherwise the scaled unit.
   T? _scaleByAmount<T extends Unit>(T? unit) {
     if (unit == null) {
       return null;
@@ -287,6 +303,7 @@ class PassioFoodItemData {
         (computedWeight().gramsValue() / _referenceWeight.gramsValue())) as T;
   }
 
+  // Nutritional information methods
   UnitEnergy? totalCalories() => _scaleByAmount(_calories);
   UnitMass? totalCarbs() => _scaleByAmount(_carbs);
   UnitMass? totalFat() => _scaleByAmount(_fat);

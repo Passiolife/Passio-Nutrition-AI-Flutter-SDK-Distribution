@@ -2,14 +2,19 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:nutrition_ai/src/models/enums.dart';
+import 'package:nutrition_ai/src/models/passio_advisor_food_info.dart';
+import 'package:nutrition_ai/src/models/passio_advisor_response.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
+import 'listeners/nutrition_facts_recognition_listener.dart';
 import 'models/inflammatory_effect_data.dart';
+import 'models/passio_food_data_info.dart';
 import 'models/passio_food_item.dart';
 import 'models/passio_meal_plan.dart';
 import 'models/passio_meal_plan_item.dart';
+import 'models/passio_result.dart';
 import 'models/passio_search_response.dart';
-import 'models/passio_food_data_info.dart';
+import 'models/passio_speech_recognition_model.dart';
 import 'models/platform_image.dart';
 import 'nutrition_ai_configuration.dart';
 import 'nutrition_ai_detection.dart';
@@ -126,5 +131,50 @@ abstract class NutritionAIPlatform extends PlatformInterface {
 
   Future<PassioFoodItem?> fetchFoodItemForRefCode(String refCode) {
     throw UnimplementedError('fetchFoodItemForRefCode(String refCode)');
+  }
+
+  Future<PassioFoodItem?> fetchFoodItemLegacy(PassioID passioID) {
+    throw UnimplementedError('fetchFoodItemLegacy(PassioID passioID)');
+  }
+
+  Future<List<PassioSpeechRecognitionModel>> recognizeSpeechRemote(
+      String text) {
+    throw UnimplementedError('recognizeSpeechRemote(String text)');
+  }
+
+  Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(Uint8List bytes) {
+    throw UnimplementedError('recognizeImageRemote(Uint8List bytes)');
+  }
+
+  void startNutritionFactsDetection(
+      NutritionFactsRecognitionListener listener) async {
+    throw UnimplementedError(
+        'startNutritionFactsDetection(NutritionFactsRecognitionListener listener)');
+  }
+
+  Future<void> stopNutritionFactsDetection() async {
+    throw UnimplementedError('stopNutritionFactsDetection()');
+  }
+
+  Future<PassioResult> configure(String key) {
+    throw UnimplementedError('configure(String key)');
+  }
+
+  Future<PassioResult> initConversation() {
+    throw UnimplementedError('initConversation()');
+  }
+
+  Future<PassioResult<PassioAdvisorResponse>> sendMessage(String message) {
+    throw UnimplementedError('sendMessage(String message)');
+  }
+
+  Future<PassioResult<PassioAdvisorResponse>> sendImage(Uint8List bytes) {
+    throw UnimplementedError('sendImage(Uint8List bytes)');
+  }
+
+  Future<PassioResult<PassioAdvisorResponse>> fetchIngredients(
+      PassioAdvisorResponse response) {
+    throw UnimplementedError(
+        'fetchIngredients(PassioAdvisorResponse response)');
   }
 }

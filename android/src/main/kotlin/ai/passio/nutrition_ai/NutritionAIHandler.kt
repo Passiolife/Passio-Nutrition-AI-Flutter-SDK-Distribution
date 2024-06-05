@@ -6,6 +6,7 @@ import ai.passio.passiosdk.core.config.PassioMode
 import ai.passio.passiosdk.core.config.PassioStatus
 import ai.passio.passiosdk.passiofood.FoodCandidates
 import ai.passio.passiosdk.passiofood.FoodRecognitionListener
+import ai.passio.passiosdk.passiofood.NutritionFactsRecognitionListener
 import ai.passio.passiosdk.passiofood.PassioID
 import ai.passio.passiosdk.passiofood.PassioMealTime
 import ai.passio.passiosdk.passiofood.PassioSDK
@@ -44,10 +45,12 @@ class NutritionAIHandler(
                 call.arguments as HashMap<String, Any>,
                 result
             )
+
             "fetchFoodItemForProductCode" -> fetchFoodItemForProductCode(
                 call.arguments as String,
                 result
             )
+
             "detectFoodIn" -> detectFoodIn(call.arguments as HashMap<String, Any>, result)
             "fetchTagsFor" -> fetchTagsFor(call.arguments as String, result)
             "iconURLFor" -> fetchURLFor(call.arguments as HashMap<String, Any>, result)
@@ -56,13 +59,18 @@ class NutritionAIHandler(
                 call.arguments as String,
                 result
             )
+
             "fetchSuggestions" -> fetchSuggestions(call.arguments as String, result)
             "fetchMealPlans" -> fetchMealPlans(result)
             "fetchMealPlanForDay" -> fetchMealPlanForDay(
                 call.arguments as HashMap<String, Any>,
                 result
             )
+
             "fetchFoodItemForRefCode" -> fetchFoodItemForRefCode(call.arguments as String, result)
+            "fetchFoodItemLegacy" -> fetchFoodItemLegacy(call.arguments as String, result)
+            "recognizeSpeechRemote" -> recognizeSpeechRemote(call.arguments as String, result)
+            "recognizeImageRemote" -> recognizeImageRemote(call.arguments as ByteArray, result)
         }
     }
 
@@ -169,8 +177,10 @@ class NutritionAIHandler(
             "startFoodDetection" -> startFoodDetection(argMap["args"] as Map<String, Any>, events)
             // Sets up the PassioSDK status listener.
             "setPassioStatusListener" -> setPassioStatusListener(events)
+            "startNutritionFactsDetection" -> startNutritionFactsDetection(events)
         }
     }
+
 
     @Suppress("UNCHECKED_CAST")
     override fun onCancel(arguments: Any) {
@@ -179,6 +189,7 @@ class NutritionAIHandler(
             "startFoodDetection" -> PassioSDK.instance.stopFoodDetection()
             // Removes the PassioSDK status listener to stop receiving status updates.
             "setPassioStatusListener" -> PassioSDK.instance.setPassioStatusListener(null)
+            "startNutritionFactsDetection" -> PassioSDK.instance.stopNutritionFactsDetection()
         }
     }
 
@@ -187,8 +198,7 @@ class NutritionAIHandler(
         PassioSDK.instance.startFoodDetection(object : FoodRecognitionListener {
             override fun onRecognitionResults(
                 candidates: FoodCandidates?,
-                image: Bitmap?,
-                nutritionFacts: PassioNutritionFacts?
+                image: Bitmap?
             ) {
                 // Use the Main dispatcher to launch a coroutine within the UI context
                 CoroutineScope(Dispatchers.Main).launch {
@@ -412,7 +422,6 @@ class NutritionAIHandler(
     /**
      * Fetches meal plans using PassioSDK and sends the result via callback.
      *
-     * @param args Arguments for the meal plan fetch operation (not used in this function).
      * @param callback Callback to send the fetched meal plans.
      */
     private fun fetchMealPlans(callback: MethodChannel.Result) {
@@ -453,5 +462,79 @@ class NutritionAIHandler(
                 callback.success(foodItemMap)
             }
         }
+    }
+
+    /**
+     * Fetches a food item using the legacy API.
+     *
+     * @param passioID The ID of the food item to fetch.
+     * @param callback The callback to invoke with the result.
+     */
+    private fun fetchFoodItemLegacy(passioID: PassioID, callback: MethodChannel.Result) {
+
+        // Call the fetchFoodItemLegacy method on the PassioSDK instance
+        PassioSDK.instance.fetchFoodItemLegacy(passioID) { foodItem ->
+
+            // If the foodItem is not null, map it to a new object and return it
+            foodItem?.let {
+                callback.success(mapFromPassioFoodItem(it))
+            }
+
+            // Otherwise, return null
+                ?: callback.success(null)
+        }
+    }
+
+    /**
+     * Recognizes speech remotely using the PassioSDK.
+     *
+     * @param text The text to be recognized.
+     * @param callback The callback to invoke with the result.
+     */
+    private fun recognizeSpeechRemote(text: String, callback: MethodChannel.Result) {
+        // Call the recognizeSpeechRemote method on the PassioSDK instance
+        PassioSDK.instance.recognizeSpeechRemote(text) { speechRecognitionModel ->
+
+            // Map the SpeechRecognitionModel object to a new object
+            val mappedResult =
+                speechRecognitionModel.map { mapFromPassioSpeechRecognitionModel(it) }
+
+            // Return the mapped result using the callback
+            callback.success(mappedResult)
+        }
+    }
+
+    /**
+     * Recognizes an image remotely using the PassioSDK.
+     *
+     * @param bytes The byte array representing the image to recognize.
+     * @param callback The callback to return the recognition result to.
+     */
+    private fun recognizeImageRemote(bytes: ByteArray, callback: MethodChannel.Result) {
+        // Decode the byte array into a bitmap.
+        val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+
+        // Call the recognizeImageRemote method on the PassioSDK instance.
+        PassioSDK.instance.recognizeImageRemote(bitmap) { imageRecognitionModel ->
+            // Map the SpeechRecognitionModel object to a new object.
+            val mappedResult =
+                imageRecognitionModel.map { mapFromPassioAdvisorFoodInfo(it) }
+
+            // Return the mapped result using the callback.
+            callback.success(mappedResult)
+        }
+    }
+
+    private fun startNutritionFactsDetection(events: EventChannel.EventSink) {
+        PassioSDK.instance.startNutritionFactsDetection(
+            object : NutritionFactsRecognitionListener {
+                override fun onRecognitionResult(
+                    nutritionFacts: PassioNutritionFacts?,
+                    text: String
+                ) {
+                    events.success(mapFromNutritionFactsRecognitionListener(nutritionFacts, text));
+                }
+            },
+        );
     }
 }

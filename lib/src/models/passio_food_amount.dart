@@ -3,6 +3,7 @@ import 'nutrition_ai_measurement.dart';
 import 'passio_serving_size.dart';
 import 'passio_serving_unit.dart';
 
+/// Represents the amount of a food item, including selected quantity and unit, serving sizes, and serving units.
 class PassioFoodAmount {
   /// The selected quantity of the food item.
   final double selectedQuantity;

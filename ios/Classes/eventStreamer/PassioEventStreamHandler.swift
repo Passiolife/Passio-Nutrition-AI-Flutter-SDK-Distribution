@@ -22,6 +22,8 @@ class PassioEventStreamHandler: NSObject, FlutterStreamHandler {
             startFoodDetection(args: argMap)
         case "setPassioStatusListener":
             passioSDK.statusDelegate = self
+        case "startNutritionFactsDetection":
+            passioSDK.startNutritionFactsDetection(nutritionfactsDelegate: self) { value in }
         default:
             return FlutterError(code: "method", message: "no method in switch", details: nil)
         }
@@ -38,6 +40,8 @@ class PassioEventStreamHandler: NSObject, FlutterStreamHandler {
             passioSDK.stopFoodDetection()
         case "setPassioStatusListener":
             passioSDK.statusDelegate = nil
+        case "startNutritionFactsDetection":
+            passioSDK.stopFoodDetection()
         default:
             return FlutterError(code: "onCancel", message: "no method in switch", details: nil)
         }
@@ -77,8 +81,7 @@ class PassioEventStreamHandler: NSObject, FlutterStreamHandler {
 extension PassioEventStreamHandler: FoodRecognitionDelegate {
 
     func recognitionResults(candidates: (PassioNutritionAISDK.FoodCandidates)?,
-                            image : UIImage?,
-                            nutritionFacts _: PassioNutritionAISDK.PassioNutritionFacts?) {
+                            image : UIImage?) {
 
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
 
@@ -182,6 +185,17 @@ extension PassioEventStreamHandler: PassioStatusDelegate {
                 events(self.outputConverter.mapFromPassioStatusListener(event: "downloadingError", data: message))
             }
 
+        }
+    }
+}
+
+extension PassioEventStreamHandler: NutritionFactsDelegate {
+    func recognitionResults(nutritionFacts: PassioNutritionFacts?, text: String?) {
+        if let events = eventSink {
+            DispatchQueue.main.async {
+                events(self.outputConverter.mapFromNutritionFactsRecognitionListener(nutritionFacts: nutritionFacts, text: text))
+            }
+            
         }
     }
 }

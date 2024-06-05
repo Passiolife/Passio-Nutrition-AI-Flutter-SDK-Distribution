@@ -38,9 +38,21 @@ class PlatformImage {
       Object.hash(width, height) ^ Object.hashAllUnordered(pixels);
 }
 
-enum IconSize { px90, px180, px360 }
+/// Enumeration for icon sizes.
+enum IconSize {
+  /// Icon size of 90 pixels.
+  px90,
 
+  /// Icon size of 180 pixels.
+  px180,
+
+  /// Icon size of 360 pixels.
+  px360
+}
+
+/// Extension on the `IconSize` enum to provide a URL-friendly size string.
 extension IconSizeExtension on IconSize {
+  /// Returns a URL-friendly string representation of the icon size.
   String get sizeForURL {
     return toString().replaceAll('IconSize.', '').replaceAll('px', '');
   }
@@ -51,8 +63,16 @@ extension IconSizeExtension on IconSize {
 ///
 /// The cachedIcon is a previously downloaded icon for a give food item.
 class PassioFoodIcons {
+  /// The default icon, which is one of five predefined icons based on the
+  /// food item's [PassioIDEntityType].
   final PlatformImage defaultIcon;
+
+  /// A cached icon, which is a previously downloaded icon for a given food item.
   final PlatformImage? cachedIcon;
 
-  PassioFoodIcons(this.defaultIcon, this.cachedIcon);
+  /// Creates a new `PassioFoodIcons` object.
+  const PassioFoodIcons(
+    this.defaultIcon,
+    this.cachedIcon,
+  );
 }

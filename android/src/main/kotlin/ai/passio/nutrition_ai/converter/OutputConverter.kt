@@ -20,6 +20,8 @@ import ai.passio.passiosdk.passiofood.data.measurement.Milliliters
 import ai.passio.passiosdk.passiofood.data.measurement.Unit
 import ai.passio.passiosdk.passiofood.data.measurement.UnitEnergy
 import ai.passio.passiosdk.passiofood.data.measurement.UnitMass
+import ai.passio.passiosdk.passiofood.data.model.PassioAdvisorFoodInfo
+import ai.passio.passiosdk.passiofood.data.model.PassioAdvisorResponse
 import ai.passio.passiosdk.passiofood.data.model.PassioFoodAmount
 import ai.passio.passiosdk.passiofood.data.model.PassioFoodItem
 import ai.passio.passiosdk.passiofood.data.model.PassioFoodMetadata
@@ -28,8 +30,11 @@ import ai.passio.passiosdk.passiofood.data.model.PassioIngredient
 import ai.passio.passiosdk.passiofood.data.model.PassioMealPlan
 import ai.passio.passiosdk.passiofood.data.model.PassioMealPlanItem
 import ai.passio.passiosdk.passiofood.data.model.PassioNutrients
+import ai.passio.passiosdk.passiofood.data.model.PassioResult
 import ai.passio.passiosdk.passiofood.data.model.PassioServingSize
 import ai.passio.passiosdk.passiofood.data.model.PassioServingUnit
+import ai.passio.passiosdk.passiofood.data.model.PassioSpeechRecognitionModel
+import ai.passio.passiosdk.passiofood.nutritionfacts.PassioNutritionFacts
 import android.graphics.Bitmap
 import android.net.Uri
 
@@ -392,7 +397,7 @@ fun mapFromPassioFoodDataInfo(passioFoodDataInfo: PassioFoodDataInfo): Map<Strin
     searchResult["score"] = passioFoodDataInfo.score
     searchResult["scoredName"] = passioFoodDataInfo.scoredName
     searchResult["type"] = passioFoodDataInfo.type
-    searchResult["useShortName"] = passioFoodDataInfo.useShortName
+    searchResult["isShortName"] = passioFoodDataInfo.isShortName
     return searchResult
 }
 
@@ -443,9 +448,116 @@ fun mapFromPassioMealPlanItem(passioMealPlanItem: PassioMealPlanItem): Map<Strin
     // Map individual properties from PassioMealPlanItem object
     map["dayNumber"] = passioMealPlanItem.dayNumber
     map["dayTitle"] = passioMealPlanItem.dayTitle
-    map["meal"] = mapFromPassioFoodDataInfo( passioMealPlanItem.meal)
+    map["meal"] = mapFromPassioFoodDataInfo(passioMealPlanItem.meal)
     map["mealTime"] = passioMealPlanItem.mealTime.mealName
 
     // Return the mapped data
     return map
+}
+
+/**
+ * Maps a PassioSpeechRecognitionModel object to a Map<String, Any?>.
+ *
+ * @param passioSpeechRecognitionModel The PassioSpeechRecognitionModel object to map.
+ * @return A Map<String, Any?> representation of the PassioSpeechRecognitionModel object.
+ */
+fun mapFromPassioSpeechRecognitionModel(passioSpeechRecognitionModel: PassioSpeechRecognitionModel): Map<String, Any?> {
+    return with(passioSpeechRecognitionModel) {
+        mapOf(
+            "action" to action?.name?.lowercase(),
+            "advisorInfo" to mapFromPassioAdvisorFoodInfo(advisorInfo),
+            "date" to date,
+            "mealTime" to mealTime?.mealName
+        )
+    }
+}
+
+/**
+ * Maps a PassioAdvisorFoodInfo object to a Map<String, Any?>.
+ *
+ * @param passioAdvisorFoodInfo The PassioAdvisorFoodInfo object to map.
+ * @return A Map<String, Any?> containing the mapped data.
+ */
+fun mapFromPassioAdvisorFoodInfo(passioAdvisorFoodInfo: PassioAdvisorFoodInfo): Map<String, Any?> {
+    return with(passioAdvisorFoodInfo) {
+        mapOf(
+            // Map the foodDataInfo property, handling the case where it is null.
+            "foodDataInfo" to foodDataInfo?.let { mapFromPassioFoodDataInfo(it) },
+            // Map the remaining properties directly.
+            "portionSize" to portionSize,
+            "recognisedName" to recognisedName,
+            "weightGrams" to weightGrams
+        )
+    }
+}
+
+/**
+ * Maps the result of a nutrition facts recognition operation to a map.
+ *
+ * @param nutritionFacts The recognized nutrition facts, or null if none were found.
+ * @param text The text that was recognized.
+ * @return A map containing the nutrition facts and the recognized text
+ */
+fun mapFromNutritionFactsRecognitionListener(
+    nutritionFacts: PassioNutritionFacts?,
+    text: String
+): Map<String, Any?> {
+    return mapOf("nutritionFacts" to mapFromPassioNutritionFacts(nutritionFacts), "text" to text)
+}
+
+/**
+ * Maps a PassioNutritionFacts object to a map of key-value pairs.
+ *
+ * @param nutritionFacts The PassioNutritionFacts object to map.
+ * @return A map of key-value pairs representing the nutrition facts, or an empty map if nutritionFacts is null.
+ */
+fun mapFromPassioNutritionFacts(nutritionFacts: PassioNutritionFacts?): Map<String, Any?>? {
+    return nutritionFacts?.let {
+        mapOf(
+            "calories" to it.calories,
+            "carbs" to it.carbs,
+            "cholesterol" to it.cholesterol,
+            "fat" to it.fat,
+            "protein" to it.protein,
+            "saturatedFat" to it.saturatedFat,
+            "servingSize" to it.servingSize,
+            "servingSizeQuantity" to it.servingSizeQuantity,
+            "servingSizeUnitName" to it.servingSizeUnitName,
+            "sugarAlcohol" to it.sugarAlcohol,
+            "sugars" to it.sugars,
+            "transFat" to it.transFat,
+        )
+    }
+}
+
+fun mapFromPassioResult(callback: PassioResult<Any>): Map<String, Any?> {
+    val map = mutableMapOf<String, Any?>()
+    when (callback) {
+        is PassioResult.Success -> {
+            map["status"] = "success"
+            map["message"] = null
+            map["value"] =
+                if (callback.value is PassioAdvisorResponse) mapFromPassioAdvisorResponse(callback.value as PassioAdvisorResponse) else null
+        }
+
+        is PassioResult.Error -> {
+            map["status"] = "error"
+            map["message"] = callback.message
+            map["value"] = null
+        }
+    }
+    return map
+}
+
+fun mapFromPassioAdvisorResponse(passioAdvisorResponse: PassioAdvisorResponse): Map<String, Any?> {
+    return with(passioAdvisorResponse) {
+        mapOf(
+            "extractedIngredients" to extractedIngredients?.map { mapFromPassioAdvisorFoodInfo(it) },
+            "markupContent" to markupContent,
+            "messageId" to messageId,
+            "rawContent" to rawContent,
+            "threadId" to threadId,
+            "tools" to tools,
+        )
+    }
 }

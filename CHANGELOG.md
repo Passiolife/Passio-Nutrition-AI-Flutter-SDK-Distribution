@@ -1,3 +1,50 @@
+## 3.1.0
+
+### New Features
+
+#### Nutrition AI Advisor
+* To access the API of the Advisor use ```NutritionAdvisor.instance```
+* The method ```Future<PassioResult<PassioAdvisorResponse>> fetchIngredients(PassioAdvisorResponse response)``` works only with the response from ```sendMessage()```. It returns data if the ```PassioAdvisorResponse``` contains ```tools```.
+```dart
+Future<PassioResult> configure(String key)
+
+Future<PassioResult> initConversation()
+
+Future<PassioResult<PassioAdvisorResponse>> sendMessage(String message)
+
+Future<PassioResult<PassioAdvisorResponse>> sendImage(Uint8List bytes)
+
+Future<PassioResult<PassioAdvisorResponse>> fetchIngredients(PassioAdvisorResponse response)
+```
+
+#### Nutrition Facts Detection
+```dart
+void startNutritionFactsDetection(NutritionFactsRecognitionListener listener)
+
+Future<void> stopNutritionFactsDetection()
+
+abstract interface class NutritionFactsRecognitionListener {
+  void onNutritionFactsRecognized(PassioNutritionFacts? nutritionFacts, String? text);
+}
+```
+
+### Refactored APIs
+* The ```FoodDetectionConfiguration``` object no longer has the detectNutritionFacts parameter.
+
+### Added APIs
+* Added speech recognition API that retrieves a list of recognized foods from the input text query.
+```dart
+Future<List<PassioSpeechRecognitionModel>> recognizeSpeechRemote(String text)
+```
+* Added LLM image detection, that works remotely through Passio's backend.
+```dart
+Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(Uint8List bytes)
+```
+* Added a function to retrieve a PassioFoodItem for a v2 PassioID
+```dart
+Future<PassioFoodItem?> fetchFoodItemLegacy(PassioID passioID)
+```
+
 ## 3.0.3
 
 ### Added APIs

@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nutrition_ai_example/common/util/context_extension.dart';
 import 'package:nutrition_ai_example/const/app_colors.dart';
 import 'package:nutrition_ai_example/const/app_images.dart';
 import 'package:nutrition_ai_example/const/dimens.dart';
 import 'package:nutrition_ai_example/const/styles.dart';
-import 'package:nutrition_ai_example/common/util/context_extension.dart';
 
 class SearchWidget extends StatefulWidget {
-  const SearchWidget({this.searchController, this.onTapCancel, super.key});
+  const SearchWidget({
+    this.searchController,
+    this.onSearch,
+    this.onTapCancel,
+    this.hintText,
+    super.key,
+  });
 
   final TextEditingController? searchController;
+  final Function(String value)? onSearch;
   final VoidCallback? onTapCancel;
+  final String? hintText;
 
   @override
   State<SearchWidget> createState() => _SearchWidgetState();
@@ -35,6 +43,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                 controller: widget.searchController,
                 textInputAction: TextInputAction.search,
                 textCapitalization: TextCapitalization.sentences,
+                onFieldSubmitted: widget.onSearch,
                 autofocus: true,
                 decoration: InputDecoration(
                   prefixIcon: Padding(
@@ -64,7 +73,8 @@ class _SearchWidgetState extends State<SearchWidget> {
                   ),
                   border: InputBorder.none,
                   isDense: true,
-                  hintText: context.localization?.searchFor ?? '',
+                  hintText:
+                      widget.hintText ?? context.localization?.searchFor ?? '',
                   hintStyle: AppStyles.style14
                       .copyWith(color: AppColors.searchHintColor),
                 ),

@@ -1,5 +1,4 @@
 import 'package:get_it/get_it.dart';
-//import 'package:nutrition_ai_example/data/repository/static_nutrition_ai_repository.dart';
 import 'package:nutrition_ai_example/data/repository/nutrition_ai_sdk_repository.dart';
 import 'package:nutrition_ai_example/domain/repository/nutrition_ai_wrapper.dart';
 import 'package:nutrition_ai_example/presentation/food_search/bloc/food_search_bloc.dart';

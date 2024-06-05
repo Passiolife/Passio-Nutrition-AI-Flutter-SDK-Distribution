@@ -13,8 +13,10 @@ class PassioSearchResponse {
   final List<String> alternateNames;
 
   /// Creates a new instance of `PassioSearchResponse`.
-  const PassioSearchResponse(
-      {required this.results, required this.alternateNames});
+  const PassioSearchResponse({
+    required this.results,
+    required this.alternateNames,
+  });
 
   /// Creates a new instance of `PassioSearchResponse` from a JSON map.
   factory PassioSearchResponse.fromJson(Map<String, dynamic> json) =>

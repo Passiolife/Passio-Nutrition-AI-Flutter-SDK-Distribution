@@ -26,30 +26,55 @@ class FoodDetectionConfiguration {
   /// Detection of the front side of a packaged food item.
   final bool detectPackagedFood;
 
-  /// Detection of nutrition facts table.
-  final bool detectNutritionFacts;
-
   /// Defines how often the recognition system processes a frame.
   final FramesPerSecond framesPerSecond;
 
   /// Defines a volume detection mode.
   final VolumeDetectionMode volumeDetectionMode;
 
-  const FoodDetectionConfiguration(
-      {this.detectVisual = true,
-      this.detectBarcodes = false,
-      this.detectPackagedFood = false,
-      this.detectNutritionFacts = false,
-      this.framesPerSecond = FramesPerSecond.two,
-      this.volumeDetectionMode = VolumeDetectionMode.none});
+  /// Constructs a [FoodDetectionConfiguration] with optional parameters.
+  const FoodDetectionConfiguration({
+    this.detectVisual = true,
+    this.detectBarcodes = false,
+    this.detectPackagedFood = false,
+    this.framesPerSecond = FramesPerSecond.two,
+    this.volumeDetectionMode = VolumeDetectionMode.none,
+  });
 }
 
-enum FramesPerSecond { one, two, three, four, max }
+/// Enumeration for the frames per second options.
+enum FramesPerSecond {
+  /// Process one frame per second.
+  one,
 
-enum VolumeDetectionMode { auto, dualWideCamera, none }
+  /// Process two frames per second.
+  two,
+
+  /// Process three frames per second.
+  three,
+
+  /// Process four frames per second.
+  four,
+
+  /// Process frames at the maximum possible rate.
+  max
+}
+
+/// Enumeration for the volume detection mode options.
+enum VolumeDetectionMode {
+  /// Automatic volume detection mode.
+  auto,
+
+  /// Use dual wide cameras for volume detection.
+  dualWideCamera,
+
+  /// No volume detection.
+  none
+}
 
 /// Used as a callback to receive results from analyzing camera frames.
 abstract class FoodRecognitionListener {
+  /// Method called to deliver recognition results.
   void recognitionResults(FoodCandidates? foodCandidates, PlatformImage? image);
 }
 
@@ -86,27 +111,36 @@ class FoodCandidates {
   /// The packaged food candidates if available
   final List<PackagedFoodCandidate>? packagedFoodCandidates;
 
+  /// Constructs a [FoodCandidates] instance.
   FoodCandidates({
     this.barcodeCandidates,
     this.detectedCandidates,
     this.packagedFoodCandidates,
   });
 
+  /// Constructs a [FoodCandidates] from a JSON map.
   factory FoodCandidates.fromJson(Map<String, dynamic> json) {
+    // Parsing barcodeCandidates from the JSON map
+    // Using mapListOfObjectsOptional to handle null or non-existent 'barcodeCandidates' key
     List<BarcodeCandidate>? barcodeCandidates = mapListOfObjectsOptional(
         json['barcodeCandidates'],
         (inMap) => BarcodeCandidate.fromJson(inMap.cast<String, dynamic>()));
 
+    // Parsing detectedCandidates from the JSON map
+    // Using mapListOfObjectsOptional to handle null or non-existent 'detectedCandidate' key
     List<DetectedCandidate>? detectedCandidates = mapListOfObjectsOptional(
         json['detectedCandidate'],
         (inMap) => DetectedCandidate.fromJson(inMap.cast<String, dynamic>()));
 
+    // Parsing packagedFoodCandidates from the JSON map
+    // Using mapListOfObjectsOptional to handle null or non-existent 'packagedFoodCandidates' key
     List<PackagedFoodCandidate>? packagedFoodCandidates =
         mapListOfObjectsOptional(
             json['packagedFoodCandidates'],
             (inMap) =>
                 PackagedFoodCandidate.fromJson(inMap.cast<String, dynamic>()));
 
+    // Returning an instance of FoodCandidates with parsed data
     return FoodCandidates(
       detectedCandidates: detectedCandidates,
       barcodeCandidates: barcodeCandidates,
@@ -149,6 +183,7 @@ class DetectedCandidate {
     this.croppedImage,
   });
 
+  /// Constructs a [DetectedCandidate] from a JSON map.
   factory DetectedCandidate.fromJson(Map<String, dynamic> json) {
     final alternatives =
         mapListOfObjects(json['alternatives'], DetectedCandidate.fromJson);
@@ -182,6 +217,7 @@ class DetectedCandidate {
     );
   }
 
+  /// Compares two `DetectedCandidate` objects for equality.
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -196,6 +232,7 @@ class DetectedCandidate {
         passioID == other.passioID;
   }
 
+  /// Calculates the hash code for this `DetectedCandidate` object.
   @override
   int get hashCode => Object.hash(
         alternatives,
@@ -210,11 +247,16 @@ class DetectedCandidate {
 
 /// Data class that represents the results of the barcode detection process.
 class BarcodeCandidate {
+  /// The detected barcode value.
   final String value;
+
+  /// The bounding box of the detected barcode in the image.
   final Rectangle<double> boundingBox;
 
+  /// Constructs a [BarcodeCandidate] with the provided [value] and [boundingBox].
   const BarcodeCandidate(this.value, this.boundingBox);
 
+  /// Constructs a [BarcodeCandidate] from a JSON map.
   factory BarcodeCandidate.fromJson(Map<String, dynamic> json) {
     List<double> boxArray = json['boundingBox'].cast<double>();
     var boundingBox =
@@ -225,11 +267,19 @@ class BarcodeCandidate {
 
 /// Represents the result of the packaged food detection process.
 class PackagedFoodCandidate {
+  /// The detected packaged food code.
   final PackagedFoodCode packagedFoodCode;
+
+  /// The confidence level of the detection.
   final double confidence;
 
-  const PackagedFoodCandidate(this.packagedFoodCode, this.confidence);
+  /// Constructs a [PackagedFoodCandidate] with the provided [packagedFoodCode] and [confidence].
+  const PackagedFoodCandidate(
+    this.packagedFoodCode,
+    this.confidence,
+  );
 
+  /// Constructs a [PackagedFoodCandidate] from a JSON map.
   factory PackagedFoodCandidate.fromJson(Map<String, dynamic> json) {
     return PackagedFoodCandidate(json['packagedFoodCode'], json['confidence']);
   }
@@ -262,6 +312,7 @@ class AmountEstimate {
     this.weightEstimate,
   });
 
+  /// Creates a `AmountEstimate` instance from a JSON map.
   factory AmountEstimate.fromJson(Map<String, dynamic> json) {
     // Extract estimationQuality from JSON and convert it to EstimationQuality enum
     EstimationQuality? estimationQuality = (json['estimationQuality'] != null)
@@ -292,6 +343,7 @@ class AmountEstimate {
     );
   }
 
+  /// Compares two `AmountEstimate` objects for equality.
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -304,6 +356,7 @@ class AmountEstimate {
         other.weightEstimate == weightEstimate;
   }
 
+  /// Calculates the hash code for this `AmountEstimate` object.
   @override
   int get hashCode => Object.hash(
         estimationQuality.hashCode,
@@ -314,6 +367,35 @@ class AmountEstimate {
       );
 }
 
-enum MoveDirection { away, ok, up, down, around }
+/// Enum representing different move directions.
+enum MoveDirection {
+  /// Indicates moving away.
+  away,
 
-enum EstimationQuality { good, fair, poor, noEstimation }
+  /// Indicates no significant movement.
+  ok,
+
+  /// Indicates moving up.
+  up,
+
+  /// Indicates moving down.
+  down,
+
+  /// Indicates moving around.
+  around
+}
+
+/// Enum representing the quality of an estimation.
+enum EstimationQuality {
+  /// Indicates a good estimation quality.
+  good,
+
+  /// Indicates a fair estimation quality.
+  fair,
+
+  /// Indicates a poor estimation quality.
+  poor,
+
+  /// Indicates that no estimation could be made.
+  noEstimation
+}

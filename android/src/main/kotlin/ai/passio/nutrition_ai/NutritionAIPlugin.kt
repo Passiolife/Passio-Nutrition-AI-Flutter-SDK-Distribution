@@ -19,36 +19,38 @@ class NutritionAIPlugin: FlutterPlugin, ActivityAware {
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
   private lateinit var method : MethodChannel
+  private lateinit var advisorMethod : MethodChannel
+
   private lateinit var detectionChannel: EventChannel
   // Declared a lateinit variable to hold the EventChannel for status updates.
   private lateinit var statusChannel: EventChannel
+  private lateinit var nutritionFactsChannel: EventChannel
+
   private var activity: ActivityPluginBinding? = null
   private var handler: NutritionAIHandler? = null
+  private var advisorHandler: NutritionAdvisorHandler? = null
 
-  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     method = MethodChannel(flutterPluginBinding.binaryMessenger, "nutrition_ai/method")
+    advisorMethod = MethodChannel(flutterPluginBinding.binaryMessenger, "nutrition_advisor/method")
     detectionChannel = EventChannel(flutterPluginBinding.binaryMessenger, "nutrition_ai/event/detection")
     // Initialize the statusChannel with the binary messenger and a unique channel name.
     statusChannel = EventChannel(flutterPluginBinding.binaryMessenger, "nutrition_ai/event/status")
+    nutritionFactsChannel = EventChannel(flutterPluginBinding.binaryMessenger, "nutrition_ai/event/nutritionFact")
 
     flutterPluginBinding.platformViewRegistry
       .registerViewFactory("native-preview-view", NativePreviewFactory())
   }
 
-  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
-    method.setMethodCallHandler(null)
-    detectionChannel.setStreamHandler(null)
-    // Set the stream handler for statusChannel to null, stopping the event stream.
-    statusChannel.setStreamHandler(null)
+  override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+    setStreamHandlers(false)
   }
 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
     activity = binding
     handler = NutritionAIHandler(activity!!.activity)
-    method.setMethodCallHandler(handler)
-    detectionChannel.setStreamHandler(handler)
-    // Set the stream handler for statusChannel to the provided handler, enabling the event stream.
-    statusChannel.setStreamHandler(handler)
+    advisorHandler = NutritionAdvisorHandler(activity!!.activity)
+    setStreamHandlers(true)
   }
 
   override fun onDetachedFromActivityForConfigChanges() {
@@ -60,12 +62,17 @@ class NutritionAIPlugin: FlutterPlugin, ActivityAware {
   }
 
   override fun onDetachedFromActivity() {
-    method.setMethodCallHandler(null)
-    detectionChannel.setStreamHandler(null)
-    // Set the stream handler for statusChannel to null, stopping the event stream.
-    statusChannel.setStreamHandler(null)
+    setStreamHandlers(false)
     handler = null
+    advisorHandler = null
     activity = null
   }
 
+  private fun setStreamHandlers(enable: Boolean) {
+    method.setMethodCallHandler(if (enable) handler else null)
+    advisorMethod.setMethodCallHandler(if (enable) advisorHandler else null)
+    detectionChannel.setStreamHandler(if (enable) handler else null)
+    statusChannel.setStreamHandler(if (enable) handler else null)
+    nutritionFactsChannel.setStreamHandler(if (enable) handler else null)
+  }
 }

@@ -33,3 +33,15 @@ enum PassioMealTime {
   /// Represents snack time.
   snack,
 }
+
+/// Defines different log actions that can be performed.
+enum PassioLogAction {
+  /// Represents adding an item to the log.
+  add,
+
+  /// Represents removing an item from the log.
+  remove,
+
+  /// Represents no action.
+  none,
+}

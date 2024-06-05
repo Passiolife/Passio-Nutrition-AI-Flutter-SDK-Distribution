@@ -3,8 +3,6 @@ import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nutrition_ai/nutrition_ai.dart';
-import 'package:nutrition_ai/src/models/passio_meal_plan.dart';
-import 'package:nutrition_ai/src/models/passio_meal_plan_item.dart';
 import 'package:nutrition_ai/src/nutrition_ai_method_channel.dart';
 import 'package:nutrition_ai/src/nutrition_ai_platform_interface.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
@@ -128,6 +126,68 @@ class MockNutritionAiPlatform
   @override
   Future<PassioFoodItem?> fetchFoodItemForRefCode(String refCode) {
     // TODO: implement fetchFoodItemForRefCode
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PassioFoodItem?> fetchFoodItemLegacy(PassioID passioID) {
+    // TODO: implement fetchFoodItemLegacy
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<PassioSpeechRecognitionModel>> recognizeSpeechRemote(
+      String text) {
+    // TODO: implement recognizeSpeechRemote
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(Uint8List bytes) {
+    // TODO: implement recognizeImageRemote
+    throw UnimplementedError();
+  }
+
+  @override
+  void startNutritionFactsDetection(
+      NutritionFactsRecognitionListener listener) {
+    // TODO: implement startNutritionFactsDetection
+  }
+
+  @override
+  Future<void> stopNutritionFactsDetection() {
+    // TODO: implement stopNutritionFactsDetection
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PassioResult> configure(String key) {
+    // TODO: implement configure
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PassioResult<PassioAdvisorResponse>> fetchIngredients(
+      PassioAdvisorResponse response) {
+    // TODO: implement fetchIngredients
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PassioResult> initConversation() {
+    // TODO: implement initConversation
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PassioResult<PassioAdvisorResponse>> sendImage(Uint8List bytes) {
+    // TODO: implement sendImage
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PassioResult<PassioAdvisorResponse>> sendMessage(String message) {
+    // TODO: implement sendMessage
     throw UnimplementedError();
   }
 }

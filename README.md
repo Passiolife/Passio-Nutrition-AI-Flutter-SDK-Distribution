@@ -242,4 +242,65 @@ class PassioIngredient {
 ## Use the image below to test recognition
 ![passio_recognition_test](./images/passio_recognition_test.jpeg)
 
-<sup>Copyright 2023 Passio Inc</sup>
+## Nutrition AI Advisor
+
+### Configure the Nutrition Advisor and start a conversation
+
+##### Note: Make sure you don't utilize the PassioNutritionAISDK Key. Instead, enter the key you obtained from Passio for NutritionAdvisor.
+
+* Configure the Nutrition Advisor using the license key.
+```dart
+final result = await NutritionAdvisor.instance.configure('your key here');
+switch (result) {
+  case Success():
+    // Configuration succeeded, proceed with initializing the conversation
+    break;
+  case Error():
+    // Handle the configuration error here
+    break;
+}
+```
+
+* Start a new conversation by calling initConversation.
+```dart
+final result = await NutritionAdvisor.instance.initConversation();
+switch (result) {
+  case Success():
+    // Initialization succeeded, the advisor can start accepting messages
+    break;
+  case Error():
+    // Handle the init error here
+    break;
+}
+```
+
+### Send messages to chat with the advisor or images for recognition
+
+1. Send a text message to the advisor
+```dart
+final result = await NutritionAdvisor.instance.sendMessage('Hi! I would like a recipe for a healthy burger!');
+switch (result) {
+  case Success():
+    // Parse the response from result.value
+    break;
+  case Error():
+    // Handle the error that occurred while sending the message
+    break;
+}
+```
+
+2. Use this method to send image to Nutrition Advisor
+```dart
+Uint8List bytes = loadImage();
+final result = await NutritionAdvisor.instance.sendImage(bytes);
+switch (result) {
+  case Success():
+    // The food items are found in imageResult.value.extractedIngredients
+    break;
+  case Error():
+    // Handle the error that occurred while sending the message
+    break;
+}
+```
+
+<sup>Copyright 2024 Passio Inc</sup>

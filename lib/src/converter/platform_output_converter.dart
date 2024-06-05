@@ -1,3 +1,6 @@
+import 'package:nutrition_ai/src/models/passio_advisor_response.dart';
+import 'package:nutrition_ai/src/models/passio_result.dart';
+
 import '../models/platform_image.dart';
 import '../nutrition_ai_configuration.dart';
 
@@ -60,4 +63,18 @@ PassioFoodIcons mapToPlatformImagePair(Map<String, dynamic> inMap) {
   var cachedIcon =
       inMap.ifValueNotNull("cachedIcon", (map) => PlatformImage.fromJson(map));
   return PassioFoodIcons(defaultIcon, cachedIcon);
+}
+
+PassioResult<dynamic> mapToPassioResult(Map<String, dynamic> map) {
+  String status = map["status"];
+  String message = map["message"] ??= '';
+  if (status == "success") {
+    if (map["value"] != null) {
+      return Success<PassioAdvisorResponse>(
+          PassioAdvisorResponse.fromJson(map["value"].cast<String, dynamic>()));
+    }
+    return const Success<VoidType>(VoidType());
+  } else {
+    return Error(message);
+  }
 }
