@@ -28,8 +28,9 @@ public enum CapturingDeviceType : Swift.CaseIterable {
   case builtInDualCamera
   case builtInDualWideCamera
   case builtInTripleCamera
-  public static func supportedDeviceTypes() -> [PassioNutritionAISDK.CapturingDeviceType]
+  public static func supportedDeviceTypes(for position: AVFoundation.AVCaptureDevice.Position = .unspecified, preset: AVFoundation.AVCaptureSession.Preset = .high) -> [PassioNutritionAISDK.CapturingDeviceType]
   public static func defaultCapturing() -> PassioNutritionAISDK.CapturingDeviceType
+  public static func getCapturingDeviceForPhotos(for position: AVFoundation.AVCaptureDevice.Position = .back, preset: AVFoundation.AVCaptureSession.Preset = .photo) -> PassioNutritionAISDK.CapturingDeviceType
   public static func == (a: PassioNutritionAISDK.CapturingDeviceType, b: PassioNutritionAISDK.CapturingDeviceType) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public typealias AllCases = [PassioNutritionAISDK.CapturingDeviceType]
@@ -295,6 +296,7 @@ public struct InflammatoryEffectData : Swift.Codable {
 }
 public typealias NutritionAdvisorStatus = (Swift.Result<Swift.Bool, PassioNutritionAISDK.NetworkError>) -> Swift.Void
 public typealias NutritionAdvisorResponse = (Swift.Result<PassioNutritionAISDK.PassioAdvisorResponse, PassioNutritionAISDK.NetworkError>) -> Swift.Void
+public typealias NutritionAdvisorIngredientsResponse = (Swift.Result<[PassioNutritionAISDK.PassioAdvisorFoodInfo], PassioNutritionAISDK.NetworkError>) -> Swift.Void
 extension Swift.Array {
   public subscript(index: Swift.Int, default defaultValue: @autoclosure () -> Element) -> Element {
     get
@@ -375,8 +377,11 @@ extension Swift.Array {
   @available(iOS 15.0, *)
   public func setMLComputeUnits(units: CoreML.MLComputeUnits)
   public func recognizeSpeechRemote(from text: Swift.String, completion: @escaping ([PassioNutritionAISDK.PassioSpeechRecognitionModel]) -> Swift.Void)
-  public func recognizeImageRemote(image: UIKit.UIImage, resolution: PassioNutritionAISDK.PassioImageResolution = .res_512, completion: @escaping ([PassioNutritionAISDK.PassioAdvisorFoodInfo]) -> Swift.Void)
+  public func recognizeImageRemote(image: UIKit.UIImage, resolution: PassioNutritionAISDK.PassioImageResolution = .res_512, message: Swift.String? = nil, completion: @escaping ([PassioNutritionAISDK.PassioAdvisorFoodInfo]) -> Swift.Void)
   public func detectFoodWithText(image: UIKit.UIImage, detectionConfig: PassioNutritionAISDK.FoodDetectionConfiguration = FoodDetectionConfiguration(), completion: @escaping ((any PassioNutritionAISDK.FoodCandidatesWithText)?) -> Swift.Void)
+  public func fetchHiddenIngredients(foodName: Swift.String, completion: @escaping PassioNutritionAISDK.NutritionAdvisorIngredientsResponse)
+  public func fetchVisualAlternatives(foodName: Swift.String, completion: @escaping PassioNutritionAISDK.NutritionAdvisorIngredientsResponse)
+  public func fetchPossibleIngredients(foodName: Swift.String, completion: @escaping PassioNutritionAISDK.NutritionAdvisorIngredientsResponse)
   @objc deinit
 }
 extension PassioNutritionAISDK.PassioNutritionAI : PassioNutritionAISDK.PassioStatusDelegate {
@@ -387,7 +392,7 @@ extension PassioNutritionAISDK.PassioNutritionAI : PassioNutritionAISDK.PassioSt
   public func passioProcessing(filesLeft: Swift.Int)
 }
 extension PassioNutritionAISDK.PassioNutritionAI {
-  public func getSupportedDevice() -> [PassioNutritionAISDK.CapturingDeviceType]
+  public func getSupportedDevice(for position: AVFoundation.AVCaptureDevice.Position = .unspecified, preset: AVFoundation.AVCaptureSession.Preset = .high) -> [PassioNutritionAISDK.CapturingDeviceType]
   public func setCapturingDevice(capturingDevice: PassioNutritionAISDK.CapturingDeviceType)
 }
 public struct PassioFoodMetadata : Swift.Codable {
@@ -1168,6 +1173,23 @@ public struct PassioAdvisorResponse : Swift.Codable {
   public init(from decoder: any Swift.Decoder) throws
 }
 public struct NAMessage : Swift.Codable {
+  public var threadId: Swift.String
+  public var messageId: Swift.String
+  public var content: Swift.String
+  public var actionResponse: PassioNutritionAISDK.NAActionResponse?
+  public var contentToolHints: [Swift.String]?
+  public init(threadId: Swift.String, messageId: Swift.String, content: Swift.String, actionResponse: PassioNutritionAISDK.NAActionResponse? = nil, contentToolHints: [Swift.String]? = nil)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct NAActionResponse : Swift.Codable {
+  public var messageId: Swift.String?
+  public var name: Swift.String?
+  public var data: Swift.String?
+  public var extractedIngridient: [PassioNutritionAISDK.PassioAdvisorFoodInfo]? {
+    get
+  }
+  public init(messageId: Swift.String? = nil, name: Swift.String? = nil, data: Swift.String? = nil)
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }

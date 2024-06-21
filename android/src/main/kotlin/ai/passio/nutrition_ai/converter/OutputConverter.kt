@@ -534,16 +534,43 @@ fun mapFromPassioResult(callback: PassioResult<Any>): Map<String, Any?> {
     val map = mutableMapOf<String, Any?>()
     when (callback) {
         is PassioResult.Success -> {
+            var resultType: String? = null
+            val result: Any? = when (
+                callback.value) {
+                // If the value is of type PassioAdvisorResponse, map it using mapFromPassioAdvisorResponse.
+                is PassioAdvisorResponse -> {
+                    resultType = "PassioAdvisorResponse"
+                    mapFromPassioAdvisorResponse(callback.value as PassioAdvisorResponse)
+                }
+
+                // If the value is a List, further check the type of the first element to determine if it is a List<PassioAdvisorFoodInfo>.
+                is List<*> -> {
+                    val list = callback.value as List<*>
+                    if (list.isNotEmpty() && list[0] is PassioAdvisorFoodInfo) {
+                        resultType = "PassioAdvisorFoodInfo"
+                        @Suppress("UNCHECKED_CAST")
+                        (list as List<PassioAdvisorFoodInfo>).map { mapFromPassioAdvisorFoodInfo(it) }
+                    } else {
+                        null
+                    }
+                }
+
+                // If the value does not match any expected type, return null.
+                else -> {
+                    null
+                }
+            }
             map["status"] = "success"
             map["message"] = null
-            map["value"] =
-                if (callback.value is PassioAdvisorResponse) mapFromPassioAdvisorResponse(callback.value as PassioAdvisorResponse) else null
+            map["value"] = result
+            map["valueType"] = resultType
         }
 
         is PassioResult.Error -> {
             map["status"] = "error"
             map["message"] = callback.message
             map["value"] = null
+            map["valueType"] = null
         }
     }
     return map

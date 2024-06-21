@@ -435,18 +435,27 @@ struct OutputConverter {
         var map = [String: Any?]()
         switch nutritionAdvisorStatus {
         case .success(let success):
+            var valueType: String? = nil
+            var value: Any? = nil
+            
+            if success is PassioAdvisorResponse {
+                valueType = "PassioAdvisorResponse"
+                value = mapFromPassioAdvisorResponse(passioAdvisorResponse: success as! PassioAdvisorResponse)
+            } else if success is [PassioAdvisorFoodInfo] {
+                valueType = "PassioAdvisorFoodInfo"
+                value = (success as! [PassioAdvisorFoodInfo]).map { mapFromPassioAdvisorFoodInfo(passioAdvisorFoodInfo: $0) }
+            }
+            
             map["status"] = "success"
             map["message"] = nil
-            map["value"] = if success is PassioAdvisorResponse {
-                mapFromPassioAdvisorResponse(passioAdvisorResponse: success as! PassioAdvisorResponse)
-            } else {
-                nil
-            }
+            map["value"] = value
+            map["valueType"] = valueType
             break
         case .failure(let error):
             map["status"] = "error"
             map["message"] = error.errorMessage
             map["value"] = nil
+            map["valueType"] = nil
             break
         }
         return map

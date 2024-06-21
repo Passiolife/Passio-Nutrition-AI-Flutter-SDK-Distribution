@@ -13,6 +13,7 @@ import 'package:nutrition_ai_example/domain/entity/app_secret/app_secret.dart';
 import 'package:nutrition_ai_example/inject/injector.dart';
 import 'package:nutrition_ai_example/presentation/advisor_image/advisor_image_page.dart';
 import 'package:nutrition_ai_example/presentation/camera_recognition/camera_recognition_page.dart';
+import 'package:nutrition_ai_example/presentation/food_analysis/food_analysis_page.dart';
 import 'package:nutrition_ai_example/presentation/food_search/food_search_page.dart';
 import 'package:nutrition_ai_example/presentation/meal_plan/meal_plan_page.dart';
 import 'package:nutrition_ai_example/presentation/recognize_speech/recognize_speech_page.dart';
@@ -70,6 +71,7 @@ Future<void> main() async {
               Routes.advisorMessagePage: (context) =>
                   const AdvisorMessagePage(),
               Routes.advisorImagePage: (context) => const AdvisorImagePage(),
+              Routes.foodAnalysisPage: (context) => const FoodAnalysisPage(),
             },
             home: const MyApp(),
           );
@@ -232,6 +234,15 @@ class _MyAppState extends State<MyApp> {
                       Navigator.pushNamed(context, Routes.nutritionFactsPage);
                     },
                     child: const Text('Nutrition Facts'),
+                  )
+                : const SizedBox(),
+            const SizedBox(height: 20), // Adds space of 20 units
+            _sdkIsReady
+                ? ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.foodAnalysisPage);
+                    },
+                    child: const Text('Food Analysis'),
                   )
                 : const SizedBox(),
             const SizedBox(height: 20), // Adds space of 20 units

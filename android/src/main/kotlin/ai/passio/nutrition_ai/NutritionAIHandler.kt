@@ -8,6 +8,7 @@ import ai.passio.passiosdk.passiofood.FoodCandidates
 import ai.passio.passiosdk.passiofood.FoodRecognitionListener
 import ai.passio.passiosdk.passiofood.NutritionFactsRecognitionListener
 import ai.passio.passiosdk.passiofood.PassioID
+import ai.passio.passiosdk.passiofood.PassioImageResolution
 import ai.passio.passiosdk.passiofood.PassioMealTime
 import ai.passio.passiosdk.passiofood.PassioSDK
 import ai.passio.passiosdk.passiofood.PassioStatusListener
@@ -70,7 +71,14 @@ class NutritionAIHandler(
             "fetchFoodItemForRefCode" -> fetchFoodItemForRefCode(call.arguments as String, result)
             "fetchFoodItemLegacy" -> fetchFoodItemLegacy(call.arguments as String, result)
             "recognizeSpeechRemote" -> recognizeSpeechRemote(call.arguments as String, result)
-            "recognizeImageRemote" -> recognizeImageRemote(call.arguments as ByteArray, result)
+            "recognizeImageRemote" -> recognizeImageRemote(
+                call.arguments as HashMap<String, Any>,
+                result
+            )
+
+            "fetchHiddenIngredients" -> fetchHiddenIngredients(call.arguments as String, result)
+            "fetchVisualAlternatives" -> fetchVisualAlternatives(call.arguments as String, result)
+            "fetchPossibleIngredients" -> fetchPossibleIngredients(call.arguments as String, result)
         }
     }
 
@@ -507,15 +515,22 @@ class NutritionAIHandler(
     /**
      * Recognizes an image remotely using the PassioSDK.
      *
-     * @param bytes The byte array representing the image to recognize.
+     * @param args A map containing the byte array of the image and the desired resolution as a string.
      * @param callback The callback to return the recognition result to.
      */
-    private fun recognizeImageRemote(bytes: ByteArray, callback: MethodChannel.Result) {
+    private fun recognizeImageRemote(args: Map<String, Any>, callback: MethodChannel.Result) {
+        // Extract the byte array from the arguments.
+        val bytes = args["bytes"] as ByteArray
+
+        // Extract the resolution string from the arguments and convert it to the corresponding enum.
+        val resolution = args["resolution"] as String
+        val resolutionEnum = passioImageResolutionFromString(resolution)
+
         // Decode the byte array into a bitmap.
         val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
 
         // Call the recognizeImageRemote method on the PassioSDK instance.
-        PassioSDK.instance.recognizeImageRemote(bitmap) { imageRecognitionModel ->
+        PassioSDK.instance.recognizeImageRemote(bitmap, resolutionEnum) { imageRecognitionModel ->
             // Map the SpeechRecognitionModel object to a new object.
             val mappedResult =
                 imageRecognitionModel.map { mapFromPassioAdvisorFoodInfo(it) }
@@ -536,5 +551,50 @@ class NutritionAIHandler(
                 }
             },
         );
+    }
+
+    /**
+     * Fetches hidden ingredients for a given food item using the PassioSDK.
+     *
+     * @param foodName The name of the food item for which hidden ingredients are to be fetched.
+     * @param callback The callback to return the result of the fetch operation.
+     */
+    private fun fetchHiddenIngredients(foodName: String, callback: MethodChannel.Result) {
+        // Calls the fetchHiddenIngredients method on the PassioSDK instance with the provided food name.
+        PassioSDK.instance.fetchHiddenIngredients(foodName) { result ->
+            // Maps the result from the PassioSDK to a new object using mapFromPassioResult.
+            // Returns the mapped result using the callback.
+            callback.success(mapFromPassioResult(result))
+        }
+    }
+
+    /**
+     * Fetches visual alternatives for a given food item using the PassioSDK.
+     *
+     * @param foodName The name of the food item for which visual alternatives are to be fetched.
+     * @param callback The callback to return the result of the fetch operation.
+     */
+    private fun fetchVisualAlternatives(foodName: String, callback: MethodChannel.Result) {
+        // Calls the fetchVisualAlternatives method on the PassioSDK instance with the provided food name.
+        PassioSDK.instance.fetchVisualAlternatives(foodName) { result ->
+            // Maps the result from the PassioSDK to a new object using mapFromPassioResult.
+            // Returns the mapped result using the callback.
+            callback.success(mapFromPassioResult(result))
+        }
+    }
+
+    /**
+     * Fetches possible ingredients for a given food item using the PassioSDK.
+     *
+     * @param foodName The name of the food item for which possible ingredients are to be fetched.
+     * @param callback The callback to return the result of the fetch operation.
+     */
+    private fun fetchPossibleIngredients(foodName: String, callback: MethodChannel.Result) {
+        // Calls the fetchPossibleIngredients method on the PassioSDK instance with the provided food name.
+        PassioSDK.instance.fetchPossibleIngredients(foodName) { result ->
+            // Maps the result from the PassioSDK to a new object using mapFromPassioResult.
+            // Returns the mapped result using the callback.
+            callback.success(mapFromPassioResult(result))
+        }
     }
 }

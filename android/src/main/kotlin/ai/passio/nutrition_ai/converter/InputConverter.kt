@@ -5,6 +5,7 @@ import ai.passio.passiosdk.core.icons.IconSize
 import ai.passio.passiosdk.passiofood.FoodDetectionConfiguration
 import ai.passio.passiosdk.passiofood.PassioFoodDataInfo
 import ai.passio.passiosdk.passiofood.PassioID
+import ai.passio.passiosdk.passiofood.PassioImageResolution
 import ai.passio.passiosdk.passiofood.PassioSDK
 import ai.passio.passiosdk.passiofood.PassioSearchNutritionPreview
 import ai.passio.passiosdk.passiofood.data.model.PassioAdvisorFoodInfo
@@ -139,4 +140,13 @@ fun mapToPassioAdvisorResponse(map: Map<String, Any?>): PassioAdvisorResponse {
         tools,
         extractedIngredients
     )
+}
+
+fun passioImageResolutionFromString(resolutionString: String) : PassioImageResolution {
+    return when (resolutionString) {
+        "res_512" -> PassioImageResolution.RES_512
+        "res_1080" -> PassioImageResolution.RES_1080
+        "full" -> PassioImageResolution.FULL
+        else -> throw java.lang.IllegalArgumentException("No known PassioImageResolution: $resolutionString")
+    }
 }

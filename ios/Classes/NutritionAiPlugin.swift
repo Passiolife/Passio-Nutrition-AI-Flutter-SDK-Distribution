@@ -126,6 +126,19 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             recognizeImageRemote(arguments: call.arguments) { FlutterResult in
                 result(FlutterResult)
             }
+        case "fetchHiddenIngredients":
+            fetchHiddenIngredients(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
+        case "fetchVisualAlternatives":
+            fetchVisualAlternatives(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
+        case "fetchPossibleIngredients":
+            fetchPossibleIngredients(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
+            
         default:
             print("call.method = \(call.method) not in the list")
             result(FlutterMethodNotImplemented)
@@ -451,21 +464,67 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
     }
     
     func recognizeImageRemote(arguments: Any?, result: @escaping FlutterResult) {
-        if let bytes = arguments as? FlutterStandardTypedData {
-            guard let image = UIImage(data: bytes.data) else {
-                result(nil)
-                return
-            }
-            passioSDK.recognizeImageRemote(image: image) { imageRecognitionModel in
-                let resultList = imageRecognitionModel.map {
-                    self.outputConverter.mapFromPassioAdvisorFoodInfo(passioAdvisorFoodInfo: $0)
-                }
-                result(resultList)
-            }
-        } else {
+        guard let args = arguments as? [String: Any],
+              let bytes = args["bytes"] as? FlutterStandardTypedData,
+              let resolution = args["resolution"] as? String else {
             result(nil)
+            return
+        }
+        let resolutionEnum = getPassioImageResolution(res: resolution)
+        guard let image = UIImage(data: bytes.data) else {
+            result(nil)
+            return
+        }
+        passioSDK.recognizeImageRemote(image: image, resolution: resolutionEnum) { imageRecognitionModel in
+            let resultList = imageRecognitionModel.map {
+                self.outputConverter.mapFromPassioAdvisorFoodInfo(passioAdvisorFoodInfo: $0)
+            }
+            result(resultList)
+        }
+        
+    }
+    
+    private func fetchHiddenIngredients(arguments: Any?, result: @escaping FlutterResult) {
+        guard let foodName = arguments as? String else {
+            result(FlutterError(code: "ERRRO", message: "foodName must not be null or empty.", details: nil))
+            return
+        }
+    
+        passioSDK.fetchHiddenIngredients(foodName: foodName) { callback in
+            result(self.outputConverter.mapFromPassioResult(nutritionAdvisorStatus: callback))
+        }
+    }
+    
+    private func fetchVisualAlternatives(arguments: Any?, result: @escaping FlutterResult) {
+        guard let foodName = arguments as? String else {
+            result(FlutterError(code: "ERRRO", message: "foodName must not be null or empty.", details: nil))
+            return
+        }
+    
+        passioSDK.fetchVisualAlternatives(foodName: foodName) { callback in
+            result(self.outputConverter.mapFromPassioResult(nutritionAdvisorStatus: callback))
+        }
+    }
+    
+    private func fetchPossibleIngredients(arguments: Any?, result: @escaping FlutterResult) {
+        guard let foodName = arguments as? String else {
+            result(FlutterError(code: "ERRRO", message: "foodName must not be null or empty.", details: nil))
+            return
+        }
+    
+        passioSDK.fetchPossibleIngredients(foodName: foodName) { callback in
+            result(self.outputConverter.mapFromPassioResult(nutritionAdvisorStatus: callback))
+        }
+    }
+    
+    
+    
+    private func getPassioImageResolution(res: String) -> PassioImageResolution {
+        return switch res {
+        case "full": .full
+        case "res_1080": .res_1080
+        case "res_512": .res_512
+        default: .res_512
         }
     }
 }
-
-

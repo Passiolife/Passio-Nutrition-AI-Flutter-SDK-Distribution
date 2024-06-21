@@ -150,6 +150,8 @@ class PassioFoodItem {
         .reduce((value, element) => (value + element) as UnitMass);
   }
 
+  /// Checks if any ingredient has an open food license.
+  /// Returns the license if found, otherwise returns null.
   String? isOpenFood() {
     for (var ingredient in ingredients) {
       if (ingredient.metadata.openFoodLicense() != null) {

@@ -1,3 +1,33 @@
+## 3.1.1
+
+### Added APIs
+
+* Added ```PassioImageResolution resolution``` as a parameter of the ```recognizeImageRemote``` function. This enables the caller to set the target resolution of the image uploaded to the server. Smaller resolutions will result in faster response times, while higher resolutions should provide more accurate results.
+
+```dart
+enum PassioImageResolution {
+  res_512,
+  res_1080,
+  full,
+}
+```
+
+* Added a function to retrieve possible hidden ingredients for a given food name.
+```dart
+Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchHiddenIngredients(String foodName)
+```
+
+* Added a function to retrieve possible visual alternatives for a given food name.
+```dart
+Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchVisualAlternatives(String foodName)
+```
+
+* Added a function to retrieve possible ingredients if a more complex food for a given food name.
+```dart
+Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchPossibleIngredients(String foodName)
+```
+
+
 ## 3.1.0
 
 ### New Features

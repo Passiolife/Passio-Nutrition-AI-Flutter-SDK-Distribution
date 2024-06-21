@@ -434,10 +434,15 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
 
   @override
   Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(
-      Uint8List bytes) async {
+      Uint8List bytes, PassioImageResolution resolution) async {
+    // Prepare arguments for method call
+    var args = {'bytes': bytes, 'resolution': resolution.name};
+
     // Call the platform method to perform remote image recognition.
     var responseList = await methodChannel.invokeMethod<List<Object?>>(
-        'recognizeImageRemote', bytes);
+      'recognizeImageRemote',
+      args,
+    );
 
     // Check if the response list is null.
     if (responseList == null) {
@@ -558,6 +563,57 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
               .cast<String, dynamic>();
       return mapToPassioResult(responseMap)
           as PassioResult<PassioAdvisorResponse>;
+    } on PlatformException catch (e) {
+      return Error(e.message ?? '');
+    } on Exception catch (e) {
+      return Error(e.toString());
+    }
+  }
+
+  @override
+  Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchHiddenIngredients(
+      String foodName) async {
+    try {
+      Map<String, dynamic> responseMap = (await methodChannel.invokeMethod(
+              'fetchHiddenIngredients', foodName))!
+          .cast<String, dynamic>();
+
+      return mapToPassioResult(responseMap)
+          as PassioResult<List<PassioAdvisorFoodInfo>>;
+    } on PlatformException catch (e) {
+      return Error(e.message ?? '');
+    } on Exception catch (e) {
+      return Error(e.toString());
+    }
+  }
+
+  @override
+  Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchVisualAlternatives(
+      String foodName) async {
+    try {
+      Map<String, dynamic> responseMap = (await methodChannel.invokeMethod(
+              'fetchVisualAlternatives', foodName))!
+          .cast<String, dynamic>();
+
+      return mapToPassioResult(responseMap)
+          as PassioResult<List<PassioAdvisorFoodInfo>>;
+    } on PlatformException catch (e) {
+      return Error(e.message ?? '');
+    } on Exception catch (e) {
+      return Error(e.toString());
+    }
+  }
+
+  @override
+  Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchPossibleIngredients(
+      String foodName) async {
+    try {
+      Map<String, dynamic> responseMap = (await methodChannel.invokeMethod(
+              'fetchPossibleIngredients', foodName))!
+          .cast<String, dynamic>();
+
+      return mapToPassioResult(responseMap)
+          as PassioResult<List<PassioAdvisorFoodInfo>>;
     } on PlatformException catch (e) {
       return Error(e.message ?? '');
     } on Exception catch (e) {

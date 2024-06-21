@@ -143,7 +143,8 @@ class MockNutritionAiPlatform
   }
 
   @override
-  Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(Uint8List bytes) {
+  Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(
+      Uint8List bytes, PassioImageResolution imageResolution) {
     // TODO: implement recognizeImageRemote
     throw UnimplementedError();
   }
@@ -188,6 +189,27 @@ class MockNutritionAiPlatform
   @override
   Future<PassioResult<PassioAdvisorResponse>> sendMessage(String message) {
     // TODO: implement sendMessage
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchHiddenIngredients(
+      String foodName) {
+    // TODO: implement fetchHiddenIngredients
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchPossibleIngredients(
+      String foodName) {
+    // TODO: implement fetchPossibleIngredients
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchVisualAlternatives(
+      String foodName) {
+    // TODO: implement fetchVisualAlternatives
     throw UnimplementedError();
   }
 }

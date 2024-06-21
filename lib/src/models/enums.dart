@@ -45,3 +45,15 @@ enum PassioLogAction {
   /// Represents no action.
   none,
 }
+
+/// Represents different image resolution options.
+enum PassioImageResolution {
+  /// 512x512 resolution.
+  res_512,
+
+  /// 1080x1080 resolution.
+  res_1080,
+
+  /// Full resolution, using the original image size.
+  full,
+}

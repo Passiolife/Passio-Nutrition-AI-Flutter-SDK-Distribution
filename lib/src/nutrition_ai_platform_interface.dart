@@ -142,8 +142,10 @@ abstract class NutritionAIPlatform extends PlatformInterface {
     throw UnimplementedError('recognizeSpeechRemote(String text)');
   }
 
-  Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(Uint8List bytes) {
-    throw UnimplementedError('recognizeImageRemote(Uint8List bytes)');
+  Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(
+      Uint8List bytes, PassioImageResolution resolution) {
+    throw UnimplementedError(
+        'recognizeImageRemote(Uint8List bytes, PassioImageResolution resolution)');
   }
 
   void startNutritionFactsDetection(
@@ -176,5 +178,20 @@ abstract class NutritionAIPlatform extends PlatformInterface {
       PassioAdvisorResponse response) {
     throw UnimplementedError(
         'fetchIngredients(PassioAdvisorResponse response)');
+  }
+
+  Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchHiddenIngredients(
+      String foodName) async {
+    throw UnimplementedError('fetchHiddenIngredients(String foodName)');
+  }
+
+  Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchVisualAlternatives(
+      String foodName) async {
+    throw UnimplementedError('fetchVisualAlternatives(String foodName)');
+  }
+
+  Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchPossibleIngredients(
+      String foodName) async {
+    throw UnimplementedError('fetchPossibleIngredients(String foodName)');
   }
 }

@@ -10,6 +10,7 @@ import 'models/passio_food_data_info.dart';
 import 'models/passio_food_item.dart';
 import 'models/passio_meal_plan.dart';
 import 'models/passio_meal_plan_item.dart';
+import 'models/passio_result.dart';
 import 'models/passio_search_response.dart';
 import 'models/passio_speech_recognition_model.dart';
 import 'models/platform_image.dart';
@@ -259,8 +260,9 @@ class NutritionAI {
   ///
   /// Returns:
   /// - A [Future] that completes with a [List] of [PassioAdvisorFoodInfo] containing the recognition results.
-  Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(Uint8List bytes) {
-    return NutritionAIPlatform.instance.recognizeImageRemote(bytes);
+  Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(Uint8List bytes,
+      {PassioImageResolution resolution = PassioImageResolution.res_512}) {
+    return NutritionAIPlatform.instance.recognizeImageRemote(bytes, resolution);
   }
 
   /// Starts the nutrition facts detection process.
@@ -284,5 +286,50 @@ class NutritionAI {
   /// - A [Future] that completes when the nutrition facts detection has been successfully stopped.
   Future<void> stopNutritionFactsDetection() async {
     return NutritionAIPlatform.instance.stopNutritionFactsDetection();
+  }
+
+  /// Fetches hidden ingredients for a given food item.
+  ///
+  /// This function interacts with the NutritionAIPlatform instance to fetch hidden ingredients
+  /// for the specified [foodName] asynchronously.
+  ///
+  /// Parameters:
+  /// - [foodName]: The name of the food item for which hidden ingredients are to be fetched.
+  ///
+  /// Returns:
+  /// - A [Future] that resolves to a PassioResult containing the hidden ingredients.
+  Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchHiddenIngredients(
+      String foodName) async {
+    return NutritionAIPlatform.instance.fetchHiddenIngredients(foodName);
+  }
+
+  /// Fetches visual alternatives for a given food item.
+  ///
+  /// This function interacts with the NutritionAIPlatform instance to fetch visual alternatives
+  /// for the specified [foodName] asynchronously.
+  ///
+  /// Parameters:
+  /// - [foodName]: The name of the food item for which visual alternatives are to be fetched.
+  ///
+  /// Returns:
+  /// - A [Future] that resolves to a PassioResult containing the visual alternatives.
+  Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchVisualAlternatives(
+      String foodName) async {
+    return NutritionAIPlatform.instance.fetchVisualAlternatives(foodName);
+  }
+
+  /// Fetches possible ingredients for a given food item.
+  ///
+  /// This function interacts with the NutritionAIPlatform instance to fetch possible ingredients
+  /// for the specified [foodName] asynchronously.
+  ///
+  /// Parameters:
+  /// - [foodName]: The name of the food item for which possible ingredients are to be fetched.
+  ///
+  /// Returns:
+  /// - A [Future] that resolves to a PassioResult containing the possible ingredients.
+  Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchPossibleIngredients(
+      String foodName) async {
+    return NutritionAIPlatform.instance.fetchPossibleIngredients(foodName);
   }
 }

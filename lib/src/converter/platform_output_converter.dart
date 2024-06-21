@@ -1,6 +1,7 @@
 import 'package:nutrition_ai/src/models/passio_advisor_response.dart';
 import 'package:nutrition_ai/src/models/passio_result.dart';
 
+import '../models/passio_advisor_food_info.dart';
 import '../models/platform_image.dart';
 import '../nutrition_ai_configuration.dart';
 
@@ -69,9 +70,22 @@ PassioResult<dynamic> mapToPassioResult(Map<String, dynamic> map) {
   String status = map["status"];
   String message = map["message"] ??= '';
   if (status == "success") {
-    if (map["value"] != null) {
-      return Success<PassioAdvisorResponse>(
-          PassioAdvisorResponse.fromJson(map["value"].cast<String, dynamic>()));
+    final value = map["value"];
+    final valueType = map["valueType"];
+    if (value != null) {
+      if (value is Map) {
+        if (valueType == "PassioAdvisorResponse") {
+          final advisorResponse = PassioAdvisorResponse.fromJson(
+              map["value"].cast<String, dynamic>());
+          return Success<PassioAdvisorResponse>(advisorResponse);
+        }
+      } else if (value is List) {
+        if (valueType == "PassioAdvisorFoodInfo") {
+          final list = mapListOfObjects(
+              value, (inMap) => PassioAdvisorFoodInfo.fromJson(inMap));
+          return Success<List<PassioAdvisorFoodInfo>>(list);
+        }
+      }
     }
     return const Success<VoidType>(VoidType());
   } else {
