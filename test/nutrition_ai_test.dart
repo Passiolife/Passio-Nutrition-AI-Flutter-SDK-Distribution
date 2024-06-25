@@ -143,8 +143,8 @@ class MockNutritionAiPlatform
   }
 
   @override
-  Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(
-      Uint8List bytes, PassioImageResolution imageResolution) {
+  Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(Uint8List bytes,
+      {required PassioImageResolution resolution, String? message}) {
     // TODO: implement recognizeImageRemote
     throw UnimplementedError();
   }

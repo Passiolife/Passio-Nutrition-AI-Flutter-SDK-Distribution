@@ -470,18 +470,18 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             result(nil)
             return
         }
+        let message = args["message"] as? String
         let resolutionEnum = getPassioImageResolution(res: resolution)
         guard let image = UIImage(data: bytes.data) else {
             result(nil)
             return
         }
-        passioSDK.recognizeImageRemote(image: image, resolution: resolutionEnum) { imageRecognitionModel in
+        passioSDK.recognizeImageRemote(image: image, resolution: resolutionEnum, message: message) { imageRecognitionModel in
             let resultList = imageRecognitionModel.map {
                 self.outputConverter.mapFromPassioAdvisorFoodInfo(passioAdvisorFoodInfo: $0)
             }
             result(resultList)
         }
-        
     }
     
     private func fetchHiddenIngredients(arguments: Any?, result: @escaping FlutterResult) {
@@ -516,8 +516,6 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             result(self.outputConverter.mapFromPassioResult(nutritionAdvisorStatus: callback))
         }
     }
-    
-    
     
     private func getPassioImageResolution(res: String) -> PassioImageResolution {
         return switch res {

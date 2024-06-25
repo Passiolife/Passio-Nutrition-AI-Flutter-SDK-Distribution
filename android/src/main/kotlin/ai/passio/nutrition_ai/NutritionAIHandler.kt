@@ -526,11 +526,14 @@ class NutritionAIHandler(
         val resolution = args["resolution"] as String
         val resolutionEnum = passioImageResolutionFromString(resolution)
 
+        // Extract the optional message from the arguments.
+        val message = args["message"] as String?
+
         // Decode the byte array into a bitmap.
         val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
 
         // Call the recognizeImageRemote method on the PassioSDK instance.
-        PassioSDK.instance.recognizeImageRemote(bitmap, resolutionEnum) { imageRecognitionModel ->
+        PassioSDK.instance.recognizeImageRemote(bitmap, resolutionEnum, message) { imageRecognitionModel ->
             // Map the SpeechRecognitionModel object to a new object.
             val mappedResult =
                 imageRecognitionModel.map { mapFromPassioAdvisorFoodInfo(it) }

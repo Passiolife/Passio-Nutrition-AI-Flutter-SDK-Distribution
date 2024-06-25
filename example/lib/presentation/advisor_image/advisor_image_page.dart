@@ -34,6 +34,13 @@ class _AdvisorImagePageState extends State<AdvisorImagePage>
   final TextEditingController _messageController =
       TextEditingController(text: 'Banana Recipe');
 
+  // Listener for app lifecycle changes
+  AppLifecycleListener? _lifecycleListener;
+
+  // Instance of PermissionManagerUtility to handle permissions
+  final PermissionManagerUtility _permissionManager =
+      PermissionManagerUtility();
+
   @override
   void initState() {
     _bloc.add(const DoInitConversionEvent());

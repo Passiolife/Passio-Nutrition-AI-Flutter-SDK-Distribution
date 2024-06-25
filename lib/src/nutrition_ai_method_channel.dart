@@ -433,10 +433,14 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
   }
 
   @override
-  Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(
-      Uint8List bytes, PassioImageResolution resolution) async {
+  Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(Uint8List bytes,
+      {required PassioImageResolution resolution, String? message}) async {
     // Prepare arguments for method call
-    var args = {'bytes': bytes, 'resolution': resolution.name};
+    var args = {
+      'bytes': bytes,
+      'resolution': resolution.name,
+      'message': message
+    };
 
     // Call the platform method to perform remote image recognition.
     var responseList = await methodChannel.invokeMethod<List<Object?>>(

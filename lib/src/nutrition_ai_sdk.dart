@@ -257,12 +257,16 @@ class NutritionAI {
   ///
   /// Parameters:
   /// - [bytes]: The byte data of the image to be recognized.
+  /// - [resolution]: The resolution at which the image should be processed. Default is [PassioImageResolution.res_512].
+  /// - [message]: An optional message providing additional context or information about the image.
   ///
   /// Returns:
   /// - A [Future] that completes with a [List] of [PassioAdvisorFoodInfo] containing the recognition results.
   Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(Uint8List bytes,
-      {PassioImageResolution resolution = PassioImageResolution.res_512}) {
-    return NutritionAIPlatform.instance.recognizeImageRemote(bytes, resolution);
+      {PassioImageResolution resolution = PassioImageResolution.res_512,
+      String? message}) {
+    return NutritionAIPlatform.instance
+        .recognizeImageRemote(bytes, resolution: resolution, message: message);
   }
 
   /// Starts the nutrition facts detection process.

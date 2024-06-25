@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:device_info_plus/device_info_plus.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nutrition_ai/nutrition_ai.dart';
-import 'package:nutrition_ai_example/util/permission_manager_utility.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 part 'recognize_image_event.dart';
 part 'recognize_image_state.dart';
@@ -20,33 +18,11 @@ class RecognizeImageBloc
 
   Future _handleDoImagePickEvent(
       DoImagePickEvent event, Emitter<RecognizeImageState> emit) async {
-    /// Here we are checking is Android Device and it is Lower than Android 13.
-    bool isLowerAndroidVersion = Platform.isAndroid &&
-        (await DeviceInfoPlugin().androidInfo).version.sdkInt <= 32;
+    /// Open the appropriate source with [ImagePicker].
+    final XFile? image = await ImagePicker().pickImage(source: event.source);
 
-    try {
-      await PermissionManagerUtility().request(
-        (event.source == ImageSource.gallery)
-            ? (isLowerAndroidVersion)
-                ? Permission.storage
-                : Permission.photos
-            : Permission.camera,
-        onUpdateStatus: (Permission? permission) async {
-          if (((await permission?.isGranted) ?? false) ||
-              (await permission?.isLimited ?? false)) {
-            /// Open the appropriate source with [ImagePicker].
-            final XFile? image =
-                await ImagePicker().pickImage(source: event.source);
-
-            if (image != null && (image.path.isNotEmpty)) {
-              add(DoOnImageSelectEvent(image: image, source: event.source));
-            }
-          }
-        },
-      );
-    } on Exception catch (e) {
-      emit(OnSelectImageLoadingState(isLoading: false));
-      emit(OnSelectImageFailureState(message: 'Failed to pick image: $e'));
+    if (image != null && (image.path.isNotEmpty)) {
+      add(DoOnImageSelectEvent(image: image, source: event.source));
     }
   }
 

@@ -27,7 +27,7 @@ class _AdvisorMessagePageState extends State<AdvisorMessagePage> {
   final _bloc = AdvisorMessageBloc();
 
   final TextEditingController _messageController =
-      TextEditingController(text: 'Banana');
+      TextEditingController(text: '');
 
   bool _isLoadingIngredients = false;
   List<PassioAdvisorFoodInfo>? _ingredients;

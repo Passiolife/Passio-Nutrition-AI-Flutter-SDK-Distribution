@@ -142,8 +142,8 @@ abstract class NutritionAIPlatform extends PlatformInterface {
     throw UnimplementedError('recognizeSpeechRemote(String text)');
   }
 
-  Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(
-      Uint8List bytes, PassioImageResolution resolution) {
+  Future<List<PassioAdvisorFoodInfo>> recognizeImageRemote(Uint8List bytes,
+      {required PassioImageResolution resolution, String? message}) {
     throw UnimplementedError(
         'recognizeImageRemote(Uint8List bytes, PassioImageResolution resolution)');
   }

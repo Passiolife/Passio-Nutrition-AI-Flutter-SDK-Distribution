@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -10,6 +11,7 @@ import 'package:nutrition_ai_example/const/app_colors.dart';
 import 'package:nutrition_ai_example/const/dimens.dart';
 import 'package:nutrition_ai_example/util/permission_manager_utility.dart';
 import 'package:nutrition_ai_example/util/snackbar_extension.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../common/passio_image_widget.dart';
 import 'bloc/recognize_image_bloc.dart';
@@ -34,9 +36,35 @@ class _RecognizeImagePageState extends State<RecognizeImagePage>
 
   final List<PassioAdvisorFoodInfo> result = [];
 
+  // Listener for app lifecycle changes
+  AppLifecycleListener? _lifecycleListener;
+
+  // Instance of PermissionManagerUtility to handle permissions
+  final PermissionManagerUtility _permissionManager =
+      PermissionManagerUtility();
+
+  @override
+  void initState() {
+    _lifecycleListener = AppLifecycleListener(
+      // Callback function triggered on app lifecycle state change
+      onStateChange: (state) {
+        // Call permission manager to handle app lifecycle state change
+        _permissionManager.didChangeAppLifecycleState(state);
+      },
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _bloc.close();
+    _lifecycleListener?.dispose();
+    super.dispose();
+  }
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    PermissionManagerUtility().didChangeAppLifecycleState(state);
+    _permissionManager.didChangeAppLifecycleState(state);
     super.didChangeAppLifecycleState(state);
   }
 
@@ -111,18 +139,14 @@ class _RecognizeImagePageState extends State<RecognizeImagePage>
                       children: [
                         ElevatedButton(
                           onPressed: () async {
-                            // Capture a photo.
-                            _bloc.add(
-                                DoImagePickEvent(source: ImageSource.camera));
+                            _checkPermission(source: ImageSource.camera);
                           },
                           child: Text(context.localization?.camera ?? ''),
                         ),
                         SizedBox(width: Dimens.w16),
                         ElevatedButton(
                           onPressed: () async {
-                            // Pick an image.
-                            _bloc.add(
-                                DoImagePickEvent(source: ImageSource.gallery));
+                            _checkPermission(source: ImageSource.gallery);
                           },
                           child: Text(context.localization?.photos ?? ''),
                         ),
@@ -132,6 +156,27 @@ class _RecognizeImagePageState extends State<RecognizeImagePage>
             ],
           ),
         );
+      },
+    );
+  }
+
+  // Check camera permission
+  Future _checkPermission({required ImageSource source}) async {
+    /// Here we are checking is Android Device and it is Lower than Android 13.
+    bool isLowerAndroidVersion = Platform.isAndroid &&
+        (await DeviceInfoPlugin().androidInfo).version.sdkInt <= 32;
+
+    await _permissionManager.request(
+      (source == ImageSource.gallery)
+          ? (isLowerAndroidVersion)
+              ? Permission.storage
+              : Permission.photos
+          : Permission.camera,
+      onUpdateStatus: (Permission? permission) async {
+        if (((await permission?.isGranted) ?? false) ||
+            (await permission?.isLimited ?? false)) {
+          _bloc.add(DoImagePickEvent(source: source));
+        }
       },
     );
   }
