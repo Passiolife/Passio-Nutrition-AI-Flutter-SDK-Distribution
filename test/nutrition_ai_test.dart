@@ -99,9 +99,10 @@ class MockNutritionAiPlatform
 
   @override
   Future<PassioFoodItem?> fetchFoodItemForDataInfo(
-      PassioFoodDataInfo passioFoodDataInfo) {
+      PassioFoodDataInfo passioFoodDataInfo,
+      {double? weightGrams}) {
     throw UnimplementedError(
-        'fetchFoodItemForDataInfo(PassioFoodDataInfo passioFoodDataInfo)');
+        'fetchFoodItemForDataInfo(PassioFoodDataInfo passioFoodDataInfo, {double? weightGrams})');
   }
 
   @override
@@ -210,6 +211,30 @@ class MockNutritionAiPlatform
   Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchVisualAlternatives(
       String foodName) {
     // TODO: implement fetchVisualAlternatives
+    throw UnimplementedError();
+  }
+
+  @override
+  void setAccountListener(PassioAccountListener? listener) {
+    // TODO: implement setAccountListener
+  }
+
+  @override
+  Future<void> enableFlashlight(
+      {required bool enabled, required double level}) {
+    // TODO: implement enableFlashlight
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> setCameraZoomLevel({required double zoomLevel}) {
+    // TODO: implement setCameraZoom
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PassioCameraZoomLevel> getMinMaxCameraZoomLevel() {
+    // TODO: implement getMinMaxCameraZoomLevel
     throw UnimplementedError();
   }
 }

@@ -244,22 +244,7 @@ class PassioIngredient {
 
 ## Nutrition AI Advisor
 
-### Configure the Nutrition Advisor and start a conversation
-
-##### Note: Make sure you don't utilize the PassioNutritionAISDK Key. Instead, enter the key you obtained from Passio for NutritionAdvisor.
-
-* Configure the Nutrition Advisor using the license key.
-```dart
-final result = await NutritionAdvisor.instance.configure('your key here');
-switch (result) {
-  case Success():
-    // Configuration succeeded, proceed with initializing the conversation
-    break;
-  case Error():
-    // Handle the configuration error here
-    break;
-}
-```
+### Start a Conversation with the Nutrition Advisor
 
 * Start a new conversation by calling initConversation.
 ```dart

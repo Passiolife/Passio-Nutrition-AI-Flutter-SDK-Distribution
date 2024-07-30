@@ -107,7 +107,7 @@ class PassioFoodItem {
 
   /// Calculates the nutrients based on the selected amount and unit.
   PassioNutrients nutrients(UnitMass unitMass) {
-    final currentWeight = weight();
+    final currentWeight = ingredientWeight();
     final ingredientNutrients = ingredients
         .map((ingredient) => (
               ingredient.referenceNutrients,
@@ -119,7 +119,7 @@ class PassioFoodItem {
 
   /// Calculates the nutrients based on the selected size (using the selected quantity and unit).
   PassioNutrients nutrientsSelectedSize() {
-    final currentWeight = weight();
+    final currentWeight = ingredientWeight();
     final ingredientNutrients = ingredients
         .map((ingredient) => (
               ingredient.referenceNutrients,
@@ -132,7 +132,7 @@ class PassioFoodItem {
 
   /// Calculates the nutrients based on a reference weight of 100 grams.
   PassioNutrients nutrientsReference() {
-    final currentWeight = weight();
+    final currentWeight = ingredientWeight();
     final ingredientNutrients = ingredients
         .map((ingredient) => (
               ingredient.referenceNutrients,
@@ -144,7 +144,7 @@ class PassioFoodItem {
   }
 
   /// Calculates the total weight of the food item by summing the weights of all ingredients.
-  UnitMass weight() {
+  UnitMass ingredientWeight() {
     return ingredients
         .map((e) => e.weight())
         .reduce((value, element) => (value + element) as UnitMass);

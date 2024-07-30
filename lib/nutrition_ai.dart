@@ -31,3 +31,6 @@ export 'src/nutrition_ai_detection.dart';
 export 'src/nutrition_ai_sdk.dart';
 export 'src/widgets/icon_passio.dart';
 export 'src/widgets/preview_passio.dart';
+export 'src/models/passio_token_budget.dart';
+export 'src/listeners/passio_account_listener.dart';
+export 'src/models/passio_camera_zoom_level.dart';

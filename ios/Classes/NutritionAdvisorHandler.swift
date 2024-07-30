@@ -13,10 +13,6 @@ public class NutritionAdvisorHandler: NSObject, FlutterPlugin {
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         switch call.method {
-        case "configure":
-            configure(arguments: call.arguments) { FlutterResult in
-                result(FlutterResult)
-            }
         case "initConversation":
             initConversation() { FlutterResult in
                 result(FlutterResult)
@@ -36,16 +32,6 @@ public class NutritionAdvisorHandler: NSObject, FlutterPlugin {
         default:
             print("call.method = \(call.method) not in the list")
             result(FlutterMethodNotImplemented)
-        }
-    }
-    
-    private func configure(arguments: Any?, result: @escaping FlutterResult) {
-        if let key = arguments as? String {
-            NutritionAdvisor.shared.configure(licenceKey: key) { status in
-                result(self.outputConverter.mapFromPassioResult(nutritionAdvisorStatus: status))
-            }
-        } else {
-            result(FlutterError(code: "ERRRO", message: "Key must not be null", details: nil))
         }
     }
     

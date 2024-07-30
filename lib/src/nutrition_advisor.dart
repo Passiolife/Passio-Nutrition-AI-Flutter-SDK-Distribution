@@ -16,13 +16,6 @@ class NutritionAdvisor {
   /// Gets the singleton instance of [NutritionAdvisor].
   static NutritionAdvisor get instance => _instance;
 
-  /// Configures the Nutrition AI Advisor with the provided [key].
-  ///
-  /// Returns a [PassioResult] indicating the success or failure of the configuration.
-  Future<PassioResult> configure(String key) async {
-    return NutritionAIPlatform.instance.configure(key);
-  }
-
   /// Initializes a conversation with the Nutrition AI Advisor.
   ///
   /// Returns a [PassioResult] indicating the success or failure of the initialization.

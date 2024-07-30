@@ -4,8 +4,10 @@ import 'dart:typed_data';
 import 'package:nutrition_ai/src/listeners/nutrition_facts_recognition_listener.dart';
 import 'package:nutrition_ai/src/models/passio_advisor_food_info.dart';
 
+import 'listeners/passio_account_listener.dart';
 import 'models/enums.dart';
 import 'models/inflammatory_effect_data.dart';
+import 'models/passio_camera_zoom_level.dart';
 import 'models/passio_food_data_info.dart';
 import 'models/passio_food_item.dart';
 import 'models/passio_meal_plan.dart';
@@ -115,18 +117,19 @@ class NutritionAI {
 
   /// A function to fetch detailed information about a food item based on a search result.
   ///
-  /// This function takes a [PassioFoodDataInfo] object representing a search result
-  /// and returns a [Future] containing a [PassioFoodItem] object representing
-  /// detailed information about the food item.
+  /// This function also takes an optional [weightGrams] parameter to provide information
+  /// specific to the specified weight in grams. It returns a [Future] that resolves to a
+  /// [PassioFoodItem] object with detailed information about the food item.
   ///
   /// Example usage:
   /// ```dart
-  /// var foodItem = await fetchFoodItemForDataInfo(passioFoodDataInfo);
+  /// var foodItem = await fetchFoodItemForDataInfo(passioFoodDataInfo, weightGrams: 150);
   /// ```
   Future<PassioFoodItem?> fetchFoodItemForDataInfo(
-      PassioFoodDataInfo passioFoodDataInfo) {
+      PassioFoodDataInfo passioFoodDataInfo,
+      {double? weightGrams}) {
     return NutritionAIPlatform.instance
-        .fetchFoodItemForDataInfo(passioFoodDataInfo);
+        .fetchFoodItemForDataInfo(passioFoodDataInfo, weightGrams: weightGrams);
   }
 
   /// List of tags for food item.
@@ -335,5 +338,65 @@ class NutritionAI {
   Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchPossibleIngredients(
       String foodName) async {
     return NutritionAIPlatform.instance.fetchPossibleIngredients(foodName);
+  }
+
+  /// Sets the account listener for receiving token budget updates.
+  ///
+  /// [listener] is an optional parameter that can be null. If provided, it should
+  /// implement the [PassioAccountListener] interface to handle token budget updates.
+  /// If null, any previously set listener will be removed.
+  ///
+  /// This method delegates the setting of the account listener to the instance of
+  /// `NutritionAIPlatform` and ensures that the provided listener is used for
+  /// receiving updates.
+  void setAccountListener(PassioAccountListener? listener) {
+    // Delegate the call to the NutritionAIPlatform instance to set the account listener
+    return NutritionAIPlatform.instance.setAccountListener(listener);
+  }
+
+  /// Enables or disables the flashlight with a specified intensity level.
+  ///
+  /// This method controls the flashlight functionality on the device.
+  /// It uses the `NutritionAIPlatform` instance to interact with the underlying
+  /// platform-specific implementation.
+  ///
+  /// [enabled] A boolean flag that determines whether the flashlight should be
+  ///           turned on or off. If `true`, the flashlight is turned on; if `false`,
+  ///           it is turned off.
+  ///
+  /// [level] A double representing the intensity level of the flashlight when
+  ///         turned on. The value should typically be between 0.0 (minimum brightness)
+  ///         and 1.0 (maximum brightness). Ensure the value is within a valid range
+  ///         supported by the device.
+  ///
+  /// Returns a `Future<void>` indicating the completion of the operation.
+  Future<void> enableFlashlight({
+    required bool enabled,
+    double level = 1,
+  }) {
+    return NutritionAIPlatform.instance
+        .enableFlashlight(enabled: enabled, level: level);
+  }
+
+  /// Sets the camera zoom level.
+  ///
+  /// [zoomLevel] A `double` representing the desired zoom level. The value should
+  /// be within the range supported by the camera. This method calls the native
+  /// platform code to apply the zoom level.
+  Future<void> setCameraZoomLevel({required double zoomLevel}) {
+    return NutritionAIPlatform.instance
+        .setCameraZoomLevel(zoomLevel: zoomLevel);
+  }
+
+  /// Retrieves the minimum and maximum camera zoom levels supported.
+  ///
+  /// This method fetches the supported range of zoom levels for the camera,
+  /// which can be useful for determining the boundaries of zoom operations.
+  /// The implementation relies on native platform-specific code to obtain these values.
+  ///
+  /// Returns a [Future] that completes with a [PassioCameraZoomLevel] object,
+  /// containing the minimum and maximum zoom levels supported by the camera.
+  Future<PassioCameraZoomLevel> getMinMaxCameraZoomLevel() {
+    return NutritionAIPlatform.instance.getMinMaxCameraZoomLevel();
   }
 }

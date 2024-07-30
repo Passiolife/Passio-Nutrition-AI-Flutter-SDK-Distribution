@@ -83,6 +83,16 @@ struct InputConverter {
         return CGRect(x: x, y: y, width: width, height: height)
     }
     
+    func mapToFetchFoodItemForDataInfo(map: [String: Any?]) -> (foodDataInfo: PassioFoodDataInfo?, weightGrams: Double?) {
+        if let foodDataInfo = map["foodDataInfo"] as? [String: Any] {
+            let passioFoodDataInfo = mapToPassioFoodDataInfo(map: foodDataInfo)
+            let weightGrams = map["weightGrams"] as? Double
+            return (passioFoodDataInfo, weightGrams)
+        } else {
+            return (nil, nil)
+        }
+    }
+    
     func mapToPassioFoodDataInfo(map: [String: Any?]) -> PassioFoodDataInfo? {
         guard let type = map["type"] as? String,
               let foodName = map["foodName"] as? String,

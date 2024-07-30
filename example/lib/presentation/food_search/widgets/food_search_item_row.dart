@@ -124,16 +124,16 @@ class _FoodSearchItemRowState extends State<FoodSearchItemRow> {
             await NutritionAI.instance.lookupIconsFor(passioID);
 
         if (passioIcons.cachedIcon != null) {
-          _image.value = passioIcons.cachedIcon;
+          _setImage(passioIcons.cachedIcon);
           widget.foodItemsImages
               ?.putIfAbsent(widget.data?.iconID ?? '', () => _image.value);
           return;
         }
 
-        _image.value = passioIcons.defaultIcon;
+        _setImage(passioIcons.defaultIcon);
         var remoteIcon = await NutritionAI.instance.fetchIconFor(passioID);
         if (remoteIcon != null) {
-          _image.value = remoteIcon;
+          _setImage(remoteIcon);
         }
 
         /// Storing image into the map, so while scrolling it doesn't calls the API call again.
@@ -142,7 +142,13 @@ class _FoodSearchItemRowState extends State<FoodSearchItemRow> {
       });
     } else {
       /// Fetching stored image using passioID.
-      _image.value = widget.foodItemsImages?[widget.data?.iconID];
+      _setImage(widget.foodItemsImages?[widget.data?.iconID]);
+    }
+  }
+
+  void _setImage(PlatformImage? image) {
+    if (mounted) {
+      _image.value = image;
     }
   }
 }

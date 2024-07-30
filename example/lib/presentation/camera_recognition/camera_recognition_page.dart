@@ -19,6 +19,9 @@ class _CameraRecognitionPageState extends State<CameraRecognitionPage>
 
   String? _foodName;
   PlatformImage? _image;
+  final ValueNotifier<bool> _flashlightEnabled = ValueNotifier(false);
+  final ValueNotifier<double> _zoomLevel = ValueNotifier(1);
+  PassioCameraZoomLevel? _cameraZoomLevel;
 
   @override
   void initState() {
@@ -29,31 +32,69 @@ class _CameraRecognitionPageState extends State<CameraRecognitionPage>
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<CameraRecognitionBloc, CameraRecognitionState>(
-        bloc: _bloc,
-        listener: (context, state) {
-          if (state is SearchingState) {
-            _onSearchingState(state);
-          } else if (state is UpdateFoodNameState) {
-            _onUpdateFoodNameState(state);
-          } else if (state is UpdateFoodIconState) {
-            _onUpdateFoodIconState(state);
-          }
-        },
-        builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Passio Preview'),
-            ),
-            body: Stack(
-              children: [
-                const PassioPreview(),
-                Align(
-                    alignment: Alignment.bottomCenter,
-                    child: PassioResult(foodName: _foodName, image: _image))
-              ],
-            ),
-          );
-        });
+      bloc: _bloc,
+      listener: (context, state) {
+        if (state is SearchingState) {
+          _onSearchingState(state);
+        } else if (state is UpdateFoodNameState) {
+          _onUpdateFoodNameState(state);
+        } else if (state is UpdateFoodIconState) {
+          _onUpdateFoodIconState(state);
+        } else if (state is UpdateCameraZoomLevels) {
+          _cameraZoomLevel = state.cameraZoomLevel;
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Passio Preview'),
+            actions: [
+              ValueListenableBuilder(
+                valueListenable: _flashlightEnabled,
+                builder: (context, value, child) {
+                  return Switch(
+                    value: value,
+                    onChanged: (value) {
+                      _flashlightEnabled.value = value;
+                      NutritionAI.instance
+                          .enableFlashlight(enabled: value, level: 0.3);
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
+          body: Stack(
+            children: [
+              const PassioPreview(),
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: ValueListenableBuilder(
+                    valueListenable: _zoomLevel,
+                    builder: (context, value, child) {
+                      return Slider(
+                        value: value,
+                        min: _cameraZoomLevel?.minZoomLevel ?? 1,
+                        max: _cameraZoomLevel?.maxZoomLevel ?? 10,
+                        onChanged: (value) {
+                          _zoomLevel.value = value;
+                          NutritionAI.instance
+                              .setCameraZoomLevel(zoomLevel: value);
+                        },
+                      );
+                    }),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: PassioResult(foodName: _foodName, image: _image),
+              )
+            ],
+          ),
+        );
+      },
+    );
   }
 
   void _onSearchingState(SearchingState state) {
@@ -72,14 +113,16 @@ class _CameraRecognitionPageState extends State<CameraRecognitionPage>
   void _checkPermission() async {
     if (await Permission.camera.request().isGranted) {
       _startFoodDetection();
+      _bloc.add(GetCameraZoomLevelEvent());
     }
   }
 
   void _startFoodDetection() {
     var detectionConfig = const FoodDetectionConfiguration(
-        detectBarcodes: true, detectPackagedFood: true);
+        detectBarcodes: true,
+        detectPackagedFood: true,
+        volumeDetectionMode: VolumeDetectionMode.auto);
     NutritionAI.instance.startFoodDetection(detectionConfig, this);
-    debugPrint("Start Food Detection from main");
   }
 
   @override
@@ -113,31 +156,33 @@ class PassioResult extends StatelessWidget {
     TargetPlatform platform = defaultTargetPlatform;
 
     return Container(
-        width: double.infinity,
-        height: 100,
-        margin: const EdgeInsets.all(10),
-        padding: _getPadding(platform),
-        decoration: const BoxDecoration(color: Colors.lightBlueAccent),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            PassioIcon(image: image),
-            const SizedBox(width: 16),
-            Expanded(
-                child: Container(
-                    alignment: Alignment.centerLeft,
-                    height: 32,
-                    child: FittedBox(
-                      fit: BoxFit.contain,
-                      child: Text(
-                        _resultString(),
-                        style:
-                            const TextStyle(fontSize: 20, color: Colors.black),
-                        softWrap: true,
-                      ),
-                    )))
-          ],
-        ));
+      width: double.infinity,
+      height: 100,
+      margin: const EdgeInsets.all(10),
+      padding: _getPadding(platform),
+      decoration: const BoxDecoration(color: Colors.lightBlueAccent),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          PassioIcon(image: image),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Container(
+              alignment: Alignment.centerLeft,
+              height: 32,
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: Text(
+                  _resultString(),
+                  style: const TextStyle(fontSize: 20, color: Colors.black),
+                  softWrap: true,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   EdgeInsets _getPadding(TargetPlatform platform) {

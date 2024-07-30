@@ -13,17 +13,10 @@ class NutritionAdvisorHandler(private val activity: Activity) : MethodCallHandle
     @Suppress("UNCHECKED_CAST")
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         when (call.method) {
-            "configure" -> configure(call.arguments as String, result)
             "initConversation" -> initConversation(result)
             "sendMessage" -> sendMessage(call.arguments as String, result)
             "sendImage" -> sendImage(call.arguments as ByteArray, result)
             "fetchIngredients" -> fetchIngredients(call.arguments as HashMap<String, Any?>, result)
-        }
-    }
-
-    private fun configure(key: String, result: MethodChannel.Result) {
-        NutritionAdvisor.instance.configure(activity, key) { callback ->
-            result.success(mapFromPassioResult(callback))
         }
     }
 

@@ -8,3 +8,5 @@ class FoodRecognizedEvent extends CameraRecognitionEvent {
 
   FoodRecognizedEvent({required this.candidates, this.image});
 }
+
+class GetCameraZoomLevelEvent extends CameraRecognitionEvent {}

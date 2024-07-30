@@ -5,14 +5,17 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:nutrition_ai/src/models/passio_nutrition_facts.dart';
+import 'package:nutrition_ai/src/models/passio_token_budget.dart';
 
 import 'converter/platform_input_converter.dart';
 import 'converter/platform_output_converter.dart';
 import 'listeners/nutrition_facts_recognition_listener.dart';
+import 'listeners/passio_account_listener.dart';
 import 'models/enums.dart';
 import 'models/inflammatory_effect_data.dart';
 import 'models/passio_advisor_food_info.dart';
 import 'models/passio_advisor_response.dart';
+import 'models/passio_camera_zoom_level.dart';
 import 'models/passio_food_data_info.dart';
 import 'models/passio_food_item.dart';
 import 'models/passio_meal_plan.dart';
@@ -49,6 +52,9 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
   final nutritionFactsChannel =
       const EventChannel('nutrition_ai/event/nutritionFact');
 
+  @visibleForTesting
+  final accountChannel = const EventChannel('nutrition_ai/event/account');
+
   StreamSubscription? _detectionStream;
 
   /// A subscription to a stream that listens for events related to Passio status changes.
@@ -61,6 +67,8 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
   ///
   /// The [_nutritionFactsStream] variable holds the subscription to a stream that listens for events related to nutrition facts.
   StreamSubscription? _nutritionFactsStream;
+
+  StreamSubscription? _accountStream;
 
   @override
   Future<String?> getSDKVersion() async {
@@ -317,8 +325,12 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
 
   @override
   Future<PassioFoodItem?> fetchFoodItemForDataInfo(
-      PassioFoodDataInfo passioFoodDataInfo) async {
-    final args = passioFoodDataInfo.toJson();
+      PassioFoodDataInfo passioFoodDataInfo,
+      {double? weightGrams}) async {
+    final args = {
+      'foodDataInfo': passioFoodDataInfo.toJson(),
+      'weightGrams': weightGrams,
+    };
     var responseMap =
         await methodChannel.invokeMethod('fetchFoodItemForDataInfo', args);
     if (responseMap == null) {
@@ -623,5 +635,58 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
     } on Exception catch (e) {
       return Error(e.toString());
     }
+  }
+
+  @override
+  void setAccountListener(PassioAccountListener? listener) {
+    if (listener == null) {
+      // Cancel the existing stream subscription and set it to null
+      _accountStream?.cancel();
+      _accountStream = null;
+      return;
+    }
+
+    var args = {'method': 'setAccountListener'};
+    // Set up a new stream subscription to listen for account updates
+    _accountStream =
+        accountChannel.receiveBroadcastStream(args).listen((event) {
+      if (event == null) {
+        return;
+      }
+
+      // Convert the received event to a map with string keys and dynamic values
+      Map<String, dynamic> eventMap = event.cast<String, dynamic>();
+
+      // Convert the result data map to a PassioTokenBudget object
+      final updatedTokenBudget = PassioTokenBudget.fromJson(eventMap);
+
+      // Notify the listener about the updated token budget
+      listener.onTokenBudgetUpdate(updatedTokenBudget);
+    });
+  }
+
+  @override
+  Future<void> enableFlashlight({
+    required bool enabled,
+    required double level,
+  }) async {
+    var args = {'enabled': enabled, 'level': level};
+    await methodChannel.invokeMethod('enableFlashlight', args);
+    return;
+  }
+
+  @override
+  Future<void> setCameraZoomLevel({required double zoomLevel}) async {
+    var args = {'zoomLevel': zoomLevel};
+    await methodChannel.invokeMethod('setCameraZoom', args);
+    return;
+  }
+
+  @override
+  Future<PassioCameraZoomLevel> getMinMaxCameraZoomLevel() async {
+    Map<String, dynamic> result =
+        (await methodChannel.invokeMethod('getMinMaxCameraZoomLevel'))
+            .cast<String, dynamic>();
+    return PassioCameraZoomLevel.fromJson(result);
   }
 }

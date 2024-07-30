@@ -15,3 +15,9 @@ class UpdateFoodIconState extends CameraRecognitionState {
 
   UpdateFoodIconState({required this.image});
 }
+
+class UpdateCameraZoomLevels extends CameraRecognitionState {
+  UpdateCameraZoomLevels({required this.cameraZoomLevel});
+
+  final PassioCameraZoomLevel cameraZoomLevel;
+}

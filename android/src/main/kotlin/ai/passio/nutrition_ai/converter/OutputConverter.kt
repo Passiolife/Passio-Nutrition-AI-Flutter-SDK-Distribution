@@ -34,6 +34,7 @@ import ai.passio.passiosdk.passiofood.data.model.PassioResult
 import ai.passio.passiosdk.passiofood.data.model.PassioServingSize
 import ai.passio.passiosdk.passiofood.data.model.PassioServingUnit
 import ai.passio.passiosdk.passiofood.data.model.PassioSpeechRecognitionModel
+import ai.passio.passiosdk.passiofood.data.model.PassioTokenBudget
 import ai.passio.passiosdk.passiofood.nutritionfacts.PassioNutritionFacts
 import android.graphics.Bitmap
 import android.net.Uri
@@ -587,4 +588,20 @@ fun mapFromPassioAdvisorResponse(passioAdvisorResponse: PassioAdvisorResponse): 
             "tools" to tools,
         )
     }
+}
+
+fun mapFromPassioTokenBudget(tokenBudget: PassioTokenBudget): Map<String, Any?> {
+    return mapOf(
+        "apiName" to tokenBudget.apiName,
+        "budgetCap" to tokenBudget.budgetCap,
+        "periodUsage" to tokenBudget.periodUsage,
+        "tokensUsed" to tokenBudget.tokensUsed,
+    )
+}
+
+fun mapFromMinMaxCameraZoomLevel(minMax: Pair<Float?, Float?>): Map<String, Any?> {
+    return mapOf(
+        "minZoomLevel" to minMax.first,
+        "maxZoomLevel" to minMax.second,
+    )
 }

@@ -25,6 +25,7 @@ class NutritionAIPlugin: FlutterPlugin, ActivityAware {
   // Declared a lateinit variable to hold the EventChannel for status updates.
   private lateinit var statusChannel: EventChannel
   private lateinit var nutritionFactsChannel: EventChannel
+  private lateinit var accountChannel: EventChannel
 
   private var activity: ActivityPluginBinding? = null
   private var handler: NutritionAIHandler? = null
@@ -37,6 +38,7 @@ class NutritionAIPlugin: FlutterPlugin, ActivityAware {
     // Initialize the statusChannel with the binary messenger and a unique channel name.
     statusChannel = EventChannel(flutterPluginBinding.binaryMessenger, "nutrition_ai/event/status")
     nutritionFactsChannel = EventChannel(flutterPluginBinding.binaryMessenger, "nutrition_ai/event/nutritionFact")
+    accountChannel = EventChannel(flutterPluginBinding.binaryMessenger, "nutrition_ai/event/account")
 
     flutterPluginBinding.platformViewRegistry
       .registerViewFactory("native-preview-view", NativePreviewFactory())
@@ -74,5 +76,6 @@ class NutritionAIPlugin: FlutterPlugin, ActivityAware {
     detectionChannel.setStreamHandler(if (enable) handler else null)
     statusChannel.setStreamHandler(if (enable) handler else null)
     nutritionFactsChannel.setStreamHandler(if (enable) handler else null)
+    accountChannel.setStreamHandler(if (enable) handler else null)
   }
 }

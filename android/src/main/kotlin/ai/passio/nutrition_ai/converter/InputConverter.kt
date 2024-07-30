@@ -93,6 +93,13 @@ fun mapToRectF(map: Map<String, Any?>): RectF {
     )
 }
 
+fun mapToFetchFoodItemForDataInfo(map: Map<String, Any?>): Pair<PassioFoodDataInfo, Double?> {
+    val foodDataInfo = map["foodDataInfo"] as Map<String, Any>
+    val passioFoodDataInfo = mapToPassioFoodDataInfo(foodDataInfo)
+    val weightGrams = map["weightGrams"] as? Double
+    return Pair(passioFoodDataInfo, weightGrams)
+}
+
 fun mapToPassioFoodDataInfo(map: Map<String, Any?>): PassioFoodDataInfo {
     return PassioFoodDataInfo(
         map["foodName"] as String,

@@ -24,6 +24,8 @@ class PassioEventStreamHandler: NSObject, FlutterStreamHandler {
             passioSDK.statusDelegate = self
         case "startNutritionFactsDetection":
             passioSDK.startNutritionFactsDetection(nutritionfactsDelegate: self) { value in }
+        case "setAccountListener":
+            passioSDK.accountDelegate = self
         default:
             return FlutterError(code: "method", message: "no method in switch", details: nil)
         }
@@ -42,6 +44,8 @@ class PassioEventStreamHandler: NSObject, FlutterStreamHandler {
             passioSDK.statusDelegate = nil
         case "startNutritionFactsDetection":
             passioSDK.stopFoodDetection()
+        case "setAccountListener":
+            passioSDK.accountDelegate = nil
         default:
             return FlutterError(code: "onCancel", message: "no method in switch", details: nil)
         }
@@ -120,9 +124,9 @@ extension PassioEventStreamHandler: PassioStatusDelegate {
         // Check if the eventSink is available
         if let events = eventSink {
             // Convert PassioStatus to a map
-            var statusMap = outputConverter.mapFromPassioStatus(passioStatus: status)
+            let statusMap = outputConverter.mapFromPassioStatus(passioStatus: status)
             // Convert the map to a PassioStatusListener map with the event name
-            var statusListenerMap = outputConverter.mapFromPassioStatusListener(event: "passioStatusChanged", data: statusMap)
+            let statusListenerMap = outputConverter.mapFromPassioStatusListener(event: "passioStatusChanged", data: statusMap)
             // Dispatch the UI-related operations on the main thread to ensure UI updates happen promptly.
             DispatchQueue.main.async {
                 // Send the PassioStatusListener map through the eventSink
@@ -149,9 +153,9 @@ extension PassioEventStreamHandler: PassioStatusDelegate {
         // Check if the eventSink is available
         if let events = eventSink {
             // Convert FileLocalURLs to an array of file URLs as strings
-            var filesMap = filesLocalURLs.map { $0.absoluteString }
+            let filesMap = filesLocalURLs.map { $0.absoluteString }
             // Convert the array of file URLs to a PassioStatusListener map with the event name
-            var statusListenerMap = outputConverter.mapFromPassioStatusListener(event: "completedDownloadingAllFiles", data: filesMap)
+            let statusListenerMap = outputConverter.mapFromPassioStatusListener(event: "completedDownloadingAllFiles", data: filesMap)
             // Dispatch the UI-related operations on the main thread to ensure UI updates happen promptly.
             DispatchQueue.main.async {
                 // Send the PassioStatusListener map through the eventSink
@@ -165,8 +169,8 @@ extension PassioEventStreamHandler: PassioStatusDelegate {
         // Check if the eventSink is available
         if let events = eventSink {
             // Convert the completed downloading file details to a PassioStatusListener map with the event name
-            var downloadingMap = outputConverter.mapFromCompletedDownloadingFile(fileUri: fileLocalURL, filesLeft: filesLeft)
-            var statusListenerMap = outputConverter.mapFromPassioStatusListener(event: "completedDownloadingFile", data: downloadingMap)
+            let downloadingMap = outputConverter.mapFromCompletedDownloadingFile(fileUri: fileLocalURL, filesLeft: filesLeft)
+            let statusListenerMap = outputConverter.mapFromPassioStatusListener(event: "completedDownloadingFile", data: downloadingMap)
             // Dispatch the UI-related operations on the main thread to ensure UI updates happen promptly.
             DispatchQueue.main.async {
                 // Send the PassioStatusListener map through the eventSink
@@ -195,7 +199,22 @@ extension PassioEventStreamHandler: NutritionFactsDelegate {
             DispatchQueue.main.async {
                 events(self.outputConverter.mapFromNutritionFactsRecognitionListener(nutritionFacts: nutritionFacts, text: text))
             }
-            
+        }
+    }
+}
+
+// MARK: - PassioAccountDelegate Extension
+extension PassioEventStreamHandler: PassioAccountDelegate {
+    /// Called when the token budget is updated.
+    ///
+    /// - Parameter tokenBudget: The updated token budget information.
+    func tokenBudgetUpdated(tokenBudget: PassioTokenBudget) {
+        if let events = eventSink {
+            // Dispatch the token budget update to the main thread
+            DispatchQueue.main.async {
+                // Convert the PassioTokenBudget object to a map and send it through the eventSink
+                events(self.outputConverter.mapFromPassioTokenBudget(tokenBudget: tokenBudget))
+            }
         }
     }
 }

@@ -1,17 +1,42 @@
 package ai.passio.nutrition_ai
 
-import ai.passio.nutrition_ai.converter.*
+import ai.passio.nutrition_ai.converter.entityTypeFromString
+import ai.passio.nutrition_ai.converter.iconSizeFromString
+import ai.passio.nutrition_ai.converter.mapFromBitmap
+import ai.passio.nutrition_ai.converter.mapFromCompletedDownloadingFile
+import ai.passio.nutrition_ai.converter.mapFromFoodCandidates
+import ai.passio.nutrition_ai.converter.mapFromInflammatoryEffectData
+import ai.passio.nutrition_ai.converter.mapFromMinMaxCameraZoomLevel
+import ai.passio.nutrition_ai.converter.mapFromNutritionFactsRecognitionListener
+import ai.passio.nutrition_ai.converter.mapFromPassioAdvisorFoodInfo
+import ai.passio.nutrition_ai.converter.mapFromPassioFoodDataInfo
+import ai.passio.nutrition_ai.converter.mapFromPassioFoodItem
+import ai.passio.nutrition_ai.converter.mapFromPassioMealPlan
+import ai.passio.nutrition_ai.converter.mapFromPassioMealPlanItem
+import ai.passio.nutrition_ai.converter.mapFromPassioResult
+import ai.passio.nutrition_ai.converter.mapFromPassioSpeechRecognitionModel
+import ai.passio.nutrition_ai.converter.mapFromPassioStatus
+import ai.passio.nutrition_ai.converter.mapFromPassioStatusListener
+import ai.passio.nutrition_ai.converter.mapFromPassioTokenBudget
+import ai.passio.nutrition_ai.converter.mapFromSearchResponse
+import ai.passio.nutrition_ai.converter.mapToFoodDetectionConfiguration
+import ai.passio.nutrition_ai.converter.mapToPassioConfiguration
+import ai.passio.nutrition_ai.converter.mapToPassioFoodDataInfo
+import ai.passio.nutrition_ai.converter.mapToFetchFoodItemForDataInfo
+import ai.passio.nutrition_ai.converter.mapToRectF
+import ai.passio.nutrition_ai.converter.passioImageResolutionFromString
 import ai.passio.passiosdk.core.config.Bridge
 import ai.passio.passiosdk.core.config.PassioMode
 import ai.passio.passiosdk.core.config.PassioStatus
 import ai.passio.passiosdk.passiofood.FoodCandidates
 import ai.passio.passiosdk.passiofood.FoodRecognitionListener
 import ai.passio.passiosdk.passiofood.NutritionFactsRecognitionListener
+import ai.passio.passiosdk.passiofood.PassioAccountListener
 import ai.passio.passiosdk.passiofood.PassioID
-import ai.passio.passiosdk.passiofood.PassioImageResolution
 import ai.passio.passiosdk.passiofood.PassioMealTime
 import ai.passio.passiosdk.passiofood.PassioSDK
 import ai.passio.passiosdk.passiofood.PassioStatusListener
+import ai.passio.passiosdk.passiofood.data.model.PassioTokenBudget
 import ai.passio.passiosdk.passiofood.nutritionfacts.PassioNutritionFacts
 import android.app.Activity
 import android.graphics.Bitmap
@@ -79,6 +104,9 @@ class NutritionAIHandler(
             "fetchHiddenIngredients" -> fetchHiddenIngredients(call.arguments as String, result)
             "fetchVisualAlternatives" -> fetchVisualAlternatives(call.arguments as String, result)
             "fetchPossibleIngredients" -> fetchPossibleIngredients(call.arguments as String, result)
+            "enableFlashlight" -> enableFlashlight(call.arguments as HashMap<String, Any>, result)
+            "setCameraZoom" -> setCameraZoom(call.arguments as HashMap<String, Any>, result)
+            "getMinMaxCameraZoomLevel" -> getMinMaxCameraZoomLevel(result)
         }
     }
 
@@ -186,6 +214,7 @@ class NutritionAIHandler(
             // Sets up the PassioSDK status listener.
             "setPassioStatusListener" -> setPassioStatusListener(events)
             "startNutritionFactsDetection" -> startNutritionFactsDetection(events)
+            "setAccountListener" -> setAccountListener(events)
         }
     }
 
@@ -198,6 +227,7 @@ class NutritionAIHandler(
             // Removes the PassioSDK status listener to stop receiving status updates.
             "setPassioStatusListener" -> PassioSDK.instance.setPassioStatusListener(null)
             "startNutritionFactsDetection" -> PassioSDK.instance.stopNutritionFactsDetection()
+            "setAccountListener" -> PassioSDK.instance.setAccountListener(null)
         }
     }
 
@@ -243,8 +273,8 @@ class NutritionAIHandler(
         args: HashMap<String, Any>,
         callback: MethodChannel.Result
     ) {
-        val searchResult = mapToPassioFoodDataInfo(args)
-        PassioSDK.instance.fetchFoodItemForDataInfo(searchResult) { foodItem ->
+        val (foodDataInfo, weightGrams) = mapToFetchFoodItemForDataInfo(args)
+        PassioSDK.instance.fetchFoodItemForDataInfo(foodDataInfo, weightGrams) { foodItem ->
             if (foodItem == null) {
                 callback.success(null)
             } else {
@@ -533,7 +563,11 @@ class NutritionAIHandler(
         val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
 
         // Call the recognizeImageRemote method on the PassioSDK instance.
-        PassioSDK.instance.recognizeImageRemote(bitmap, resolutionEnum, message) { imageRecognitionModel ->
+        PassioSDK.instance.recognizeImageRemote(
+            bitmap,
+            resolutionEnum,
+            message
+        ) { imageRecognitionModel ->
             // Map the SpeechRecognitionModel object to a new object.
             val mappedResult =
                 imageRecognitionModel.map { mapFromPassioAdvisorFoodInfo(it) }
@@ -550,10 +584,10 @@ class NutritionAIHandler(
                     nutritionFacts: PassioNutritionFacts?,
                     text: String
                 ) {
-                    events.success(mapFromNutritionFactsRecognitionListener(nutritionFacts, text));
+                    events.success(mapFromNutritionFactsRecognitionListener(nutritionFacts, text))
                 }
             },
-        );
+        )
     }
 
     /**
@@ -600,4 +634,42 @@ class NutritionAIHandler(
             callback.success(mapFromPassioResult(result))
         }
     }
+
+    private fun setAccountListener(events: EventChannel.EventSink) {
+        // Set up an account listener with PassioSDK to handle token budget updates
+        PassioSDK.instance.setAccountListener(
+            object : PassioAccountListener {
+                override fun onTokenBudgetUpdate(tokenBudget: PassioTokenBudget) {
+                    // Convert the PassioTokenBudget object to a map and send it through the event channel
+                    events.success(mapFromPassioTokenBudget(tokenBudget))
+                }
+            },
+        )
+    }
+
+    private fun enableFlashlight(args: HashMap<String, Any>, callback: MethodChannel.Result) {
+        val enabled = args["enabled"] as Boolean
+
+        // Call the PassioSDK to enable or disable the flashlight
+        PassioSDK.instance.enableFlashlight(enabled)
+
+        // Send a success result back to the Dart side
+        callback.success(null)
+    }
+
+    private fun setCameraZoom(args: HashMap<String, Any>, callback: MethodChannel.Result) {
+        val zoomLevel = (args["zoomLevel"] as Double).toFloat()
+
+        // Call the PassioSDK to enable or disable the flashlight
+        PassioSDK.instance.setCameraZoomLevel(zoomLevel)
+
+        // Send a success result back to the Dart side
+        callback.success(null)
+    }
+
+    private fun getMinMaxCameraZoomLevel(callback: MethodChannel.Result) {
+        val result = PassioSDK.instance.getMinMaxCameraZoomLevel()
+        callback.success(mapFromMinMaxCameraZoomLevel(result))
+    }
+
 }

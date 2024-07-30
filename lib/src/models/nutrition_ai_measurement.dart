@@ -172,7 +172,8 @@ enum UnitMassType {
   kilograms(converter: 1.0, symbol: 'kg'),
   grams(converter: 0.001, symbol: 'g'),
   milligrams(converter: 0.000001, symbol: 'mg'),
-  micrograms(converter: 0.000000001, symbol: 'µg');
+  micrograms(converter: 0.000000001, symbol: 'µg'),
+  milliliter(converter: 0.001, symbol: 'ml');
 
   final double converter;
   final String symbol;

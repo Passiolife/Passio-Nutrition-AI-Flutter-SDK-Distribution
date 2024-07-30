@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutrition_ai/nutrition_ai.dart';
@@ -12,6 +13,7 @@ class CameraRecognitionBloc
 
   CameraRecognitionBloc() : super(SearchingState()) {
     on<FoodRecognizedEvent>(_handleCameraRecognitionEvent);
+    on<GetCameraZoomLevelEvent>(_handleGetCameraZoomLevelEvent);
   }
 
   Future _handleCameraRecognitionEvent(
@@ -86,5 +88,12 @@ class CameraRecognitionBloc
     if (remoteIcon != null) {
       emit(UpdateFoodIconState(image: remoteIcon));
     }
+  }
+
+  FutureOr<void> _handleGetCameraZoomLevelEvent(GetCameraZoomLevelEvent event,
+      Emitter<CameraRecognitionState> emit) async {
+    final zoomLevel = await NutritionAI.instance.getMinMaxCameraZoomLevel();
+    log(zoomLevel.toString());
+    emit(UpdateCameraZoomLevels(cameraZoomLevel: zoomLevel));
   }
 }

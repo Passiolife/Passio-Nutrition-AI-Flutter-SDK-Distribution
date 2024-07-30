@@ -20,10 +20,9 @@ internal class NativePreviewView(
     creationParams: Map<String?, Any?>?
 ) : PlatformView {
 
-    private val previewView: PreviewView
+    private val previewView: PreviewView = PreviewView(context)
 
     init {
-        previewView = PreviewView(context)
 
         val activity = getActivity(previewView)!!
         val cameraViewProvider = object : PassioCameraViewProvider {

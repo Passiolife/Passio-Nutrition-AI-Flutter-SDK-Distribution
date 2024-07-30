@@ -1,3 +1,57 @@
+## 3.1.4
+
+### Added APIs
+
+* With the new key comes the new pricing model using tokens. Although all token usage can be seen in the portal, the SDK itself offers a listener to count the tokens being used by the SDK.
+```dart
+void setAccountListener(PassioAccountListener? listener)
+
+abstract interface class PassioAccountListener {
+    void onTokenBudgetUpdate(PassioTokenBudget tokenBudget);
+}
+
+class PassioTokenBudget {
+    final String apiName;
+    final int budgetCap;
+    final int periodUsage;
+    final int tokensUsed;
+}
+```
+
+* **Control Flashlight:** Manage the flashlight with:
+```dart
+/// [enabled] A required parameter to turn the flashlight on or off.
+/// [level] An optional parameter specifying the intensity level of the flashlight, with a default value of 1. Note that the level parameter is only applicable on iOS for now.
+Future<void> enableFlashlight({required bool enabled, double level = 1})
+```
+
+* **Get Camera Zoom Levels:** Retrieve the minimum and maximum zoom levels with:
+```dart
+Future<PassioCameraZoomLevel> getMinMaxCameraZoomLevel()
+
+class PassioCameraZoomLevel {
+  final double? minZoomLevel;
+  final double? maxZoomLevel;
+}
+```
+
+* **Set Camera Zoom Level:** Adjust the camera zoom level:
+```dart
+/// [zoomLevel] Sets the desired zoom level. Ensure it’s within the range obtained from ```getMinMaxCameraZoomLevel()```.
+Future<void> setCameraZoomLevel({required double zoomLevel})
+```
+
+### Refactored APIs
+
+* Updated the fetchFoodItemForDataInfo method to include an optional weightGrams parameter:
+```dart
+/// [weightGrams] An optional parameter that provides information specific to the specified weight in grams.
+Future<PassioFoodItem?> fetchFoodItemForDataInfo(PassioFoodDataInfo passioFoodDataInfo,{double? weightGrams})
+```
+
+* The ```NutritionAdvisor``` no longer needs a separate key for configuration. The PassioSDK needs to be configured in order to call the NutritionAdvisor APIs. Also, any previous NutritionAdvisor keys won't work with this version, a new key needs to be obtained at https://www.passio.ai/
+
+
 ## 3.1.1
 
 ### Added APIs

@@ -471,6 +471,22 @@ struct OutputConverter {
         map["tools"] = passioAdvisorResponse.tools
         return map
     }
+    
+    func mapFromPassioTokenBudget(tokenBudget: PassioTokenBudget) -> [String: Any?] {
+        var map = [String: Any?]()
+        map["apiName"] = ""
+        map["budgetCap"] = tokenBudget.budgetCap
+        map["periodUsage"] = tokenBudget.periodUsage
+        map["tokensUsed"] = tokenBudget.requestUsage
+        return map
+    }
+    
+    func mapFromMinMaxCameraZoomLevel(minMax: (minLevel: CGFloat?, maxLevel: CGFloat?)) -> [String: Any?] {
+        var map = [String: Any?]()
+        map["minZoomLevel"] = minMax.minLevel
+        map["maxZoomLevel"] = minMax.maxLevel
+        return map
+    }
 }
 
 extension Encodable {

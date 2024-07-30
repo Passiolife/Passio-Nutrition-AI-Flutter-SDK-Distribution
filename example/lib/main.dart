@@ -82,7 +82,7 @@ Future<void> main() async {
     if (kReleaseMode) {
       /// Here we can track our error into the crashlytics.
     } else {
-      log('error: ${error.toString()}');
+      log('error: ${error.toString()} stackTrace: $stackTrace');
     }
   });
 }
@@ -96,7 +96,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
-  String _advisorError = '';
   PassioStatus? _passioStatus;
   bool _sdkIsReady = false;
   bool _advisorSDKIsReady = false;
@@ -147,11 +146,6 @@ class _MyAppState extends State<MyApp> {
               child: _passioStatus == null
                   ? const Text("Configuring SDK")
                   : Text(_passioStatus!.mode.name),
-            ),
-            const SizedBox(height: 20), // Adds space of 20 units
-            Center(
-              child: Text(
-                  "Advisor SDK: ${_advisorSDKIsReady ? 'is Ready' : _advisorError.isNotEmpty ? _advisorError : ''}"),
             ),
             const SizedBox(height: 20), // Adds space of 20 units
             _sdkIsReady
@@ -276,22 +270,22 @@ class _MyAppState extends State<MyApp> {
     var passioStatus = await NutritionAI.instance.configureSDK(configuration);
     if (passioStatus.mode == PassioMode.isReadyForDetection) {
       _sdkIsReady = true;
-    }
+      _advisorSDKIsReady = true;
 
-    String advisorKey = AppSecret.advisorKey;
-    final result = await NutritionAdvisor.instance.configure(advisorKey);
-    switch (result) {
-      case Error():
-        _advisorError = result.message;
-        _advisorSDKIsReady = false;
-        break;
-      case Success():
-        _advisorSDKIsReady = true;
-        break;
+      NutritionAI.instance.setAccountListener(const _AccountListener());
     }
 
     setState(() {
       _passioStatus = passioStatus;
     });
+  }
+}
+
+class _AccountListener implements PassioAccountListener {
+  const _AccountListener();
+
+  @override
+  void onTokenBudgetUpdate(PassioTokenBudget tokenBudget) {
+    log(tokenBudget.toString());
   }
 }

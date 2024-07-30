@@ -7,7 +7,9 @@ import 'package:nutrition_ai/src/models/passio_advisor_response.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'listeners/nutrition_facts_recognition_listener.dart';
+import 'listeners/passio_account_listener.dart';
 import 'models/inflammatory_effect_data.dart';
+import 'models/passio_camera_zoom_level.dart';
 import 'models/passio_food_data_info.dart';
 import 'models/passio_food_item.dart';
 import 'models/passio_meal_plan.dart';
@@ -63,9 +65,10 @@ abstract class NutritionAIPlatform extends PlatformInterface {
   }
 
   Future<PassioFoodItem?> fetchFoodItemForDataInfo(
-      PassioFoodDataInfo passioFoodDataInfo) {
+      PassioFoodDataInfo passioFoodDataInfo,
+      {double? weightGrams}) {
     throw UnimplementedError(
-        'fetchFoodItemForDataInfo(PassioFoodDataInfo passioFoodDataInfo) has not been implemented.');
+        'fetchFoodItemForDataInfo(PassioFoodDataInfo passioFoodDataInfo, {double? weightGrams}) has not been implemented.');
   }
 
   Future<PassioFoodItem?> fetchFoodItemForPassioID(PassioID passioID) {
@@ -193,5 +196,26 @@ abstract class NutritionAIPlatform extends PlatformInterface {
   Future<PassioResult<List<PassioAdvisorFoodInfo>>> fetchPossibleIngredients(
       String foodName) async {
     throw UnimplementedError('fetchPossibleIngredients(String foodName)');
+  }
+
+  void setAccountListener(PassioAccountListener? listener) {
+    throw UnimplementedError(
+        'setAccountListener(PassioAccountListener? listener)');
+  }
+
+  Future<void> enableFlashlight({
+    required bool enabled,
+    required double level,
+  }) {
+    throw UnimplementedError(
+        'enableFlashlight({required bool enabled, required double level})');
+  }
+
+  Future<void> setCameraZoomLevel({required double zoomLevel}) {
+    throw UnimplementedError('setCameraZoomLevel({required double zoomLevel})');
+  }
+
+  Future<PassioCameraZoomLevel> getMinMaxCameraZoomLevel() async {
+    throw UnimplementedError('getMinMaxCameraZoomLevel()');
   }
 }

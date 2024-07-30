@@ -40,6 +40,10 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
                                                binaryMessenger: binaryMessenger)
         nutritionFactChannel.setStreamHandler(passioEventStreamHandler)
     
+        let accountChannel = FlutterEventChannel(name: "nutrition_ai/event/account",
+                                               binaryMessenger: binaryMessenger)
+        accountChannel.setStreamHandler(passioEventStreamHandler)
+    
         let factory = PassioPreviewFactory(messenger: binaryMessenger)
         registrar.register(factory, withId: "PassioPreviewViewType")
     }
@@ -136,6 +140,18 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             }
         case "fetchPossibleIngredients":
             fetchPossibleIngredients(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
+        case "enableFlashlight":
+            enableFlashlight(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
+        case "setCameraZoom":
+            setCameraZoom(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
+        case "getMinMaxCameraZoomLevel":
+            getMinMaxCameraZoomLevel(arguments: call.arguments) { FlutterResult in
                 result(FlutterResult)
             }
             
@@ -318,14 +334,18 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
     }
     
     func fetchFoodItemForDataInfo(arguments: Any?, result: @escaping FlutterResult) {
-        guard let passioFoodDataMap = arguments as? [String: Any],
-              let passioFoodDataInfo = inputConverter.mapToPassioFoodDataInfo(map: passioFoodDataMap) else {
+        guard let args = arguments as? [String: Any] else {
             result(nil)
             return
         }
-        passioSDK.fetchFoodItemFor(foodItem: passioFoodDataInfo) { passioFoodItem in
-            let passioFoodItemMap = self.outputConverter.mapFromPassioFoodItem(foodItem: passioFoodItem)
-            result(passioFoodItemMap)
+        let foodDataInfo = inputConverter.mapToFetchFoodItemForDataInfo(map: args)
+        if let foodItem = foodDataInfo.foodDataInfo {
+            passioSDK.fetchFoodItemFor(foodItem: foodItem, weightGrams: foodDataInfo.weightGrams) { passioFoodItem in
+                let passioFoodItemMap = self.outputConverter.mapFromPassioFoodItem(foodItem: passioFoodItem)
+                result(passioFoodItemMap)
+            }
+        } else {
+            result(nil)
         }
     }
 
@@ -515,6 +535,35 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
         passioSDK.fetchPossibleIngredients(foodName: foodName) { callback in
             result(self.outputConverter.mapFromPassioResult(nutritionAdvisorStatus: callback))
         }
+    }
+    
+    private func enableFlashlight(arguments: Any?, result: @escaping FlutterResult) {
+        guard let args = arguments as? [String: Any],
+              let enabled = args["enabled"] as? Bool,
+              let levelDouble = args["level"] as? Double else {
+            result(nil)
+            return
+        }
+        let level = Float(levelDouble)
+        passioSDK.enableFlashlight(enabled: enabled, level: level)
+        result(nil)
+    }
+    
+    private func setCameraZoom(arguments: Any?, result: @escaping FlutterResult) {
+        guard let args = arguments as? [String: Any],
+              let zoomDouble = args["zoomLevel"] as? Double else {
+            result(nil)
+            return
+        }
+        let zoomLevel = CGFloat(zoomDouble)
+        passioSDK.setCamera(toVideoZoomFactor: zoomLevel)
+        result(nil)
+    }
+    
+    private func getMinMaxCameraZoomLevel(arguments: Any?, result: @escaping FlutterResult) {
+        let callback = passioSDK.getMinMaxCameraZoomLevel
+        let mappedResult = self.outputConverter.mapFromMinMaxCameraZoomLevel(minMax: callback)
+        result(mappedResult)
     }
     
     private func getPassioImageResolution(res: String) -> PassioImageResolution {
