@@ -1,3 +1,15 @@
+## 3.1.4+2
+
+* Improved scanning performance on Android
+
+
+## 3.1.4+1
+
+### Added APIs
+
+* Added fiber value to PassioSearchNutritionPreview
+
+
 ## 3.1.4
 
 ### Added APIs

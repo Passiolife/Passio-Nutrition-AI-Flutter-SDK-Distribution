@@ -408,6 +408,7 @@ private fun mapFromPassioSearchNutritionPreview(nutritionPreview: PassioSearchNu
     previewMap["carbs"] = nutritionPreview.carbs
     previewMap["fat"] = nutritionPreview.fat
     previewMap["protein"] = nutritionPreview.protein
+    previewMap["fiber"] = nutritionPreview.fiber
     previewMap["servingQuantity"] = nutritionPreview.servingQuantity
     previewMap["servingUnit"] = nutritionPreview.servingUnit
     previewMap["weightUnit"] = nutritionPreview.weightUnit

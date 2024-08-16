@@ -245,12 +245,13 @@ public struct PassioSearchNutritionPreview : Swift.Codable {
   public let carbs: Swift.Double
   public let fat: Swift.Double
   public let protein: Swift.Double
+  public let fiber: Swift.Double
   public var servingUnit: Swift.String
   public var servingQuantity: Swift.Double
   public var weightUnit: Swift.String
   public var weightQuantity: Swift.Double
   public init(result: PassioNutritionAISDK.NutritionPreviewResult)
-  public init(calories: Swift.Int, carbs: Swift.Double, fat: Swift.Double, protein: Swift.Double, servingUnit: Swift.String, servingQuantity: Swift.Double, weightUnit: Swift.String, weightQuantity: Swift.Double)
+  public init(calories: Swift.Int, carbs: Swift.Double, fat: Swift.Double, protein: Swift.Double, fiber: Swift.Double, servingUnit: Swift.String, servingQuantity: Swift.Double, weightUnit: Swift.String, weightQuantity: Swift.Double)
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -985,6 +986,7 @@ public struct NutritionPreviewResult : Swift.Codable {
   public let carbs: Swift.Double?
   public let fat: Swift.Double?
   public let protein: Swift.Double?
+  public let fiber: Swift.Double?
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
 }

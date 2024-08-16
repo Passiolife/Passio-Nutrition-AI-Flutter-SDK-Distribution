@@ -119,8 +119,9 @@ private fun mapToPassioSearchNutritionPreview(map: Map<String, Any?>): PassioSea
     return PassioSearchNutritionPreview(
         map["calories"] as Int,
         map["carbs"] as Double,
-        map["fat"] as Double,
         map["protein"] as Double,
+        map["fat"] as Double,
+        map["fiber"] as Double,
         map["servingUnit"] as String,
         map["servingQuantity"] as Double,
         map["weightUnit"] as String,

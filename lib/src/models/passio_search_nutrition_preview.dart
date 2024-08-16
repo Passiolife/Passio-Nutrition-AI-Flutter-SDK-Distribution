@@ -12,6 +12,9 @@ class PassioSearchNutritionPreview {
   /// The amount of protein.
   final double protein;
 
+  /// The amount of fiber.
+  final double fiber;
+
   /// The quantity of the serving size (e.g., 1.5, 100).
   final double servingQuantity;
 
@@ -30,6 +33,7 @@ class PassioSearchNutritionPreview {
     required this.carbs,
     required this.fat,
     required this.protein,
+    required this.fiber,
     required this.servingQuantity,
     required this.servingUnit,
     required this.weightQuantity,
@@ -43,6 +47,7 @@ class PassioSearchNutritionPreview {
       carbs: json['carbs'] as double,
       fat: json['fat'] as double,
       protein: json['protein'] as double,
+      fiber: json['fiber'] as double,
       servingUnit: json['servingUnit'] as String,
       servingQuantity: json['servingQuantity'] as double,
       weightUnit: json['weightUnit'],
@@ -56,6 +61,7 @@ class PassioSearchNutritionPreview {
         'carbs': carbs,
         'fat': fat,
         'protein': protein,
+        'fiber': fiber,
         'servingUnit': servingUnit,
         'servingQuantity': servingQuantity,
         'weightUnit': weightUnit,
@@ -72,6 +78,7 @@ class PassioSearchNutritionPreview {
         carbs == other.carbs &&
         fat == other.fat &&
         protein == other.protein &&
+        fiber == other.fiber &&
         servingUnit == other.servingUnit &&
         servingQuantity == other.servingQuantity &&
         weightUnit == other.weightUnit &&
@@ -85,6 +92,7 @@ class PassioSearchNutritionPreview {
         carbs.hashCode ^
         fat.hashCode ^
         protein.hashCode ^
+        fiber.hashCode ^
         servingUnit.hashCode ^
         servingQuantity.hashCode ^
         weightUnit.hashCode ^

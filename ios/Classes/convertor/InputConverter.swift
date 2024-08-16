@@ -114,6 +114,7 @@ struct InputConverter {
               let calories = map["calories"] as? Int,
               let carbs = map["carbs"] as? Double,
               let fat = map["fat"] as? Double,
+              let fiber = map["fiber"] as? Double,
               let protein = map["protein"] as? Double,
               let servingUnit = map["servingUnit"] as? String,
               let servingQuantity = map["servingQuantity"] as? Double,
@@ -121,7 +122,7 @@ struct InputConverter {
               let weightUnit = map["weightUnit"] as? String else {
             return nil
         }
-        return PassioSearchNutritionPreview(calories: calories, carbs: carbs, fat: fat, protein: protein, servingUnit: servingUnit, servingQuantity: servingQuantity, weightUnit: weightUnit, weightQuantity: weightQuantity)
+        return PassioSearchNutritionPreview(calories: calories, carbs: carbs, fat: fat, protein: protein, fiber: fiber, servingUnit: servingUnit, servingQuantity: servingQuantity, weightUnit: weightUnit, weightQuantity: weightQuantity)
     }
 }
 

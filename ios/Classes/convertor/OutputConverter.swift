@@ -351,6 +351,7 @@ struct OutputConverter {
         nutritionPreviewMap["carbs"] = nutritionPreview.carbs
         nutritionPreviewMap["fat"] = nutritionPreview.fat
         nutritionPreviewMap["protein"] = nutritionPreview.protein
+        nutritionPreviewMap["fiber"] = nutritionPreview.fiber
         nutritionPreviewMap["servingUnit"] = nutritionPreview.servingUnit
         nutritionPreviewMap["servingQuantity"] = nutritionPreview.servingQuantity
         nutritionPreviewMap["weightQuantity"] = nutritionPreview.weightQuantity

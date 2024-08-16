@@ -8641,6 +8641,50 @@
           },
           {
             "kind": "Var",
+            "name": "fiber",
+            "printedName": "fiber",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Double",
+                "printedName": "Swift.Double",
+                "usr": "s:Sd"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:20PassioNutritionAISDK0a6SearchB7PreviewV5fiberSdvp",
+            "mangledName": "$s20PassioNutritionAISDK0a6SearchB7PreviewV5fiberSdvp",
+            "moduleName": "PassioNutritionAISDK",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Double",
+                    "printedName": "Swift.Double",
+                    "usr": "s:Sd"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:20PassioNutritionAISDK0a6SearchB7PreviewV5fiberSdvg",
+                "mangledName": "$s20PassioNutritionAISDK0a6SearchB7PreviewV5fiberSdvg",
+                "moduleName": "PassioNutritionAISDK",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
             "name": "servingUnit",
             "printedName": "servingUnit",
             "children": [
@@ -9009,7 +9053,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(calories:carbs:fat:protein:servingUnit:servingQuantity:weightUnit:weightQuantity:)",
+            "printedName": "init(calories:carbs:fat:protein:fiber:servingUnit:servingQuantity:weightUnit:weightQuantity:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -9022,6 +9066,12 @@
                 "name": "Int",
                 "printedName": "Swift.Int",
                 "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Double",
+                "printedName": "Swift.Double",
+                "usr": "s:Sd"
               },
               {
                 "kind": "TypeNominal",
@@ -9067,8 +9117,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:20PassioNutritionAISDK0a6SearchB7PreviewV8calories5carbs3fat7protein11servingUnit0J8Quantity06weightK00mL0ACSi_S3dSSSdSSSdtcfc",
-            "mangledName": "$s20PassioNutritionAISDK0a6SearchB7PreviewV8calories5carbs3fat7protein11servingUnit0J8Quantity06weightK00mL0ACSi_S3dSSSdSSSdtcfc",
+            "usr": "s:20PassioNutritionAISDK0a6SearchB7PreviewV8calories5carbs3fat7protein5fiber11servingUnit0K8Quantity06weightL00nM0ACSi_S4dSSSdSSSdtcfc",
+            "mangledName": "$s20PassioNutritionAISDK0a6SearchB7PreviewV8calories5carbs3fat7protein5fiber11servingUnit0K8Quantity06weightL00nM0ACSi_S4dSSSdSSSdtcfc",
             "moduleName": "PassioNutritionAISDK",
             "declAttributes": [
               "AccessControl"
@@ -33777,6 +33827,66 @@
                 "declKind": "Accessor",
                 "usr": "s:20PassioNutritionAISDK0B13PreviewResultV7proteinSdSgvg",
                 "mangledName": "$s20PassioNutritionAISDK0B13PreviewResultV7proteinSdSgvg",
+                "moduleName": "PassioNutritionAISDK",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "fiber",
+            "printedName": "fiber",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Double?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Double",
+                    "printedName": "Swift.Double",
+                    "usr": "s:Sd"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:20PassioNutritionAISDK0B13PreviewResultV5fiberSdSgvp",
+            "mangledName": "$s20PassioNutritionAISDK0B13PreviewResultV5fiberSdSgvp",
+            "moduleName": "PassioNutritionAISDK",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Double?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Double",
+                        "printedName": "Swift.Double",
+                        "usr": "s:Sd"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:20PassioNutritionAISDK0B13PreviewResultV5fiberSdSgvg",
+                "mangledName": "$s20PassioNutritionAISDK0B13PreviewResultV5fiberSdSgvg",
                 "moduleName": "PassioNutritionAISDK",
                 "implicit": true,
                 "accessorKind": "get"
