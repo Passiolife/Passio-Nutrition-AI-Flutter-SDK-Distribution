@@ -1,3 +1,6 @@
+import 'package:nutrition_ai/src/models/enums.dart';
+import 'package:nutrition_ai/src/models/passio_food_item.dart';
+
 import 'passio_food_data_info.dart';
 
 /// Represents information about a food item recognized by the Passio Advisor.
@@ -8,8 +11,15 @@ class PassioAdvisorFoodInfo {
   /// Detailed information about the food item.
   final PassioFoodDataInfo? foodDataInfo;
 
+  /// Contains detailed information about the packaged food item, including nutrition facts and barcode data.
+  final PassioFoodItem? packagedFoodItem;
+
   /// The portion size of the food item.
   final String portionSize;
+
+  /// The type of result returned from the food recognition process.
+  /// It can indicate if the result is a recognized food item, barcode, or nutrition facts.
+  final PassioFoodResultType resultType;
 
   /// The recognised name of the food item.
   final String recognisedName;
@@ -20,8 +30,10 @@ class PassioAdvisorFoodInfo {
   /// Creates a new instance of `PassioAdvisorFoodInfo`.
   const PassioAdvisorFoodInfo({
     this.foodDataInfo,
+    this.packagedFoodItem,
     required this.portionSize,
     required this.recognisedName,
+    required this.resultType,
     required this.weightGrams,
   });
 
@@ -33,7 +45,13 @@ class PassioAdvisorFoodInfo {
                 (json['foodDataInfo'] as Map<Object?, Object?>)
                     .cast<String, dynamic>())
             : null,
+        packagedFoodItem: json['packagedFoodItem'] != null
+            ? PassioFoodItem.fromJson(
+                (json['packagedFoodItem'] as Map<Object?, Object?>)
+                    .cast<String, dynamic>())
+            : null,
         portionSize: json['portionSize'] as String,
+        resultType: PassioFoodResultType.values.byName(json['resultType']),
         recognisedName: json['recognisedName'] as String,
         weightGrams: json['weightGrams'] as double,
       );
@@ -41,7 +59,9 @@ class PassioAdvisorFoodInfo {
   /// Converts the `PassioAdvisorFoodInfo` instance to a JSON map.
   Map<String, dynamic> toJson() => {
         'foodDataInfo': foodDataInfo?.toJson(),
+        'packagedFoodItem': packagedFoodItem,
         'portionSize': portionSize,
+        'resultType': resultType.name,
         'recognisedName': recognisedName,
         'weightGrams': weightGrams,
       };
@@ -53,7 +73,9 @@ class PassioAdvisorFoodInfo {
     if (identical(this, other)) return true;
 
     return foodDataInfo == other.foodDataInfo &&
+        packagedFoodItem == other.packagedFoodItem &&
         portionSize == other.portionSize &&
+        resultType == other.resultType &&
         recognisedName == other.recognisedName &&
         weightGrams == other.weightGrams;
   }
@@ -62,7 +84,9 @@ class PassioAdvisorFoodInfo {
   @override
   int get hashCode => Object.hash(
         foodDataInfo,
+        packagedFoodItem,
         portionSize,
+        resultType,
         recognisedName,
         weightGrams,
       );

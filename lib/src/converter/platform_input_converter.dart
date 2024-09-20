@@ -11,6 +11,7 @@ Map<String, dynamic> mapOfPassioConfiguration(PassioConfiguration config) {
     'sdkDownloadsModels': config.sdkDownloadsModels,
     'allowInternetConnection': config.allowInternetConnection,
     'overrideInstalledVersion': config.overrideInstalledVersion,
+    'remoteOnly': config.remoteOnly,
   };
 }
 

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutrition_ai/nutrition_ai.dart';
@@ -98,14 +99,17 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
                       key: UniqueKey(),
                       data: _filteredFoodItems.elementAt(index),
                       foodItemsImages: _filteredFoodItemsImages,
-                      onTapItem: (data) {
+                      onTapItem: (data) async {
                         context.hideKeyboard();
                         context.showSnackbar(
                             text:
                                 '${data?.foodName.toTitleCase()} is added to the logs.');
                         if (data != null) {
-                          NutritionAI.instance
+                          final foodItem = await NutritionAI.instance
                               .fetchFoodItemForDataInfo(data, weightGrams: 100);
+                          if (kDebugMode) {
+                            print(foodItem?.toJson());
+                          }
                         }
                       },
                     );
@@ -175,6 +179,7 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
       score: 0,
       type: '',
       isShortName: false,
+      tags: [],
     ));
   }
 
@@ -201,6 +206,7 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
       score: 0,
       type: '',
       isShortName: false,
+      tags: [],
     ));
   }
 
@@ -228,6 +234,7 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
       score: 0,
       type: '',
       isShortName: false,
+      tags: [],
     ));
   }
 }

@@ -237,6 +237,18 @@ class MockNutritionAiPlatform
     // TODO: implement getMinMaxCameraZoomLevel
     throw UnimplementedError();
   }
+
+  @override
+  Future<PassioFoodItem?> recognizeNutritionFactsRemote(Uint8List bytes,
+      {PassioImageResolution resolution = PassioImageResolution.res_512}) {
+    throw UnimplementedError(
+        'recognizeNutritionFactsRemote(Uint8List bytes, {PassioImageResolution resolution = PassioImageResolution.res_512})');
+  }
+
+  @override
+  Future<bool> updateLanguage(String languageCode) {
+    throw UnimplementedError('updateLanguage(String languageCode)');
+  }
 }
 
 void main() {

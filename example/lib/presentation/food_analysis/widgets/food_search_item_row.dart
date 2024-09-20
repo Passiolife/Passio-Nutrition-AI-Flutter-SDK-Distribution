@@ -21,7 +21,6 @@ class FoodSearchItemRow extends StatefulWidget {
 }
 
 class _FoodSearchItemRowState extends State<FoodSearchItemRow> {
-  final ValueNotifier<PlatformImage?> _image = ValueNotifier(null);
 
   @override
   Widget build(BuildContext context) {

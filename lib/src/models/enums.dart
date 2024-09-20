@@ -57,3 +57,15 @@ enum PassioImageResolution {
   /// Full resolution, using the original image size.
   full,
 }
+
+/// Represents different types of results that can be returned from food recognition.
+enum PassioFoodResultType {
+  /// Represents a result where a food item is detected.
+  foodItem,
+
+  /// Represents a result where a barcode is detected.
+  barcode,
+
+  /// Represents a result containing nutrition facts.
+  nutritionFacts,
+}

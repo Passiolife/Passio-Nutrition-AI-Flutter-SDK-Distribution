@@ -12,7 +12,7 @@ void main() {
   // Set up tasks to be executed once before all tests in the suite.
   setUpAll(() async {
     // Configure the Passio SDK with a key for testing.
-    final configuration = PassioConfiguration(AppSecret.passioKey);
+    const configuration = PassioConfiguration(AppSecret.passioKey);
     final status = await NutritionAI.instance.configureSDK(configuration);
     expect(status.mode, PassioMode.isReadyForDetection);
   });

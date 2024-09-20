@@ -224,7 +224,7 @@ struct OutputConverter {
         dataMap["ingredients"] = foodItem.ingredients.map { mapFromPassioIngredient($0) }
         dataMap["licenseCopy"] = foodItem.licenseCopy
         dataMap["name"] = foodItem.name
-        dataMap["refCode"] = foodItem.refCode
+        dataMap["refCode"] = foodItem.refCode ?? ""
         dataMap["scannedId"] = foodItem.scannedId
         return dataMap
     }
@@ -256,7 +256,7 @@ struct OutputConverter {
         ingredientMap["id"] = ingredient.id
         ingredientMap["metadata"] = mapFromPassioFoodMetadata(ingredient.metadata)
         ingredientMap["name"] = ingredient.name
-        ingredientMap["refCode"] = ingredient.refCode
+        ingredientMap["refCode"] = ingredient.refCode ?? ""
         ingredientMap["referenceNutrients"] = mapFromPassioNutrients(ingredient.referenceNutrients)
         return ingredientMap
     }
@@ -310,6 +310,7 @@ struct OutputConverter {
         nutrientsMap["vitaminKPhylloquinone"] = mapFromUnitMass(nutrients.vitaminKPhylloquinone())
         nutrientsMap["vitaminKMenaquinone4"] = mapFromUnitMass(nutrients.vitaminKMenaquinone4())
         nutrientsMap["vitaminKDihydrophylloquinone"] = mapFromUnitMass(nutrients.vitaminKDihydrophylloquinone())
+        nutrientsMap["vitaminARAE"] = mapFromUnitMass(nutrients.vitaminA_RAE())
         return nutrientsMap
     }
     
@@ -340,6 +341,7 @@ struct OutputConverter {
             searchResultMap["scoredName"] = passioFoodDataInfo.scoredName
             searchResultMap["type"] = passioFoodDataInfo.type
             searchResultMap["isShortName"] = passioFoodDataInfo.isShortName
+            searchResultMap["tags"] = passioFoodDataInfo.tags
             return searchResultMap
         }
         return nil
@@ -391,10 +393,12 @@ struct OutputConverter {
     
     func mapFromPassioAdvisorFoodInfo(passioAdvisorFoodInfo: PassioAdvisorFoodInfo) -> [String: Any?] {
         var map = [String: Any?]()
-        map["foodDataInfo"] = mapFromPassioFoodDataInfo(passioFoodDataInfo: passioAdvisorFoodInfo.foodDataInfo)
+        map["foodDataInfo"] = passioAdvisorFoodInfo.foodDataInfo.map { mapFromPassioFoodDataInfo(passioFoodDataInfo: $0) }
         map["portionSize"] = passioAdvisorFoodInfo.portionSize
         map["recognisedName"] = passioAdvisorFoodInfo.recognisedName
         map["weightGrams"] = passioAdvisorFoodInfo.weightGrams
+        map["packagedFoodItem"] = mapFromPassioFoodItem(foodItem: passioAdvisorFoodInfo.packagedFoodItem)
+        map["resultType"] = passioAdvisorFoodInfo.resultType?.rawValue
         return map
     }
     
@@ -475,7 +479,7 @@ struct OutputConverter {
     
     func mapFromPassioTokenBudget(tokenBudget: PassioTokenBudget) -> [String: Any?] {
         var map = [String: Any?]()
-        map["apiName"] = ""
+        map["apiName"] = tokenBudget.apiName
         map["budgetCap"] = tokenBudget.budgetCap
         map["periodUsage"] = tokenBudget.periodUsage
         map["tokensUsed"] = tokenBudget.requestUsage

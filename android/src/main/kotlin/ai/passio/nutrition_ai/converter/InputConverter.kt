@@ -34,6 +34,7 @@ fun mapToPassioConfiguration(context: Context, map: Map<String, Any?>): PassioCo
         map.mapContains<Boolean>("sdkDownloadsModels") { this.sdkDownloadsModels = it }
         map.mapContains<Int>("debugMode") { this.debugMode = it }
         map.mapContains<Boolean>("allowInternetConnection") { this.allowInternetConnection = it }
+        map.mapContains<Boolean>("remoteOnly") { this.remoteOnly = it }
         map.mapContainsOptional<List<String>>("filesLocalURLs") { files ->
             val uris = files?.map { Uri.parse(it) }
             this.localFiles = uris
@@ -112,6 +113,7 @@ fun mapToPassioFoodDataInfo(map: Map<String, Any?>): PassioFoodDataInfo {
         map["resultId"] as String,
         map["isShortName"] as Boolean,
         mapToPassioSearchNutritionPreview(map["nutritionPreview"] as Map<String, Any?>),
+        map["tags"] as List<String>?,
     )
 }
 

@@ -13,7 +13,7 @@ void main() {
       /// Act
       ///
       // Set up the PassioConfiguration.
-      final configuration =
+      const configuration =
           PassioConfiguration(AppSecret.passioKey, debugMode: 1);
 
       /// Arrange
@@ -37,7 +37,7 @@ void main() {
       /// Act
       ///
       // Set up the PassioConfiguration.
-      final configuration = PassioConfiguration("1234567890", debugMode: 1);
+      const configuration = PassioConfiguration("1234567890", debugMode: 1);
 
       /// Arrange
       ///
@@ -61,7 +61,7 @@ void main() {
       /// Act
       ///
       // Set up the PassioConfiguration.
-      final configuration = PassioConfiguration(
+      const configuration = PassioConfiguration(
           "8hoiPdOZCTBz3ln7hYLZCEVhfNivQWM7fdSpOFz049xN",
           debugMode: 1);
 
@@ -86,7 +86,7 @@ void main() {
       /// Act
       ///
       // Set up the PassioConfiguration.
-      final configuration =
+      const configuration =
           PassioConfiguration(AppSecret.passioKey, debugMode: 1);
 
       /// Arrange

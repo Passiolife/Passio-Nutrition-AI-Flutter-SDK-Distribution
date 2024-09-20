@@ -127,7 +127,12 @@ class _RecognizeImagePageState extends State<RecognizeImagePage>
                       leading: PassioImageWidget(
                           iconId: data.foodDataInfo?.iconID ?? ''),
                       title: Text(
-                          data.foodDataInfo?.foodName.toUpperCaseWord ?? ''),
+                        data.resultType == PassioFoodResultType.foodItem
+                            ? data.foodDataInfo?.foodName.toUpperCaseWord ?? ''
+                            : data.resultType == PassioFoodResultType.barcode
+                                ? data.recognisedName.toUpperCaseWord
+                                : '${data.packagedFoodItem?.amount.selectedQuantity} ${data.packagedFoodItem?.amount.selectedUnit}',
+                      ),
                     );
                   },
                 ),

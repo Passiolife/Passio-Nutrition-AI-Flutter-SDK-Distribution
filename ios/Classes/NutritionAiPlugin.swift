@@ -154,7 +154,14 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             getMinMaxCameraZoomLevel(arguments: call.arguments) { FlutterResult in
                 result(FlutterResult)
             }
-            
+        case "recognizeNutritionFactsRemote":
+            recognizeNutritionFactsRemote(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
+        case "updateLanguage":
+            updateLanguage(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
         default:
             print("call.method = \(call.method) not in the list")
             result(FlutterMethodNotImplemented)
@@ -184,6 +191,9 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             passioConfig.filesLocalURLs = filesLocalURLs
         }
         
+        if let remoteOnly = arguments["remoteOnly"] as? Bool {
+            passioConfig.remoteOnly = remoteOnly
+        }
 //        if let overrideInstalledVersion = arguments["overrideInstalledVersion"] as? Bool {
 //            // not exposed in iOS Nutrition AI
 //        }
@@ -564,6 +574,36 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
         let callback = passioSDK.getMinMaxCameraZoomLevel
         let mappedResult = self.outputConverter.mapFromMinMaxCameraZoomLevel(minMax: callback)
         result(mappedResult)
+    }
+    
+    private func recognizeNutritionFactsRemote(arguments: Any?, result: @escaping FlutterResult) {
+        guard let args = arguments as? [String: Any],
+              let bytes = args["bytes"] as? FlutterStandardTypedData,
+              let resolution = args["resolution"] as? String else {
+            result(nil)
+            return
+        }
+        let resolutionEnum = getPassioImageResolution(res: resolution)
+        guard let image = UIImage(data: bytes.data) else {
+            result(nil)
+            return
+        }
+        passioSDK.recognizeNutritionFactsRemote(image: image, resolution: resolutionEnum) { passioFoodItem in
+            if let foodItem = passioFoodItem {
+                let passioFoodItemMap = self.outputConverter.mapFromPassioFoodItem(foodItem: foodItem)
+                result(passioFoodItemMap)
+            } else {
+                result(nil)
+            }
+        }
+    }
+    
+    private func updateLanguage(arguments: Any?, result: @escaping FlutterResult) {
+        guard let languageCode = arguments as? String else {
+            result(false)
+            return
+        }
+        result(passioSDK.updateLanguage(languageCode: languageCode))
     }
     
     private func getPassioImageResolution(res: String) -> PassioImageResolution {

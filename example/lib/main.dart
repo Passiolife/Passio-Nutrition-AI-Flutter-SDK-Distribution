@@ -7,6 +7,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:language_picker/language_picker_dialog.dart';
+import 'package:language_picker/languages.dart';
 import 'package:nutrition_ai/nutrition_ai.dart';
 import 'package:nutrition_ai_example/const/dimens.dart';
 import 'package:nutrition_ai_example/domain/entity/app_secret/app_secret.dart';
@@ -25,6 +27,7 @@ import 'presentation/advisor_message/advisor_message_page.dart';
 import 'presentation/legacy_api/legacy_api_page.dart';
 import 'presentation/nutrition_facts/nutrition_facts_page.dart';
 import 'presentation/recognize_image/recognize_image_page.dart';
+import 'presentation/recognize_nutrition_facts/recognize_nutrition_facts_page.dart';
 
 Future<void> main() async {
   await runZonedGuarded(() async {
@@ -72,6 +75,8 @@ Future<void> main() async {
                   const AdvisorMessagePage(),
               Routes.advisorImagePage: (context) => const AdvisorImagePage(),
               Routes.foodAnalysisPage: (context) => const FoodAnalysisPage(),
+              Routes.recognizeNutritionFacts: (context) =>
+                  const RecognizeNutritionFactsPage(),
             },
             home: const MyApp(),
           );
@@ -99,6 +104,8 @@ class _MyAppState extends State<MyApp> {
   PassioStatus? _passioStatus;
   bool _sdkIsReady = false;
   bool _advisorSDKIsReady = false;
+
+  String _countryCode = 'en';
 
   @override
   void initState() {
@@ -147,6 +154,40 @@ class _MyAppState extends State<MyApp> {
                   ? const Text("Configuring SDK")
                   : Text(_passioStatus!.mode.name),
             ),
+            const SizedBox(height: 20), // Adds space of 20 units
+            _sdkIsReady
+                ? // Adds space of 20 units
+                GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => Theme(
+                          data: Theme.of(context)
+                              .copyWith(primaryColor: Colors.pink),
+                          child: LanguagePickerDialog(
+                            isSearchable: true,
+                            title: const Text('Select your language'),
+                            onValuePicked: (Language language) async {
+                              setState(() {
+                                _countryCode = language.isoCode;
+                              });
+                              bool updated = await NutritionAI.instance
+                                  .updateLanguage(_countryCode);
+                              if (!updated) {
+                                _countryCode = 'en';
+                              }
+                            },
+                            itemBuilder: _buildDialogItem,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Country Code: $_countryCode',
+                      style: const TextStyle(color: Colors.blue),
+                    ),
+                  )
+                : const SizedBox.shrink(),
             const SizedBox(height: 20), // Adds space of 20 units
             _sdkIsReady
                 ? // Adds space of 20 units
@@ -258,6 +299,16 @@ class _MyAppState extends State<MyApp> {
                   )
                 : const SizedBox(),
             const SizedBox(height: 20), // Adds space of 20 units
+            _advisorSDKIsReady
+                ? ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(
+                          context, Routes.recognizeNutritionFacts);
+                    },
+                    child: const Text('Recognize Nutrition Facts'),
+                  )
+                : const SizedBox(),
+            const SizedBox(height: 20), // Adds space of 20 units
           ],
         ),
       ),
@@ -266,7 +317,7 @@ class _MyAppState extends State<MyApp> {
 
   void configureSDK() async {
     String passioKey = AppSecret.passioKey;
-    var configuration = PassioConfiguration(passioKey, debugMode: -333);
+    var configuration = PassioConfiguration(passioKey, debugMode: 1);
     var passioStatus = await NutritionAI.instance.configureSDK(configuration);
     if (passioStatus.mode == PassioMode.isReadyForDetection) {
       _sdkIsReady = true;
@@ -279,6 +330,14 @@ class _MyAppState extends State<MyApp> {
       _passioStatus = passioStatus;
     });
   }
+
+  Widget _buildDialogItem(Language language) => Row(
+        children: <Widget>[
+          Text(language.name),
+          const SizedBox(width: 8.0),
+          Flexible(child: Text("(${language.isoCode})"))
+        ],
+      );
 }
 
 class _AccountListener implements PassioAccountListener {

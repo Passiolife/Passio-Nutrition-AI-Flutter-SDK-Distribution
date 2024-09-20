@@ -1,3 +1,6 @@
+import 'package:flutter/foundation.dart';
+import 'package:nutrition_ai/src/converter/platform_output_converter.dart';
+
 import '../nutrition_ai_detection.dart';
 import 'passio_search_nutrition_preview.dart';
 
@@ -27,6 +30,9 @@ class PassioFoodDataInfo {
   /// The scored name of the food item
   final String scoredName;
 
+  /// A list of tags associated with the food item
+  final List<String>? tags;
+
   /// The type of food item.
   final String type;
 
@@ -43,6 +49,7 @@ class PassioFoodDataInfo {
     required this.resultId,
     required this.scoredName,
     required this.score,
+    required this.tags,
     required this.type,
     required this.isShortName,
   });
@@ -60,6 +67,7 @@ class PassioFoodDataInfo {
         resultId: json['resultId'] as String,
         score: json['score'] as double,
         scoredName: json['scoredName'] as String,
+        tags: mapDynamicListToListOfString(json["tags"]),
         type: json['type'] as String,
         isShortName: json['isShortName'] as bool,
       );
@@ -74,6 +82,7 @@ class PassioFoodDataInfo {
         'resultId': resultId,
         'score': score,
         'scoredName': scoredName,
+        'tags': tags,
         'type': type,
         'isShortName': isShortName,
       };
@@ -93,7 +102,8 @@ class PassioFoodDataInfo {
         score == other.score &&
         scoredName == other.scoredName &&
         type == other.type &&
-        isShortName == other.isShortName;
+        isShortName == other.isShortName &&
+        listEquals(tags, other.tags);
   }
 
   /// Calculates the hash code for this `PassioFoodDataInfo` object.
@@ -108,5 +118,6 @@ class PassioFoodDataInfo {
       score.hashCode ^
       scoredName.hashCode ^
       type.hashCode ^
-      isShortName.hashCode;
+      isShortName.hashCode ^
+      Object.hashAllUnordered(tags ?? const []);
 }

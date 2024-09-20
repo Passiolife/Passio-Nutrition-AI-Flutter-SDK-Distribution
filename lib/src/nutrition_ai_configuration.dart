@@ -27,13 +27,21 @@ class PassioConfiguration {
   /// debugging information.
   final int debugMode;
 
-  PassioConfiguration(
+  /// Set to true to use only remote services without downloading local models.
+  ///
+  /// If true, the SDK will rely solely on remote services and won't download
+  /// any models. This is useful when you prefer to use only remote APIs,
+  /// allowing the configuration process to be faster than usual.
+  final bool remoteOnly;
+
+  const PassioConfiguration(
     this.key, {
     this.sdkDownloadsModels = true,
     this.allowInternetConnection = true,
     this.filesLocalURLs,
     this.overrideInstalledVersion = false,
     this.debugMode = 0,
+    this.remoteOnly = false,
   });
 }
 

@@ -218,4 +218,14 @@ abstract class NutritionAIPlatform extends PlatformInterface {
   Future<PassioCameraZoomLevel> getMinMaxCameraZoomLevel() async {
     throw UnimplementedError('getMinMaxCameraZoomLevel()');
   }
+
+  Future<PassioFoodItem?> recognizeNutritionFactsRemote(Uint8List bytes,
+      {required PassioImageResolution resolution}) {
+    throw UnimplementedError(
+        'recognizeNutritionFactsRemote(Uint8List bytes, {PassioImageResolution resolution})');
+  }
+
+  Future<bool> updateLanguage(String languageCode) {
+    throw UnimplementedError('updateLanguage(String languageCode)');
+  }
 }

@@ -689,4 +689,37 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
             .cast<String, dynamic>();
     return PassioCameraZoomLevel.fromJson(result);
   }
+
+  @override
+  Future<PassioFoodItem?> recognizeNutritionFactsRemote(Uint8List bytes,
+      {required PassioImageResolution resolution}) async {
+    // Prepare arguments for method call
+    var args = {
+      'bytes': bytes,
+      'resolution': resolution.name,
+    };
+    // Invoke the native method to recognize nutrition facts.
+    var responseMap = await methodChannel.invokeMethod(
+      'recognizeNutritionFactsRemote',
+      args,
+    );
+    // If the response is null, return null, indicating no data was found.
+    if (responseMap == null) {
+      return null;
+    }
+    // Cast the response into a Map<String, dynamic> for JSON deserialization.
+    Map<String, dynamic> foodItem = responseMap.cast<String, dynamic>();
+    // Convert the map to a PassioFoodItem instance using the fromJson factory method.
+    return PassioFoodItem.fromJson(foodItem);
+  }
+
+  @override
+  Future<bool> updateLanguage(String languageCode) async {
+    // Invoke the native method to update the language based on the provided language code.
+    // The method returns a response, which is expected to indicate success (true/false).
+    var response =
+        await methodChannel.invokeMethod('updateLanguage', languageCode);
+    // Cast the response to a boolean value to ensure the correct type is returned.
+    return response as bool;
+  }
 }

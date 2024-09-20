@@ -26,6 +26,7 @@ import ai.passio.passiosdk.passiofood.data.model.PassioFoodAmount
 import ai.passio.passiosdk.passiofood.data.model.PassioFoodItem
 import ai.passio.passiosdk.passiofood.data.model.PassioFoodMetadata
 import ai.passio.passiosdk.passiofood.data.model.PassioFoodOrigin
+import ai.passio.passiosdk.passiofood.data.model.PassioFoodResultType
 import ai.passio.passiosdk.passiofood.data.model.PassioIngredient
 import ai.passio.passiosdk.passiofood.data.model.PassioMealPlan
 import ai.passio.passiosdk.passiofood.data.model.PassioMealPlanItem
@@ -372,6 +373,8 @@ private fun mapFromPassioNutrients(nutrients: PassioNutrients): Map<String, Any?
     nutrientsMap["vitaminKMenaquinone4"] = mapFromUnitMass(nutrients.vitaminKMenaquinone4())
     nutrientsMap["vitaminKDihydrophylloquinone"] =
         mapFromUnitMass(nutrients.vitaminKDihydrophylloquinone())
+    nutrientsMap["vitaminARAE"] =
+        mapFromUnitMass(nutrients.vitaminARAE())
 
     return nutrientsMap
 }
@@ -399,6 +402,7 @@ fun mapFromPassioFoodDataInfo(passioFoodDataInfo: PassioFoodDataInfo): Map<Strin
     searchResult["scoredName"] = passioFoodDataInfo.scoredName
     searchResult["type"] = passioFoodDataInfo.type
     searchResult["isShortName"] = passioFoodDataInfo.isShortName
+    searchResult["tags"] = passioFoodDataInfo.tags
     return searchResult
 }
 
@@ -486,7 +490,9 @@ fun mapFromPassioAdvisorFoodInfo(passioAdvisorFoodInfo: PassioAdvisorFoodInfo): 
             // Map the foodDataInfo property, handling the case where it is null.
             "foodDataInfo" to foodDataInfo?.let { mapFromPassioFoodDataInfo(it) },
             // Map the remaining properties directly.
+            "packagedFoodItem" to packagedFoodItem?.let { mapFromPassioFoodItem(it) },
             "portionSize" to portionSize,
+            "resultType" to stringToPassioFoodResultType(resultType),
             "recognisedName" to recognisedName,
             "weightGrams" to weightGrams
         )
@@ -605,4 +611,12 @@ fun mapFromMinMaxCameraZoomLevel(minMax: Pair<Float?, Float?>): Map<String, Any?
         "minZoomLevel" to minMax.first,
         "maxZoomLevel" to minMax.second,
     )
+}
+
+fun stringToPassioFoodResultType(value: PassioFoodResultType): String {
+    return when (value) {
+        PassioFoodResultType.FOOD_ITEM -> "foodItem"
+        PassioFoodResultType.BARCODE -> "barcode"
+        PassioFoodResultType.NUTRITION_FACTS -> "nutritionFacts"
+    }
 }

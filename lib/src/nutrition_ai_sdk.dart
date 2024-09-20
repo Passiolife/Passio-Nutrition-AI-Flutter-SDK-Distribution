@@ -146,6 +146,7 @@ class NutritionAI {
   /// process will run on the same background thread as object detection process
   /// from the [startFoodDetection] method. The results will be delivered on the
   /// main thread. The image extension should be one of: png, jpg, jpeg.
+  @Deprecated('No longer supported. Use recognizeImageRemote instead.')
   Future<FoodCandidates?> detectFoodIn(Uint8List bytes,
       {FoodDetectionConfiguration? config}) {
     return NutritionAIPlatform.instance.detectFoodIn(bytes, config);
@@ -398,5 +399,39 @@ class NutritionAI {
   /// containing the minimum and maximum zoom levels supported by the camera.
   Future<PassioCameraZoomLevel> getMinMaxCameraZoomLevel() {
     return NutritionAIPlatform.instance.getMinMaxCameraZoomLevel();
+  }
+
+  /// Recognizes nutrition facts from an image remotely.
+  ///
+  /// This method sends the image data to a remote service to recognize and extract
+  /// nutrition information. It uses platform-specific code to handle the remote call
+  /// and retrieve the results. You can specify the image resolution for the analysis.
+  ///
+  /// [bytes] The image data in `Uint8List` format.
+  /// [resolution] (optional) The desired resolution of the image for analysis.
+  /// Defaults to `PassioImageResolution.res_1080`.
+  ///
+  /// Returns a [Future] that completes with a [PassioFoodItem] object containing
+  /// the recognized food item and its nutrition facts, or `null` if no data was found.
+  Future<PassioFoodItem?> recognizeNutritionFactsRemote(Uint8List bytes,
+      {PassioImageResolution resolution =
+          PassioImageResolution.res_1080}) async {
+    return NutritionAIPlatform.instance
+        .recognizeNutritionFactsRemote(bytes, resolution: resolution);
+  }
+
+  /// Updates the language setting for retrieving localized food data.
+  ///
+  /// This method updates the language preference used for fetching localized food data
+  /// (e.g., food names, nutrition information) in the specified language.
+  /// The language code provided is used to determine the appropriate localization for food data.
+  ///
+  /// [languageCode] A `String` representing a two-letter ISO 639-1 language code (e.g., "en" for English).
+  ///
+  /// Returns a [Future] that completes with a `bool`, indicating whether the language
+  /// was successfully applied for retrieving localized food data. The method will return `true`
+  /// if the language setting is applied successfully.
+  Future<bool> updateLanguage(String languageCode) async {
+    return NutritionAIPlatform.instance.updateLanguage(languageCode);
   }
 }

@@ -19,10 +19,9 @@ import ai.passio.nutrition_ai.converter.mapFromPassioStatus
 import ai.passio.nutrition_ai.converter.mapFromPassioStatusListener
 import ai.passio.nutrition_ai.converter.mapFromPassioTokenBudget
 import ai.passio.nutrition_ai.converter.mapFromSearchResponse
+import ai.passio.nutrition_ai.converter.mapToFetchFoodItemForDataInfo
 import ai.passio.nutrition_ai.converter.mapToFoodDetectionConfiguration
 import ai.passio.nutrition_ai.converter.mapToPassioConfiguration
-import ai.passio.nutrition_ai.converter.mapToPassioFoodDataInfo
-import ai.passio.nutrition_ai.converter.mapToFetchFoodItemForDataInfo
 import ai.passio.nutrition_ai.converter.mapToRectF
 import ai.passio.nutrition_ai.converter.passioImageResolutionFromString
 import ai.passio.passiosdk.core.config.Bridge
@@ -107,6 +106,8 @@ class NutritionAIHandler(
             "enableFlashlight" -> enableFlashlight(call.arguments as HashMap<String, Any>, result)
             "setCameraZoom" -> setCameraZoom(call.arguments as HashMap<String, Any>, result)
             "getMinMaxCameraZoomLevel" -> getMinMaxCameraZoomLevel(result)
+            "recognizeNutritionFactsRemote" -> recognizeNutritionFactsRemote(call.arguments as HashMap<String, Any>, result)
+            "updateLanguage" -> updateLanguage(call.arguments as String, result)
         }
     }
 
@@ -509,7 +510,6 @@ class NutritionAIHandler(
      * @param callback The callback to invoke with the result.
      */
     private fun fetchFoodItemLegacy(passioID: PassioID, callback: MethodChannel.Result) {
-
         // Call the fetchFoodItemLegacy method on the PassioSDK instance
         PassioSDK.instance.fetchFoodItemLegacy(passioID) { foodItem ->
 
@@ -670,6 +670,41 @@ class NutritionAIHandler(
     private fun getMinMaxCameraZoomLevel(callback: MethodChannel.Result) {
         val result = PassioSDK.instance.getMinMaxCameraZoomLevel()
         callback.success(mapFromMinMaxCameraZoomLevel(result))
+    }
+
+    private fun recognizeNutritionFactsRemote(
+        args: Map<String, Any>,
+        callback: MethodChannel.Result
+    ) {
+        // Extract the byte array from the arguments.
+        val bytes = args["bytes"] as ByteArray
+
+        // Extract the resolution string from the arguments and convert it to the corresponding enum.
+        val resolution = args["resolution"] as String
+        val resolutionEnum = passioImageResolutionFromString(resolution)
+
+        // Decode the byte array into a bitmap.
+        val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+
+        // Call the recognizeNutritionFactsRemote method on the PassioSDK instance.
+        PassioSDK.instance.recognizeNutritionFactsRemote(
+            bitmap,
+            resolutionEnum,
+        ) { foodItem ->
+            if (foodItem == null) {
+                callback.success(null)
+            } else {
+                val foodItemMap = mapFromPassioFoodItem(foodItem)
+                callback.success(foodItemMap)
+            }
+        }
+    }
+
+    private fun updateLanguage(
+        languageCode: String,
+        callback: MethodChannel.Result
+    ) {
+        callback.success(PassioSDK.instance.updateLanguage(languageCode))
     }
 
 }

@@ -105,6 +105,10 @@ dependencies:
   # A markdown renderer for Flutter. It supports the original format, but no inline HTML.
   flutter_markdown: ^0.7.1
 
+  # https://pub.dev/packages/language_picker
+  # Provides a dropdown and dialog to select a language.
+  language_picker: ^0.4.5
+
 dev_dependencies:
   integration_test:
     sdk: flutter

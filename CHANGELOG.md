@@ -1,7 +1,66 @@
+## 3.2.0
+
+### Added APIs
+
+* Added function `recognizeNutritionFactsRemote` that can parse the nutrition facts table from an image and return a `PassioFoodItem` with the scanned nutrients
+```dart
+Future<PassioFoodItem?> recognizeNutritionFactsRemote(Uint8List bytes, {PassioImageResolution resolution = PassioImageResolution.res_1080})
+```
+
+* Added support for localized content. Using `updateLanguage` with a two digit ISO 639-1 language code will transform the food names and serving sizes in the SDK responses.
+```dart
+Future<bool> updateLanguage(String languageCode)
+```
+
+* Added `remoteOnly` flag to the `PassioConfiguration` class. With this flag enabled, the SDK won't download the files needed for local recognition. In this case only remote recognition is possible.
+```dart
+class PassioConfiguration{
+  ...
+  final bool remoteOnly;
+}
+```
+
+
+### Refactored APIs
+
+* `recognizeImageRemote` can now scan barcodes and nutrition facts. The `PassioAdvisorFoodInfo` class has been augmented to handle these responses
+```dart
+class PassioAdvisorFoodInfo {
+  final PassioFoodDataInfo? foodDataInfo;
+  final PassioFoodItem? packagedFoodItem;
+  final String portionSize;
+  final PassioFoodResultType resultType;
+  final String recognisedName;
+  final double weightGrams;
+}
+
+enum PassioFoodResultType {
+  foodItem,
+  barcode,
+  nutritionFacts,
+}
+```
+
+* Property `tags` was added to `PassioFoodDataInfo`
+```dart
+class PassioFoodDataInfo {
+    ...
+    final List<String>? tags;
+}
+```
+
+* Vitamin A RAE was added to the `PassioNutrients` class.
+```dart
+class PassioNutrients {
+  ...
+  final UnitMass? _vitaminARAE;
+}
+```
+
+
 ## 3.1.4+2
 
 * Improved scanning performance on Android
-
 
 ## 3.1.4+1
 

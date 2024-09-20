@@ -113,6 +113,9 @@ class PassioNutrients {
   /// The amount of vitaminKPhylloquinone in the food.
   final UnitMass? _vitaminKPhylloquinone;
 
+  /// The amount of vitamin A in Retinol Activity Equivalents (RAE) in the food.
+  final UnitMass? _vitaminARAE;
+
   /// The amount of zinc in the food.
   final UnitMass? _zinc;
 
@@ -193,6 +196,8 @@ class PassioNutrients {
 
   UnitMass? get vitaminKPhylloquinone => _scaleByAmount(_vitaminKPhylloquinone);
 
+  UnitMass? get vitaminARAE => _scaleByAmount(_vitaminARAE);
+
   UnitMass? get zinc => _scaleByAmount(_zinc);
 
   /// Creates a new `PassioNutrients` instance.
@@ -233,50 +238,9 @@ class PassioNutrients {
     this._vitaminKDihydrophylloquinone,
     this._vitaminKMenaquinone4,
     this._vitaminKPhylloquinone,
+    this._vitaminARAE,
     this._zinc,
   );
-
-  factory PassioNutrients.fromWeight(UnitMass weight) {
-    return PassioNutrients._(
-      weight,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-    );
-  }
 
   factory PassioNutrients.fromNutrients({
     UnitMass? alcohol,
@@ -314,6 +278,7 @@ class PassioNutrients {
     UnitMass? vitaminKDihydrophylloquinone,
     UnitMass? vitaminKMenaquinone4,
     UnitMass? vitaminKPhylloquinone,
+    UnitMass? vitaminARAE,
     UnitMass? zinc,
   }) {
     return PassioNutrients._(
@@ -353,6 +318,7 @@ class PassioNutrients {
       vitaminKDihydrophylloquinone,
       vitaminKMenaquinone4,
       vitaminKPhylloquinone,
+      vitaminARAE,
       zinc,
     );
   }
@@ -401,6 +367,7 @@ class PassioNutrients {
       referenceNutrients._vitaminKDihydrophylloquinone,
       referenceNutrients._vitaminKMenaquinone4,
       referenceNutrients._vitaminKPhylloquinone,
+      referenceNutrients._vitaminARAE,
       referenceNutrients._zinc,
     );
   }
@@ -551,6 +518,10 @@ class PassioNutrients {
               .reduce((value, element) => value?.plus(element) ?? element)
           as UnitMass?,
       ingredientsData
+              .map((e) => e.$1._vitaminARAE?.times(e.$2))
+              .reduce((value, element) => value?.plus(element) ?? element)
+          as UnitMass?,
+      ingredientsData
               .map((e) => e.$1._zinc?.times(e.$2))
               .reduce((value, element) => value?.plus(element) ?? element)
           as UnitMass?,
@@ -602,6 +573,7 @@ class PassioNutrients {
             "vitaminKMenaquinone4", (it) => UnitMass.fromJson(it)),
         json.ifValueNotNull(
             "vitaminKPhylloquinone", (it) => UnitMass.fromJson(it)),
+        json.ifValueNotNull("vitaminARAE", (it) => UnitMass.fromJson(it)),
         json.ifValueNotNull("zinc", (it) => UnitMass.fromJson(it)),
       );
 
@@ -643,6 +615,7 @@ class PassioNutrients {
         'vitaminKDihydrophylloquinone': _vitaminKDihydrophylloquinone?.toJson(),
         'vitaminKMenaquinone4': _vitaminKMenaquinone4?.toJson(),
         'vitaminKPhylloquinone': _vitaminKPhylloquinone?.toJson(),
+        'vitaminARAE': _vitaminARAE?.toJson(),
         'zinc': _zinc?.toJson(),
       };
 
@@ -688,6 +661,7 @@ class PassioNutrients {
         _vitaminKDihydrophylloquinone == other._vitaminKDihydrophylloquinone &&
         _vitaminKMenaquinone4 == other._vitaminKMenaquinone4 &&
         _vitaminKPhylloquinone == other._vitaminKPhylloquinone &&
+        _vitaminARAE == other._vitaminARAE &&
         _zinc == other._zinc;
   }
 
@@ -731,6 +705,7 @@ class PassioNutrients {
     hash ^= _vitaminKDihydrophylloquinone?.hashCode ?? 0;
     hash ^= _vitaminKMenaquinone4?.hashCode ?? 0;
     hash ^= _vitaminKPhylloquinone?.hashCode ?? 0;
+    hash ^= _vitaminARAE?.hashCode ?? 0;
     hash ^= _zinc?.hashCode ?? 0;
     return hash;
   }

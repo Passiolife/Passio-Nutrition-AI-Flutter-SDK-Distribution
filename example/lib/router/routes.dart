@@ -15,4 +15,5 @@ class Routes {
   static const advisorMessagePage = '/advisorMessagePage';
   static const advisorImagePage = '/advisorImagePage';
   static const foodAnalysisPage = '/foodAnalysisPage';
+  static const recognizeNutritionFacts = '/recognizeNutritionFacts';
 }
