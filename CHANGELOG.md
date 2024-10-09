@@ -1,3 +1,10 @@
+## 3.2.0+1
+
+### Fixed
+
+* Resolved an issue with the iOS build process that was causing build failures in certain environments.
+
+
 ## 3.2.0
 
 ### Added APIs

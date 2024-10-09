@@ -21,7 +21,6 @@ class FoodSearchItemRow extends StatefulWidget {
 }
 
 class _FoodSearchItemRowState extends State<FoodSearchItemRow> {
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

@@ -130,6 +130,9 @@ dev_dependencies:
   # Generator is use to generate the code for .env file.
   envied_generator: ^0.3.0+3
 
+dependency_overrides:
+  win32: ^5.5.5
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
