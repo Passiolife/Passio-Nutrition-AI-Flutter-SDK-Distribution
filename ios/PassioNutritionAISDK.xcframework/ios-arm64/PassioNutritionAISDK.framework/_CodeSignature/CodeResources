@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/PassioNutritionAISDK-Swift.h</key>
 		<data>
-		ZvNQIs9cYgfxyVEl5fBR1jRyAbM=
+		3eTCaitbR2OPk+1J8J8wZKkDXa4=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -18,23 +18,23 @@
 		</data>
 		<key>Modules/PassioNutritionAISDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		h7zBdQOT8m5PughJdHxQmyvpbbE=
+		rF0EDHCCOtEDD95AzlTxfGXkfqw=
 		</data>
 		<key>Modules/PassioNutritionAISDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		59r/4iA0OjmyM3T2niGQXSNGR4s=
+		I8QqSlWvSYgl0+D7AUqzqz3t61o=
 		</data>
 		<key>Modules/PassioNutritionAISDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		+AYxXMZ9eVV5zk0ZnGnI6gip0uU=
+		VCs9R5zoqJWS30ob3oEfmXqJFNQ=
 		</data>
 		<key>Modules/PassioNutritionAISDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		59r/4iA0OjmyM3T2niGQXSNGR4s=
+		I8QqSlWvSYgl0+D7AUqzqz3t61o=
 		</data>
 		<key>Modules/PassioNutritionAISDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		tB5O2n3aOYEvttk74ictSTmAte8=
+		wrSF4nbkGK97CbKNbuxzgZ6TTtE=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -58,42 +58,42 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			WPfN0A6E0a4Mv8xCDeA0rKTXSgzbanL9v5BYcC9Jaa0=
+			38HOxOBujfP3m0iH2GPK8qZ/PbIejeUxXDFy7R/vlAg=
 			</data>
 		</dict>
 		<key>Modules/PassioNutritionAISDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			iL9+UawTB1BhZAPC4QY0oYv+5JSBSacKYhFsxRNH45k=
+			idBwwMpKzV8RSUhtdulP2BwVYp3D3WT+zvHCGDmyZ7M=
 			</data>
 		</dict>
 		<key>Modules/PassioNutritionAISDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			dRk5P6Ls9oFgQSZFTwS/B3CftPQjwkRxgmdX4d3FCyc=
+			aOG+AtISWq+9wnPTieZhA9NO74pRn5xAosegub0kCpg=
 			</data>
 		</dict>
 		<key>Modules/PassioNutritionAISDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			o3M0cseXaZmTOB0gQdrPtq3YRSt9ajtuseCsmc7THtY=
+			FT4zd0/iLqETsJZmlxufOIBZvx78dRmQjga2TazMdHc=
 			</data>
 		</dict>
 		<key>Modules/PassioNutritionAISDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			dRk5P6Ls9oFgQSZFTwS/B3CftPQjwkRxgmdX4d3FCyc=
+			aOG+AtISWq+9wnPTieZhA9NO74pRn5xAosegub0kCpg=
 			</data>
 		</dict>
 		<key>Modules/PassioNutritionAISDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			mPo4HVajNx6WLZK8PtJ6rQeIRO9n4wwHBLGFpMlWu2U=
+			n0IQtehMQKHt7oSRS+I3O1XRsaHo2BTNvToX2e2/kM0=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

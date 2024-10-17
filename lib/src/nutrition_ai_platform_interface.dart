@@ -66,9 +66,10 @@ abstract class NutritionAIPlatform extends PlatformInterface {
 
   Future<PassioFoodItem?> fetchFoodItemForDataInfo(
       PassioFoodDataInfo passioFoodDataInfo,
-      {double? weightGrams}) {
+      {double? servingQuantity,
+      String? servingUnit}) {
     throw UnimplementedError(
-        'fetchFoodItemForDataInfo(PassioFoodDataInfo passioFoodDataInfo, {double? weightGrams}) has not been implemented.');
+        'fetchFoodItemForDataInfo(PassioFoodDataInfo passioFoodDataInfo, {double? servingQuantity, String? servingUnit}) has not been implemented.');
   }
 
   Future<PassioFoodItem?> fetchFoodItemForPassioID(PassioID passioID) {
@@ -227,5 +228,18 @@ abstract class NutritionAIPlatform extends PlatformInterface {
 
   Future<bool> updateLanguage(String languageCode) {
     throw UnimplementedError('updateLanguage(String languageCode)');
+  }
+
+  Future<PassioResult<bool>> reportFoodItem(
+      {String refCode = '',
+      String productCode = '',
+      List<String>? notes}) async {
+    throw UnimplementedError('reportFoodItem({String refCode = '
+        ', String productCode = '
+        ', List<String>? notes})');
+  }
+
+  Future<PassioResult<bool>> submitUserCreatedFood(PassioFoodItem item) async {
+    throw UnimplementedError('submitUserCreatedFood(PassioFoodItem item)');
   }
 }

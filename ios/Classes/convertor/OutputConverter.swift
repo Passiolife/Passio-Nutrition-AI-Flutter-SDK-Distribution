@@ -100,7 +100,7 @@ struct OutputConverter {
     private func mapFromUnitMass(_ unitMass: Measurement<UnitMass>?) -> [String: Any?]? {
         guard let unitMass = unitMass else { return nil }
         var unitMassMap = [String: Any?]()
-        let unit = convertMashUnit(unitMass: unitMass.unit)
+        let unit = convertMassUnit(unitMass: unitMass.unit)
         unitMassMap["unit"] = unit
         unitMassMap["value"] = unitMass.value
         return unitMassMap
@@ -118,7 +118,7 @@ struct OutputConverter {
         unitEnergy.symbol.description == "kCal" ? "kilocalories" : unitEnergy.symbol.description
     }
     
-    private func convertMashUnit(unitMass: UnitMass) -> String {
+    private func convertMassUnit(unitMass: UnitMass) -> String {
         switch unitMass.symbol.description {
         case "g","gr","ml":
             return "grams"
@@ -224,7 +224,7 @@ struct OutputConverter {
         dataMap["ingredients"] = foodItem.ingredients.map { mapFromPassioIngredient($0) }
         dataMap["licenseCopy"] = foodItem.licenseCopy
         dataMap["name"] = foodItem.name
-        dataMap["refCode"] = foodItem.refCode ?? ""
+        dataMap["refCode"] = foodItem.refCode
         dataMap["scannedId"] = foodItem.scannedId
         return dataMap
     }
@@ -256,7 +256,7 @@ struct OutputConverter {
         ingredientMap["id"] = ingredient.id
         ingredientMap["metadata"] = mapFromPassioFoodMetadata(ingredient.metadata)
         ingredientMap["name"] = ingredient.name
-        ingredientMap["refCode"] = ingredient.refCode ?? ""
+        ingredientMap["refCode"] = ingredient.refCode
         ingredientMap["referenceNutrients"] = mapFromPassioNutrients(ingredient.referenceNutrients)
         return ingredientMap
     }
@@ -436,9 +436,9 @@ struct OutputConverter {
         return map
     }
 
-    func mapFromPassioResult<T: Any>(nutritionAdvisorStatus: Result<T, PassioNutritionAISDK.NetworkError>) -> [String: Any?] {
+    func mapFromPassioResult<T: Any>(result: Result<T, PassioNutritionAISDK.NetworkError>) -> [String: Any?] {
         var map = [String: Any?]()
-        switch nutritionAdvisorStatus {
+        switch result {
         case .success(let success):
             var valueType: String? = nil
             var value: Any? = nil
@@ -449,6 +449,9 @@ struct OutputConverter {
             } else if success is [PassioAdvisorFoodInfo] {
                 valueType = "PassioAdvisorFoodInfo"
                 value = (success as! [PassioAdvisorFoodInfo]).map { mapFromPassioAdvisorFoodInfo(passioAdvisorFoodInfo: $0) }
+            } else if success is Bool {
+                valueType = "bool"
+                value = success as! Bool
             }
             
             map["status"] = "success"

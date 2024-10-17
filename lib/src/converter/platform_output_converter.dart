@@ -85,6 +85,8 @@ PassioResult<dynamic> mapToPassioResult(Map<String, dynamic> map) {
               value, (inMap) => PassioAdvisorFoodInfo.fromJson(inMap));
           return Success<List<PassioAdvisorFoodInfo>>(list);
         }
+      } else if (value is bool) {
+        return Success<bool>(value);
       }
     }
     return const Success<VoidType>(VoidType());

@@ -68,7 +68,7 @@ private fun PassioSDKError.toPlatformString(): String {
         PassioSDKError.LICENSE_KEY_HAS_EXPIRED -> "licensedKeyHasExpired"
         PassioSDKError.LICENSE_DECODING_ERROR -> "licenseDecodingError"
         PassioSDKError.MODELS_DOWNLOAD_FAILED -> "modelsDownloadFailed"
-        PassioSDKError.NO_INTERNET_CONNECTION -> "noInternetConnection"
+        PassioSDKError.NETWORK_ERROR -> "networkError"
         PassioSDKError.NO_MODELS_FILES_FOUND -> "noModelsFilesFound"
         PassioSDKError.NOT_LICENSED_FOR_THIS_PROJECT -> "notLicensedForThisProject"
         PassioSDKError.MISSING_DEPENDENCY -> "missingDependency"
@@ -561,6 +561,11 @@ fun mapFromPassioResult(callback: PassioResult<Any>): Map<String, Any?> {
                     } else {
                         null
                     }
+                }
+
+                is Boolean -> {
+                    resultType = "bool"
+                    callback.value as Boolean
                 }
 
                 // If the value does not match any expected type, return null.

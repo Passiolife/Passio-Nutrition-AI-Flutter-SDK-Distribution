@@ -115,21 +115,25 @@ class NutritionAI {
         .fetchFoodItemForProductCode(productCode);
   }
 
-  /// A function to fetch detailed information about a food item based on a search result.
+  /// Fetches detailed information about a food item based on the [PassioFoodDataInfo].
   ///
-  /// This function also takes an optional [weightGrams] parameter to provide information
-  /// specific to the specified weight in grams. It returns a [Future] that resolves to a
-  /// [PassioFoodItem] object with detailed information about the food item.
+  /// [servingQuantity] Optional quantity for a specific serving size.
+  /// [servingUnit] Optional unit for the specified serving size.
+  ///
+  /// Returns a [Future] with a [PassioFoodItem] containing details based on the provided serving size.
   ///
   /// Example usage:
   /// ```dart
-  /// var foodItem = await fetchFoodItemForDataInfo(passioFoodDataInfo, weightGrams: 150);
+  /// var foodItem = await fetchFoodItemForDataInfo(passioFoodDataInfo, servingQuantity: 150, servingUnit: 'grams');
   /// ```
   Future<PassioFoodItem?> fetchFoodItemForDataInfo(
       PassioFoodDataInfo passioFoodDataInfo,
-      {double? weightGrams}) {
-    return NutritionAIPlatform.instance
-        .fetchFoodItemForDataInfo(passioFoodDataInfo, weightGrams: weightGrams);
+      {double? servingQuantity,
+      String? servingUnit}) {
+    return NutritionAIPlatform.instance.fetchFoodItemForDataInfo(
+        passioFoodDataInfo,
+        servingQuantity: servingQuantity,
+        servingUnit: servingUnit);
   }
 
   /// List of tags for food item.
@@ -433,5 +437,30 @@ class NutritionAI {
   /// if the language setting is applied successfully.
   Future<bool> updateLanguage(String languageCode) async {
     return NutritionAIPlatform.instance.updateLanguage(languageCode);
+  }
+
+  /// Reports a food item if it is incorrect using either its [refCode] or [productCode].
+  ///
+  /// [refCode] The reference code of the food item (default is empty).
+  /// [productCode] The product code of the food item (default is empty).
+  /// [notes] Optional notes or feedback about the food item.
+  ///
+  /// Returns a [Future] with a [PassioResult] indicating success (`true`) or failure.
+  Future<PassioResult<bool>> reportFoodItem(
+      {String refCode = '',
+      String productCode = '',
+      List<String>? notes}) async {
+    return NutritionAIPlatform.instance.reportFoodItem(
+        refCode: refCode, productCode: productCode, notes: notes);
+  }
+
+  /// Submits a user-created food item.
+  ///
+  /// [item] A [PassioFoodItem] with details like name, ingredients, and amount.
+  ///
+  /// Returns a [Future] with a [PassioResult] indicating if the food item
+  /// was successfully submitted. The result is `true` if successful.
+  Future<PassioResult<bool>> submitUserCreatedFood(PassioFoodItem item) async {
+    return NutritionAIPlatform.instance.submitUserCreatedFood(item);
   }
 }

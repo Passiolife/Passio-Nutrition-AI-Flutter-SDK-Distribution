@@ -36,34 +36,6 @@ By default the SDK does not record/store any photos or videos. Instead, as the e
 
 * The SDK requires access to the devices's camera.
 
-### Setup for Android
-
-* Add to top build.gradle file (Project: android)
-
-```groovy
-allprojects {
-   repositories {
-      ...
-      flatDir {
-         dirs project(':nutrition_ai').file('libs')
-      }
-   }
-}
-```
-
-* The *nutrition_ai* build.gradle file dependency section should look like (Module: nutrition_ai)
-
-```groovy
-allprojects {
-   repositories {
-      ...
-      flatDir {
-         implementation (name: 'passiolib-release', ext: 'aar')
-      }
-   }
-}
-```
-
 ### Initialize and configure the SDK
 
 1) Import the Passio Nutrition AI Package

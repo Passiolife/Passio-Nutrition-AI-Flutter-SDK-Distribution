@@ -105,11 +105,7 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
                             text:
                                 '${data?.foodName.toTitleCase()} is added to the logs.');
                         if (data != null) {
-                          final foodItem = await NutritionAI.instance
-                              .fetchFoodItemForDataInfo(data, weightGrams: 100);
-                          if (kDebugMode) {
-                            print(foodItem?.toJson());
-                          }
+                          _bloc.add(DoFetchFoodItemEvent(foodInfo: data));
                         }
                       },
                     );

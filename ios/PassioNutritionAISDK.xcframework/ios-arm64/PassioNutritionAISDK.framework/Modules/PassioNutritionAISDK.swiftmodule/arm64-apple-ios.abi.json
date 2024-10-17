@@ -3502,44 +3502,6 @@
       },
       {
         "kind": "Import",
-        "name": "CoreML",
-        "printedName": "CoreML",
-        "declKind": "Import",
-        "moduleName": "PassioNutritionAISDK",
-        "declAttributes": [
-          "RawDocComment"
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "AVFoundation",
-        "printedName": "AVFoundation",
-        "declKind": "Import",
-        "moduleName": "PassioNutritionAISDK"
-      },
-      {
-        "kind": "Import",
-        "name": "UIKit",
-        "printedName": "UIKit",
-        "declKind": "Import",
-        "moduleName": "PassioNutritionAISDK"
-      },
-      {
-        "kind": "Import",
-        "name": "Vision",
-        "printedName": "Vision",
-        "declKind": "Import",
-        "moduleName": "PassioNutritionAISDK"
-      },
-      {
-        "kind": "Import",
-        "name": "MLCompute",
-        "printedName": "MLCompute",
-        "declKind": "Import",
-        "moduleName": "PassioNutritionAISDK"
-      },
-      {
-        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -9586,22 +9548,14 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
               }
             ],
             "declKind": "Var",
-            "usr": "s:20PassioNutritionAISDK0A10IngredientV7refCodeSSSgvp",
-            "mangledName": "$s20PassioNutritionAISDK0A10IngredientV7refCodeSSSgvp",
+            "usr": "s:20PassioNutritionAISDK0A10IngredientV7refCodeSSvp",
+            "mangledName": "$s20PassioNutritionAISDK0A10IngredientV7refCodeSSvp",
             "moduleName": "PassioNutritionAISDK",
             "declAttributes": [
               "HasStorage",
@@ -9617,22 +9571,14 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.String?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sq"
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:20PassioNutritionAISDK0A10IngredientV7refCodeSSSgvg",
-                "mangledName": "$s20PassioNutritionAISDK0A10IngredientV7refCodeSSSgvg",
+                "usr": "s:20PassioNutritionAISDK0A10IngredientV7refCodeSSvg",
+                "mangledName": "$s20PassioNutritionAISDK0A10IngredientV7refCodeSSvg",
                 "moduleName": "PassioNutritionAISDK",
                 "implicit": true,
                 "accessorKind": "get"
@@ -9764,17 +9710,9 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
               },
               {
                 "kind": "TypeNominal",
@@ -9800,8 +9738,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:20PassioNutritionAISDK0A10IngredientV2id4name6iconId6amount18referenceNutrients8metadata7refCode4tagsACSS_S2SAA0A10FoodAmountVAA0aK0VAA0aP8MetadataVSSSgSaySSGSgtcfc",
-            "mangledName": "$s20PassioNutritionAISDK0A10IngredientV2id4name6iconId6amount18referenceNutrients8metadata7refCode4tagsACSS_S2SAA0A10FoodAmountVAA0aK0VAA0aP8MetadataVSSSgSaySSGSgtcfc",
+            "usr": "s:20PassioNutritionAISDK0A10IngredientV2id4name6iconId6amount18referenceNutrients8metadata7refCode4tagsACSS_S2SAA0A10FoodAmountVAA0aK0VAA0aP8MetadataVSSSaySSGSgtcfc",
+            "mangledName": "$s20PassioNutritionAISDK0A10IngredientV2id4name6iconId6amount18referenceNutrients8metadata7refCode4tagsACSS_S2SAA0A10FoodAmountVAA0aK0VAA0aP8MetadataVSSSaySSGSgtcfc",
             "moduleName": "PassioNutritionAISDK",
             "declAttributes": [
               "AccessControl"
@@ -9947,6 +9885,44 @@
             "mangledName": "$sSE"
           }
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "CoreML",
+        "printedName": "CoreML",
+        "declKind": "Import",
+        "moduleName": "PassioNutritionAISDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "PassioNutritionAISDK"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "PassioNutritionAISDK"
+      },
+      {
+        "kind": "Import",
+        "name": "Vision",
+        "printedName": "Vision",
+        "declKind": "Import",
+        "moduleName": "PassioNutritionAISDK"
+      },
+      {
+        "kind": "Import",
+        "name": "MLCompute",
+        "printedName": "MLCompute",
+        "declKind": "Import",
+        "moduleName": "PassioNutritionAISDK"
       },
       {
         "kind": "Import",
@@ -11114,6 +11090,16 @@
       },
       {
         "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "PassioNutritionAISDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "CoreMotion",
         "printedName": "CoreMotion",
         "declKind": "Import",
@@ -11821,6 +11807,43 @@
                 "moduleName": "PassioNutritionAISDK"
               },
               {
+                "kind": "Var",
+                "name": "max",
+                "printedName": "max",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(PassioNutritionAISDK.PassioNutritionAI.FramesPerSecond.Type) -> PassioNutritionAISDK.PassioNutritionAI.FramesPerSecond",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FramesPerSecond",
+                        "printedName": "PassioNutritionAISDK.PassioNutritionAI.FramesPerSecond",
+                        "usr": "s:20PassioNutritionAISDK0aB2AIC15FramesPerSecondO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "PassioNutritionAISDK.PassioNutritionAI.FramesPerSecond.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "FramesPerSecond",
+                            "printedName": "PassioNutritionAISDK.PassioNutritionAI.FramesPerSecond",
+                            "usr": "s:20PassioNutritionAISDK0aB2AIC15FramesPerSecondO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:20PassioNutritionAISDK0aB2AIC15FramesPerSecondO3maxyA2EmF",
+                "mangledName": "$s20PassioNutritionAISDK0aB2AIC15FramesPerSecondO3maxyA2EmF",
+                "moduleName": "PassioNutritionAISDK"
+              },
+              {
                 "kind": "Constructor",
                 "name": "init",
                 "printedName": "init(rawValue:)",
@@ -12224,8 +12247,10 @@
             "usr": "s:20PassioNutritionAISDK0aB2AIC12detectFoodIn5image15detectionConfig12slicingRects10completionySo7UIImageC_AA0F22DetectionConfigurationVSaySo6CGRectVGSgyAA0F10Candidates_pSgctF",
             "mangledName": "$s20PassioNutritionAISDK0aB2AIC12detectFoodIn5image15detectionConfig12slicingRects10completionySo7UIImageC_AA0F22DetectionConfigurationVSaySo6CGRectVGSgyAA0F10Candidates_pSgctF",
             "moduleName": "PassioNutritionAISDK",
+            "deprecated": true,
             "declAttributes": [
               "AccessControl",
+              "Available",
               "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
@@ -12909,7 +12934,7 @@
           {
             "kind": "Function",
             "name": "fetchFoodItemFor",
-            "printedName": "fetchFoodItemFor(foodItem:weightGrams:completion:)",
+            "printedName": "fetchFoodItemFor(foodDataInfo:servingQuantity:servingUnit:completion:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -12932,6 +12957,21 @@
                     "name": "Double",
                     "printedName": "Swift.Double",
                     "usr": "s:Sd"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
                   }
                 ],
                 "hasDefaultArg": true,
@@ -12965,8 +13005,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:20PassioNutritionAISDK0aB2AIC16fetchFoodItemFor04foodG011weightGrams10completionyAA0aF8DataInfoV_SdSgyAA0afG0VSgctF",
-            "mangledName": "$s20PassioNutritionAISDK0aB2AIC16fetchFoodItemFor04foodG011weightGrams10completionyAA0aF8DataInfoV_SdSgyAA0afG0VSgctF",
+            "usr": "s:20PassioNutritionAISDK0aB2AIC16fetchFoodItemFor12foodDataInfo15servingQuantity0L4Unit10completionyAA0afjK0V_SdSgSSSgyAA0afG0VSgctF",
+            "mangledName": "$s20PassioNutritionAISDK0aB2AIC16fetchFoodItemFor12foodDataInfo15servingQuantity0L4Unit10completionyAA0afjK0V_SdSgSSSgyAA0afG0VSgctF",
             "moduleName": "PassioNutritionAISDK",
             "declAttributes": [
               "AccessControl",
@@ -14157,6 +14197,155 @@
             "declKind": "Func",
             "usr": "s:20PassioNutritionAISDK0aB2AIC14updateLanguage12languageCodeSbSS_tF",
             "mangledName": "$s20PassioNutritionAISDK0aB2AIC14updateLanguage12languageCodeSbSS_tF",
+            "moduleName": "PassioNutritionAISDK",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "submitUserCreatedFood",
+            "printedName": "submitUserCreatedFood(item:completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PassioFoodItem",
+                "printedName": "PassioNutritionAISDK.PassioFoodItem",
+                "usr": "s:20PassioNutritionAISDK0A8FoodItemV"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.Result<Swift.Bool, PassioNutritionAISDK.NetworkError>) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Result",
+                    "printedName": "Swift.Result<Swift.Bool, PassioNutritionAISDK.NetworkError>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "NetworkError",
+                        "printedName": "PassioNutritionAISDK.NetworkError",
+                        "usr": "s:20PassioNutritionAISDK12NetworkErrorO"
+                      }
+                    ],
+                    "usr": "s:s6ResultO"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:20PassioNutritionAISDK0aB2AIC21submitUserCreatedFood4item10completionyAA0aH4ItemV_ys6ResultOySbAA12NetworkErrorOGctF",
+            "mangledName": "$s20PassioNutritionAISDK0aB2AIC21submitUserCreatedFood4item10completionyAA0aH4ItemV_ys6ResultOySbAA12NetworkErrorOGctF",
+            "moduleName": "PassioNutritionAISDK",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "reportFoodItem",
+            "printedName": "reportFoodItem(refCode:productCode:notes:completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "hasDefaultArg": true,
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "hasDefaultArg": true,
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.String]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.String]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.Result<Swift.Bool, PassioNutritionAISDK.NetworkError>) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Result",
+                    "printedName": "Swift.Result<Swift.Bool, PassioNutritionAISDK.NetworkError>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "NetworkError",
+                        "printedName": "PassioNutritionAISDK.NetworkError",
+                        "usr": "s:20PassioNutritionAISDK12NetworkErrorO"
+                      }
+                    ],
+                    "usr": "s:s6ResultO"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:20PassioNutritionAISDK0aB2AIC14reportFoodItem7refCode07productI05notes10completionySS_SSSaySSGSgys6ResultOySbAA12NetworkErrorOGctF",
+            "mangledName": "$s20PassioNutritionAISDK0aB2AIC14reportFoodItem7refCode07productI05notes10completionySS_SSSaySSGSgys6ResultOySbAA12NetworkErrorOGctF",
             "moduleName": "PassioNutritionAISDK",
             "declAttributes": [
               "AccessControl",
@@ -16462,6 +16651,54 @@
                 "accessorKind": "_modify"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(id:source:licenseCopy:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PassioFoodOrigin",
+                "printedName": "PassioNutritionAISDK.PassioFoodOrigin",
+                "usr": "s:20PassioNutritionAISDK0A10FoodOriginV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:20PassioNutritionAISDK0A10FoodOriginV2id6source11licenseCopyACSS_S2SSgtcfc",
+            "mangledName": "$s20PassioNutritionAISDK0A10FoodOriginV2id6source11licenseCopyACSS_S2SSgtcfc",
+            "moduleName": "PassioNutritionAISDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
           },
           {
             "kind": "Constructor",
@@ -24409,22 +24646,14 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
               }
             ],
             "declKind": "Var",
-            "usr": "s:20PassioNutritionAISDK0A8FoodItemV7refCodeSSSgvp",
-            "mangledName": "$s20PassioNutritionAISDK0A8FoodItemV7refCodeSSSgvp",
+            "usr": "s:20PassioNutritionAISDK0A8FoodItemV7refCodeSSvp",
+            "mangledName": "$s20PassioNutritionAISDK0A8FoodItemV7refCodeSSvp",
             "moduleName": "PassioNutritionAISDK",
             "declAttributes": [
               "HasStorage",
@@ -24440,22 +24669,14 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.String?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sq"
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:20PassioNutritionAISDK0A8FoodItemV7refCodeSSSgvg",
-                "mangledName": "$s20PassioNutritionAISDK0A8FoodItemV7refCodeSSSgvg",
+                "usr": "s:20PassioNutritionAISDK0A8FoodItemV7refCodeSSvg",
+                "mangledName": "$s20PassioNutritionAISDK0A8FoodItemV7refCodeSSvg",
                 "moduleName": "PassioNutritionAISDK",
                 "implicit": true,
                 "accessorKind": "get"
@@ -24635,6 +24856,114 @@
                 "accessorKind": "get"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(id:scannedId:name:details:iconId:licenseCopy:amount:ingredients:refCode:tags:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PassioFoodItem",
+                "printedName": "PassioNutritionAISDK.PassioFoodItem",
+                "usr": "s:20PassioNutritionAISDK0A8FoodItemV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "hasDefaultArg": true,
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "hasDefaultArg": true,
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PassioFoodAmount",
+                "printedName": "PassioNutritionAISDK.PassioFoodAmount",
+                "usr": "s:20PassioNutritionAISDK0A10FoodAmountV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[PassioNutritionAISDK.PassioIngredient]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PassioIngredient",
+                    "printedName": "PassioNutritionAISDK.PassioIngredient",
+                    "usr": "s:20PassioNutritionAISDK0A10IngredientV"
+                  }
+                ],
+                "usr": "s:Sa"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.String]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.String]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:20PassioNutritionAISDK0A8FoodItemV2id9scannedId4name7details04iconH011licenseCopy6amount11ingredients7refCode4tagsACSS_S5SAA0aD6AmountVSayAA0A10IngredientVGSSSaySSGSgtcfc",
+            "mangledName": "$s20PassioNutritionAISDK0A8FoodItemV2id9scannedId4name7details04iconH011licenseCopy6amount11ingredients7refCode4tagsACSS_S5SAA0aD6AmountVSayAA0A10IngredientVGSSSaySSGSgtcfc",
+            "moduleName": "PassioNutritionAISDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
           },
           {
             "kind": "Function",
@@ -31480,8 +31809,7 @@
         "mangledName": "$s20PassioNutritionAISDK7BrandedV",
         "moduleName": "PassioNutritionAISDK",
         "declAttributes": [
-          "AccessControl",
-          "RawDocComment"
+          "AccessControl"
         ],
         "conformances": [
           {
@@ -41868,6 +42196,16 @@
         ]
       },
       {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "PassioNutritionAISDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "TypeDecl",
         "name": "PassioServingUnit",
         "printedName": "PassioServingUnit",
@@ -51300,244 +51638,6 @@
       "value": "true"
     },
     {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 347,
-      "length": 7,
-      "value": "\"3.2.0\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 461,
-      "length": 60,
-      "value": "\"ArchitectureName = \""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 520,
-      "length": 3,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 785,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "BooleanLiteral",
-      "offset": 829,
-      "length": 4,
-      "value": "true"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "BooleanLiteral",
-      "offset": 863,
-      "length": 4,
-      "value": "true"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 922,
-      "length": 1,
-      "value": "5"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 968,
-      "length": 2,
-      "value": "10"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "BooleanLiteral",
-      "offset": 1004,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "BooleanLiteral",
-      "offset": 1056,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1364,
-      "length": 1,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1379,
-      "length": 3,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1396,
-      "length": 5,
-      "value": "3"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1415,
-      "length": 4,
-      "value": "4"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1364,
-      "length": 1,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1379,
-      "length": 3,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1396,
-      "length": 5,
-      "value": "3"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1415,
-      "length": 4,
-      "value": "4"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1364,
-      "length": 1,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1379,
-      "length": 3,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1396,
-      "length": 5,
-      "value": "3"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1415,
-      "length": 4,
-      "value": "4"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 1582,
-      "length": 62,
-      "value": "\"___________________---status--___________________\n\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 1643,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "FloatLiteral",
-      "offset": 3825,
-      "length": 4,
-      "value": "0.00"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "FloatLiteral",
-      "offset": 3997,
-      "length": 4,
-      "value": "0.15"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "FloatLiteral",
-      "offset": 4053,
-      "length": 4,
-      "value": "0.35"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "FloatLiteral",
-      "offset": 4104,
-      "length": 4,
-      "value": "-0.1"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "BooleanLiteral",
-      "offset": 12137,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "BooleanLiteral",
-      "offset": 21766,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "BooleanLiteral",
-      "offset": 27621,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "BooleanLiteral",
-      "offset": 40973,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "BooleanLiteral",
-      "offset": 42026,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Internal Inteface\/PassioCoreSDK.swift",
-      "kind": "FloatLiteral",
-      "offset": 45614,
-      "length": 3,
-      "value": "3.2"
-    },
-    {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
       "kind": "BooleanLiteral",
       "offset": 302,
@@ -52070,6 +52170,265 @@
       "value": "\"passioUserAgent\""
     },
     {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "StringLiteral",
+      "offset": 347,
+      "length": 7,
+      "value": "\"3.2.1\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "StringLiteral",
+      "offset": 461,
+      "length": 60,
+      "value": "\"ArchitectureName = \""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "StringLiteral",
+      "offset": 520,
+      "length": 3,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 785,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "BooleanLiteral",
+      "offset": 829,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "BooleanLiteral",
+      "offset": 863,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 922,
+      "length": 1,
+      "value": "5"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 968,
+      "length": 2,
+      "value": "10"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1004,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1056,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1364,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1379,
+      "length": 3,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1396,
+      "length": 5,
+      "value": "3"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1415,
+      "length": 4,
+      "value": "4"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1439,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1364,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1379,
+      "length": 3,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1396,
+      "length": 5,
+      "value": "3"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1415,
+      "length": 4,
+      "value": "4"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1439,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1364,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1379,
+      "length": 3,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1396,
+      "length": 5,
+      "value": "3"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1415,
+      "length": 4,
+      "value": "4"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1439,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "StringLiteral",
+      "offset": 1603,
+      "length": 62,
+      "value": "\"___________________---status--___________________\n\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "StringLiteral",
+      "offset": 1664,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "FloatLiteral",
+      "offset": 4003,
+      "length": 4,
+      "value": "0.00"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "FloatLiteral",
+      "offset": 4175,
+      "length": 4,
+      "value": "0.15"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "FloatLiteral",
+      "offset": 4231,
+      "length": 4,
+      "value": "0.35"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "FloatLiteral",
+      "offset": 4282,
+      "length": 4,
+      "value": "-0.1"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "BooleanLiteral",
+      "offset": 12331,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "BooleanLiteral",
+      "offset": 21960,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "BooleanLiteral",
+      "offset": 27815,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "BooleanLiteral",
+      "offset": 41167,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "BooleanLiteral",
+      "offset": 42220,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "FloatLiteral",
+      "offset": 45808,
+      "length": 3,
+      "value": "3.2"
+    },
+    {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Configurations\/PassioShippedVersionService.swift",
       "kind": "StringLiteral",
       "offset": 345,
@@ -52380,86 +52739,121 @@
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 2249,
+      "offset": 2285,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 2264,
+      "offset": 2300,
       "length": 3,
       "value": "2"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 2281,
+      "offset": 2317,
       "length": 5,
       "value": "3"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 2300,
+      "offset": 2336,
       "length": 4,
       "value": "4"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 2249,
+      "offset": 2360,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2285,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 2264,
+      "offset": 2300,
       "length": 3,
       "value": "2"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 2281,
+      "offset": 2317,
       "length": 5,
       "value": "3"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 2300,
+      "offset": 2336,
       "length": 4,
       "value": "4"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 2249,
+      "offset": 2360,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2285,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 2264,
+      "offset": 2300,
       "length": 3,
       "value": "2"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 2281,
+      "offset": 2317,
       "length": 5,
       "value": "3"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
       "kind": "IntegerLiteral",
-      "offset": 2300,
+      "offset": 2336,
       "length": 4,
       "value": "4"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2360,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
+      "kind": "StringLiteral",
+      "offset": 26163,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
+      "kind": "StringLiteral",
+      "offset": 26220,
+      "length": 2,
+      "value": "\"\""
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Connected services\/NetworkClient\/Services\/ExtractIngredientFromImageService.swift",
@@ -52660,14 +53054,28 @@
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModelsV3\/PassioFoodItem.swift",
       "kind": "StringLiteral",
-      "offset": 2031,
+      "offset": 811,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModelsV3\/PassioFoodItem.swift",
       "kind": "StringLiteral",
-      "offset": 5205,
+      "offset": 948,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModelsV3\/PassioFoodItem.swift",
+      "kind": "StringLiteral",
+      "offset": 2721,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModelsV3\/PassioFoodItem.swift",
+      "kind": "StringLiteral",
+      "offset": 5900,
       "length": 2,
       "value": "\"\""
     },
@@ -52807,7 +53215,7 @@
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Core-SDK\/CoreSDK\/Connected services\/TokenServices.swift",
       "kind": "BooleanLiteral",
-      "offset": 3073,
+      "offset": 3079,
       "length": 5,
       "value": "false"
     },
@@ -52954,14 +53362,14 @@
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModelsV3\/PassioNutrients.swift",
       "kind": "FloatLiteral",
-      "offset": 5959,
+      "offset": 7261,
       "length": 5,
       "value": "100.0"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModelsV3\/PassioNutrients.swift",
       "kind": "FloatLiteral",
-      "offset": 13664,
+      "offset": 14966,
       "length": 5,
       "value": "100.0"
     },

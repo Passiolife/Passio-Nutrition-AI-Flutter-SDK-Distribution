@@ -37,14 +37,14 @@ public class NutritionAdvisorHandler: NSObject, FlutterPlugin {
     
     private func initConversation(result: @escaping FlutterResult) {
         NutritionAdvisor.shared.initConversation { callback in
-            result(self.outputConverter.mapFromPassioResult(nutritionAdvisorStatus: callback))
+            result(self.outputConverter.mapFromPassioResult(result: callback))
         }
     }
     
     private func sendMessage(arguments: Any?, result: @escaping FlutterResult) {
         if let message  = arguments as? String {
             NutritionAdvisor.shared.sendMessage(message: message) { callback in
-                result(self.outputConverter.mapFromPassioResult(nutritionAdvisorStatus: callback))
+                result(self.outputConverter.mapFromPassioResult(result: callback))
             }
         } else {
             result(FlutterError(code: "ERRRO", message: "Message must not be null", details: nil))
@@ -59,7 +59,7 @@ public class NutritionAdvisorHandler: NSObject, FlutterPlugin {
         }
         
         NutritionAdvisor.shared.sendImage(image: image) { callback in
-            result(self.outputConverter.mapFromPassioResult(nutritionAdvisorStatus: callback))
+            result(self.outputConverter.mapFromPassioResult(result: callback))
         }
     }
     
@@ -71,7 +71,7 @@ public class NutritionAdvisorHandler: NSObject, FlutterPlugin {
         }
 
         NutritionAdvisor.shared.fetchIngridients(from: advisorResponse) { callback in
-            result(self.outputConverter.mapFromPassioResult(nutritionAdvisorStatus: callback))
+            result(self.outputConverter.mapFromPassioResult(result: callback))
         }
     }
 }

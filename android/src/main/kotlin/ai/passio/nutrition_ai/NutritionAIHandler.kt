@@ -22,6 +22,7 @@ import ai.passio.nutrition_ai.converter.mapFromSearchResponse
 import ai.passio.nutrition_ai.converter.mapToFetchFoodItemForDataInfo
 import ai.passio.nutrition_ai.converter.mapToFoodDetectionConfiguration
 import ai.passio.nutrition_ai.converter.mapToPassioConfiguration
+import ai.passio.nutrition_ai.converter.mapToPassioFoodItem
 import ai.passio.nutrition_ai.converter.mapToRectF
 import ai.passio.nutrition_ai.converter.passioImageResolutionFromString
 import ai.passio.passiosdk.core.config.Bridge
@@ -108,6 +109,8 @@ class NutritionAIHandler(
             "getMinMaxCameraZoomLevel" -> getMinMaxCameraZoomLevel(result)
             "recognizeNutritionFactsRemote" -> recognizeNutritionFactsRemote(call.arguments as HashMap<String, Any>, result)
             "updateLanguage" -> updateLanguage(call.arguments as String, result)
+            "reportFoodItem" -> reportFoodItem(call.arguments as HashMap<String, Any>,  result)
+            "submitUserCreatedFood" -> submitUserCreatedFood(call.arguments as HashMap<String, Any>,  result)
         }
     }
 
@@ -274,8 +277,8 @@ class NutritionAIHandler(
         args: HashMap<String, Any>,
         callback: MethodChannel.Result
     ) {
-        val (foodDataInfo, weightGrams) = mapToFetchFoodItemForDataInfo(args)
-        PassioSDK.instance.fetchFoodItemForDataInfo(foodDataInfo, weightGrams) { foodItem ->
+        val (foodDataInfo, servingQuantity, servingUnit) = mapToFetchFoodItemForDataInfo(args)
+        PassioSDK.instance.fetchFoodItemForDataInfo(foodDataInfo, servingQuantity, servingUnit) { foodItem ->
             if (foodItem == null) {
                 callback.success(null)
             } else {
@@ -707,4 +710,27 @@ class NutritionAIHandler(
         callback.success(PassioSDK.instance.updateLanguage(languageCode))
     }
 
+    private fun reportFoodItem(
+        args: Map<String, Any>,
+        result: MethodChannel.Result
+    ) {
+        val refCode = args["refCode"] as String
+        val productCode = args["productCode"] as String
+        val notes = args["notes"] as? List<String>
+
+        PassioSDK.instance.reportFoodItem(refCode, productCode, notes) { callback ->
+            result.success(mapFromPassioResult(callback))
+        }
+    }
+
+    private fun submitUserCreatedFood(
+        args: Map<String, Any>,
+        result: MethodChannel.Result
+    ) {
+        val foodItem = mapToPassioFoodItem(args)
+
+        PassioSDK.instance.submitUserCreatedFoodItem(foodItem) { callback ->
+            result.success(mapFromPassioResult(callback))
+        }
+    }
 }

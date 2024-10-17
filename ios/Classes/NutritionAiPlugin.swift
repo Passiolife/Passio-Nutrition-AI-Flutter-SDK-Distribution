@@ -162,6 +162,14 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             updateLanguage(arguments: call.arguments) { FlutterResult in
                 result(FlutterResult)
             }
+        case "reportFoodItem":
+            reportFoodItem(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
+        case "submitUserCreatedFood":
+            submitUserCreatedFood(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
         default:
             print("call.method = \(call.method) not in the list")
             result(FlutterMethodNotImplemented)
@@ -350,7 +358,7 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
         }
         let foodDataInfo = inputConverter.mapToFetchFoodItemForDataInfo(map: args)
         if let foodItem = foodDataInfo.foodDataInfo {
-            passioSDK.fetchFoodItemFor(foodItem: foodItem, weightGrams: foodDataInfo.weightGrams) { passioFoodItem in
+            passioSDK.fetchFoodItemFor(foodDataInfo: foodItem, servingQuantity: foodDataInfo.servingQuantity, servingUnit: foodDataInfo.servingUnit) { passioFoodItem in
                 let passioFoodItemMap = self.outputConverter.mapFromPassioFoodItem(foodItem: passioFoodItem)
                 result(passioFoodItemMap)
             }
@@ -371,7 +379,6 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
     
     
     func transformCGRectForm(arguments: Any?, result: @escaping FlutterResult) {
-     
         guard  let configMap = arguments as? [String: Any],
                let mBoundingBox = configMap["boundingBox"] as? [String: Any],
                let boundingBox = inputConverter.mapToBoundingBox(box: mBoundingBox),
@@ -521,7 +528,7 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
         }
     
         passioSDK.fetchHiddenIngredients(foodName: foodName) { callback in
-            result(self.outputConverter.mapFromPassioResult(nutritionAdvisorStatus: callback))
+            result(self.outputConverter.mapFromPassioResult(result: callback))
         }
     }
     
@@ -532,7 +539,7 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
         }
     
         passioSDK.fetchVisualAlternatives(foodName: foodName) { callback in
-            result(self.outputConverter.mapFromPassioResult(nutritionAdvisorStatus: callback))
+            result(self.outputConverter.mapFromPassioResult(result: callback))
         }
     }
     
@@ -543,7 +550,7 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
         }
     
         passioSDK.fetchPossibleIngredients(foodName: foodName) { callback in
-            result(self.outputConverter.mapFromPassioResult(nutritionAdvisorStatus: callback))
+            result(self.outputConverter.mapFromPassioResult(result: callback))
         }
     }
     
@@ -604,6 +611,31 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             return
         }
         result(passioSDK.updateLanguage(languageCode: languageCode))
+    }
+    
+    private func reportFoodItem(arguments: Any?, result: @escaping FlutterResult) {
+        guard let args = arguments as? [String: Any],
+              let refCode = args["refCode"] as? String,
+              let productCode = args["productCode"] as? String else {
+            result(nil)
+            return
+        }
+        let notes = args["notes"] as? [String]
+        passioSDK.reportFoodItem(refCode: refCode, productCode: productCode, notes: notes) { callback in
+            result(self.outputConverter.mapFromPassioResult(result: callback))
+        }
+    }
+    
+    private func submitUserCreatedFood(arguments: Any?, result: @escaping FlutterResult) {
+        guard  let args = arguments as? [String: Any],
+               let item = self.inputConverter.mapToPassioFoodItem(map: args)
+                else {
+            result(FlutterError(code: "ERRRO", message: "Mapping error", details: nil))
+            return
+        }
+        passioSDK.submitUserCreatedFood(item: item) { callback in
+            result(self.outputConverter.mapFromPassioResult(result: callback))
+        }
     }
     
     private func getPassioImageResolution(res: String) -> PassioImageResolution {

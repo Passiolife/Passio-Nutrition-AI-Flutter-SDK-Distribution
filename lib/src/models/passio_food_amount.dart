@@ -25,6 +25,19 @@ class PassioFoodAmount {
     required this.servingUnits,
   });
 
+  /// Creates a copy of this `PassioFoodAmount` object with optional new values for its properties.
+  PassioFoodAmount copyWith({
+    double? selectedQuantity,
+    String? selectedUnit,
+  }) {
+    return PassioFoodAmount(
+      selectedQuantity: selectedQuantity ?? this.selectedQuantity,
+      selectedUnit: selectedUnit ?? this.selectedUnit,
+      servingSizes: servingSizes,
+      servingUnits: servingUnits,
+    );
+  }
+
   /// Creates a `PassioFoodAmount` object from a JSON map.
   factory PassioFoodAmount.fromJson(Map<String, dynamic> json) =>
       PassioFoodAmount(

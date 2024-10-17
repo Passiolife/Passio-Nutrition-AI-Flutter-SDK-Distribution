@@ -105,7 +105,7 @@ class _MyAppState extends State<MyApp> {
   bool _sdkIsReady = false;
   bool _advisorSDKIsReady = false;
 
-  String _countryCode = 'en';
+  String _languageCode = 'en';
 
   @override
   void initState() {
@@ -145,170 +145,150 @@ class _MyAppState extends State<MyApp> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 20), // Adds space of 20 units
+            const SizedBox(height: 20),
+            // Adds space of 20 units
             Center(
               child: Text('SDK Version: $_platformVersion\n'),
             ),
             Center(
               child: _passioStatus == null
                   ? const Text("Configuring SDK")
-                  : Text(_passioStatus!.mode.name),
-            ),
-            const SizedBox(height: 20), // Adds space of 20 units
-            _sdkIsReady
-                ? // Adds space of 20 units
-                GestureDetector(
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) => Theme(
-                          data: Theme.of(context)
-                              .copyWith(primaryColor: Colors.pink),
-                          child: LanguagePickerDialog(
-                            isSearchable: true,
-                            title: const Text('Select your language'),
-                            onValuePicked: (Language language) async {
-                              setState(() {
-                                _countryCode = language.isoCode;
-                              });
-                              bool updated = await NutritionAI.instance
-                                  .updateLanguage(_countryCode);
-                              if (!updated) {
-                                _countryCode = 'en';
-                              }
-                            },
-                            itemBuilder: _buildDialogItem,
-                          ),
-                        ),
-                      );
-                    },
-                    child: Text(
-                      'Country Code: $_countryCode',
-                      style: const TextStyle(color: Colors.blue),
+                  : Text(
+                      '${_passioStatus!.mode.name} - ${_passioStatus?.debugMessage ?? ''}',
+                      textAlign: TextAlign.center,
                     ),
-                  )
-                : const SizedBox.shrink(),
-            const SizedBox(height: 20), // Adds space of 20 units
-            _sdkIsReady
-                ? // Adds space of 20 units
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(
-                          context, Routes.cameraRecognitionPage);
-                    },
-                    child: const Text('Camera Recognition'),
-                  )
-                : const CircularProgressIndicator(),
-            const SizedBox(height: 20), // Adds space of 20 units
-            _sdkIsReady
-                ? ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.foodSearchPage);
-                    },
-                    child: const Text('Text Search'),
-                  )
-                : const SizedBox(),
-            const SizedBox(height: 20), // Adds space of 20 units
-            _sdkIsReady
-                ? ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.staticImagePage);
-                    },
-                    child: const Text('Static image'),
-                  )
-                : const SizedBox(),
-            const SizedBox(height: 20), // Adds space of 20 units
-            _sdkIsReady
-                ? ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.suggestionsPage);
-                    },
-                    child: const Text('Suggestions'),
-                  )
-                : const SizedBox(),
-            const SizedBox(height: 20), // Adds space of 20 units
-            _sdkIsReady
-                ? ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.mealPlansPage);
-                    },
-                    child: const Text('Meal Plans'),
-                  )
-                : const SizedBox(),
-            const SizedBox(height: 20), // Adds space of 20 units
-            _sdkIsReady
-                ? ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.legacyApiPage);
-                    },
-                    child: const Text('Legacy API'),
-                  )
-                : const SizedBox(),
-            const SizedBox(height: 20), // Adds space of 20 units
-            _sdkIsReady
-                ? ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.recognizedSpeechPage);
-                    },
-                    child: const Text('Recognize Speech'),
-                  )
-                : const SizedBox(),
-            const SizedBox(height: 20), // Adds space of 20 units
-            _sdkIsReady
-                ? ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.recognizedImagePage);
-                    },
-                    child: const Text('Recognize Image'),
-                  )
-                : const SizedBox(),
-            const SizedBox(height: 20), // Adds space of 20 units
-            _sdkIsReady
-                ? ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.nutritionFactsPage);
-                    },
-                    child: const Text('Nutrition Facts'),
-                  )
-                : const SizedBox(),
-            const SizedBox(height: 20), // Adds space of 20 units
-            _sdkIsReady
-                ? ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.foodAnalysisPage);
-                    },
-                    child: const Text('Food Analysis'),
-                  )
-                : const SizedBox(),
-            const SizedBox(height: 20), // Adds space of 20 units
-            _advisorSDKIsReady
-                ? ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.advisorMessagePage);
-                    },
-                    child: const Text('Advisor Message'),
-                  )
-                : const SizedBox(),
-            const SizedBox(height: 20), // Adds space of 20 units
-            _advisorSDKIsReady
-                ? ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.advisorImagePage);
-                    },
-                    child: const Text('Advisor Image'),
-                  )
-                : const SizedBox(),
-            const SizedBox(height: 20), // Adds space of 20 units
-            _advisorSDKIsReady
-                ? ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(
-                          context, Routes.recognizeNutritionFacts);
-                    },
-                    child: const Text('Recognize Nutrition Facts'),
-                  )
-                : const SizedBox(),
-            const SizedBox(height: 20), // Adds space of 20 units
+            ),
+            const SizedBox(height: 20),
+            // Adds space of 20 units
+            if (_passioStatus == null) const CircularProgressIndicator(),
+            // Shows loading indicator if SDK is not ready
+            if (_sdkIsReady) ...[
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => Theme(
+                      data:
+                          Theme.of(context).copyWith(primaryColor: Colors.pink),
+                      child: LanguagePickerDialog(
+                        isSearchable: true,
+                        title: const Text('Select your language'),
+                        onValuePicked: (Language language) async {
+                          setState(() {
+                            _languageCode = language.isoCode;
+                          });
+                          bool updated = await NutritionAI.instance
+                              .updateLanguage(_languageCode);
+                          if (!updated) {
+                            _languageCode = 'en';
+                          }
+                        },
+                        itemBuilder: _buildDialogItem,
+                      ),
+                    ),
+                  );
+                },
+                child: Text(
+                  'Language Code: $_languageCode',
+                  style: const TextStyle(color: Colors.blue),
+                ),
+              ),
+              const SizedBox(height: 20), // Adds space of 20 units
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.cameraRecognitionPage);
+                },
+                child: const Text('Camera Recognition'),
+              ),
+              const SizedBox(height: 20), // Adds space of 20 units
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.foodSearchPage);
+                },
+                child: const Text('Text Search'),
+              ),
+              const SizedBox(height: 20), // Adds space of 20 units
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.staticImagePage);
+                },
+                child: const Text('Static image'),
+              ),
+              const SizedBox(height: 20), // Adds space of 20 units
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.suggestionsPage);
+                },
+                child: const Text('Suggestions'),
+              ),
+              const SizedBox(height: 20), // Adds space of 20 units
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.mealPlansPage);
+                },
+                child: const Text('Meal Plans'),
+              ),
+              const SizedBox(height: 20), // Adds space of 20 units
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.legacyApiPage);
+                },
+                child: const Text('Legacy API'),
+              ),
+              const SizedBox(height: 20), // Adds space of 20 units
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.recognizedSpeechPage);
+                },
+                child: const Text('Recognize Speech'),
+              ),
+              const SizedBox(height: 20), // Adds space of 20 units
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.recognizedImagePage);
+                },
+                child: const Text('Recognize Image'),
+              ),
+              const SizedBox(height: 20), // Adds space of 20 units
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.nutritionFactsPage);
+                },
+                child: const Text('Nutrition Facts'),
+              ),
+              const SizedBox(height: 20), // Adds space of 20 units
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.foodAnalysisPage);
+                },
+                child: const Text('Food Analysis'),
+              ),
+              const SizedBox(height: 20), // Adds space of 20 units
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.recognizeNutritionFacts);
+                },
+                child: const Text('Recognize Nutrition Facts'),
+              ),
+              const SizedBox(height: 20), // Adds space of 20 units
+            ],
+
+            if (_advisorSDKIsReady) ...[
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.advisorMessagePage);
+                },
+                child: const Text('Advisor Message'),
+              ),
+              const SizedBox(height: 20), // Adds space of 20 units
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.advisorImagePage);
+                },
+                child: const Text('Advisor Image'),
+              ),
+              const SizedBox(height: 20), // Adds space of 20 units
+            ]
           ],
         ),
       ),

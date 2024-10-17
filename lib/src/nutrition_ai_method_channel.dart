@@ -326,10 +326,12 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
   @override
   Future<PassioFoodItem?> fetchFoodItemForDataInfo(
       PassioFoodDataInfo passioFoodDataInfo,
-      {double? weightGrams}) async {
+      {double? servingQuantity,
+      String? servingUnit}) async {
     final args = {
       'foodDataInfo': passioFoodDataInfo.toJson(),
-      'weightGrams': weightGrams,
+      'servingQuantity': servingQuantity,
+      'servingUnit': servingUnit,
     };
     var responseMap =
         await methodChannel.invokeMethod('fetchFoodItemForDataInfo', args);
@@ -721,5 +723,42 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
         await methodChannel.invokeMethod('updateLanguage', languageCode);
     // Cast the response to a boolean value to ensure the correct type is returned.
     return response as bool;
+  }
+
+  @override
+  Future<PassioResult<bool>> reportFoodItem(
+      {String refCode = '',
+      String productCode = '',
+      List<String>? notes}) async {
+    try {
+      final args = {
+        'refCode': refCode,
+        'productCode': productCode,
+        'notes': notes,
+      };
+      Map<String, dynamic> responseMap =
+          (await methodChannel.invokeMethod('reportFoodItem', args))!
+              .cast<String, dynamic>();
+      return mapToPassioResult(responseMap) as PassioResult<bool>;
+    } on PlatformException catch (e) {
+      return Error(e.message ?? '');
+    } on Exception catch (e) {
+      return Error(e.toString());
+    }
+  }
+
+  @override
+  Future<PassioResult<bool>> submitUserCreatedFood(PassioFoodItem item) async {
+    try {
+      var args = item.toJson();
+      Map<String, dynamic> responseMap =
+          (await methodChannel.invokeMethod('submitUserCreatedFood', args))!
+              .cast<String, dynamic>();
+      return mapToPassioResult(responseMap) as PassioResult<bool>;
+    } on PlatformException catch (e) {
+      return Error(e.message ?? '');
+    } on Exception catch (e) {
+      return Error(e.toString());
+    }
   }
 }

@@ -103,5 +103,6 @@ enum PassioSDKError {
   minSDKVersion,
   licenseDecodingError,
   missingDependency,
-  platformException
+  platformException,
+  networkError,
 }

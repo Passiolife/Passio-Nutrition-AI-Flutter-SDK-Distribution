@@ -1,3 +1,40 @@
+## 3.2.1+1
+
+* Fixed Android build issues for smoother project setup.
+
+## 3.2.1
+
+### ⚠️ Breaking Changes
+
+* Configuration for Android is no longer required. Please remove any code related to finding the AAR file from your top build.gradle file (Project: android).
+
+### Refactored APIs
+
+* The `fetchFoodItemForDataInfo` method now includes optional `servingQuantity` and `servingUnit` parameters to provide details based on the specified serving size:
+```dart
+Future<PassioFoodItem?> fetchFoodItemForDataInfo(PassioFoodDataInfo passioFoodDataInfo, {double? servingQuantity, String? servingUnit})
+```
+
+### Added APIs
+
+* Added the `reportFoodItem` function to report incorrect food items:
+```dart
+Future<PassioResult<bool>> reportFoodItem({String refCode = '', String productCode = '', List<String>? notes})
+```
+
+* Added the `submitUserCreatedFood` function to submit user-created food items:
+```dart
+Future<PassioResult<bool>> submitUserCreatedFood(PassioFoodItem item)
+```
+
+
+## 3.2.0+1
+
+### Fixed
+
+* Resolved an issue with the iOS build process that was causing build failures in certain environments.
+
+
 ## 3.2.0+1
 
 ### Fixed
@@ -26,7 +63,6 @@ class PassioConfiguration{
   final bool remoteOnly;
 }
 ```
-
 
 ### Refactored APIs
 

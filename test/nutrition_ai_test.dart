@@ -100,7 +100,8 @@ class MockNutritionAiPlatform
   @override
   Future<PassioFoodItem?> fetchFoodItemForDataInfo(
       PassioFoodDataInfo passioFoodDataInfo,
-      {double? weightGrams}) {
+      {double? servingQuantity,
+      String? servingUnit}) {
     throw UnimplementedError(
         'fetchFoodItemForDataInfo(PassioFoodDataInfo passioFoodDataInfo, {double? weightGrams})');
   }
@@ -248,6 +249,17 @@ class MockNutritionAiPlatform
   @override
   Future<bool> updateLanguage(String languageCode) {
     throw UnimplementedError('updateLanguage(String languageCode)');
+  }
+
+  @override
+  Future<PassioResult<bool>> reportFoodItem(
+      {String refCode = '', String productCode = '', List<String>? notes}) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PassioResult<bool>> submitUserCreatedFood(PassioFoodItem item) {
+    throw UnimplementedError();
   }
 }
 
