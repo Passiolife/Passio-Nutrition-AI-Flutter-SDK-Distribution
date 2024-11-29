@@ -36,14 +36,17 @@ class PassioNutritionFacts {
   /// The amount of saturated fat.
   final double? saturatedFat;
 
-  /// The serving size as a string.
-  final String? servingSize;
-
   /// The quantity of the serving size.
-  final double? servingSizeQuantity;
+  final double? servingQuantity;
 
   /// The unit name of the serving size.
-  final String? servingSizeUnitName;
+  final String? servingUnit;
+
+  /// The quantity of the weight.
+  final double? weightQuantity;
+
+  /// The unit of the weight.
+  final String? weightUnit;
 
   /// The amount of sodium.
   final double? sodium;
@@ -54,7 +57,10 @@ class PassioNutritionFacts {
   /// The total amount of sugars.
   final double? sugars;
 
-  /// The amount of trans fat.
+  /// The amount of total sugars.
+  final double? totalSugars;
+
+  /// The amount of transFat.
   final double? transFat;
 
   /// The amount of vitamin D.
@@ -74,12 +80,14 @@ class PassioNutritionFacts {
     this.potassium,
     this.protein,
     this.saturatedFat,
-    this.servingSize,
-    this.servingSizeQuantity,
-    this.servingSizeUnitName,
+    this.servingQuantity,
+    this.servingUnit,
+    this.weightQuantity,
+    this.weightUnit,
     this.sodium,
     this.sugarAlcohol,
     this.sugars,
+    this.totalSugars,
     this.transFat,
     this.vitaminD,
   });
@@ -99,12 +107,14 @@ class PassioNutritionFacts {
         potassium: json['potassium'] as double?,
         protein: json['protein'] as double?,
         saturatedFat: json['saturatedFat'] as double?,
-        servingSize: json['servingSize'] as String?,
-        servingSizeQuantity: json['servingSizeQuantity'] as double?,
-        servingSizeUnitName: json['servingSizeUnitName'] as String?,
+        servingQuantity: json['servingQuantity'] as double?,
+        servingUnit: json['servingUnit'] as String?,
+        weightQuantity: json['weightQuantity'] as double?,
+        weightUnit: json['weightUnit'] as String?,
         sodium: json['sodium'] as double?,
         sugarAlcohol: json['sugarAlcohol'] as double?,
         sugars: json['sugars'] as double?,
+        totalSugars: json['totalSugars'] as double?,
         transFat: json['transFat'] as double?,
         vitaminD: json['vitaminD'] as double?,
       );
@@ -123,12 +133,14 @@ class PassioNutritionFacts {
         'potassium': potassium,
         'protein': protein,
         'saturatedFat': saturatedFat,
-        'servingSize': servingSize,
-        'servingSizeQuantity': servingSizeQuantity,
-        'servingSizeUnitName': servingSizeUnitName,
+        'servingQuantity': servingQuantity,
+        'servingUnit': servingUnit,
+        'weightQuantity': weightQuantity,
+        'weightUnit': weightUnit,
         'sodium': sodium,
         'sugarAlcohol': sugarAlcohol,
         'sugars': sugars,
+        'totalSugars': totalSugars,
         'transFat': transFat,
         'vitaminD': vitaminD,
       };
@@ -151,12 +163,14 @@ class PassioNutritionFacts {
         potassium == other.potassium &&
         protein == other.protein &&
         saturatedFat == other.saturatedFat &&
-        servingSize == other.servingSize &&
-        servingSizeQuantity == other.servingSizeQuantity &&
-        servingSizeUnitName == other.servingSizeUnitName &&
+        servingQuantity == other.servingQuantity &&
+        servingUnit == other.servingUnit &&
+        weightQuantity == other.weightQuantity &&
+        weightUnit == other.weightUnit &&
         sodium == other.sodium &&
         sugarAlcohol == other.sugarAlcohol &&
         sugars == other.sugars &&
+        totalSugars == other.totalSugars &&
         transFat == other.transFat &&
         vitaminD == other.vitaminD;
   }
@@ -164,27 +178,31 @@ class PassioNutritionFacts {
   /// Calculates the hash code for this `PassioNutritionFacts` object.
   @override
   int get hashCode {
-    return Object.hash(
-      addedSugar,
-      calcium,
-      calories,
-      carbs,
-      cholesterol,
-      dietaryFiber,
-      fat,
-      ingredients,
-      iron,
-      potassium,
-      protein,
-      saturatedFat,
-      servingSize,
-      servingSizeQuantity,
-      servingSizeUnitName,
-      sodium,
-      sugarAlcohol,
-      sugars,
-      transFat,
-      vitaminD,
+    return Object.hashAll(
+      [
+        addedSugar,
+        calcium,
+        calories,
+        carbs,
+        cholesterol,
+        dietaryFiber,
+        fat,
+        ingredients,
+        iron,
+        potassium,
+        protein,
+        saturatedFat,
+        servingQuantity,
+        servingUnit,
+        weightQuantity,
+        weightUnit,
+        sodium,
+        sugarAlcohol,
+        sugars,
+        totalSugars,
+        transFat,
+        vitaminD,
+      ],
     );
   }
 }

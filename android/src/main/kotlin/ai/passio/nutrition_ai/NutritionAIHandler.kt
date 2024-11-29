@@ -48,7 +48,6 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
@@ -77,7 +76,6 @@ class NutritionAIHandler(
                 result
             )
 
-            "detectFoodIn" -> detectFoodIn(call.arguments as HashMap<String, Any>, result)
             "fetchTagsFor" -> fetchTagsFor(call.arguments as String, result)
             "iconURLFor" -> fetchURLFor(call.arguments as HashMap<String, Any>, result)
             "transformCGRectForm" -> transformRect(call.arguments as HashMap<String, Any>, result)
@@ -111,6 +109,8 @@ class NutritionAIHandler(
             "updateLanguage" -> updateLanguage(call.arguments as String, result)
             "reportFoodItem" -> reportFoodItem(call.arguments as HashMap<String, Any>,  result)
             "submitUserCreatedFood" -> submitUserCreatedFood(call.arguments as HashMap<String, Any>,  result)
+            "searchForFoodSemantic" -> searchForFoodSemantic(call.arguments as String,  result)
+            "predictNextIngredients" -> predictNextIngredients(call.arguments as HashMap<String, Any>,  result)
         }
     }
 
@@ -303,28 +303,9 @@ class NutritionAIHandler(
         callback.success(PassioSDK.getVersion())
     }
 
-    private fun fetchTagsFor(passioID: PassioID, callback: MethodChannel.Result) {
-        PassioSDK.instance.fetchTagsFor(passioID) { tags ->
+    private fun fetchTagsFor(refCode: String, callback: MethodChannel.Result) {
+        PassioSDK.instance.fetchTagsFor(refCode) { tags ->
             callback.success(tags)
-        }
-    }
-
-    private fun detectFoodIn(args: HashMap<String, Any>, callback: MethodChannel.Result) {
-        val bytes = args["bytes"] as ByteArray
-        val config = if (args.containsKey("config")) {
-            mapToFoodDetectionConfiguration(args["config"] as HashMap<String, Any>)
-        } else {
-            null
-        }
-        val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-
-        PassioSDK.instance.detectFoodIn(bitmap, config) inner@{ candidates ->
-            if (candidates == null) {
-                callback.success(null)
-                return@inner
-            }
-
-            callback.success(mapFromFoodCandidates(candidates))
         }
     }
 
@@ -360,12 +341,12 @@ class NutritionAIHandler(
     /**
      * Fetches nutrients for a given passioID and communicates the result through the provided callback.
      *
-     * @param passioID The PassioID for which inflammatory effect data is to be fetched.
+     * @param refCode The refCode for which inflammatory effect data is to be fetched.
      * @param callback A MethodChannel.Result used to communicate the result back to the caller.
      */
-    private fun fetchInflammatoryEffectData(passioID: PassioID, callback: MethodChannel.Result) {
-        // Calling PassioSDK to fetch nutrients for the given passioID
-        PassioSDK.instance.fetchInflammatoryEffectData(passioID) { list ->
+    private fun fetchInflammatoryEffectData(refCode: String, callback: MethodChannel.Result) {
+        // Calling PassioSDK to fetch nutrients for the given refCode
+        PassioSDK.instance.fetchInflammatoryEffectData(refCode) { list ->
             // Mapping PassioNutrient objects to a new list using mapFromPassioNutrient function
             val nutrientList = list?.map { mapFromInflammatoryEffectData(it) }
             // Calling the callback's success method with the nutrientList
@@ -731,6 +712,21 @@ class NutritionAIHandler(
 
         PassioSDK.instance.submitUserCreatedFoodItem(foodItem) { callback ->
             result.success(mapFromPassioResult(callback))
+        }
+    }
+
+    private fun searchForFoodSemantic(args: String, callback: MethodChannel.Result) {
+        PassioSDK.instance.searchForFoodSemantic(args) { searchResult, alternatives ->
+            val resultListMap =  mapFromSearchResponse(searchResult, alternatives)
+            callback.success(resultListMap)
+        }
+    }
+
+    private fun predictNextIngredients(args: Map<String, Any>, callback: MethodChannel.Result) {
+        val currentIngredients = args["currentIngredients"] as List<String>
+        PassioSDK.instance.predictNextIngredients(currentIngredients) { result ->
+            val resultListMap = result.map { mapFromPassioFoodDataInfo(it) }
+            callback.success(resultListMap)
         }
     }
 }

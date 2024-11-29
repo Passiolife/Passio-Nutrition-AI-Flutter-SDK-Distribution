@@ -336,6 +336,7 @@ struct OutputConverter {
             searchResultMap["iconID"] = passioFoodDataInfo.iconID
             searchResultMap["labelId"] = passioFoodDataInfo.labelId
             searchResultMap["nutritionPreview"] = mapFromPassioSearchNutritionPreview(nutritionPreview)
+            searchResultMap["refCode"] = passioFoodDataInfo.refCode
             searchResultMap["resultId"] = passioFoodDataInfo.resultId
             searchResultMap["score"] = passioFoodDataInfo.score
             searchResultMap["scoredName"] = passioFoodDataInfo.scoredName
@@ -425,12 +426,14 @@ struct OutputConverter {
         map["potassium"] = nutritionFacts.potassium
         map["protein"] = nutritionFacts.protein
         map["saturatedFat"] = nutritionFacts.saturatedFat
-        map["servingSize"] = nutritionFacts.servingSizeText
-        map["servingSizeQuantity"] = nutritionFacts.servingSizeQuantity
-        map["servingSizeUnitName"] = nutritionFacts.servingSizeUnitName
+        map["servingQuantity"] = nutritionFacts.servingSizeQuantity
+        map["servingUnit"] = nutritionFacts.servingSizeUnitName
+        map["weightUnit"] = nutritionFacts.servingSizeUnit.rawValue
+        map["weightQuantity"] = nutritionFacts.servingSizeGram
         map["sodium"] = nutritionFacts.sodium
         map["sugarAlcohol"] = nutritionFacts.sugarAlcohol
         map["sugars"] = nutritionFacts.sugars
+        map["totalSugars"] = nutritionFacts.totalSugars
         map["transFat"] = nutritionFacts.transFat
         map["vitaminD"] = nutritionFacts.vitaminD
         return map
@@ -493,6 +496,13 @@ struct OutputConverter {
         var map = [String: Any?]()
         map["minZoomLevel"] = minMax.minLevel
         map["maxZoomLevel"] = minMax.maxLevel
+        return map
+    }
+    
+    func mapFromSearchResponse(searchResponse: SearchResponse?) -> [String: Any?] {
+        var map = [String: Any?]()
+        map["results"] = (searchResponse?.results.map{ mapFromPassioFoodDataInfo(passioFoodDataInfo: $0) } ?? [] ).compactMap({$0})
+        map["alternateNames"] = searchResponse?.alternateNames ?? []
         return map
     }
 }

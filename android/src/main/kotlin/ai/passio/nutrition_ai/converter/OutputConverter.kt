@@ -397,6 +397,7 @@ fun mapFromPassioFoodDataInfo(passioFoodDataInfo: PassioFoodDataInfo): Map<Strin
     searchResult["labelId"] = passioFoodDataInfo.labelId
     searchResult["nutritionPreview"] =
         mapFromPassioSearchNutritionPreview(passioFoodDataInfo.nutritionPreview)
+    searchResult["refCode"] = passioFoodDataInfo.refCode
     searchResult["resultId"] = passioFoodDataInfo.resultId
     searchResult["score"] = passioFoodDataInfo.score
     searchResult["scoredName"] = passioFoodDataInfo.scoredName
@@ -522,18 +523,28 @@ fun mapFromNutritionFactsRecognitionListener(
 fun mapFromPassioNutritionFacts(nutritionFacts: PassioNutritionFacts?): Map<String, Any?>? {
     return nutritionFacts?.let {
         mapOf(
+            "addedSugar" to null,
+            "calcium" to null,
             "calories" to it.calories,
             "carbs" to it.carbs,
             "cholesterol" to it.cholesterol,
+            "dietaryFiber" to null,
             "fat" to it.fat,
+            "iron" to null,
+            "ingredients" to null,
+            "potassium" to null,
             "protein" to it.protein,
             "saturatedFat" to it.saturatedFat,
-            "servingSize" to it.servingSize,
-            "servingSizeQuantity" to it.servingSizeQuantity,
-            "servingSizeUnitName" to it.servingSizeUnitName,
+            "servingUnit" to it.servingUnit,
+            "servingQuantity" to it.servingQuantity,
+            "weightUnit" to it.weightUnit,
+            "weightQuantity" to it.weightQuantity,
+            "sodium" to null,
             "sugarAlcohol" to it.sugarAlcohol,
             "sugars" to it.sugars,
+            "totalSugars" to null,
             "transFat" to it.transFat,
+            "vitaminD" to null,
         )
     }
 }

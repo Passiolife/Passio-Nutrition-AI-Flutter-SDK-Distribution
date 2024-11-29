@@ -208,30 +208,13 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
   }
 
   @override
-  Future<List<String>?> fetchTagsFor(PassioID passioID) async {
-    var responseMap =
-        await methodChannel.invokeMethod('fetchTagsFor', passioID);
+  Future<List<String>?> fetchTagsFor(String refCode) async {
+    var responseMap = await methodChannel.invokeMethod('fetchTagsFor', refCode);
     if (responseMap == null) {
       return null;
     }
 
     return mapDynamicListToListOfString(responseMap);
-  }
-
-  @override
-  Future<FoodCandidates?> detectFoodIn(
-      Uint8List bytes, FoodDetectionConfiguration? config) async {
-    Map<String, dynamic> args = {'bytes': bytes};
-    if (config != null) {
-      args['config'] = mapOfFoodDetectionConfiguration(config);
-    }
-    var response = await methodChannel.invokeMethod('detectFoodIn', args);
-    if (response == null) {
-      return null;
-    }
-
-    Map<String, dynamic> resultMap = response.cast<String, dynamic>();
-    return FoodCandidates.fromJson(resultMap);
   }
 
   @override
@@ -305,10 +288,10 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
 
   @override
   Future<List<InflammatoryEffectData>?> fetchInflammatoryEffectData(
-      PassioID passioID) async {
+      String refCode) async {
     // Invoke native method to fetch nutrients for the given PassioID.
     final responseList = await methodChannel.invokeMethod<List<Object?>>(
-        'fetchInflammatoryEffectData', passioID);
+        'fetchInflammatoryEffectData', refCode);
 
     // Check if the response list is null.
     if (responseList == null) {
@@ -760,5 +743,37 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
     } on Exception catch (e) {
       return Error(e.toString());
     }
+  }
+
+  @override
+  Future<PassioSearchResponse> searchForFoodSemantic(String term) async {
+    final response =
+        await methodChannel.invokeMethod('searchForFoodSemantic', term);
+    if (response == null) {
+      return const PassioSearchResponse(results: [], alternateNames: []);
+    }
+    Map<String, dynamic> responseMap = response!.cast<String, dynamic>();
+    return PassioSearchResponse.fromJson(responseMap);
+  }
+
+  @override
+  Future<List<PassioFoodDataInfo>> predictNextIngredients(
+      List<String> currentIngredients) async {
+    final args = {'currentIngredients': currentIngredients};
+
+    var responseList = await methodChannel.invokeMethod<List<Object?>>(
+        'predictNextIngredients', args);
+
+    // Check if the response list is null.
+    if (responseList == null) {
+      return [];
+    }
+
+    // Map each object in the response list to a PassioSearchResult using PassioSearchResult.fromJson.
+    var list = mapListOfObjects(
+        responseList, (inMap) => PassioFoodDataInfo.fromJson(inMap));
+
+    // Return the resulting list of PassioSearchResult objects.
+    return list;
   }
 }

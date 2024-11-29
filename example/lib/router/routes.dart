@@ -5,7 +5,6 @@ class Routes {
   static const splash = '/';
   static const cameraRecognitionPage = '/cameraRecognitionPage';
   static const foodSearchPage = '/foodSearchPage';
-  static const staticImagePage = '/staticImagePage';
   static const suggestionsPage = '/suggestionsPage';
   static const mealPlansPage = '/mealPlansPage';
   static const legacyApiPage = '/legacyApiPage';
@@ -16,4 +15,6 @@ class Routes {
   static const advisorImagePage = '/advisorImagePage';
   static const foodAnalysisPage = '/foodAnalysisPage';
   static const recognizeNutritionFacts = '/recognizeNutritionFacts';
+  static const searchFoodSemantic = '/searchFoodSemantic';
+  static const predictNextIngredient = '/predictNextIngredient';
 }

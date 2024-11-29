@@ -21,6 +21,9 @@ class PassioFoodDataInfo {
   /// A preview of the nutritional information for the food item.
   final PassioSearchNutritionPreview nutritionPreview;
 
+  /// A reference code serving as a unique identifier for the food item.
+  final String refCode;
+
   /// A unique ID for the search result.
   final String resultId;
 
@@ -46,6 +49,7 @@ class PassioFoodDataInfo {
     required this.iconID,
     required this.labelId,
     required this.nutritionPreview,
+    required this.refCode,
     required this.resultId,
     required this.scoredName,
     required this.score,
@@ -64,6 +68,7 @@ class PassioFoodDataInfo {
         nutritionPreview: PassioSearchNutritionPreview.fromJson(
             (json['nutritionPreview'] as Map<Object?, Object?>)
                 .cast<String, dynamic>()),
+        refCode: json['refCode'] as String,
         resultId: json['resultId'] as String,
         score: json['score'] as double,
         scoredName: json['scoredName'] as String,
@@ -79,6 +84,7 @@ class PassioFoodDataInfo {
         'iconId': iconID,
         'labelId': labelId,
         'nutritionPreview': nutritionPreview.toJson(),
+        'refCode': refCode,
         'resultId': resultId,
         'score': score,
         'scoredName': scoredName,
@@ -98,6 +104,7 @@ class PassioFoodDataInfo {
         iconID == other.iconID &&
         labelId == other.labelId &&
         nutritionPreview == other.nutritionPreview &&
+        refCode == other.refCode &&
         resultId == other.resultId &&
         score == other.score &&
         scoredName == other.scoredName &&
@@ -114,6 +121,7 @@ class PassioFoodDataInfo {
       iconID.hashCode ^
       labelId.hashCode ^
       nutritionPreview.hashCode ^
+      refCode.hashCode ^
       resultId.hashCode ^
       score.hashCode ^
       scoredName.hashCode ^

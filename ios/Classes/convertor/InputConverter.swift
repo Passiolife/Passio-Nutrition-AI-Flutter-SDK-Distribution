@@ -102,13 +102,14 @@ struct InputConverter {
               let iconId = map["iconId"] as? PassioID,
               let labelId = map["labelId"] as? String,
               let scoredName = map["scoredName"] as? String,
+              let refCode = map["refCode"] as? String,
               let resultId = map["resultId"] as? String,
               let isShortName = map["isShortName"] as? Bool,
               let nutritionPreview = mapToPassioSearchNutritionPreview(map: map["nutritionPreview"] as? [String : Any]) else {
             return nil;
         }
         let tags = map["tags"] as? [String]
-        return PassioFoodDataInfo(foodName: foodName, brandName: brandName, iconID: iconId, score: score, scoredName: scoredName, labelId: labelId, type: type, resultId: resultId, nutritionPreview: nutritionPreview, isShortName: isShortName, tags: tags)
+        return PassioFoodDataInfo(foodName: foodName, brandName: brandName, iconID: iconId, score: score, scoredName: scoredName, labelId: labelId, type: type, resultId: resultId, nutritionPreview: nutritionPreview, isShortName: isShortName, refCode: refCode, tags: tags)
     }
     
     private func mapToPassioSearchNutritionPreview(map :[String: Any?]?) -> PassioSearchNutritionPreview? {

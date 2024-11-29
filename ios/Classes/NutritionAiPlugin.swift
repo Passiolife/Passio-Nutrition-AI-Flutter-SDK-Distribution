@@ -58,10 +58,6 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             }
         case "startFoodDetection":
          break
-        case "detectFoodIn":
-            detectFoodIn(arguments: call.arguments) { flutterResult in
-                result(flutterResult)
-            }
         case "lookupIconsFor":
             lookupIconsFor(arguments: call.arguments) { flutterResult in
                 result(flutterResult)
@@ -170,6 +166,14 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             submitUserCreatedFood(arguments: call.arguments) { FlutterResult in
                 result(FlutterResult)
             }
+        case "searchForFoodSemantic":
+            searchForFoodSemantic(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
+        case "predictNextIngredients":
+            predictNextIngredients(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
         default:
             print("call.method = \(call.method) not in the list")
             result(FlutterMethodNotImplemented)
@@ -216,29 +220,6 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
                 status.mode == .failedToConfigure {
                 let resultStatus = self.outputConverter.mapFromPassioStatus(passioStatus: status)
                 result(resultStatus)
-            }
-        }
-    }
-    
-    func detectFoodIn(arguments: Any?, result: @escaping FlutterResult) {
-        
-        guard let arguments = arguments as? [String: Any],
-              let bytes = arguments["bytes"] as? FlutterStandardTypedData,
-              let configMap = arguments["config"] as? [String: Any] else {
-            result("Fail to configure no arguments")
-            return
-        }
-        let config = inputConverter.mapToFoodDetectionConfiguration(map: configMap)
-        guard let image = UIImage(data: bytes.data) else {
-            result("Can't convert the image to UIImage")
-            return
-        }
-        passioSDK.detectFoodIn(image: image , detectionConfig: config) { candidates in
-            if let candidates = candidates {
-                let foodCandidates = self.outputConverter.mapFromFoodCandidates(candidates: candidates)
-                result(foodCandidates)
-            } else {
-                result(nil)
             }
         }
     }
@@ -368,8 +349,8 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
     }
 
     func fetchTagsFor(arguments: Any?, result: @escaping FlutterResult) {
-        if let passioID = arguments as? PassioID {
-            passioSDK.fetchTagsFor(passioID: passioID) { tags in
+        if let refCode = arguments as? String {
+            passioSDK.fetchTagsFor(refCode: refCode) { tags in
                 result(tags)
             }
         } else {
@@ -404,9 +385,9 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
      */
     func fetchInflammatoryEffectData(arguments: Any?, result: @escaping FlutterResult) {
         // Check if the provided argument is a PassioID
-        if let passioID = arguments as? PassioID {
+        if let refCode = arguments as? String {
             // Call PassioSDK to fetch nutrients for the given passioID
-            passioSDK.fetchInflammatoryEffectData(passioID: passioID) { inflammatoryData in
+            passioSDK.fetchInflammatoryEffectData(refCode: refCode) { inflammatoryData in
                 // Check if nutrients is not nil
                 if let inflammatoryEffectData = inflammatoryData {
                     // Map PassioNutrient objects to a new list using mapFromPassioNutrient function
@@ -630,11 +611,40 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
         guard  let args = arguments as? [String: Any],
                let item = self.inputConverter.mapToPassioFoodItem(map: args)
                 else {
-            result(FlutterError(code: "ERRRO", message: "Mapping error", details: nil))
+            result(FlutterError(code: "ERROR", message: "Mapping error", details: nil))
             return
         }
         passioSDK.submitUserCreatedFood(item: item) { callback in
             result(self.outputConverter.mapFromPassioResult(result: callback))
+        }
+    }
+    
+    private func searchForFoodSemantic(arguments: Any?, result: @escaping FlutterResult) {
+        guard  let args = arguments as? String
+                else {
+            result(FlutterError(code: "ERROR", message: "Mapping error", details: nil))
+            return
+        }
+        passioSDK.searchForFoodSemantic(searchTerm: args) { callback in
+            result(self.outputConverter.mapFromSearchResponse(searchResponse: callback))
+        }
+    }
+    
+    private func predictNextIngredients(arguments: Any?, result: @escaping FlutterResult) {
+        guard let arguments = arguments as? [String: Any],
+              let currentIngredients = arguments["currentIngredients"] as? [String] else {
+            result([])
+            return
+        }
+        passioSDK.predictNextIngredients(ingredients: currentIngredients) { nextIngredients in
+            guard let nextIngredients = nextIngredients else {
+                result([])
+                return
+            }
+            let resultList = nextIngredients.map { passioFoodDataInfo in
+                self.outputConverter.mapFromPassioFoodDataInfo(passioFoodDataInfo: passioFoodDataInfo)
+            }
+            result(resultList)
         }
     }
     

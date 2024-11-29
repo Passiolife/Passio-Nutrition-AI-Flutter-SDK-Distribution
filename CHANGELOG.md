@@ -1,3 +1,30 @@
+## 3.2.3
+
+### Added APIs
+
+* Added a new search function that provides contextually connected items to the search term:
+```dart
+Future<PassioSearchResponse> searchForFoodSemantic(String term) async {
+  return NutritionAIPlatform.instance.searchForFoodSemantic(term);
+}
+```
+
+* Added a new api for a recipe builder feature, that gives a list of predicted next ingredients based on the current list of ingredients in the recipe:
+```dart
+Future<List<PassioFoodDataInfo>> predictNextIngredients(List<String> currentIngredients) async {
+  return NutritionAIPlatform.instance.predictNextIngredients(currentIngredients);
+}
+```
+
+### Refactored APIs
+
+* Refactored `PassioNutritionFacts`: renamed `servingSizeQuantity` to `servingQuantity` and `servingSizeUnitName` to `servingUnit`; removed `servingSize`; added `weightQuantity` and `weightUnit`.
+* Refactored `fetchTagsFor` and `fetchInflammatoryEffectData` to accept `refCode` as a parameter instead of `passioID`.
+
+### Deprecated APIs
+* `detectFoodIn` has been removed.
+
+
 ## 3.2.1+1
 
 * Fixed Android build issues for smoother project setup.

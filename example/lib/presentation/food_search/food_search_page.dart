@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutrition_ai/nutrition_ai.dart';
@@ -176,6 +175,7 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
       type: '',
       isShortName: false,
       tags: [],
+      refCode: '',
     ));
   }
 
@@ -203,6 +203,7 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
       type: '',
       isShortName: false,
       tags: [],
+      refCode: '',
     ));
   }
 
@@ -231,6 +232,7 @@ class _FoodSearchPageState extends State<FoodSearchPage> {
       type: '',
       isShortName: false,
       tags: [],
+      refCode: '',
     ));
   }
 }

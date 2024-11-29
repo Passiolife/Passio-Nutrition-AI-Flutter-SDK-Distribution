@@ -18,8 +18,8 @@ import 'package:nutrition_ai_example/presentation/camera_recognition/camera_reco
 import 'package:nutrition_ai_example/presentation/food_analysis/food_analysis_page.dart';
 import 'package:nutrition_ai_example/presentation/food_search/food_search_page.dart';
 import 'package:nutrition_ai_example/presentation/meal_plan/meal_plan_page.dart';
+import 'package:nutrition_ai_example/presentation/predict_next_ingredient/predict_next_ingredient_page.dart';
 import 'package:nutrition_ai_example/presentation/recognize_speech/recognize_speech_page.dart';
-import 'package:nutrition_ai_example/presentation/static_image/static_image_page.dart';
 import 'package:nutrition_ai_example/presentation/suggestion/suggestion_page.dart';
 import 'package:nutrition_ai_example/router/routes.dart';
 
@@ -28,6 +28,7 @@ import 'presentation/legacy_api/legacy_api_page.dart';
 import 'presentation/nutrition_facts/nutrition_facts_page.dart';
 import 'presentation/recognize_image/recognize_image_page.dart';
 import 'presentation/recognize_nutrition_facts/recognize_nutrition_facts_page.dart';
+import 'presentation/search_food_semantic/search_food_semantic_page.dart';
 
 Future<void> main() async {
   await runZonedGuarded(() async {
@@ -44,6 +45,7 @@ Future<void> main() async {
           return MaterialApp(
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
+            debugShowCheckedModeBanner: false,
             localeResolutionCallback: (deviceLocale, supportedLocales) {
               if (supportedLocales
                   .map((e) => e.languageCode)
@@ -61,7 +63,6 @@ Future<void> main() async {
               Routes.cameraRecognitionPage: (context) =>
                   const CameraRecognitionPage(),
               Routes.foodSearchPage: (context) => const FoodSearchPage(),
-              Routes.staticImagePage: (context) => const StaticImagePage(),
               Routes.suggestionsPage: (context) => const SuggestionPage(),
               Routes.mealPlansPage: (context) => const MealPlanPage(),
               Routes.legacyApiPage: (context) => const LegacyApiPage(),
@@ -77,6 +78,10 @@ Future<void> main() async {
               Routes.foodAnalysisPage: (context) => const FoodAnalysisPage(),
               Routes.recognizeNutritionFacts: (context) =>
                   const RecognizeNutritionFactsPage(),
+              Routes.searchFoodSemantic: (context) =>
+                  const SearchFoodSemanticPage(),
+              Routes.predictNextIngredient: (context) =>
+                  const PredictNextIngredientPage(),
             },
             home: const MyApp(),
           );
@@ -210,13 +215,6 @@ class _MyAppState extends State<MyApp> {
               const SizedBox(height: 20), // Adds space of 20 units
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, Routes.staticImagePage);
-                },
-                child: const Text('Static image'),
-              ),
-              const SizedBox(height: 20), // Adds space of 20 units
-              ElevatedButton(
-                onPressed: () {
                   Navigator.pushNamed(context, Routes.suggestionsPage);
                 },
                 child: const Text('Suggestions'),
@@ -269,6 +267,20 @@ class _MyAppState extends State<MyApp> {
                   Navigator.pushNamed(context, Routes.recognizeNutritionFacts);
                 },
                 child: const Text('Recognize Nutrition Facts'),
+              ),
+              const SizedBox(height: 20), // Adds space of 20 units
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.searchFoodSemantic);
+                },
+                child: const Text('Search food semantic'),
+              ),
+              const SizedBox(height: 20), // Adds space of 20 units
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.predictNextIngredient);
+                },
+                child: const Text('Predict Next Ingredient'),
               ),
               const SizedBox(height: 20), // Adds space of 20 units
             ],

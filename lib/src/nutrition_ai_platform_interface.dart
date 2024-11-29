@@ -94,13 +94,8 @@ abstract class NutritionAIPlatform extends PlatformInterface {
     throw UnimplementedError('fetchFoodItemForProductCode(String productCode)');
   }
 
-  Future<List<String>?> fetchTagsFor(PassioID passioID) {
-    throw UnimplementedError('fetchTagsFor(PassioID passioID)');
-  }
-
-  Future<FoodCandidates?> detectFoodIn(
-      Uint8List bytes, FoodDetectionConfiguration? config) {
-    throw UnimplementedError('detectFoodIn(Uint8List bytes, String extension)');
+  Future<List<String>?> fetchTagsFor(String refCode) {
+    throw UnimplementedError('fetchTagsFor(String refCode)');
   }
 
   Future<Rectangle<double>> transformCGRectForm(
@@ -115,8 +110,8 @@ abstract class NutritionAIPlatform extends PlatformInterface {
   }
 
   Future<List<InflammatoryEffectData>?> fetchInflammatoryEffectData(
-      PassioID passioID) {
-    throw UnimplementedError('fetchInflammatoryEffectData(PassioID passioID)');
+      String refCode) {
+    throw UnimplementedError('fetchInflammatoryEffectData(String refCode)');
   }
 
   Future<List<PassioFoodDataInfo>> fetchSuggestions(PassioMealTime mealTime) {
@@ -241,5 +236,15 @@ abstract class NutritionAIPlatform extends PlatformInterface {
 
   Future<PassioResult<bool>> submitUserCreatedFood(PassioFoodItem item) async {
     throw UnimplementedError('submitUserCreatedFood(PassioFoodItem item)');
+  }
+
+  Future<PassioSearchResponse> searchForFoodSemantic(String term) async {
+    throw UnimplementedError('searchForFoodSemantic(String term)');
+  }
+
+  Future<List<PassioFoodDataInfo>> predictNextIngredients(
+      List<String> currentIngredients) async {
+    throw UnimplementedError(
+        'predictNextIngredients(List<String> currentIngredients)');
   }
 }

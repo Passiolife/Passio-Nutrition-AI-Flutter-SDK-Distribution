@@ -138,22 +138,10 @@ class NutritionAI {
 
   /// List of tags for food item.
   ///
-  /// For a given [PassioID] returns a list of tags associated with that food
+  /// For a given [refCode] returns a list of tags associated with that food
   /// item.
-  Future<List<String>?> fetchTagsFor(PassioID passioID) {
-    return NutritionAIPlatform.instance.fetchTagsFor(passioID);
-  }
-
-  /// Run detection on an image.
-  ///
-  /// Runs object detection on a given image (represented as a byte array). The
-  /// process will run on the same background thread as object detection process
-  /// from the [startFoodDetection] method. The results will be delivered on the
-  /// main thread. The image extension should be one of: png, jpg, jpeg.
-  @Deprecated('No longer supported. Use recognizeImageRemote instead.')
-  Future<FoodCandidates?> detectFoodIn(Uint8List bytes,
-      {FoodDetectionConfiguration? config}) {
-    return NutritionAIPlatform.instance.detectFoodIn(bytes, config);
+  Future<List<String>?> fetchTagsFor(String refCode) {
+    return NutritionAIPlatform.instance.fetchTagsFor(refCode);
   }
 
   /// Transforms the bounding box of the camera frame to the coordinates
@@ -175,15 +163,15 @@ class NutritionAI {
     return NutritionAIPlatform.instance.setPassioStatusListener(listener);
   }
 
-  /// Fetches a list of [InflammatoryEffectData] objects for a given [PassioID].
+  /// Fetches a list of [InflammatoryEffectData] objects for a given [refCode].
   ///
   /// Parameters:
-  /// - [passioID]: The PassioID for which nutrients are to be fetched.
+  /// - [refCode]: The refCode for which nutrients are to be fetched.
   ///
   /// Returns a [Future] containing a list of [InflammatoryEffectData] objects or `null` if the response is empty.
   Future<List<InflammatoryEffectData>?> fetchInflammatoryEffectData(
-      PassioID passioID) {
-    return NutritionAIPlatform.instance.fetchInflammatoryEffectData(passioID);
+      String refCode) {
+    return NutritionAIPlatform.instance.fetchInflammatoryEffectData(refCode);
   }
 
   /// A function to fetch meal suggestions for a given meal time.
@@ -446,10 +434,11 @@ class NutritionAI {
   /// [notes] Optional notes or feedback about the food item.
   ///
   /// Returns a [Future] with a [PassioResult] indicating success (`true`) or failure.
-  Future<PassioResult<bool>> reportFoodItem(
-      {String refCode = '',
-      String productCode = '',
-      List<String>? notes}) async {
+  Future<PassioResult<bool>> reportFoodItem({
+    String refCode = '',
+    String productCode = '',
+    List<String>? notes,
+  }) async {
     return NutritionAIPlatform.instance.reportFoodItem(
         refCode: refCode, productCode: productCode, notes: notes);
   }
@@ -462,5 +451,41 @@ class NutritionAI {
   /// was successfully submitted. The result is `true` if successful.
   Future<PassioResult<bool>> submitUserCreatedFood(PassioFoodItem item) async {
     return NutritionAIPlatform.instance.submitUserCreatedFood(item);
+  }
+
+  /// Performs a semantic search for food items based on a given term.
+  ///
+  /// [term] The term used to search for relevant food items.
+  ///
+  /// Returns a [Future] that resolves to a [PassioSearchResponse], which includes:
+  ///   - `results`: A list of food items that match the search term, each with detailed information.
+  ///   - `alternateNames`: A list of alternative names for the searched food items.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// var response = await searchForFoodSemantic("banana");
+  /// print(response.results);         // Outputs details about food items related to "banana"
+  /// print(response.alternateNames);  // Outputs alternative names for "banana"
+  /// ```
+  Future<PassioSearchResponse> searchForFoodSemantic(String term) async {
+    return NutritionAIPlatform.instance.searchForFoodSemantic(term);
+  }
+
+  /// Predicts ingredients for a given list of current ingredients.
+  ///
+  /// [currentIngredients] The current ingredients to base predictions on.
+  ///
+  /// Returns a [Future] that resolves to a list of [PassioFoodDataInfo], suggesting additional ingredients.
+  ///
+  /// Example:
+  /// ```dart
+  /// var ingredients = ["cheese", "tomato"];
+  /// var nextIngredients = await predictNextIngredients(ingredients);
+  /// print(nextIngredients);  // Outputs suggested ingredients
+  /// ```
+  Future<List<PassioFoodDataInfo>> predictNextIngredients(
+      List<String> currentIngredients) async {
+    return NutritionAIPlatform.instance
+        .predictNextIngredients(currentIngredients);
   }
 }

@@ -67,13 +67,6 @@ class MockNutritionAiPlatform
   }
 
   @override
-  Future<FoodCandidates?> detectFoodIn(
-      Uint8List bytes, FoodDetectionConfiguration? config) {
-    // TODO: implement detectFoodIn
-    throw UnimplementedError();
-  }
-
-  @override
   Future<Rectangle<double>> transformCGRectForm(
       Rectangle<double> boundingBox, Rectangle<double> toRect) {
     throw UnimplementedError(
@@ -259,6 +252,18 @@ class MockNutritionAiPlatform
 
   @override
   Future<PassioResult<bool>> submitUserCreatedFood(PassioFoodItem item) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PassioSearchResponse> searchForFoodSemantic(String term) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<PassioFoodDataInfo>> predictNextIngredients(
+      List<String> currentIngredients) {
+    // TODO: implement predictNextIngredients
     throw UnimplementedError();
   }
 }

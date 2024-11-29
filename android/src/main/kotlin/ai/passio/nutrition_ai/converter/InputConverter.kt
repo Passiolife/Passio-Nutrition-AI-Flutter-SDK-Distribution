@@ -121,6 +121,7 @@ fun mapToFetchFoodItemForDataInfo(map: Map<String, Any?>): Triple<PassioFoodData
 
 fun mapToPassioFoodDataInfo(map: Map<String, Any?>): PassioFoodDataInfo {
     return PassioFoodDataInfo(
+        map["refCode"] as String,
         map["foodName"] as String,
         map["brandName"] as String,
         map["iconId"] as PassioID,
