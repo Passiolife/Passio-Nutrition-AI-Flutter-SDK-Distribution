@@ -34,6 +34,14 @@ class PassioConfiguration {
   /// allowing the configuration process to be faster than usual.
   final bool remoteOnly;
 
+  /// Optional proxy URL to be used as the base URL for all API calls within the SDK
+  /// targeting the Passio backend. If not provided, the default base URL will be used.
+  final String? proxyUrl;
+
+  /// Optional headers to be appended to the predefined headers when making API calls.
+  /// These headers are used in conjunction with the `proxyUrl` for custom configurations.
+  final Map<String, String>? proxyHeaders;
+
   const PassioConfiguration(
     this.key, {
     this.sdkDownloadsModels = true,
@@ -42,6 +50,8 @@ class PassioConfiguration {
     this.overrideInstalledVersion = false,
     this.debugMode = 0,
     this.remoteOnly = false,
+    this.proxyUrl,
+    this.proxyHeaders,
   });
 }
 

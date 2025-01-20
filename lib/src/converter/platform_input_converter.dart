@@ -12,6 +12,8 @@ Map<String, dynamic> mapOfPassioConfiguration(PassioConfiguration config) {
     'allowInternetConnection': config.allowInternetConnection,
     'overrideInstalledVersion': config.overrideInstalledVersion,
     'remoteOnly': config.remoteOnly,
+    'proxyUrl': config.proxyUrl,
+    'proxyHeaders': config.proxyHeaders,
   };
 }
 

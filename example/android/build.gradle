@@ -2,6 +2,13 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+
+        def useLocalPassioAar = project(':nutrition_ai').hasProperty('useLocalPassioAar') ? project(':nutrition_ai').useLocalPassioAar.toBoolean() : false
+        if (useLocalPassioAar) {
+            flatDir {
+                dirs project(':nutrition_ai').file('libs')
+            }
+        }
     }
 }
 

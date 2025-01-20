@@ -72,6 +72,10 @@ class _RecognizeSpeechPageState extends State<RecognizeSpeechPage> {
                           ''),
                       subtitle: Text(
                           '${data.mealTime?.name.toUpperCaseWord ?? ''} | ${data.date} | ${data.action?.name.toUpperCaseWord ?? ''}'),
+                      onTap: () {
+                        _bloc.add(DoFetchFoodItemEvent(
+                            data.advisorInfo.foodDataInfo!));
+                      },
                     );
                   },
                 ),

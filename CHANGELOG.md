@@ -1,3 +1,10 @@
+## 3.2.4
+
+### Added APIs
+
+* Added two new parameters to the `PassioConfiguration` class: `proxyUrl` and `proxyHeaders`. If supplied, the SDK will use the `proxyUrl` value as a base url when executing networking calls, and will append the provided `proxyHeaders` to the request itself. When `proxyUrl` is provided, the SDK operates in `remoteOnly` state.
+
+
 ## 3.2.3
 
 ### Added APIs
@@ -21,8 +28,8 @@ Future<List<PassioFoodDataInfo>> predictNextIngredients(List<String> currentIngr
 * Refactored `PassioNutritionFacts`: renamed `servingSizeQuantity` to `servingQuantity` and `servingSizeUnitName` to `servingUnit`; removed `servingSize`; added `weightQuantity` and `weightUnit`.
 * Refactored `fetchTagsFor` and `fetchInflammatoryEffectData` to accept `refCode` as a parameter instead of `passioID`.
 
-### Deprecated APIs
-* `detectFoodIn` has been removed.
+### Removed APIs
+* Removed function `detectFoodIn`. Instead, recognizeImageRemote should be used
 
 
 ## 3.2.1+1

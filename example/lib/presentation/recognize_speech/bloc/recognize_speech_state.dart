@@ -4,8 +4,8 @@ sealed class RecognizeSpeechState {
   const RecognizeSpeechState();
 }
 
-final class LegacyApiInitial extends RecognizeSpeechState {
-  const LegacyApiInitial();
+final class RecognizeSpeechInitial extends RecognizeSpeechState {
+  const RecognizeSpeechInitial();
 }
 
 final class SpeechRecognitionSuccessState extends RecognizeSpeechState {

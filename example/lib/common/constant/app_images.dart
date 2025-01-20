@@ -19,7 +19,7 @@ class AppImages {
   static const icChevronDown = '${imageDir}ic_chevron_down.svg';
   static const icChevronLeft = '${imageDir}ic_chevron_left.svg';
   static const icChevronRight = '${imageDir}ic_chevron_right.svg';
-  static const icCloseSolid = '${imageDir}ic_close_solid.svg';
+  static const icCloseSolid = '${imageDir}ic_close.svg';
   static const icDiary = '${imageDir}ic_diary.svg';
   static const icDotsVertical = '${imageDir}ic_dots_vertical.svg';
   static const icDropdown = '${imageDir}ic_dropdown.svg';

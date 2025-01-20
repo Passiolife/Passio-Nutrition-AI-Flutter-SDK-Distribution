@@ -300,7 +300,7 @@ class _MyAppState extends State<MyApp> {
                 child: const Text('Advisor Image'),
               ),
               const SizedBox(height: 20), // Adds space of 20 units
-            ]
+            ],
           ],
         ),
       ),

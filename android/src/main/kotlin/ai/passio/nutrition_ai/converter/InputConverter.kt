@@ -56,6 +56,8 @@ fun mapToPassioConfiguration(context: Context, map: Map<String, Any?>): PassioCo
             val uris = files?.map { Uri.parse(it) }
             this.localFiles = uris
         }
+        map.mapContainsOptional<String?>("proxyUrl") { this.proxyUrl = it }
+        map.mapContainsOptional<Map<String, String>?>("proxyHeaders") { this.proxyHeaders = it }
     }
 }
 

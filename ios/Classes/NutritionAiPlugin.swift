@@ -187,34 +187,8 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             return
         }
        
-        var passioConfig = PassioConfiguration(key: passioKey)
-        passioConfig.bridge = .flutter
+        let passioConfig = inputConverter.mapToPassioConfiguration(map: arguments)
         
-
-        if let sdkDownloadsModels = arguments["sdkDownloadsModels"] as? Bool {
-            passioConfig.sdkDownloadsModels = sdkDownloadsModels
-        }
-        
-        if let allowInternetConnection = arguments["allowInternetConnection"] as? Bool {
-            passioConfig.allowInternetConnection = allowInternetConnection
-        }
-        
-        if let filesLocalURLs = arguments["filesLocalURLs"] as? [FileLocalURL] {
-            passioConfig.filesLocalURLs = filesLocalURLs
-        }
-        
-        if let remoteOnly = arguments["remoteOnly"] as? Bool {
-            passioConfig.remoteOnly = remoteOnly
-        }
-//        if let overrideInstalledVersion = arguments["overrideInstalledVersion"] as? Bool {
-//            // not exposed in iOS Nutrition AI
-//        }
-        
-        if let debugMode = arguments["debugMode"] as? Int {
-            passioConfig.debugMode = debugMode
-        }
-        
-        let passioSDK = PassioNutritionAI.shared
         passioSDK.configure(passioConfiguration: passioConfig) { status in
             if status.mode == .isReadyForDetection ||
                 status.mode == .failedToConfigure {
@@ -637,10 +611,6 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             return
         }
         passioSDK.predictNextIngredients(ingredients: currentIngredients) { nextIngredients in
-            guard let nextIngredients = nextIngredients else {
-                result([])
-                return
-            }
             let resultList = nextIngredients.map { passioFoodDataInfo in
                 self.outputConverter.mapFromPassioFoodDataInfo(passioFoodDataInfo: passioFoodDataInfo)
             }

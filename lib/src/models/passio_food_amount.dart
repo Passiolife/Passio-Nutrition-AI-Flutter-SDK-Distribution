@@ -6,10 +6,10 @@ import 'passio_serving_unit.dart';
 /// Represents the amount of a food item, including selected quantity and unit, serving sizes, and serving units.
 class PassioFoodAmount {
   /// The selected quantity of the food item.
-  final double selectedQuantity;
+  double selectedQuantity;
 
   /// The selected unit of measurement for the quantity.
-  final String selectedUnit;
+  String selectedUnit;
 
   /// A list of available serving sizes for the food item.
   final List<PassioServingSize> servingSizes;
@@ -18,7 +18,7 @@ class PassioFoodAmount {
   final List<PassioServingUnit> servingUnits;
 
   /// Creates a new `PassioFoodAmount` object.
-  const PassioFoodAmount({
+  PassioFoodAmount({
     required this.selectedQuantity,
     required this.selectedUnit,
     required this.servingSizes,

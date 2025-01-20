@@ -109,6 +109,10 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
       // Creating a mutable map to store results
       Map<String, dynamic> resultMap = event.cast<String, dynamic>();
 
+      if (resultMap['candidates'] == null) {
+        return;
+      }
+
       // Retrieving the "candidates" key from the resultMap and casting its value to a Map<String, dynamic>
       final candidatesMap = resultMap["candidates"].cast<String, dynamic>();
       // Converting the mapped candidates back to a FoodCandidates

@@ -120,7 +120,8 @@ class _CameraRecognitionPageState extends State<CameraRecognitionPage>
   void _startFoodDetection() {
     var detectionConfig = const FoodDetectionConfiguration(
         detectBarcodes: true,
-        detectPackagedFood: true,);
+        detectPackagedFood: true,
+        volumeDetectionMode: VolumeDetectionMode.none);
     NutritionAI.instance.startFoodDetection(detectionConfig, this);
   }
 

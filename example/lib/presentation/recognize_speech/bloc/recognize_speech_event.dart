@@ -9,3 +9,9 @@ final class DoRecognizeEvent extends RecognizeSpeechEvent {
 
   const DoRecognizeEvent(this.text);
 }
+
+final class DoFetchFoodItemEvent extends RecognizeSpeechEvent {
+  final PassioFoodDataInfo foodDataInfo;
+
+  const DoFetchFoodItemEvent(this.foodDataInfo);
+}

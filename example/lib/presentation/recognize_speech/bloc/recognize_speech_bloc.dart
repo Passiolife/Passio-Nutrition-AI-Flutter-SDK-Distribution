@@ -8,13 +8,26 @@ part 'recognize_speech_state.dart';
 
 class RecognizeSpeechBloc
     extends Bloc<RecognizeSpeechEvent, RecognizeSpeechState> {
-  RecognizeSpeechBloc() : super(const LegacyApiInitial()) {
+  RecognizeSpeechBloc() : super(const RecognizeSpeechInitial()) {
     on<DoRecognizeEvent>(_handleDoRecognizeEvent);
+    on<DoFetchFoodItemEvent>(_handleDoFetchFoodItemEvent);
   }
 
   Future<void> _handleDoRecognizeEvent(
       DoRecognizeEvent event, Emitter<RecognizeSpeechState> emit) async {
     final result = await NutritionAI.instance.recognizeSpeechRemote(event.text);
     emit(SpeechRecognitionSuccessState(result));
+  }
+
+  FutureOr<void> _handleDoFetchFoodItemEvent(
+      DoFetchFoodItemEvent event, Emitter<RecognizeSpeechState> emit) async {
+    print(event.foodDataInfo.nutritionPreview.calories);
+    final result = await NutritionAI.instance.fetchFoodItemForDataInfo(
+      event.foodDataInfo,
+      servingQuantity: event.foodDataInfo.nutritionPreview.servingQuantity,
+      servingUnit: event.foodDataInfo.nutritionPreview.servingUnit,
+    );
+    print(result!.ingredients.first.referenceNutrients.calories!.value);
+    print(result);
   }
 }

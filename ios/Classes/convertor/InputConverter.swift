@@ -17,6 +17,46 @@ struct InputConverter {
         return entityType
     }
     
+    func mapToPassioConfiguration(map: [String: Any]) -> PassioConfiguration {
+        var passioKey = map["key"] as! String
+        var passioConfig = PassioConfiguration(key: passioKey)
+        passioConfig.bridge = Bridge.flutter
+        
+
+        if let sdkDownloadsModels = map["sdkDownloadsModels"] as? Bool {
+            passioConfig.sdkDownloadsModels = sdkDownloadsModels
+        }
+        
+        if let allowInternetConnection = map["allowInternetConnection"] as? Bool {
+            passioConfig.allowInternetConnection = allowInternetConnection
+        }
+        
+        if let filesLocalURLs = map["filesLocalURLs"] as? [FileLocalURL] {
+            passioConfig.filesLocalURLs = filesLocalURLs
+        }
+        
+        if let remoteOnly = map["remoteOnly"] as? Bool {
+            passioConfig.remoteOnly = remoteOnly
+        }
+//        if let overrideInstalledVersion = map["overrideInstalledVersion"] as? Bool {
+//            // not exposed in iOS Nutrition AI
+//        }
+        
+        if let debugMode = map["debugMode"] as? Int {
+            passioConfig.debugMode = debugMode
+        }
+        
+        if let proxyUrl = map["proxyUrl"] as? String {
+            passioConfig.proxyUrl = proxyUrl
+        }
+        
+        if let proxyHeaders = map["proxyHeaders"] as? [String: String] {
+            passioConfig.proxyHeaders = proxyHeaders
+        }
+        
+        return passioConfig
+    }
+    
     func mapToFoodDetectionConfigurationWithArgs(args: [String: Any]) -> FoodDetectionConfiguration {
         if let map = args["args"] as? [String: Any]  {
             return mapToFoodDetectionConfiguration(map: map)
