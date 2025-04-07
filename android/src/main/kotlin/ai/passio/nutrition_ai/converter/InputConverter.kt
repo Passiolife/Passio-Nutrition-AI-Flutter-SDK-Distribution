@@ -126,7 +126,7 @@ fun mapToPassioFoodDataInfo(map: Map<String, Any?>): PassioFoodDataInfo {
         map["refCode"] as String,
         map["foodName"] as String,
         map["brandName"] as String,
-        map["iconId"] as PassioID,
+        map["iconID"] as PassioID,
         map["score"] as Double,
         map["scoredName"] as String,
         map["labelId"] as String,
@@ -368,9 +368,10 @@ fun mapToPassioFoodMetadata(map: Map<String, Any?>): PassioFoodMetadata {
 
     val barcode = map["barcode"] as Barcode?
     val ingredientsDescription = map["ingredientsDescription"] as String?
-    val tags = map["ingredientsDescription"] as List<String>?
+    val tags = map["tags"] as List<String>?
+    val concerns = map["concerns"] as List<Int>?
 
-    return PassioFoodMetadata(foodOrigins, barcode, ingredientsDescription, tags)
+    return PassioFoodMetadata(foodOrigins, barcode, ingredientsDescription, tags, concerns)
 }
 
 fun mapToPassioFoodOrigin(map: Map<String, Any?>): PassioFoodOrigin {

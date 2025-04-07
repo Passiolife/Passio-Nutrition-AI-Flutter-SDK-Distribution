@@ -1,11 +1,9 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:nutrition_ai/src/nutrition_ai_method_channel.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  MethodChannelNutritionAI platform = MethodChannelNutritionAI();
   const MethodChannel channel = MethodChannel('nutrition_ai');
 
   setUp(() {
@@ -24,6 +22,7 @@ void main() {
   });
 
   test('getSDKVersion', () async {
-    expect(await platform.getSDKVersion(), '42');
+    final version = await await channel.invokeMethod('getSDKVersion');
+    expect(version, '42');
   });
 }

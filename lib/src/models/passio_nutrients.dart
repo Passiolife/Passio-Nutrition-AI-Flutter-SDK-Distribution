@@ -125,80 +125,85 @@ class PassioNutrients {
   UnitMass get referenceWeight => _referenceWeight;
 
   // Getters for individual nutrients
-  UnitMass? get alcohol => _scaleByAmount(_alcohol);
+  UnitMass? get alcohol => _scaleValueByAmountUnitMass(_alcohol);
 
-  UnitMass? get calcium => _scaleByAmount(_calcium);
+  UnitMass? get calcium => _scaleValueByAmountUnitMass(_calcium);
 
-  UnitEnergy? get calories => _scaleByAmount(_calories);
+  UnitEnergy? get calories => _scaleValueByAmountUnitEnergy(_calories);
 
-  UnitMass? get carbs => _scaleByAmount(_carbs);
+  UnitMass? get carbs => _scaleValueByAmountUnitMass(_carbs);
 
-  UnitMass? get cholesterol => _scaleByAmount(_cholesterol);
+  UnitMass? get cholesterol => _scaleValueByAmountUnitMass(_cholesterol);
 
-  UnitMass? get chromium => _scaleByAmount(_chromium);
+  UnitMass? get chromium => _scaleValueByAmountUnitMass(_chromium);
 
-  UnitMass? get fat => _scaleByAmount(_fat);
+  UnitMass? get fat => _scaleValueByAmountUnitMass(_fat);
 
-  UnitMass? get fibers => _scaleByAmount(_fibers);
+  UnitMass? get fibers => _scaleValueByAmountUnitMass(_fibers);
 
-  UnitMass? get folicAcid => _scaleByAmount(_folicAcid);
+  UnitMass? get folicAcid => _scaleValueByAmountUnitMass(_folicAcid);
 
-  UnitMass? get iodine => _scaleByAmount(_iodine);
+  UnitMass? get iodine => _scaleValueByAmountUnitMass(_iodine);
 
-  UnitMass? get iron => _scaleByAmount(_iron);
+  UnitMass? get iron => _scaleValueByAmountUnitMass(_iron);
 
-  UnitMass? get magnesium => _scaleByAmount(_magnesium);
+  UnitMass? get magnesium => _scaleValueByAmountUnitMass(_magnesium);
 
-  UnitMass? get monounsaturatedFat => _scaleByAmount(_monounsaturatedFat);
+  UnitMass? get monounsaturatedFat =>
+      _scaleValueByAmountUnitMass(_monounsaturatedFat);
 
-  UnitMass? get phosphorus => _scaleByAmount(_phosphorus);
+  UnitMass? get phosphorus => _scaleValueByAmountUnitMass(_phosphorus);
 
-  UnitMass? get polyunsaturatedFat => _scaleByAmount(_polyunsaturatedFat);
+  UnitMass? get polyunsaturatedFat =>
+      _scaleValueByAmountUnitMass(_polyunsaturatedFat);
 
-  UnitMass? get potassium => _scaleByAmount(_potassium);
+  UnitMass? get potassium => _scaleValueByAmountUnitMass(_potassium);
 
-  UnitMass? get proteins => _scaleByAmount(_proteins);
+  UnitMass? get proteins => _scaleValueByAmountUnitMass(_proteins);
 
-  UnitMass? get satFat => _scaleByAmount(_satFat);
+  UnitMass? get satFat => _scaleValueByAmountUnitMass(_satFat);
 
-  UnitMass? get selenium => _scaleByAmount(_selenium);
+  UnitMass? get selenium => _scaleValueByAmountUnitMass(_selenium);
 
-  UnitMass? get sodium => _scaleByAmount(_sodium);
+  UnitMass? get sodium => _scaleValueByAmountUnitMass(_sodium);
 
-  UnitMass? get sugars => _scaleByAmount(_sugars);
+  UnitMass? get sugars => _scaleValueByAmountUnitMass(_sugars);
 
-  UnitMass? get sugarsAdded => _scaleByAmount(_sugarsAdded);
+  UnitMass? get sugarsAdded => _scaleValueByAmountUnitMass(_sugarsAdded);
 
-  UnitMass? get sugarAlcohol => _scaleByAmount(_sugarAlcohol);
+  UnitMass? get sugarAlcohol => _scaleValueByAmountUnitMass(_sugarAlcohol);
 
-  UnitMass? get transFat => _scaleByAmount(_transFat);
+  UnitMass? get transFat => _scaleValueByAmountUnitMass(_transFat);
 
-  UnitIU? get vitaminA => _scaleByAmount(_vitaminA);
+  UnitIU? get vitaminA => _scaleValueByAmountUnitIU(_vitaminA);
 
-  UnitMass? get vitaminB6 => _scaleByAmount(_vitaminB6);
+  UnitMass? get vitaminB6 => _scaleValueByAmountUnitMass(_vitaminB6);
 
-  UnitMass? get vitaminB12 => _scaleByAmount(_vitaminB12);
+  UnitMass? get vitaminB12 => _scaleValueByAmountUnitMass(_vitaminB12);
 
-  UnitMass? get vitaminB12Added => _scaleByAmount(_vitaminB12Added);
+  UnitMass? get vitaminB12Added =>
+      _scaleValueByAmountUnitMass(_vitaminB12Added);
 
-  UnitMass? get vitaminC => _scaleByAmount(_vitaminC);
+  UnitMass? get vitaminC => _scaleValueByAmountUnitMass(_vitaminC);
 
-  UnitMass? get vitaminD => _scaleByAmount(_vitaminD);
+  UnitMass? get vitaminD => _scaleValueByAmountUnitMass(_vitaminD);
 
-  UnitMass? get vitaminE => _scaleByAmount(_vitaminE);
+  UnitMass? get vitaminE => _scaleValueByAmountUnitMass(_vitaminE);
 
-  UnitMass? get vitaminEAdded => _scaleByAmount(_vitaminEAdded);
+  UnitMass? get vitaminEAdded => _scaleValueByAmountUnitMass(_vitaminEAdded);
 
   UnitMass? get vitaminKDihydrophylloquinone =>
-      _scaleByAmount(_vitaminKDihydrophylloquinone);
+      _scaleValueByAmountUnitMass(_vitaminKDihydrophylloquinone);
 
-  UnitMass? get vitaminKMenaquinone4 => _scaleByAmount(_vitaminKMenaquinone4);
+  UnitMass? get vitaminKMenaquinone4 =>
+      _scaleValueByAmountUnitMass(_vitaminKMenaquinone4);
 
-  UnitMass? get vitaminKPhylloquinone => _scaleByAmount(_vitaminKPhylloquinone);
+  UnitMass? get vitaminKPhylloquinone =>
+      _scaleValueByAmountUnitMass(_vitaminKPhylloquinone);
 
-  UnitMass? get vitaminARAE => _scaleByAmount(_vitaminARAE);
+  UnitMass? get vitaminARAE => _scaleValueByAmountUnitMass(_vitaminARAE);
 
-  UnitMass? get zinc => _scaleByAmount(_zinc);
+  UnitMass? get zinc => _scaleValueByAmountUnitMass(_zinc);
 
   /// Creates a new `PassioNutrients` instance.
   PassioNutrients._(
@@ -286,43 +291,43 @@ class PassioNutrients {
     final ratio = 100 / weight.gramsValue();
     return PassioNutrients._(
       UnitMass(100.0, UnitMassType.grams),
-      alcohol?.times(ratio) as UnitMass?,
-      calcium?.times(ratio) as UnitMass?,
-      calories?.times(ratio) as UnitEnergy?,
-      carbs?.times(ratio) as UnitMass?,
-      cholesterol?.times(ratio) as UnitMass?,
-      chromium?.times(ratio) as UnitMass?,
-      fat?.times(ratio) as UnitMass?,
-      fibers?.times(ratio) as UnitMass?,
-      folicAcid?.times(ratio) as UnitMass?,
-      iodine?.times(ratio) as UnitMass?,
-      iron?.times(ratio) as UnitMass?,
-      magnesium?.times(ratio) as UnitMass?,
-      monounsaturatedFat?.times(ratio) as UnitMass?,
-      phosphorus?.times(ratio) as UnitMass?,
-      polyunsaturatedFat?.times(ratio) as UnitMass?,
-      potassium?.times(ratio) as UnitMass?,
-      proteins?.times(ratio) as UnitMass?,
-      satFat?.times(ratio) as UnitMass?,
-      selenium?.times(ratio) as UnitMass?,
-      sodium?.times(ratio) as UnitMass?,
-      sugars?.times(ratio) as UnitMass?,
-      sugarsAdded?.times(ratio) as UnitMass?,
-      sugarAlcohol?.times(ratio) as UnitMass?,
-      transFat?.times(ratio) as UnitMass?,
-      vitaminA?.times(ratio) as UnitIU?,
-      vitaminB6?.times(ratio) as UnitMass?,
-      vitaminB12?.times(ratio) as UnitMass?,
-      vitaminB12Added?.times(ratio) as UnitMass?,
-      vitaminC?.times(ratio) as UnitMass?,
-      vitaminD?.times(ratio) as UnitMass?,
-      vitaminE?.times(ratio) as UnitMass?,
-      vitaminEAdded?.times(ratio) as UnitMass?,
-      vitaminKDihydrophylloquinone?.times(ratio) as UnitMass?,
-      vitaminKMenaquinone4?.times(ratio) as UnitMass?,
-      vitaminKPhylloquinone?.times(ratio) as UnitMass?,
-      vitaminARAE?.times(ratio) as UnitMass?,
-      zinc?.times(ratio) as UnitMass?,
+      alcohol?.times(ratio),
+      calcium?.times(ratio),
+      calories?.times(ratio),
+      carbs?.times(ratio),
+      cholesterol?.times(ratio),
+      chromium?.times(ratio),
+      fat?.times(ratio),
+      fibers?.times(ratio),
+      folicAcid?.times(ratio),
+      iodine?.times(ratio),
+      iron?.times(ratio),
+      magnesium?.times(ratio),
+      monounsaturatedFat?.times(ratio),
+      phosphorus?.times(ratio),
+      polyunsaturatedFat?.times(ratio),
+      potassium?.times(ratio),
+      proteins?.times(ratio),
+      satFat?.times(ratio),
+      selenium?.times(ratio),
+      sodium?.times(ratio),
+      sugars?.times(ratio),
+      sugarsAdded?.times(ratio),
+      sugarAlcohol?.times(ratio),
+      transFat?.times(ratio),
+      vitaminA?.times(ratio),
+      vitaminB6?.times(ratio),
+      vitaminB12?.times(ratio),
+      vitaminB12Added?.times(ratio),
+      vitaminC?.times(ratio),
+      vitaminD?.times(ratio),
+      vitaminE?.times(ratio),
+      vitaminEAdded?.times(ratio),
+      vitaminKDihydrophylloquinone?.times(ratio),
+      vitaminKMenaquinone4?.times(ratio),
+      vitaminKPhylloquinone?.times(ratio),
+      vitaminARAE?.times(ratio),
+      zinc?.times(ratio),
     );
   }
 
@@ -381,153 +386,116 @@ class PassioNutrients {
     return PassioNutrients._(
       weight,
       ingredientsData
-              .map((e) => e.$1._alcohol?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._alcohol?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._calcium?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._calcium?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._calories?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitEnergy?,
+          .map((e) => e.$1._calories?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._carbs?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._carbs?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._cholesterol?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._cholesterol?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._chromium?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._chromium?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._fat?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._fat?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._fibers?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._fibers?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._folicAcid?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._folicAcid?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._iodine?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._iodine?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._iron?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._iron?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._magnesium?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
-      ingredientsData.map((e) => e.$1._monounsaturatedFat?.times(e.$2)).reduce(
-          (value, element) => (value != null)
-              ? (value as UnitMass) + (element as UnitMass?)
-              : element) as UnitMass?,
+          .map((e) => e.$1._magnesium?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._phosphorus?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._monounsaturatedFat?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._polyunsaturatedFat?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._phosphorus?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._potassium?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._polyunsaturatedFat?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._proteins?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._potassium?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._satFat?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._proteins?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._selenium?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._satFat?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._sodium?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._selenium?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._sugars?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._sodium?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._sugarsAdded?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._sugars?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._sugarAlcohol?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._sugarsAdded?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._transFat?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._sugarAlcohol?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._vitaminA?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitIU?,
+          .map((e) => e.$1._transFat?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._vitaminB6?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._vitaminA?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._vitaminB12?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._vitaminB6?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._vitaminB12Added?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._vitaminB12?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._vitaminC?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._vitaminB12Added?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._vitaminD?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._vitaminC?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._vitaminE?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._vitaminD?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._vitaminEAdded?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._vitaminE?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._vitaminKDihydrophylloquinone?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._vitaminEAdded?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._vitaminKMenaquinone4?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._vitaminKDihydrophylloquinone?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._vitaminKPhylloquinone?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._vitaminKMenaquinone4?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._vitaminARAE?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._vitaminKPhylloquinone?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
       ingredientsData
-              .map((e) => e.$1._zinc?.times(e.$2))
-              .reduce((value, element) => value?.plus(element) ?? element)
-          as UnitMass?,
+          .map((e) => e.$1._vitaminARAE?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
+      ingredientsData
+          .map((e) => e.$1._zinc?.times(e.$2))
+          .reduce((value, element) => value?.plus(element) ?? element),
     );
   }
 
@@ -717,17 +685,44 @@ class PassioNutrients {
   /// based on the provided value and the weight of the food item.
   ///
   /// Returns the scaled unit value, or null if the input unit is null.
-  T? _scaleByAmount<T extends Unit>(T? unit) {
+  // T? _scaleByAmount<T extends Unit>(T? unit) {
+  //   if (unit == null) {
+  //     /// Return null if the input unit is null.
+  //     return null;
+  //   }
+  //
+  //   /// Calculate the scaling factor by dividing the current weight by the reference weight.
+  //   final double scalingFactor =
+  //       weight.gramsValue() / _referenceWeight.gramsValue();
+  //
+  //   /// Apply the scaling factor to the unit and return the scaled value.
+  //   return unit * scalingFactor as T?;
+  // }
+
+  UnitMass? _scaleValueByAmountUnitMass(UnitMass? unit) {
     if (unit == null) {
-      /// Return null if the input unit is null.
       return null;
     }
-
-    /// Calculate the scaling factor by dividing the current weight by the reference weight.
     final double scalingFactor =
         weight.gramsValue() / _referenceWeight.gramsValue();
+    return unit * scalingFactor;
+  }
 
-    /// Apply the scaling factor to the unit and return the scaled value.
-    return unit * scalingFactor as T?;
+  UnitEnergy? _scaleValueByAmountUnitEnergy(UnitEnergy? unit) {
+    if (unit == null) {
+      return null;
+    }
+    final double scalingFactor =
+        weight.gramsValue() / _referenceWeight.gramsValue();
+    return unit * scalingFactor;
+  }
+
+  UnitIU? _scaleValueByAmountUnitIU(UnitIU? unit) {
+    if (unit == null) {
+      return null;
+    }
+    final double scalingFactor =
+        weight.gramsValue() / _referenceWeight.gramsValue();
+    return unit * scalingFactor;
   }
 }

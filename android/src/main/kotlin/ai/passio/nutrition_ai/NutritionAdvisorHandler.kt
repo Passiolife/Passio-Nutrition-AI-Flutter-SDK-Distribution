@@ -2,6 +2,7 @@ package ai.passio.nutrition_ai
 
 import ai.passio.nutrition_ai.converter.mapFromPassioResult
 import ai.passio.nutrition_ai.converter.mapToPassioAdvisorResponse
+import ai.passio.nutrition_ai.view.NativePreviewFactory
 import ai.passio.passiosdk.passiofood.NutritionAdvisor
 import android.app.Activity
 import android.graphics.BitmapFactory

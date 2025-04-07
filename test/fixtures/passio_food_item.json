@@ -1,0 +1,513 @@
+{
+  "amount": {
+    "selectedQuantity": 1.0,
+    "selectedUnit": "medium",
+    "servingSizes": [
+      {
+        "quantity": 1.0,
+        "unitName": "medium"
+      },
+      {
+        "quantity": 1.0,
+        "unitName": "cup"
+      },
+      {
+        "quantity": 1.0,
+        "unitName": "cup, sliced"
+      },
+      {
+        "quantity": 1.0,
+        "unitName": "oz, with skin, yields"
+      },
+      {
+        "quantity": 1.0,
+        "unitName": "crabapple"
+      },
+      {
+        "quantity": 1.0,
+        "unitName": "cup, quartered or chopped"
+      },
+      {
+        "quantity": 1.0,
+        "unitName": "ring"
+      },
+      {
+        "quantity": 1.0,
+        "unitName": "slice"
+      },
+      {
+        "quantity": 1.0,
+        "unitName": "thin slice"
+      },
+      {
+        "quantity": 1.0,
+        "unitName": "small (2-3/4\" dia)"
+      },
+      {
+        "quantity": 1.0,
+        "unitName": "large (3-1/4\" dia)"
+      },
+      {
+        "quantity": 1.0,
+        "unitName": "oz"
+      },
+      {
+        "quantity": 1.0,
+        "unitName": "tbsp"
+      },
+      {
+        "quantity": 1.0,
+        "unitName": "tsp"
+      },
+      {
+        "quantity": 100.0,
+        "unitName": "gram"
+      },
+      {
+        "quantity": 100.0,
+        "unitName": "gram"
+      }
+    ],
+    "servingUnits": [
+      {
+        "unitName": "medium",
+        "weight": {
+          "value": 182.0,
+          "unit": "grams"
+        }
+      },
+      {
+        "unitName": "cup",
+        "weight": {
+          "value": 125.0,
+          "unit": "grams"
+        }
+      },
+      {
+        "unitName": "cup, sliced",
+        "weight": {
+          "value": 110.0,
+          "unit": "grams"
+        }
+      },
+      {
+        "unitName": "oz, with skin, yields",
+        "weight": {
+          "value": 26.0,
+          "unit": "grams"
+        }
+      },
+      {
+        "unitName": "crabapple",
+        "weight": {
+          "value": 35.0,
+          "unit": "grams"
+        }
+      },
+      {
+        "unitName": "cup, quartered or chopped",
+        "weight": {
+          "value": 125.0,
+          "unit": "grams"
+        }
+      },
+      {
+        "unitName": "ring",
+        "weight": {
+          "value": 14.0,
+          "unit": "grams"
+        }
+      },
+      {
+        "unitName": "slice",
+        "weight": {
+          "value": 17.0,
+          "unit": "grams"
+        }
+      },
+      {
+        "unitName": "thin slice",
+        "weight": {
+          "value": 7.0,
+          "unit": "grams"
+        }
+      },
+      {
+        "unitName": "small (2-3/4\" dia)",
+        "weight": {
+          "value": 149.0,
+          "unit": "grams"
+        }
+      },
+      {
+        "unitName": "large (3-1/4\" dia)",
+        "weight": {
+          "value": 223.0,
+          "unit": "grams"
+        }
+      },
+      {
+        "unitName": "oz",
+        "weight": {
+          "value": 28.3,
+          "unit": "grams"
+        }
+      },
+      {
+        "unitName": "tbsp",
+        "weight": {
+          "value": 7.8125,
+          "unit": "grams"
+        }
+      },
+      {
+        "unitName": "tsp",
+        "weight": {
+          "value": 2.6041667,
+          "unit": "grams"
+        }
+      },
+      {
+        "unitName": "gram",
+        "weight": {
+          "value": 1.0,
+          "unit": "grams"
+        }
+      }
+    ]
+  },
+  "details": "Apple, raw",
+  "iconId": "VEG0002",
+  "id": "90f84c1e-9a0d-11ea-98a4-b3eebae4841d",
+  "ingredients": [
+    {
+      "amount": {
+        "selectedQuantity": 1.0,
+        "selectedUnit": "medium",
+        "servingSizes": [
+          {
+            "quantity": 1.0,
+            "unitName": "medium"
+          },
+          {
+            "quantity": 1.0,
+            "unitName": "cup"
+          },
+          {
+            "quantity": 1.0,
+            "unitName": "cup, sliced"
+          },
+          {
+            "quantity": 1.0,
+            "unitName": "oz, with skin, yields"
+          },
+          {
+            "quantity": 1.0,
+            "unitName": "crabapple"
+          },
+          {
+            "quantity": 1.0,
+            "unitName": "cup, quartered or chopped"
+          },
+          {
+            "quantity": 1.0,
+            "unitName": "ring"
+          },
+          {
+            "quantity": 1.0,
+            "unitName": "slice"
+          },
+          {
+            "quantity": 1.0,
+            "unitName": "thin slice"
+          },
+          {
+            "quantity": 1.0,
+            "unitName": "small (2-3/4\" dia)"
+          },
+          {
+            "quantity": 1.0,
+            "unitName": "large (3-1/4\" dia)"
+          },
+          {
+            "quantity": 1.0,
+            "unitName": "oz"
+          },
+          {
+            "quantity": 1.0,
+            "unitName": "tbsp"
+          },
+          {
+            "quantity": 1.0,
+            "unitName": "tsp"
+          },
+          {
+            "quantity": 100.0,
+            "unitName": "gram"
+          },
+          {
+            "quantity": 100.0,
+            "unitName": "gram"
+          }
+        ],
+        "servingUnits": [
+          {
+            "unitName": "medium",
+            "weight": {
+              "value": 182.0,
+              "unit": "grams"
+            }
+          },
+          {
+            "unitName": "cup",
+            "weight": {
+              "value": 125.0,
+              "unit": "grams"
+            }
+          },
+          {
+            "unitName": "cup, sliced",
+            "weight": {
+              "value": 110.0,
+              "unit": "grams"
+            }
+          },
+          {
+            "unitName": "oz, with skin, yields",
+            "weight": {
+              "value": 26.0,
+              "unit": "grams"
+            }
+          },
+          {
+            "unitName": "crabapple",
+            "weight": {
+              "value": 35.0,
+              "unit": "grams"
+            }
+          },
+          {
+            "unitName": "cup, quartered or chopped",
+            "weight": {
+              "value": 125.0,
+              "unit": "grams"
+            }
+          },
+          {
+            "unitName": "ring",
+            "weight": {
+              "value": 14.0,
+              "unit": "grams"
+            }
+          },
+          {
+            "unitName": "slice",
+            "weight": {
+              "value": 17.0,
+              "unit": "grams"
+            }
+          },
+          {
+            "unitName": "thin slice",
+            "weight": {
+              "value": 7.0,
+              "unit": "grams"
+            }
+          },
+          {
+            "unitName": "small (2-3/4\" dia)",
+            "weight": {
+              "value": 149.0,
+              "unit": "grams"
+            }
+          },
+          {
+            "unitName": "large (3-1/4\" dia)",
+            "weight": {
+              "value": 223.0,
+              "unit": "grams"
+            }
+          },
+          {
+            "unitName": "oz",
+            "weight": {
+              "value": 28.3,
+              "unit": "grams"
+            }
+          },
+          {
+            "unitName": "tbsp",
+            "weight": {
+              "value": 7.8125,
+              "unit": "grams"
+            }
+          },
+          {
+            "unitName": "tsp",
+            "weight": {
+              "value": 2.6041667,
+              "unit": "grams"
+            }
+          },
+          {
+            "unitName": "gram",
+            "weight": {
+              "value": 1.0,
+              "unit": "grams"
+            }
+          }
+        ]
+      },
+      "iconId": "1003974",
+      "id": "1603211585443",
+      "metadata": {
+        "barcode": null,
+        "ingredientsDescription": null,
+        "foodOrigins": [
+          {
+            "id": "786631",
+            "source": "fdc",
+            "licenseCopy": null
+          }
+        ],
+        "tags": [
+          "NOVA1",
+          "cholesterol free",
+          "fruits and products"
+        ]
+      },
+      "name": "Apple, raw",
+      "refCode": "eyJsYWJlbGlkIjoiMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIiwidHlwZSI6InJlZmVyZW5jZSIsInJlc3VsdGlkIjoiMTYwMzIxMTU4NTQ0MyIsIm1ldGFkYXRhIjpudWxsfQ==",
+      "referenceNutrients": {
+        "weight": {
+          "value": 100.0,
+          "unit": "grams"
+        },
+        "alcohol": {
+          "value": 0.0,
+          "unit": "grams"
+        },
+        "calcium": {
+          "value": 6.0,
+          "unit": "milligrams"
+        },
+        "calories": {
+          "value": 52.0,
+          "unit": "kilocalories"
+        },
+        "carbs": {
+          "value": 13.81,
+          "unit": "grams"
+        },
+        "cholesterol": {
+          "value": 0.0,
+          "unit": "milligrams"
+        },
+        "chromium": null,
+        "fat": {
+          "value": 0.17,
+          "unit": "grams"
+        },
+        "fibers": {
+          "value": 2.4,
+          "unit": "grams"
+        },
+        "folicAcid": {
+          "value": 0.0,
+          "unit": "micrograms"
+        },
+        "iodine": null,
+        "iron": {
+          "value": 0.12,
+          "unit": "milligrams"
+        },
+        "magnesium": {
+          "value": 5.0,
+          "unit": "milligrams"
+        },
+        "monounsaturatedFat": {
+          "value": 0.007000000000000001,
+          "unit": "grams"
+        },
+        "phosphorus": {
+          "value": 11.0,
+          "unit": "milligrams"
+        },
+        "polyunsaturatedFat": {
+          "value": 0.051,
+          "unit": "grams"
+        },
+        "potassium": {
+          "value": 107.0,
+          "unit": "milligrams"
+        },
+        "proteins": {
+          "value": 0.26,
+          "unit": "grams"
+        },
+        "satFat": {
+          "value": 0.028000000000000004,
+          "unit": "grams"
+        },
+        "selenium": {
+          "value": 0.0,
+          "unit": "micrograms"
+        },
+        "sodium": {
+          "value": 1.0,
+          "unit": "milligrams"
+        },
+        "sugars": {
+          "value": 10.39,
+          "unit": "grams"
+        },
+        "sugarsAdded": null,
+        "sugarAlcohol": null,
+        "transFat": null,
+        "vitaminA": null,
+        "vitaminB6": {
+          "value": 0.04100000000000001,
+          "unit": "milligrams"
+        },
+        "vitaminB12": {
+          "value": 0.0,
+          "unit": "micrograms"
+        },
+        "vitaminB12Added": null,
+        "vitaminC": {
+          "value": 4.6,
+          "unit": "milligrams"
+        },
+        "vitaminD": {
+          "value": 0.0,
+          "unit": "micrograms"
+        },
+        "vitaminE": {
+          "value": 0.18,
+          "unit": "milligrams"
+        },
+        "vitaminEAdded": {
+          "value": 0.0,
+          "unit": "milligrams"
+        },
+        "vitaminKDihydrophylloquinone": null,
+        "vitaminKMenaquinone4": null,
+        "vitaminKPhylloquinone": {
+          "value": 2.2,
+          "unit": "micrograms"
+        },
+        "vitaminARAE": {
+          "value": 3.0,
+          "unit": "micrograms"
+        },
+        "zinc": {
+          "value": 0.04,
+          "unit": "milligrams"
+        }
+      }
+    }
+  ],
+  "name": "apple",
+  "refCode": "eyJsYWJlbGlkIjoiOTBmODRjMWUtOWEwZC0xMWVhLTk4YTQtYjNlZWJhZTQ4NDFkIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1ODU0NDMiLCJtZXRhZGF0YSI6eyJzaG9ydE5hbWUiOnRydWV9fQ==",
+  "scannedId": "VEG0018"
+}

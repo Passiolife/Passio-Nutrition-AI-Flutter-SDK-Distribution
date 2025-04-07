@@ -120,8 +120,8 @@ class _FoodSearchItemRowState extends State<FoodSearchItemRow> {
       /// Here, wait for the
       SchedulerBinding.instance.addPostFrameCallback((timeStamp) async {
         PassioID passioID = widget.data?.iconID ?? '';
-        PassioFoodIcons passioIcons =
-            await NutritionAI.instance.lookupIconsFor(passioID);
+        PassioFoodIcons passioIcons = await NutritionAI.instance
+            .lookupIconsFor(passioID, iconSize: IconSize.px360);
 
         if (passioIcons.cachedIcon != null) {
           _setImage(passioIcons.cachedIcon);

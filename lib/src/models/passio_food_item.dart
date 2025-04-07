@@ -24,8 +24,6 @@ class PassioFoodItem {
   /// A list of ingredients that make up the food item.
   final List<PassioIngredient> ingredients;
 
-  // final String? licenseCopy;
-
   /// The name of the food item.
   final String name;
 
@@ -43,7 +41,6 @@ class PassioFoodItem {
     required this.ingredients,
     required this.name,
     required this.refCode,
-    // this.licenseCopy,
     this.scannedId,
   });
 
@@ -56,7 +53,6 @@ class PassioFoodItem {
         id: json['id'],
         ingredients: mapListOfObjects(
             json["ingredients"], (inMap) => PassioIngredient.fromJson(inMap)),
-        // licenseCopy: json['licenseCopy'],
         name: json['name'],
         refCode: json['refCode'],
         scannedId: json['scannedId'],
@@ -70,7 +66,6 @@ class PassioFoodItem {
         'id': id,
         'ingredients':
             ingredients.map((ingredient) => ingredient.toJson()).toList(),
-        // 'licenseCopy': licenseCopy,
         'name': name,
         'refCode': refCode,
         'scannedId': scannedId,
@@ -86,7 +81,6 @@ class PassioFoodItem {
         iconId == other.iconId &&
         id == other.id &&
         listEquals(ingredients, other.ingredients) &&
-        // licenseCopy == other.licenseCopy &&
         name == other.name &&
         refCode == other.refCode &&
         scannedId == other.scannedId;
@@ -94,16 +88,16 @@ class PassioFoodItem {
 
   /// Calculates the hash code for this `PassioFoodItem` object.
   @override
-  int get hashCode =>
-      amount.hashCode ^
-      details.hashCode ^
-      iconId.hashCode ^
-      id.hashCode ^
-      ingredients.hashCode ^
-      // licenseCopy.hashCode ^
-      name.hashCode ^
-      refCode.hashCode ^
-      scannedId.hashCode;
+  int get hashCode => Object.hash(
+        amount,
+        details,
+        iconId,
+        id,
+        Object.hashAll(ingredients),
+        name,
+        refCode,
+        scannedId,
+      );
 
   /// Calculates the nutrients based on the selected amount and unit.
   PassioNutrients nutrients(UnitMass unitMass) {
@@ -147,7 +141,7 @@ class PassioFoodItem {
   UnitMass ingredientWeight() {
     return ingredients
         .map((e) => e.weight())
-        .reduce((value, element) => (value + element) as UnitMass);
+        .reduce((value, element) => (value + element));
   }
 
   /// Checks if any ingredient has an open food license.

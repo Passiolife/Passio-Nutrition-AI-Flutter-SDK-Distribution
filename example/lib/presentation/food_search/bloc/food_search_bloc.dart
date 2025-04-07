@@ -58,8 +58,8 @@ class FoodSearchBloc extends Bloc<FoodSearchEvent, FoodSearchState> {
     final foodInfo = event.foodInfo;
     final foodItem = await NutritionAI.instance.fetchFoodItemForDataInfo(
       foodInfo,
-      servingQuantity: 350,
-      servingUnit: 'ml',
+      servingQuantity: foodInfo.nutritionPreview.servingQuantity,
+      servingUnit: foodInfo.nutritionPreview.servingUnit,
     );
     if (foodItem != null) {
       add(DoSubmitUserFoodEvent(foodItem: foodItem));

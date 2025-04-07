@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import '../converter/platform_output_converter.dart';
 import 'nutrition_ai_measurement.dart';
 import 'passio_serving_size.dart';
@@ -25,19 +27,6 @@ class PassioFoodAmount {
     required this.servingUnits,
   });
 
-  /// Creates a copy of this `PassioFoodAmount` object with optional new values for its properties.
-  PassioFoodAmount copyWith({
-    double? selectedQuantity,
-    String? selectedUnit,
-  }) {
-    return PassioFoodAmount(
-      selectedQuantity: selectedQuantity ?? this.selectedQuantity,
-      selectedUnit: selectedUnit ?? this.selectedUnit,
-      servingSizes: servingSizes,
-      servingUnits: servingUnits,
-    );
-  }
-
   /// Creates a `PassioFoodAmount` object from a JSON map.
   factory PassioFoodAmount.fromJson(Map<String, dynamic> json) =>
       PassioFoodAmount(
@@ -64,17 +53,18 @@ class PassioFoodAmount {
     if (other is! PassioFoodAmount) return false;
     return selectedQuantity == other.selectedQuantity &&
         selectedUnit == other.selectedUnit &&
-        servingSizes == other.servingSizes &&
-        servingUnits == other.servingUnits;
+        listEquals(servingSizes, other.servingSizes) &&
+        listEquals(servingUnits, other.servingUnits);
   }
 
   /// Calculates the hash code for this `PassioFoodAmount` object.
   @override
-  int get hashCode =>
-      selectedQuantity.hashCode ^
-      selectedUnit.hashCode ^
-      servingSizes.hashCode ^
-      servingUnits.hashCode;
+  int get hashCode => Object.hash(
+        selectedQuantity,
+        selectedUnit,
+        Object.hashAll(servingSizes),
+        Object.hashAll(servingUnits),
+      );
 
   /// Calculates the weight of the selected quantity in grams.
   UnitMass weight() {
@@ -91,6 +81,6 @@ class PassioFoodAmount {
 
     // If a match is found, it multiplies the weight of that unit
     // by the `selectedQuantity` and returns the result as a `UnitMass` object.
-    return (unit.weight * selectedQuantity) as UnitMass;
+    return (unit.weight * selectedQuantity);
   }
 }

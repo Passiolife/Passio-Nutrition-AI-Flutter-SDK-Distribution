@@ -1,6 +1,6 @@
 name: nutrition_ai
 description: Passio Nutrition AI SDK for Flutter. Supports Android and iOS.
-version: 3.2.4
+version: 3.2.5
 homepage: https://www.passio.ai
 repository: https://github.com/Passiolife/Passio-Nutrition-AI-Flutter-SDK-Distribution
 issue_tracker: https://github.com/Passiolife/Passio-Nutrition-AI-Flutter-SDK-Distribution/issues
@@ -17,7 +17,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

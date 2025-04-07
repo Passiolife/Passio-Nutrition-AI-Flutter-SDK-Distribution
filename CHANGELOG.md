@@ -1,3 +1,36 @@
+## 3.2.5
+
+### Added APIs
+
+* Added a new function `fetchUltraProcessingFoodRating` that provides the ultra-processing food rating for a given food item:
+```dart
+Future<PassioResult<PassioUPFRating>> fetchUltraProcessingFoodRating(PassioFoodItem foodItem) async {
+    return NutritionAIPlatform.instance.fetchUltraProcessingFoodRating(foodItem);
+}
+
+class PassioUPFRating {
+  final String chainOfThought;
+  final List<String> highlightedIngredients;
+  final int? rating;
+}
+```
+
+* Added field concerns to the `PassioFoodMetadata` object
+```dart
+final List<int>? concerns;
+```
+
+### Deprecated APIs
+* Deprecated the following local recognition functions, which will be removed in a future release. Use `recognizeImageRemote` instead:
+    * `startFoodDetection`
+    * `stopFoodDetection`
+    * `startNutritionFactsDetection`
+    * `stopNutritionFactsDetection`
+
+### Removed APIs
+* Removed volume detection related functionality from the SDK.
+
+
 ## 3.2.4
 
 ### Added APIs

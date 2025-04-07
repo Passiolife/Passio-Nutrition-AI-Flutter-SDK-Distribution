@@ -17,6 +17,8 @@ class PassioAdvisorFoodInfo {
   /// The portion size of the food item.
   final String portionSize;
 
+  final String? productCode;
+
   /// The type of result returned from the food recognition process.
   /// It can indicate if the result is a recognized food item, barcode, or nutrition facts.
   final PassioFoodResultType resultType;
@@ -32,6 +34,7 @@ class PassioAdvisorFoodInfo {
     this.foodDataInfo,
     this.packagedFoodItem,
     required this.portionSize,
+    required this.productCode,
     required this.recognisedName,
     required this.resultType,
     required this.weightGrams,
@@ -51,6 +54,7 @@ class PassioAdvisorFoodInfo {
                     .cast<String, dynamic>())
             : null,
         portionSize: json['portionSize'] as String,
+        productCode: json['productCode'] as String?,
         resultType: PassioFoodResultType.values.byName(json['resultType']),
         recognisedName: json['recognisedName'] as String,
         weightGrams: json['weightGrams'] as double,
@@ -59,8 +63,9 @@ class PassioAdvisorFoodInfo {
   /// Converts the `PassioAdvisorFoodInfo` instance to a JSON map.
   Map<String, dynamic> toJson() => {
         'foodDataInfo': foodDataInfo?.toJson(),
-        'packagedFoodItem': packagedFoodItem,
+        'packagedFoodItem': packagedFoodItem?.toJson(),
         'portionSize': portionSize,
+        'productCode': productCode,
         'resultType': resultType.name,
         'recognisedName': recognisedName,
         'weightGrams': weightGrams,
@@ -75,6 +80,7 @@ class PassioAdvisorFoodInfo {
     return foodDataInfo == other.foodDataInfo &&
         packagedFoodItem == other.packagedFoodItem &&
         portionSize == other.portionSize &&
+        productCode == other.productCode &&
         resultType == other.resultType &&
         recognisedName == other.recognisedName &&
         weightGrams == other.weightGrams;
@@ -86,6 +92,7 @@ class PassioAdvisorFoodInfo {
         foodDataInfo,
         packagedFoodItem,
         portionSize,
+        productCode,
         resultType,
         recognisedName,
         weightGrams,

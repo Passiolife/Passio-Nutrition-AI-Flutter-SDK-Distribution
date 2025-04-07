@@ -1,8 +1,8 @@
 {
   "ABIRoot": {
     "kind": "Root",
-    "name": "TopLevel",
-    "printedName": "TopLevel",
+    "name": "PassioNutritionAISDK",
+    "printedName": "PassioNutritionAISDK",
     "children": [
       {
         "kind": "Import",
@@ -132,6 +132,20 @@
           "RawDocComment"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
           {
             "kind": "Conformance",
             "name": "FoodCandidates",
@@ -430,6 +444,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -528,6 +558,22 @@
         "moduleName": "PassioNutritionAISDK",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -991,6 +1037,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -1311,6 +1373,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -1587,6 +1665,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -1860,6 +1952,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -1958,6 +2064,20 @@
           "RawDocComment"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
           {
             "kind": "Conformance",
             "name": "ClassificationCandidate",
@@ -2264,6 +2384,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -2369,6 +2505,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -2930,6 +3082,9 @@
             "moduleName": "PassioNutritionAISDK",
             "static": true,
             "implicit": true,
+            "declAttributes": [
+              "Nonisolated"
+            ],
             "accessors": [
               {
                 "kind": "Accessor",
@@ -2970,6 +3125,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -3307,6 +3476,20 @@
             ],
             "enumRawTypeName": "String",
             "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
               {
                 "kind": "Conformance",
                 "name": "Equatable",
@@ -7829,6 +8012,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -8103,6 +8302,22 @@
         "moduleName": "PassioNutritionAISDK",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -8970,6 +9185,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -9751,6 +9980,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -9981,6 +10224,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -10293,6 +10550,20 @@
           "RawDocComment"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -10842,6 +11113,22 @@
         "moduleName": "PassioNutritionAISDK",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -11643,6 +11930,20 @@
             "conformances": [
               {
                 "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
                 "name": "Equatable",
                 "printedName": "Equatable",
                 "usr": "s:SQ",
@@ -11798,8 +12099,10 @@
             "usr": "s:20PassioNutritionAISDK0aB2AIC18startFoodDetection15detectionConfig23foodRecognitionDelegate19capturingDeviceType10completionyAA0fG13ConfigurationV_AA0fkL0_pAA09CapturingnO0OySbctF",
             "mangledName": "$s20PassioNutritionAISDK0aB2AIC18startFoodDetection15detectionConfig23foodRecognitionDelegate19capturingDeviceType10completionyAA0fG13ConfigurationV_AA0fkL0_pAA09CapturingnO0OySbctF",
             "moduleName": "PassioNutritionAISDK",
+            "deprecated": true,
             "declAttributes": [
               "AccessControl",
+              "Available",
               "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
@@ -11878,89 +12181,6 @@
             "declKind": "Func",
             "usr": "s:20PassioNutritionAISDK0aB2AIC17stopFoodDetectionyyF",
             "mangledName": "$s20PassioNutritionAISDK0aB2AIC17stopFoodDetectionyyF",
-            "moduleName": "PassioNutritionAISDK",
-            "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "detectFoodIn",
-            "printedName": "detectFoodIn(image:detectionConfig:slicingRects:completion:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "UIImage",
-                "printedName": "UIKit.UIImage",
-                "usr": "c:objc(cs)UIImage"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "FoodDetectionConfiguration",
-                "printedName": "PassioNutritionAISDK.FoodDetectionConfiguration",
-                "hasDefaultArg": true,
-                "usr": "s:20PassioNutritionAISDK26FoodDetectionConfigurationV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "[CoreFoundation.CGRect]?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Array",
-                    "printedName": "[CoreFoundation.CGRect]",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "CGRect",
-                        "printedName": "CoreFoundation.CGRect",
-                        "usr": "c:@S@CGRect"
-                      }
-                    ],
-                    "usr": "s:Sa"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "((any PassioNutritionAISDK.FoodCandidates)?) -> ()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "(any PassioNutritionAISDK.FoodCandidates)?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "FoodCandidates",
-                        "printedName": "any PassioNutritionAISDK.FoodCandidates",
-                        "usr": "s:20PassioNutritionAISDK14FoodCandidatesP"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ]
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:20PassioNutritionAISDK0aB2AIC12detectFoodIn5image15detectionConfig12slicingRects10completionySo7UIImageC_AA0F22DetectionConfigurationVSaySo6CGRectVGSgyAA0F10Candidates_pSgctF",
-            "mangledName": "$s20PassioNutritionAISDK0aB2AIC12detectFoodIn5image15detectionConfig12slicingRects10completionySo7UIImageC_AA0F22DetectionConfigurationVSaySo6CGRectVGSgyAA0F10Candidates_pSgctF",
             "moduleName": "PassioNutritionAISDK",
             "deprecated": true,
             "declAttributes": [
@@ -12113,7 +12333,7 @@
           {
             "kind": "Function",
             "name": "getPreviewLayerWithGravity",
-            "printedName": "getPreviewLayerWithGravity(sessionPreset:volumeDetectionMode:videoGravity:capturingDeviceType:)",
+            "printedName": "getPreviewLayerWithGravity(sessionPreset:videoGravity:capturingDeviceType:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -12138,13 +12358,6 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "VolumeDetectionMode",
-                "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                "hasDefaultArg": true,
-                "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-              },
-              {
-                "kind": "TypeNominal",
                 "name": "AVLayerVideoGravity",
                 "printedName": "AVFoundation.AVLayerVideoGravity",
                 "hasDefaultArg": true,
@@ -12159,8 +12372,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:20PassioNutritionAISDK0aB2AIC26getPreviewLayerWithGravity13sessionPreset19volumeDetectionMode05videoI019capturingDeviceTypeSo014AVCaptureVideofG0CSgSo0s7SessionK0a_AA06VolumemN0OSo07AVLayertI0aAA09CapturingqR0OtF",
-            "mangledName": "$s20PassioNutritionAISDK0aB2AIC26getPreviewLayerWithGravity13sessionPreset19volumeDetectionMode05videoI019capturingDeviceTypeSo014AVCaptureVideofG0CSgSo0s7SessionK0a_AA06VolumemN0OSo07AVLayertI0aAA09CapturingqR0OtF",
+            "usr": "s:20PassioNutritionAISDK0aB2AIC26getPreviewLayerWithGravity13sessionPreset05videoI019capturingDeviceTypeSo014AVCaptureVideofG0CSgSo0p7SessionK0a_So07AVLayerqI0aAA09CapturingnO0OtF",
+            "mangledName": "$s20PassioNutritionAISDK0aB2AIC26getPreviewLayerWithGravity13sessionPreset05videoI019capturingDeviceTypeSo014AVCaptureVideofG0CSgSo0p7SessionK0a_So07AVLayerqI0aAA09CapturingnO0OtF",
             "moduleName": "PassioNutritionAISDK",
             "declAttributes": [
               "AccessControl",
@@ -12201,7 +12414,7 @@
           {
             "kind": "Function",
             "name": "getPreviewLayerWithGravityView",
-            "printedName": "getPreviewLayerWithGravityView(sessionPreset:volumeDetectionMode:videoGravity:capturingDeviceType:tapToFocusEnabled:)",
+            "printedName": "getPreviewLayerWithGravityView(sessionPreset:videoGravity:capturingDeviceType:tapToFocusEnabled:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -12226,13 +12439,6 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "VolumeDetectionMode",
-                "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                "hasDefaultArg": true,
-                "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-              },
-              {
-                "kind": "TypeNominal",
                 "name": "AVLayerVideoGravity",
                 "printedName": "AVFoundation.AVLayerVideoGravity",
                 "hasDefaultArg": true,
@@ -12254,8 +12460,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:20PassioNutritionAISDK0aB2AIC30getPreviewLayerWithGravityView13sessionPreset19volumeDetectionMode05videoI019capturingDeviceType17tapToFocusEnabledAA015AVCaptureViedeofJ0CSgSo0x7SessionL0a_AA06VolumenO0OSo012AVLayerVideoI0aAA09CapturingrS0OSbtF",
-            "mangledName": "$s20PassioNutritionAISDK0aB2AIC30getPreviewLayerWithGravityView13sessionPreset19volumeDetectionMode05videoI019capturingDeviceType17tapToFocusEnabledAA015AVCaptureViedeofJ0CSgSo0x7SessionL0a_AA06VolumenO0OSo012AVLayerVideoI0aAA09CapturingrS0OSbtF",
+            "usr": "s:20PassioNutritionAISDK0aB2AIC30getPreviewLayerWithGravityView13sessionPreset05videoI019capturingDeviceType17tapToFocusEnabledAA015AVCaptureViedeofJ0CSgSo0u7SessionL0a_So012AVLayerVideoI0aAA09CapturingoP0OSbtF",
+            "mangledName": "$s20PassioNutritionAISDK0aB2AIC30getPreviewLayerWithGravityView13sessionPreset05videoI019capturingDeviceType17tapToFocusEnabledAA015AVCaptureViedeofJ0CSgSo0u7SessionL0a_So012AVLayerVideoI0aAA09CapturingoP0OSbtF",
             "moduleName": "PassioNutritionAISDK",
             "declAttributes": [
               "AccessControl",
@@ -13401,104 +13607,6 @@
             "funcSelfKind": "NonMutating"
           },
           {
-            "kind": "Var",
-            "name": "availableVolumeDetectionModes",
-            "printedName": "availableVolumeDetectionModes",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Array",
-                "printedName": "[PassioNutritionAISDK.VolumeDetectionMode]",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "VolumeDetectionMode",
-                    "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                    "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-                  }
-                ],
-                "usr": "s:Sa"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:20PassioNutritionAISDK0aB2AIC29availableVolumeDetectionModesSayAA0fG4ModeOGvp",
-            "mangledName": "$s20PassioNutritionAISDK0aB2AIC29availableVolumeDetectionModesSayAA0fG4ModeOGvp",
-            "moduleName": "PassioNutritionAISDK",
-            "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Array",
-                    "printedName": "[PassioNutritionAISDK.VolumeDetectionMode]",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "VolumeDetectionMode",
-                        "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                        "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-                      }
-                    ],
-                    "usr": "s:Sa"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:20PassioNutritionAISDK0aB2AIC29availableVolumeDetectionModesSayAA0fG4ModeOGvg",
-                "mangledName": "$s20PassioNutritionAISDK0aB2AIC29availableVolumeDetectionModesSayAA0fG4ModeOGvg",
-                "moduleName": "PassioNutritionAISDK",
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "bestVolumeDetectionMode",
-            "printedName": "bestVolumeDetectionMode",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "VolumeDetectionMode",
-                "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:20PassioNutritionAISDK0aB2AIC23bestVolumeDetectionModeAA0fgH0Ovp",
-            "mangledName": "$s20PassioNutritionAISDK0aB2AIC23bestVolumeDetectionModeAA0fgH0Ovp",
-            "moduleName": "PassioNutritionAISDK",
-            "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "VolumeDetectionMode",
-                    "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                    "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:20PassioNutritionAISDK0aB2AIC23bestVolumeDetectionModeAA0fgH0Ovg",
-                "mangledName": "$s20PassioNutritionAISDK0aB2AIC23bestVolumeDetectionModeAA0fgH0Ovg",
-                "moduleName": "PassioNutritionAISDK",
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
             "kind": "Function",
             "name": "setMLComputeUnits",
             "printedName": "setMLComputeUnits(units:)",
@@ -14566,6 +14674,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "PassioStatusDelegate",
             "printedName": "PassioStatusDelegate",
             "usr": "s:20PassioNutritionAISDK0A14StatusDelegateP",
@@ -15118,9 +15240,143 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "concerns",
+            "printedName": "concerns",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.Int]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.Int]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:20PassioNutritionAISDK0A12FoodMetadataV8concernsSaySiGSgvp",
+            "mangledName": "$s20PassioNutritionAISDK0A12FoodMetadataV8concernsSaySiGSgvp",
+            "moduleName": "PassioNutritionAISDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "[Swift.Int]?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Array",
+                        "printedName": "[Swift.Int]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "usr": "s:Sa"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:20PassioNutritionAISDK0A12FoodMetadataV8concernsSaySiGSgvg",
+                "mangledName": "$s20PassioNutritionAISDK0A12FoodMetadataV8concernsSaySiGSgvg",
+                "moduleName": "PassioNutritionAISDK",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "[Swift.Int]?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Array",
+                        "printedName": "[Swift.Int]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "usr": "s:Sa"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:20PassioNutritionAISDK0A12FoodMetadataV8concernsSaySiGSgvs",
+                "mangledName": "$s20PassioNutritionAISDK0A12FoodMetadataV8concernsSaySiGSgvs",
+                "moduleName": "PassioNutritionAISDK",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:20PassioNutritionAISDK0A12FoodMetadataV8concernsSaySiGSgvM",
+                "mangledName": "$s20PassioNutritionAISDK0A12FoodMetadataV8concernsSaySiGSgvM",
+                "moduleName": "PassioNutritionAISDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(foodOrigins:barcode:ingredientsDescription:tags:)",
+            "printedName": "init(foodOrigins:barcode:ingredientsDescription:tags:concerns:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -15203,11 +15459,34 @@
                 ],
                 "hasDefaultArg": true,
                 "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.Int]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.Int]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:20PassioNutritionAISDK0A12FoodMetadataV11foodOrigins7barcode22ingredientsDescription4tagsACSayAA0aD6OriginVGSg_SSSgALSaySSGSgtcfc",
-            "mangledName": "$s20PassioNutritionAISDK0A12FoodMetadataV11foodOrigins7barcode22ingredientsDescription4tagsACSayAA0aD6OriginVGSg_SSSgALSaySSGSgtcfc",
+            "usr": "s:20PassioNutritionAISDK0A12FoodMetadataV11foodOrigins7barcode22ingredientsDescription4tags8concernsACSayAA0aD6OriginVGSg_SSSgAMSaySSGSgSaySiGSgtcfc",
+            "mangledName": "$s20PassioNutritionAISDK0A12FoodMetadataV11foodOrigins7barcode22ingredientsDescription4tags8concernsACSayAA0aD6OriginVGSg_SSSgAMSaySSGSgSaySiGSgtcfc",
             "moduleName": "PassioNutritionAISDK",
             "declAttributes": [
               "AccessControl"
@@ -15274,6 +15553,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -15731,6 +16024,9 @@
             "moduleName": "PassioNutritionAISDK",
             "static": true,
             "implicit": true,
+            "declAttributes": [
+              "Nonisolated"
+            ],
             "accessors": [
               {
                 "kind": "Accessor",
@@ -15773,6 +16069,20 @@
         ],
         "enumRawTypeName": "String",
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -16410,6 +16720,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -16781,6 +17105,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -17637,6 +17975,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -17868,6 +18220,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -17995,6 +18361,92 @@
           },
           {
             "kind": "Var",
+            "name": "chainOfThought",
+            "printedName": "chainOfThought",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:20PassioNutritionAISDK0A9UPFRatingV14chainOfThoughtSSvp",
+            "mangledName": "$s20PassioNutritionAISDK0A9UPFRatingV14chainOfThoughtSSvp",
+            "moduleName": "PassioNutritionAISDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:20PassioNutritionAISDK0A9UPFRatingV14chainOfThoughtSSvg",
+                "mangledName": "$s20PassioNutritionAISDK0A9UPFRatingV14chainOfThoughtSSvg",
+                "moduleName": "PassioNutritionAISDK",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:20PassioNutritionAISDK0A9UPFRatingV14chainOfThoughtSSvs",
+                "mangledName": "$s20PassioNutritionAISDK0A9UPFRatingV14chainOfThoughtSSvs",
+                "moduleName": "PassioNutritionAISDK",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:20PassioNutritionAISDK0A9UPFRatingV14chainOfThoughtSSvM",
+                "mangledName": "$s20PassioNutritionAISDK0A9UPFRatingV14chainOfThoughtSSvM",
+                "moduleName": "PassioNutritionAISDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
             "name": "highlightedIngredients",
             "printedName": "highlightedIngredients",
             "children": [
@@ -18088,6 +18540,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -21772,6 +22238,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -21935,6 +22415,22 @@
         "moduleName": "PassioNutritionAISDK",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -22140,6 +22636,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -23236,6 +23746,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -23355,92 +23879,6 @@
                 "declKind": "Accessor",
                 "usr": "s:20PassioNutritionAISDK26FoodDetectionConfigurationV12detectVisualSbvM",
                 "mangledName": "$s20PassioNutritionAISDK26FoodDetectionConfigurationV12detectVisualSbvM",
-                "moduleName": "PassioNutritionAISDK",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "volumeDetectionMode",
-            "printedName": "volumeDetectionMode",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "VolumeDetectionMode",
-                "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:20PassioNutritionAISDK26FoodDetectionConfigurationV06volumeE4ModeAA06VolumeeH0Ovp",
-            "mangledName": "$s20PassioNutritionAISDK26FoodDetectionConfigurationV06volumeE4ModeAA06VolumeeH0Ovp",
-            "moduleName": "PassioNutritionAISDK",
-            "declAttributes": [
-              "HasStorage",
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "VolumeDetectionMode",
-                    "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                    "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:20PassioNutritionAISDK26FoodDetectionConfigurationV06volumeE4ModeAA06VolumeeH0Ovg",
-                "mangledName": "$s20PassioNutritionAISDK26FoodDetectionConfigurationV06volumeE4ModeAA06VolumeeH0Ovg",
-                "moduleName": "PassioNutritionAISDK",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "VolumeDetectionMode",
-                    "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                    "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:20PassioNutritionAISDK26FoodDetectionConfigurationV06volumeE4ModeAA06VolumeeH0Ovs",
-                "mangledName": "$s20PassioNutritionAISDK26FoodDetectionConfigurationV06volumeE4ModeAA06VolumeeH0Ovs",
-                "moduleName": "PassioNutritionAISDK",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:20PassioNutritionAISDK26FoodDetectionConfigurationV06volumeE4ModeAA06VolumeeH0OvM",
-                "mangledName": "$s20PassioNutritionAISDK26FoodDetectionConfigurationV06volumeE4ModeAA06VolumeeH0OvM",
                 "moduleName": "PassioNutritionAISDK",
                 "implicit": true,
                 "accessorKind": "_modify"
@@ -23796,7 +24234,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(detectVisual:volumeDetectionMode:detectBarcodes:detectPackagedFood:)",
+            "printedName": "init(detectVisual:detectBarcodes:detectPackagedFood:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -23813,13 +24251,6 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "VolumeDetectionMode",
-                "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                "hasDefaultArg": true,
-                "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-              },
-              {
-                "kind": "TypeNominal",
                 "name": "Bool",
                 "printedName": "Swift.Bool",
                 "hasDefaultArg": true,
@@ -23834,8 +24265,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:20PassioNutritionAISDK26FoodDetectionConfigurationV12detectVisual06volumeE4Mode0G8Barcodes0g8PackagedD0ACSb_AA06VolumeeJ0OS2btcfc",
-            "mangledName": "$s20PassioNutritionAISDK26FoodDetectionConfigurationV12detectVisual06volumeE4Mode0G8Barcodes0g8PackagedD0ACSb_AA06VolumeeJ0OS2btcfc",
+            "usr": "s:20PassioNutritionAISDK26FoodDetectionConfigurationV12detectVisual0G8Barcodes0g8PackagedD0ACSb_S2btcfc",
+            "mangledName": "$s20PassioNutritionAISDK26FoodDetectionConfigurationV12detectVisual0G8Barcodes0g8PackagedD0ACSb_S2btcfc",
             "moduleName": "PassioNutritionAISDK",
             "declAttributes": [
               "AccessControl"
@@ -23850,338 +24281,21 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
-        ]
-      },
-      {
-        "kind": "TypeDecl",
-        "name": "VolumeDetectionMode",
-        "printedName": "VolumeDetectionMode",
-        "children": [
-          {
-            "kind": "Var",
-            "name": "auto",
-            "printedName": "auto",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(PassioNutritionAISDK.VolumeDetectionMode.Type) -> PassioNutritionAISDK.VolumeDetectionMode",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "VolumeDetectionMode",
-                    "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                    "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "PassioNutritionAISDK.VolumeDetectionMode.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "VolumeDetectionMode",
-                        "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                        "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO4autoyA2CmF",
-            "mangledName": "$s20PassioNutritionAISDK19VolumeDetectionModeO4autoyA2CmF",
-            "moduleName": "PassioNutritionAISDK",
-            "declAttributes": [
-              "RawDocComment"
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "dualWideCamera",
-            "printedName": "dualWideCamera",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(PassioNutritionAISDK.VolumeDetectionMode.Type) -> PassioNutritionAISDK.VolumeDetectionMode",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "VolumeDetectionMode",
-                    "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                    "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "PassioNutritionAISDK.VolumeDetectionMode.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "VolumeDetectionMode",
-                        "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                        "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO14dualWideCamerayA2CmF",
-            "mangledName": "$s20PassioNutritionAISDK19VolumeDetectionModeO14dualWideCamerayA2CmF",
-            "moduleName": "PassioNutritionAISDK",
-            "declAttributes": [
-              "RawDocComment"
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "none",
-            "printedName": "none",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(PassioNutritionAISDK.VolumeDetectionMode.Type) -> PassioNutritionAISDK.VolumeDetectionMode",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "VolumeDetectionMode",
-                    "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                    "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "PassioNutritionAISDK.VolumeDetectionMode.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "VolumeDetectionMode",
-                        "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                        "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO4noneyA2CmF",
-            "mangledName": "$s20PassioNutritionAISDK19VolumeDetectionModeO4noneyA2CmF",
-            "moduleName": "PassioNutritionAISDK",
-            "declAttributes": [
-              "RawDocComment"
-            ]
-          },
-          {
-            "kind": "Constructor",
-            "name": "init",
-            "printedName": "init(rawValue:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "PassioNutritionAISDK.VolumeDetectionMode?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "VolumeDetectionMode",
-                    "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                    "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-                  }
-                ],
-                "usr": "s:Sq"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Constructor",
-            "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO8rawValueACSgSS_tcfc",
-            "mangledName": "$s20PassioNutritionAISDK19VolumeDetectionModeO8rawValueACSgSS_tcfc",
-            "moduleName": "PassioNutritionAISDK",
-            "implicit": true,
-            "init_kind": "Designated"
-          },
-          {
-            "kind": "Var",
-            "name": "rawValue",
-            "printedName": "rawValue",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO8rawValueSSvp",
-            "mangledName": "$s20PassioNutritionAISDK19VolumeDetectionModeO8rawValueSSvp",
-            "moduleName": "PassioNutritionAISDK",
-            "implicit": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO8rawValueSSvg",
-                "mangledName": "$s20PassioNutritionAISDK19VolumeDetectionModeO8rawValueSSvg",
-                "moduleName": "PassioNutritionAISDK",
-                "implicit": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "allCases",
-            "printedName": "allCases",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Array",
-                "printedName": "[PassioNutritionAISDK.VolumeDetectionMode]",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "VolumeDetectionMode",
-                    "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                    "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-                  }
-                ],
-                "usr": "s:Sa"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO8allCasesSayACGvpZ",
-            "mangledName": "$s20PassioNutritionAISDK19VolumeDetectionModeO8allCasesSayACGvpZ",
-            "moduleName": "PassioNutritionAISDK",
-            "static": true,
-            "implicit": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Array",
-                    "printedName": "[PassioNutritionAISDK.VolumeDetectionMode]",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "VolumeDetectionMode",
-                        "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                        "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-                      }
-                    ],
-                    "usr": "s:Sa"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO8allCasesSayACGvgZ",
-                "mangledName": "$s20PassioNutritionAISDK19VolumeDetectionModeO8allCasesSayACGvgZ",
-                "moduleName": "PassioNutritionAISDK",
-                "static": true,
-                "implicit": true,
-                "accessorKind": "get"
-              }
-            ]
-          }
         ],
-        "declKind": "Enum",
-        "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO",
-        "mangledName": "$s20PassioNutritionAISDK19VolumeDetectionModeO",
-        "moduleName": "PassioNutritionAISDK",
-        "declAttributes": [
-          "AccessControl",
-          "RawDocComment"
-        ],
-        "enumRawTypeName": "String",
         "conformances": [
           {
             "kind": "Conformance",
-            "name": "Equatable",
-            "printedName": "Equatable",
-            "usr": "s:SQ",
-            "mangledName": "$sSQ"
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
           },
           {
             "kind": "Conformance",
-            "name": "Hashable",
-            "printedName": "Hashable",
-            "usr": "s:SH",
-            "mangledName": "$sSH"
-          },
-          {
-            "kind": "Conformance",
-            "name": "RawRepresentable",
-            "printedName": "RawRepresentable",
-            "children": [
-              {
-                "kind": "TypeWitness",
-                "name": "RawValue",
-                "printedName": "RawValue",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ]
-              }
-            ],
-            "usr": "s:SY",
-            "mangledName": "$sSY"
-          },
-          {
-            "kind": "Conformance",
-            "name": "CaseIterable",
-            "printedName": "CaseIterable",
-            "children": [
-              {
-                "kind": "TypeWitness",
-                "name": "AllCases",
-                "printedName": "AllCases",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Array",
-                    "printedName": "[PassioNutritionAISDK.VolumeDetectionMode]",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "VolumeDetectionMode",
-                        "printedName": "PassioNutritionAISDK.VolumeDetectionMode",
-                        "usr": "s:20PassioNutritionAISDK19VolumeDetectionModeO"
-                      }
-                    ],
-                    "usr": "s:Sa"
-                  }
-                ]
-              }
-            ],
-            "usr": "s:s12CaseIterableP",
-            "mangledName": "$ss12CaseIterableP"
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
           }
         ]
       },
@@ -24918,6 +25032,140 @@
           },
           {
             "kind": "Var",
+            "name": "concerns",
+            "printedName": "concerns",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.Int]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Swift.Int]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:20PassioNutritionAISDK18ResponseIngredientV8concernsSaySiGSgvp",
+            "mangledName": "$s20PassioNutritionAISDK18ResponseIngredientV8concernsSaySiGSgvp",
+            "moduleName": "PassioNutritionAISDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "[Swift.Int]?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Array",
+                        "printedName": "[Swift.Int]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "usr": "s:Sa"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:20PassioNutritionAISDK18ResponseIngredientV8concernsSaySiGSgvg",
+                "mangledName": "$s20PassioNutritionAISDK18ResponseIngredientV8concernsSaySiGSgvg",
+                "moduleName": "PassioNutritionAISDK",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "[Swift.Int]?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Array",
+                        "printedName": "[Swift.Int]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "usr": "s:Sa"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:20PassioNutritionAISDK18ResponseIngredientV8concernsSaySiGSgvs",
+                "mangledName": "$s20PassioNutritionAISDK18ResponseIngredientV8concernsSaySiGSgvs",
+                "moduleName": "PassioNutritionAISDK",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:20PassioNutritionAISDK18ResponseIngredientV8concernsSaySiGSgvM",
+                "mangledName": "$s20PassioNutritionAISDK18ResponseIngredientV8concernsSaySiGSgvM",
+                "moduleName": "PassioNutritionAISDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
             "name": "refCode",
             "printedName": "refCode",
             "children": [
@@ -25253,6 +25501,20 @@
             "conformances": [
               {
                 "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
                 "name": "Decodable",
                 "printedName": "Decodable",
                 "usr": "s:Se",
@@ -25515,6 +25777,20 @@
               "RawDocComment"
             ],
             "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
               {
                 "kind": "Conformance",
                 "name": "Decodable",
@@ -25845,6 +26121,20 @@
             "conformances": [
               {
                 "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
                 "name": "Decodable",
                 "printedName": "Decodable",
                 "usr": "s:Se",
@@ -26047,6 +26337,20 @@
               "RawDocComment"
             ],
             "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
               {
                 "kind": "Conformance",
                 "name": "Decodable",
@@ -26389,6 +26693,20 @@
             "conformances": [
               {
                 "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
                 "name": "Decodable",
                 "printedName": "Decodable",
                 "usr": "s:Se",
@@ -26593,6 +26911,20 @@
             "conformances": [
               {
                 "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
                 "name": "Decodable",
                 "printedName": "Decodable",
                 "usr": "s:Se",
@@ -26641,6 +26973,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -26854,6 +27200,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -26923,6 +27285,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -26978,6 +27356,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -27144,6 +27538,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -27188,6 +27598,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -27282,6 +27708,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -27791,6 +28233,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -28264,6 +28720,22 @@
         "moduleName": "PassioNutritionAISDK",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -28508,6 +28980,20 @@
           "RawDocComment"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -28847,6 +29333,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -29048,6 +29548,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -29232,6 +29746,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -29613,6 +30141,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -30101,6 +30643,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -30240,6 +30796,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -31094,6 +31664,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -31876,6 +32460,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -32425,6 +33023,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -32909,6 +33521,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -33417,6 +34043,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -33876,6 +34516,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -33976,6 +34630,7 @@
             "declAttributes": [
               "Dynamic",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "Override",
               "AccessControl"
@@ -34010,6 +34665,7 @@
             "declAttributes": [
               "Dynamic",
               "ObjC",
+              "Preconcurrency",
               "Custom",
               "Override"
             ],
@@ -34021,6 +34677,7 @@
         "mangledName": "$s20PassioNutritionAISDK26AVCaptureViedeoPreviewViewC",
         "moduleName": "PassioNutritionAISDK",
         "declAttributes": [
+          "Preconcurrency",
           "Custom",
           "AccessControl",
           "ObjC"
@@ -34033,6 +34690,20 @@
           "ObjectiveC.NSObject"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -34412,6 +35083,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -34625,6 +35310,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -35278,6 +35977,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -35539,6 +36252,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -35830,6 +36557,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -36171,6 +36912,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -36356,6 +37111,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -36617,6 +37386,20 @@
         ],
         "enumRawTypeName": "String",
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -37276,6 +38059,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -37544,6 +38341,20 @@
           "RawDocComment"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -38320,6 +39131,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -38761,6 +39586,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -39784,6 +40623,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -40169,6 +41022,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -40530,6 +41397,20 @@
           "RawDocComment"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -41073,6 +41954,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "LocalizedError",
             "printedName": "LocalizedError",
             "usr": "s:10Foundation14LocalizedErrorP",
@@ -41482,6 +42377,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -42334,6 +43243,20 @@
             "conformances": [
               {
                 "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
                 "name": "Decodable",
                 "printedName": "Decodable",
                 "usr": "s:Se",
@@ -42594,6 +43517,20 @@
               "RawDocComment"
             ],
             "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
               {
                 "kind": "Conformance",
                 "name": "Decodable",
@@ -42921,6 +43858,20 @@
             "conformances": [
               {
                 "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
                 "name": "Decodable",
                 "printedName": "Decodable",
                 "usr": "s:Se",
@@ -43121,6 +44072,20 @@
               "RawDocComment"
             ],
             "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
               {
                 "kind": "Conformance",
                 "name": "Decodable",
@@ -43461,6 +44426,20 @@
             "conformances": [
               {
                 "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
                 "name": "Decodable",
                 "printedName": "Decodable",
                 "usr": "s:Se",
@@ -43663,6 +44642,20 @@
             "conformances": [
               {
                 "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
                 "name": "Decodable",
                 "printedName": "Decodable",
                 "usr": "s:Se",
@@ -43738,6 +44731,20 @@
           "RawDocComment"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -46445,6 +47452,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -46730,6 +47751,20 @@
           "RawDocComment"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -47415,6 +48450,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -47654,6 +48703,20 @@
         ],
         "enumRawTypeName": "String",
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -48262,6 +49325,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Error",
             "printedName": "Error",
             "usr": "s:s5ErrorP",
@@ -48366,6 +49443,22 @@
         "sugared_genericSig": "<Self : AnyObject>",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -48758,7 +49851,23 @@
           "AccessControl",
           "RawDocComment"
         ],
-        "hasMissingDesignatedInitializers": true
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
       },
       {
         "kind": "Import",
@@ -49107,6 +50216,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -49389,6 +50512,20 @@
           "RawDocComment"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -49710,6 +50847,22 @@
         "moduleName": "PassioNutritionAISDK",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
         ]
       },
       {
@@ -49926,6 +51079,9 @@
             "moduleName": "PassioNutritionAISDK",
             "static": true,
             "implicit": true,
+            "declAttributes": [
+              "Nonisolated"
+            ],
             "accessors": [
               {
                 "kind": "Accessor",
@@ -49967,6 +51123,20 @@
         ],
         "enumRawTypeName": "String",
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -50308,6 +51478,66 @@
           },
           {
             "kind": "Var",
+            "name": "productCode",
+            "printedName": "productCode",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:20PassioNutritionAISDK0A15AdvisorFoodInfoV11productCodeSSSgvp",
+            "mangledName": "$s20PassioNutritionAISDK0A15AdvisorFoodInfoV11productCodeSSSgvp",
+            "moduleName": "PassioNutritionAISDK",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:20PassioNutritionAISDK0A15AdvisorFoodInfoV11productCodeSSSgvg",
+                "mangledName": "$s20PassioNutritionAISDK0A15AdvisorFoodInfoV11productCodeSSSgvg",
+                "moduleName": "PassioNutritionAISDK",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
             "name": "resultType",
             "printedName": "resultType",
             "children": [
@@ -50426,6 +51656,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -50656,6 +51900,9 @@
             "moduleName": "PassioNutritionAISDK",
             "static": true,
             "implicit": true,
+            "declAttributes": [
+              "Nonisolated"
+            ],
             "accessors": [
               {
                 "kind": "Accessor",
@@ -50697,6 +51944,20 @@
         ],
         "enumRawTypeName": "String",
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -51060,6 +52321,20 @@
             "printedName": "_DestructorSafeContainer",
             "usr": "s:s24_DestructorSafeContainerP",
             "mangledName": "$ss24_DestructorSafeContainerP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
           },
           {
             "kind": "Conformance",
@@ -51790,6 +53065,7 @@
             "mangledName": "$sSo11UIImageViewC20PassioNutritionAISDKE04loadC6IconBy8passioID10entityType4size10completionySS_AC0c8IDEntityL0OAC0G4SizeOySS_So0A0CtctF",
             "moduleName": "PassioNutritionAISDK",
             "declAttributes": [
+              "Preconcurrency",
               "Custom",
               "RawDocComment"
             ],
@@ -51833,6 +53109,7 @@
             "mangledName": "$sSo11UIImageViewC20PassioNutritionAISDKE9loadImage4from11placeholdery10Foundation3URLV_So0A0CSgtF",
             "moduleName": "PassioNutritionAISDK",
             "declAttributes": [
+              "Preconcurrency",
               "Custom"
             ],
             "isFromExtension": true,
@@ -51846,6 +53123,7 @@
         "intro_iOS": "2.0",
         "objc_name": "UIImageView",
         "declAttributes": [
+          "Preconcurrency",
           "Available",
           "ObjC",
           "NonSendable",
@@ -51861,6 +53139,20 @@
           "ObjectiveC.NSObject"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -52253,11 +53545,172 @@
       "value": "true"
     },
     {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "IntegerLiteral",
+      "offset": 836,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "IntegerLiteral",
+      "offset": 842,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "FloatLiteral",
+      "offset": 847,
+      "length": 5,
+      "value": "0.001"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "StringLiteral",
+      "offset": 854,
+      "length": 28,
+      "value": "\"Posterior doesn't sum to 1\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "IntegerLiteral",
+      "offset": 910,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "FloatLiteral",
+      "offset": 1064,
+      "length": 3,
+      "value": "1.0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "FloatLiteral",
+      "offset": 1075,
+      "length": 3,
+      "value": "1.0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "FloatLiteral",
+      "offset": 1424,
+      "length": 3,
+      "value": "5.0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1668,
+      "length": 3,
+      "value": "-10"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2869,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2875,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "FloatLiteral",
+      "offset": 2880,
+      "length": 5,
+      "value": "0.001"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "StringLiteral",
+      "offset": 2887,
+      "length": 30,
+      "value": "\"Observation doesn't sum to 1\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2955,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2961,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "FloatLiteral",
+      "offset": 2966,
+      "length": 5,
+      "value": "0.001"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "StringLiteral",
+      "offset": 2973,
+      "length": 28,
+      "value": "\"Posterior doesn't sum to 1\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3029,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/BayesFilter.swift",
+      "kind": "FloatLiteral",
+      "offset": 3907,
+      "length": 3,
+      "value": "5.0"
+    },
+    {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Connected services\/AuthenticationService.swift",
       "kind": "StringLiteral",
       "offset": 294,
       "length": 17,
       "value": "\"passioUserAgent\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PackagedFood\/TFIDFVectorize.swift",
+      "kind": "IntegerLiteral",
+      "offset": 472,
+      "length": 1,
+      "value": "3"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PackagedFood\/TFIDFVectorize.swift",
+      "kind": "FloatLiteral",
+      "offset": 555,
+      "length": 3,
+      "value": "0.0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PackagedFood\/TFIDFVectorize.swift",
+      "kind": "FloatLiteral",
+      "offset": 659,
+      "length": 3,
+      "value": "0.0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PackagedFood\/TFIDFVectorize.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1059,
+      "length": 1,
+      "value": "0"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PackagedFood\/TFIDFVectorize.swift",
@@ -52709,92 +54162,22 @@
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2285,
-      "length": 1,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2300,
-      "length": 3,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2317,
-      "length": 5,
-      "value": "3"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2336,
-      "length": 4,
-      "value": "4"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2360,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2285,
-      "length": 1,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2300,
-      "length": 3,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2317,
-      "length": 5,
-      "value": "3"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2336,
-      "length": 4,
-      "value": "4"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 2360,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
       "kind": "BooleanLiteral",
-      "offset": 9218,
+      "offset": 8373,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
       "kind": "StringLiteral",
-      "offset": 28390,
+      "offset": 27559,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/PassioNutritionAISDK\/PassioNutrionAISDK.swift",
       "kind": "StringLiteral",
-      "offset": 28447,
+      "offset": 27616,
       "length": 2,
       "value": "\"\""
     },
@@ -52862,6 +54245,62 @@
       "value": "\"Name not found\""
     },
     {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Connected services\/UltraProcessedFoodRatingService.swift",
+      "kind": "StringLiteral",
+      "offset": 8223,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModels\/PassioFoodItemData.swift",
+      "kind": "StringLiteral",
+      "offset": 19858,
+      "length": 3,
+      "value": "\"-\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModels\/PassioFoodItemData.swift",
+      "kind": "StringLiteral",
+      "offset": 19869,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModels\/PassioFoodItemData.swift",
+      "kind": "StringLiteral",
+      "offset": 20134,
+      "length": 9,
+      "value": "\"Serving\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModels\/PassioFoodItemData.swift",
+      "kind": "IntegerLiteral",
+      "offset": 20275,
+      "length": 3,
+      "value": "100"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModels\/PassioFoodItemData.swift",
+      "kind": "StringLiteral",
+      "offset": 20507,
+      "length": 6,
+      "value": "\"gram\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModels\/PassioFoodItemData.swift",
+      "kind": "IntegerLiteral",
+      "offset": 20542,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModels\/PassioFoodItemData.swift",
+      "kind": "IntegerLiteral",
+      "offset": 20730,
+      "length": 3,
+      "value": "100"
+    },
+    {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModels\/PassioFoodItemData.swift",
       "kind": "StringLiteral",
       "offset": 24027,
@@ -52899,21 +54338,21 @@
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModels\/FoodDetectionConfiguration.swift",
       "kind": "BooleanLiteral",
-      "offset": 1200,
+      "offset": 1202,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModels\/FoodDetectionConfiguration.swift",
       "kind": "BooleanLiteral",
-      "offset": 1311,
+      "offset": 1315,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModels\/FoodDetectionConfiguration.swift",
       "kind": "BooleanLiteral",
-      "offset": 1361,
+      "offset": 1365,
       "length": 5,
       "value": "false"
     },
@@ -52926,10 +54365,115 @@
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/BayesFilterV3.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1054,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/BayesFilterV3.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1060,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/BayesFilterV3.swift",
+      "kind": "FloatLiteral",
+      "offset": 1065,
+      "length": 5,
+      "value": "0.001"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/BayesFilterV3.swift",
       "kind": "StringLiteral",
-      "offset": 2058,
-      "length": 19,
-      "value": "\"PassioNutritionAISDK.SmoothedBayesFilter\""
+      "offset": 1072,
+      "length": 28,
+      "value": "\"Posterior doesn't sum to 1\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/BayesFilterV3.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1229,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/BayesFilterV3.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1420,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/BayesFilterV3.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1830,
+      "length": 1,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/BayesFilterV3.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1942,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/BayesFilterV3.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2614,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/BayesFilterV3.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2620,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/BayesFilterV3.swift",
+      "kind": "FloatLiteral",
+      "offset": 2625,
+      "length": 5,
+      "value": "0.001"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/BayesFilterV3.swift",
+      "kind": "StringLiteral",
+      "offset": 2632,
+      "length": 28,
+      "value": "\"Posterior doesn't sum to 1\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/BayesFilterV3.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2780,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/BayesFilterV3.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3112,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/BayesFilterV3.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3522,
+      "length": 1,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/BayesFilterV3.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3634,
+      "length": 1,
+      "value": "0"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/AmountKalmanFilter.swift",
@@ -52951,6 +54495,34 @@
       "offset": 5701,
       "length": 3,
       "value": "0.0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/AmountKalmanFilter.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5906,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/AmountKalmanFilter.swift",
+      "kind": "FloatLiteral",
+      "offset": 6047,
+      "length": 3,
+      "value": "1.0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/AmountKalmanFilter.swift",
+      "kind": "IntegerLiteral",
+      "offset": 6281,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/AmountKalmanFilter.swift",
+      "kind": "IntegerLiteral",
+      "offset": 6498,
+      "length": 1,
+      "value": "0"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PackagedFood\/PackagedFoodDetector.swift",
@@ -52981,11 +54553,39 @@
       "value": "0.65"
     },
     {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModelsV3\/PassioMealPlanItem.swift",
-      "kind": "StringLiteral",
-      "offset": 1671,
-      "length": 15,
-      "value": "\"mealTimeLabel\""
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Vision\/Food\/ResultProcessor.swift",
+      "kind": "IntegerLiteral",
+      "offset": 13185,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Vision\/Food\/ResultProcessor.swift",
+      "kind": "IntegerLiteral",
+      "offset": 13191,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Vision\/Food\/ResultProcessor.swift",
+      "kind": "IntegerLiteral",
+      "offset": 13211,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Vision\/Food\/ResultProcessor.swift",
+      "kind": "IntegerLiteral",
+      "offset": 13292,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Vision\/Food\/ResultProcessor.swift",
+      "kind": "IntegerLiteral",
+      "offset": 13304,
+      "length": 1,
+      "value": "1"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModelsV3\/PassioMealPlanItem.swift",
@@ -52993,55 +54593,6 @@
       "offset": 1671,
       "length": 15,
       "value": "\"mealTimeLabel\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Public Services\/PassioMetadata.swift",
-      "kind": "StringLiteral",
-      "offset": 231,
-      "length": 23,
-      "value": "\"Individual Classifier\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Public Services\/PassioMetadata.swift",
-      "kind": "StringLiteral",
-      "offset": 291,
-      "length": 28,
-      "value": "\"Individual Object Detector\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Public Services\/PassioMetadata.swift",
-      "kind": "StringLiteral",
-      "offset": 349,
-      "length": 21,
-      "value": "\"Few-Shot Classifier\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Public Services\/PassioMetadata.swift",
-      "kind": "StringLiteral",
-      "offset": 402,
-      "length": 31,
-      "value": "\"Object Detector to HNN to OCR\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Public Services\/PassioMetadata.swift",
-      "kind": "StringLiteral",
-      "offset": 462,
-      "length": 27,
-      "value": "\"3 Independent Classifiers\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Public Services\/PassioMetadata.swift",
-      "kind": "StringLiteral",
-      "offset": 528,
-      "length": 31,
-      "value": "\"Object Detector to Classifier\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Public Services\/PassioMetadata.swift",
-      "kind": "StringLiteral",
-      "offset": 591,
-      "length": 24,
-      "value": "\"Object Detector to OCR\""
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Public Services\/PassioMetadata.swift",
@@ -53667,545 +55218,6 @@
       "value": "\"?unrecognized?\""
     },
     {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 6859,
-      "length": 19,
-      "value": "\"simulator\/sandbox\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 6918,
-      "length": 8,
-      "value": "\"iPod 1\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 6953,
-      "length": 8,
-      "value": "\"iPod 2\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 6988,
-      "length": 8,
-      "value": "\"iPod 3\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7023,
-      "length": 8,
-      "value": "\"iPod 4\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7058,
-      "length": 8,
-      "value": "\"iPod 5\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7093,
-      "length": 8,
-      "value": "\"iPod 6\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7128,
-      "length": 8,
-      "value": "\"iPod 7\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7176,
-      "length": 8,
-      "value": "\"iPad 2\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7211,
-      "length": 8,
-      "value": "\"iPad 3\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7246,
-      "length": 8,
-      "value": "\"iPad 4\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7281,
-      "length": 11,
-      "value": "\"iPad Air \""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7319,
-      "length": 12,
-      "value": "\"iPad Air 2\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7358,
-      "length": 12,
-      "value": "\"iPad Air 3\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7397,
-      "length": 12,
-      "value": "\"iPad Air 4\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7436,
-      "length": 8,
-      "value": "\"iPad 5\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7484,
-      "length": 8,
-      "value": "\"iPad 6\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7532,
-      "length": 8,
-      "value": "\"iPad 7\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7580,
-      "length": 8,
-      "value": "\"iPad 8\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7646,
-      "length": 11,
-      "value": "\"iPad Mini\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7684,
-      "length": 13,
-      "value": "\"iPad Mini 2\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7724,
-      "length": 13,
-      "value": "\"iPad Mini 3\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7764,
-      "length": 13,
-      "value": "\"iPad Mini 4\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7804,
-      "length": 13,
-      "value": "\"iPad Mini 5\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7861,
-      "length": 16,
-      "value": "\"iPad Pro 9.7\"\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7904,
-      "length": 17,
-      "value": "\"iPad Pro 10.5\"\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7948,
-      "length": 15,
-      "value": "\"iPad Pro 11\"\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 7990,
-      "length": 23,
-      "value": "\"iPad Pro 11\" 2nd gen\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8040,
-      "length": 17,
-      "value": "\"iPad Pro 12.9\"\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8084,
-      "length": 19,
-      "value": "\"iPad Pro 2 12.9\"\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8130,
-      "length": 19,
-      "value": "\"iPad Pro 3 12.9\"\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8176,
-      "length": 19,
-      "value": "\"iPad Pro 4 12.9\"\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8237,
-      "length": 10,
-      "value": "\"iPhone 4\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8274,
-      "length": 11,
-      "value": "\"iPhone 4S\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8312,
-      "length": 10,
-      "value": "\"iPhone 5\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8349,
-      "length": 11,
-      "value": "\"iPhone 5S\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8387,
-      "length": 11,
-      "value": "\"iPhone 5C\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8425,
-      "length": 10,
-      "value": "\"iPhone 6\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8462,
-      "length": 15,
-      "value": "\"iPhone 6 Plus\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8504,
-      "length": 11,
-      "value": "\"iPhone 6S\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8542,
-      "length": 16,
-      "value": "\"iPhone 6S Plus\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8585,
-      "length": 11,
-      "value": "\"iPhone SE\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8623,
-      "length": 10,
-      "value": "\"iPhone 7\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8660,
-      "length": 15,
-      "value": "\"iPhone 7 Plus\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8702,
-      "length": 10,
-      "value": "\"iPhone 8\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8739,
-      "length": 15,
-      "value": "\"iPhone 8 Plus\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8781,
-      "length": 10,
-      "value": "\"iPhone X\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8818,
-      "length": 11,
-      "value": "\"iPhone XS\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8856,
-      "length": 15,
-      "value": "\"iPhone XS Max\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8898,
-      "length": 11,
-      "value": "\"iPhone XR\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8936,
-      "length": 11,
-      "value": "\"iPhone 11\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 8974,
-      "length": 15,
-      "value": "\"iPhone 11 Pro\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9016,
-      "length": 19,
-      "value": "\"iPhone 11 Pro Max\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9062,
-      "length": 19,
-      "value": "\"iPhone SE 2nd gen\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9108,
-      "length": 16,
-      "value": "\"iPhone 12 Mini\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9151,
-      "length": 11,
-      "value": "\"iPhone 12\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9189,
-      "length": 15,
-      "value": "\"iPhone 12 Pro\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9231,
-      "length": 19,
-      "value": "\"iPhone 12 Pro Max\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9278,
-      "length": 15,
-      "value": "\"iPhone 13 Pro\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9321,
-      "length": 19,
-      "value": "\"iPhone 13 Pro Max\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9368,
-      "length": 16,
-      "value": "\"iPhone 13 Mini\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9412,
-      "length": 11,
-      "value": "\"iPhone 13\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9471,
-      "length": 18,
-      "value": "\"Apple Watch 1gen\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9517,
-      "length": 22,
-      "value": "\"Apple Watch Series 1\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9567,
-      "length": 22,
-      "value": "\"Apple Watch Series 2\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9617,
-      "length": 22,
-      "value": "\"Apple Watch Series 3\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9667,
-      "length": 22,
-      "value": "\"Apple Watch Series 4\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9717,
-      "length": 22,
-      "value": "\"Apple Watch Series 5\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9767,
-      "length": 29,
-      "value": "\"Apple Watch Special Edition\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9824,
-      "length": 22,
-      "value": "\"Apple Watch Series 6\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9890,
-      "length": 15,
-      "value": "\"Apple TV 1gen\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9932,
-      "length": 15,
-      "value": "\"Apple TV 2gen\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 9974,
-      "length": 15,
-      "value": "\"Apple TV 3gen\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 10016,
-      "length": 15,
-      "value": "\"Apple TV 4gen\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 10058,
-      "length": 13,
-      "value": "\"Apple TV 4K\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Extensions\/UIDevice+ExtensionsSDK.swift",
-      "kind": "StringLiteral",
-      "offset": 10099,
-      "length": 16,
-      "value": "\"?unrecognized?\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Services\/AVCaptureViedeoPreviewView.swift",
-      "kind": "StringLiteral",
-      "offset": 210,
-      "length": 26,
-      "value": "\"PassioNutritionAISDK.AVCaptureViedeoPreviewView\""
-    },
-    {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
       "kind": "BooleanLiteral",
       "offset": 302,
@@ -54225,104 +55237,6 @@
       "offset": 360,
       "length": 4,
       "value": "true"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
-      "kind": "IntegerLiteral",
-      "offset": 418,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
-      "kind": "IntegerLiteral",
-      "offset": 445,
-      "length": 1,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
-      "kind": "IntegerLiteral",
-      "offset": 466,
-      "length": 1,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
-      "kind": "IntegerLiteral",
-      "offset": 501,
-      "length": 1,
-      "value": "3"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
-      "kind": "IntegerLiteral",
-      "offset": 536,
-      "length": 1,
-      "value": "4"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
-      "kind": "IntegerLiteral",
-      "offset": 571,
-      "length": 1,
-      "value": "5"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
-      "kind": "IntegerLiteral",
-      "offset": 614,
-      "length": 1,
-      "value": "6"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
-      "kind": "IntegerLiteral",
-      "offset": 418,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
-      "kind": "IntegerLiteral",
-      "offset": 445,
-      "length": 1,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
-      "kind": "IntegerLiteral",
-      "offset": 466,
-      "length": 1,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
-      "kind": "IntegerLiteral",
-      "offset": 501,
-      "length": 1,
-      "value": "3"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
-      "kind": "IntegerLiteral",
-      "offset": 536,
-      "length": 1,
-      "value": "4"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
-      "kind": "IntegerLiteral",
-      "offset": 571,
-      "length": 1,
-      "value": "5"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
-      "kind": "IntegerLiteral",
-      "offset": 614,
-      "length": 1,
-      "value": "6"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/ServicesVolume\/GPUDispatch.swift",
@@ -54591,13 +55505,6 @@
       "value": "\"nutritionPreview\""
     },
     {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModels\/SearchResponse.swift",
-      "kind": "StringLiteral",
-      "offset": 5340,
-      "length": 18,
-      "value": "\"nutritionPreview\""
-    },
-    {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/ConfigurationAndStatus.swift",
       "kind": "BooleanLiteral",
       "offset": 694,
@@ -54691,35 +55598,35 @@
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Services\/CaptureVideoPipeline\/CaptureVideoBase.swift",
       "kind": "StringLiteral",
-      "offset": 509,
+      "offset": 513,
       "length": 15,
       "value": "\"session queue\""
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Services\/CaptureVideoPipeline\/CaptureVideoBase.swift",
       "kind": "Array",
-      "offset": 633,
+      "offset": 637,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Services\/CaptureVideoPipeline\/CaptureVideoBase.swift",
       "kind": "StringLiteral",
-      "offset": 759,
+      "offset": 763,
       "length": 19,
       "value": "\"video data output\""
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Services\/CaptureVideoPipeline\/CaptureVideoBase.swift",
       "kind": "Array",
-      "offset": 903,
+      "offset": 907,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Services\/CaptureVideoPipeline\/CaptureVideoBase.swift",
       "kind": "StringLiteral",
-      "offset": 1028,
+      "offset": 1032,
       "length": 19,
       "value": "\"passioVisionQueue\""
     },
@@ -54743,27 +55650,6 @@
       "offset": 970,
       "length": 2,
       "value": "[]"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Public Services\/PassioBridging.swift",
-      "kind": "StringLiteral",
-      "offset": 206,
-      "length": 5,
-      "value": "\"iOS\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Public Services\/PassioBridging.swift",
-      "kind": "StringLiteral",
-      "offset": 231,
-      "length": 13,
-      "value": "\"Flutter-iOS\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Public Services\/PassioBridging.swift",
-      "kind": "StringLiteral",
-      "offset": 268,
-      "length": 8,
-      "value": "\"RN-iOS\""
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Public Services\/PassioBridging.swift",
@@ -54843,20 +55729,6 @@
       "value": "\"POST\""
     },
     {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Connected services\/NetworkClient\/Base\/EndPoint.swift",
-      "kind": "StringLiteral",
-      "offset": 1095,
-      "length": 5,
-      "value": "\"GET\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Connected services\/NetworkClient\/Base\/EndPoint.swift",
-      "kind": "StringLiteral",
-      "offset": 1117,
-      "length": 6,
-      "value": "\"POST\""
-    },
-    {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Filters\/KalmanFilter.swift",
       "kind": "IntegerLiteral",
       "offset": 450,
@@ -54883,13 +55755,6 @@
       "offset": 585,
       "length": 3,
       "value": "0.3"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Services\/CaptureVideoPipeline\/CaptureVideoDataPipeline.swift",
-      "kind": "StringLiteral",
-      "offset": 141,
-      "length": 24,
-      "value": "\"PassioNutritionAISDK.CaptureVideoDataPipeline\""
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Services\/IconsService.swift",
@@ -54999,14 +55864,7 @@
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModels\/APIMealLogResult.swift",
       "kind": "StringLiteral",
-      "offset": 4632,
-      "length": 18,
-      "value": "\"nutritionPreview\""
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/Public Models\/NutritionModels\/APIMealLogResult.swift",
-      "kind": "StringLiteral",
-      "offset": 4632,
+      "offset": 4824,
       "length": 18,
       "value": "\"nutritionPreview\""
     },
@@ -55138,76 +55996,6 @@
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1364,
-      "length": 1,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1379,
-      "length": 3,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1396,
-      "length": 5,
-      "value": "3"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1415,
-      "length": 4,
-      "value": "4"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1439,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1364,
-      "length": 1,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1379,
-      "length": 3,
-      "value": "2"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1396,
-      "length": 5,
-      "value": "3"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1415,
-      "length": 4,
-      "value": "4"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
-      "kind": "IntegerLiteral",
-      "offset": 1439,
-      "length": 1,
-      "value": "0"
-    },
-    {
-      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
       "kind": "StringLiteral",
       "offset": 1603,
       "length": 62,
@@ -55251,58 +56039,163 @@
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
       "kind": "BooleanLiteral",
-      "offset": 12912,
+      "offset": 12942,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
       "kind": "BooleanLiteral",
-      "offset": 22541,
+      "offset": 22654,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
       "kind": "BooleanLiteral",
-      "offset": 28396,
+      "offset": 28464,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
       "kind": "BooleanLiteral",
-      "offset": 41748,
+      "offset": 41773,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
       "kind": "BooleanLiteral",
-      "offset": 42801,
+      "offset": 42832,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
       "kind": "BooleanLiteral",
-      "offset": 45572,
+      "offset": 45761,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
       "kind": "BooleanLiteral",
-      "offset": 45745,
+      "offset": 45934,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
       "kind": "FloatLiteral",
-      "offset": 48187,
+      "offset": 48392,
       "length": 3,
       "value": "3.2"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "BooleanLiteral",
+      "offset": 75737,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "StringLiteral",
+      "offset": 75800,
+      "length": 30,
+      "value": "\"Waiting for SDK to be ready.\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 75852,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 75883,
+      "length": 2,
+      "value": "50"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "FloatLiteral",
+      "offset": 75933,
+      "length": 3,
+      "value": "0.2"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "BooleanLiteral",
+      "offset": 75947,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "BooleanLiteral",
+      "offset": 76034,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "BooleanLiteral",
+      "offset": 76225,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 76301,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "StringLiteral",
+      "offset": 76416,
+      "length": 66,
+      "value": "\"Waiting sec = \""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "FloatLiteral",
+      "offset": 76449,
+      "length": 3,
+      "value": "0.2"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "StringLiteral",
+      "offset": 76453,
+      "length": 5,
+      "value": "\" state = \""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "StringLiteral",
+      "offset": 76481,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "IntegerLiteral",
+      "offset": 76530,
+      "length": 4,
+      "value": "5000"
+    },
+    {
+      "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/PassioCoreSDK\/PassioCoreSDK.swift",
+      "kind": "BooleanLiteral",
+      "offset": 76607,
+      "length": 5,
+      "value": "false"
     },
     {
       "filePath": "\/Users\/mind\/Projects\/Passio\/iOS-Passio-Nutrition-SDK\/PassioNutritionAI\/CoreSDK\/Connected services\/TokenServices.swift",

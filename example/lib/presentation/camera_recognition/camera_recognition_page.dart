@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutrition_ai/nutrition_ai.dart';
 import 'package:nutrition_ai_example/inject/injector.dart';
 import 'package:nutrition_ai_example/presentation/camera_recognition/bloc/camera_recognition_bloc.dart';
+import 'package:nutrition_ai_example/router/routes.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class CameraRecognitionPage extends StatefulWidget {
@@ -14,6 +15,7 @@ class CameraRecognitionPage extends StatefulWidget {
 }
 
 class _CameraRecognitionPageState extends State<CameraRecognitionPage>
+    with WidgetsBindingObserver
     implements FoodRecognitionListener {
   final _bloc = sl<CameraRecognitionBloc>();
 
@@ -26,7 +28,18 @@ class _CameraRecognitionPageState extends State<CameraRecognitionPage>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _checkPermission();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      // NutritionAI.instance.startCamera();
+    } else if (state == AppLifecycleState.paused) {
+      // NutritionAI.instance.stopCamera();
+    }
+    super.didChangeAppLifecycleState(state);
   }
 
   @override
@@ -119,9 +132,10 @@ class _CameraRecognitionPageState extends State<CameraRecognitionPage>
 
   void _startFoodDetection() {
     var detectionConfig = const FoodDetectionConfiguration(
-        detectBarcodes: true,
-        detectPackagedFood: true,
-        volumeDetectionMode: VolumeDetectionMode.none);
+      detectVisual: true,
+      detectBarcodes: true,
+      detectPackagedFood: false,
+    );
     NutritionAI.instance.startFoodDetection(detectionConfig, this);
   }
 
@@ -133,6 +147,7 @@ class _CameraRecognitionPageState extends State<CameraRecognitionPage>
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     NutritionAI.instance.stopFoodDetection();
     super.dispose();
   }
@@ -155,32 +170,45 @@ class PassioResult extends StatelessWidget {
   Widget build(BuildContext context) {
     TargetPlatform platform = defaultTargetPlatform;
 
-    return Container(
-      width: double.infinity,
-      height: 100,
-      margin: const EdgeInsets.all(10),
-      padding: _getPadding(platform),
-      decoration: const BoxDecoration(color: Colors.lightBlueAccent),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          PassioIcon(image: image),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Container(
-              alignment: Alignment.centerLeft,
-              height: 32,
-              child: FittedBox(
-                fit: BoxFit.contain,
-                child: Text(
-                  _resultString(),
-                  style: const TextStyle(fontSize: 20, color: Colors.black),
-                  softWrap: true,
+    return GestureDetector(
+      onTap: () async {
+        // await NutritionAI.instance.stopCamera();
+
+        Navigator.pushNamed(context, Routes.thirdPartyCamera)
+            .then((result) async {
+          if (result is Future) {
+            await result; // Wait for disposal to complete
+          }
+          // NutritionAI.instance.startCamera();
+        });
+      },
+      child: Container(
+        width: double.infinity,
+        height: 100,
+        margin: const EdgeInsets.all(10),
+        padding: _getPadding(platform),
+        decoration: const BoxDecoration(color: Colors.lightBlueAccent),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            PassioIcon(image: image),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Container(
+                alignment: Alignment.centerLeft,
+                height: 32,
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(
+                    _resultString(),
+                    style: const TextStyle(fontSize: 20, color: Colors.black),
+                    softWrap: true,
+                  ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

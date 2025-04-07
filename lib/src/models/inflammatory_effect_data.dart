@@ -7,7 +7,7 @@ class InflammatoryEffectData {
   final double inflammatoryEffectScore;
 
   /// The name of the nutrient.
-  final String name;
+  final String nutrient;
 
   /// The unit of measurement for the nutrient amount.
   final String unit;
@@ -16,7 +16,7 @@ class InflammatoryEffectData {
   const InflammatoryEffectData(
     this.amount,
     this.inflammatoryEffectScore,
-    this.name,
+    this.nutrient,
     this.unit,
   );
 
@@ -25,7 +25,7 @@ class InflammatoryEffectData {
       InflammatoryEffectData(
         json["amount"],
         json["inflammatoryEffectScore"],
-        json["name"],
+        json["nutrient"],
         json["unit"],
       );
 
@@ -33,7 +33,7 @@ class InflammatoryEffectData {
   Map<String, dynamic> toJson() => {
         'amount': amount,
         'inflammatoryEffectScore': inflammatoryEffectScore,
-        'name': name,
+        'nutrient': nutrient,
         'unit': unit,
       };
 
@@ -44,11 +44,12 @@ class InflammatoryEffectData {
     if (other is! InflammatoryEffectData) return false;
     return amount == other.amount &&
         inflammatoryEffectScore == other.inflammatoryEffectScore &&
-        name == other.name &&
+        nutrient == other.nutrient &&
         unit == other.unit;
   }
 
   /// Calculates the hash code for this [InflammatoryEffectData] object.
   @override
-  int get hashCode => Object.hash(amount, inflammatoryEffectScore, name, unit);
+  int get hashCode =>
+      Object.hash(amount, inflammatoryEffectScore, nutrient, unit);
 }

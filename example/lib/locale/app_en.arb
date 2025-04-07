@@ -22,5 +22,13 @@
   "searchPassioID": "Search PassioID",
   "enterText": "Enter text",
   "stopDetection": "Stop Detection",
-  "recognizeImage": "Recognize Image"
+  "recognizeImage": "Recognize Image",
+  "error": "Error",
+  "youHaveDeniedCameraAccess": "You have denied camera access.",
+  "pleaseGoToSettingsAppToEnableCameraAccess": "Please go to Settings app to enable camera access.",
+  "cameraAccessIsRestricted": "Camera access is restricted.",
+  "youHaveDeniedAudioAccess": "You have denied audio access.",
+  "pleaseGoToSettingsAppToEnableAudioAccess": "Please go to Settings app to enable audio access.",
+  "audioAccessIsRestricted": "Audio access is restricted.",
+  "frontCameraFlashlightIsNotSupportedOnThisDevice": "Front camera flashlight is not supported on this device."
 }

@@ -18,12 +18,15 @@ class PassioFoodMetadata {
   /// A list of tags associated with the food item.
   final List<String>? tags;
 
+  final List<int>? concerns;
+
   /// Creates a new `PassioFoodMetadata` instance.
   const PassioFoodMetadata({
     this.barcode,
     this.foodOrigins,
     this.ingredientsDescription,
     this.tags,
+    this.concerns,
   });
 
   String? openFoodLicense() {
@@ -41,7 +44,9 @@ class PassioFoodMetadata {
         ingredientsDescription: json["ingredientsDescription"],
         foodOrigins: mapListOfObjectsOptional(
             json["foodOrigins"], PassioFoodOrigin.fromJson),
-        tags: mapDynamicListToListOfString(json["tags"]),
+        tags: json["tags"] != null ? List<String>.from(json["tags"]) : null,
+        concerns:
+            json["concerns"] != null ? List<int>.from(json["concerns"]) : null,
       );
 
   /// Converts the `PassioFoodMetadata` instance to a JSON map.
@@ -50,6 +55,7 @@ class PassioFoodMetadata {
         'ingredientsDescription': ingredientsDescription,
         'foodOrigins': foodOrigins?.map((e) => e.toJson()).toList(),
         'tags': tags,
+        'concerns': concerns,
       };
 
   /// Compares two `PassioFoodMetadata` objects for equality.
@@ -60,7 +66,8 @@ class PassioFoodMetadata {
     return barcode == other.barcode &&
         listEquals(foodOrigins, other.foodOrigins) &&
         ingredientsDescription == other.ingredientsDescription &&
-        listEquals(tags, other.tags);
+        listEquals(tags, other.tags) &&
+        listEquals(concerns, other.concerns);
   }
 
   /// Calculates the hash code for this `PassioFoodMetadata` object.
@@ -69,5 +76,6 @@ class PassioFoodMetadata {
       barcode.hashCode ^
       Object.hashAllUnordered(foodOrigins ?? const []) ^
       ingredientsDescription.hashCode ^
-      Object.hashAllUnordered(tags ?? const []);
+      Object.hashAllUnordered(tags ?? const []) ^
+      Object.hashAllUnordered(concerns ?? const []);
 }

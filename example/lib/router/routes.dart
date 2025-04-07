@@ -17,4 +17,5 @@ class Routes {
   static const recognizeNutritionFacts = '/recognizeNutritionFacts';
   static const searchFoodSemantic = '/searchFoodSemantic';
   static const predictNextIngredient = '/predictNextIngredient';
+  static const thirdPartyCamera = '/thirdPartyCamera';
 }

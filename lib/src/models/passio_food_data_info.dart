@@ -81,7 +81,7 @@ class PassioFoodDataInfo {
   Map<String, dynamic> toJson() => {
         'brandName': brandName,
         'foodName': foodName,
-        'iconId': iconID,
+        'iconID': iconID,
         'labelId': labelId,
         'nutritionPreview': nutritionPreview.toJson(),
         'refCode': refCode,

@@ -72,11 +72,11 @@ class PassioAdvisorResponse {
   /// Overrides the hashCode method.
   @override
   int get hashCode => Object.hash(
-        extractedIngredients,
+        Object.hashAllUnordered(extractedIngredients ?? []),
         markupContent,
         messageId,
         rawContent,
         threadId,
-        tools,
+        Object.hashAllUnordered(tools ?? []),
       );
 }

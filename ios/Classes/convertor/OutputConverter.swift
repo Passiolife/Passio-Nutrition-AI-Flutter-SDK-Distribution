@@ -266,7 +266,8 @@ struct OutputConverter {
         metadataMap["barcode"] = metadata.barcode
         metadataMap["foodOrigins"] = metadata.foodOrigins?.map { mapFromFoodOrigin($0) } ?? []
         metadataMap["ingredientsDescription"] = metadata.ingredientsDescription
-        metadataMap["tags"] = metadata.tags?.map { $0 }
+        metadataMap["tags"] = metadata.tags
+        metadataMap["concerns"] = metadata.concerns
         return metadataMap
     }
     
@@ -503,6 +504,40 @@ struct OutputConverter {
         var map = [String: Any?]()
         map["results"] = (searchResponse?.results.map{ mapFromPassioFoodDataInfo(passioFoodDataInfo: $0) } ?? [] ).compactMap({$0})
         map["alternateNames"] = searchResponse?.alternateNames ?? []
+        return map
+    }
+    
+    func mapFromPassioUPFRatingResult(_ result: Result<PassioUPFRating, NetworkError>) -> [String: Any?] {
+        var map = mapFromResultType(result) { value in
+            return mapFromPassioUPFRating(value)
+        }
+        return map
+    }
+    
+        
+    func mapFromPassioUPFRating(_ rating: PassioUPFRating) -> [String: Any?] {
+        var map = [String: Any?]()
+        map["chainOfThought"] = rating.chainOfThought
+        map["highlightedIngredients"] = rating.highlightedIngredients
+        map["rating"] = rating.rating
+        return map
+    }
+    
+    func mapFromResultType<T, E: Error>(_ result: Result<T, E>, onSuccess: (T) -> [String: Any?]) -> [String: Any?] {
+        var map = [String: Any?]()
+
+        switch result {
+        case .success(let value):
+            map["status"] = "success"
+            map["message"] = nil
+            map["value"] = onSuccess(value)
+
+        case .failure(let error):
+            map["status"] = "error"
+            map["message"] = error.localizedDescription
+            map["value"] = nil
+        }
+
         return map
     }
 }

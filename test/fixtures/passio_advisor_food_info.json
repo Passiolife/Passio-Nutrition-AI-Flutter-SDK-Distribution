@@ -1,0 +1,236 @@
+{
+  "resultType": "foodItem",
+  "foodDataInfo": {
+    "resultId": "1603211552266",
+    "scoredName": "banana",
+    "type": "synonym",
+    "isShortName": true,
+    "tags": [
+      "NOVA1",
+      "cholesterol free",
+      "fruits and products"
+    ],
+    "score": 1.0,
+    "labelId": "77ba570a-8951-11ea-a893-5fb13a26de50",
+    "foodName": "banana",
+    "brandName": "",
+    "iconID": "VEG0023",
+    "nutritionPreview": {
+      "fiber": 23.659997940063477,
+      "calories": 810,
+      "servingUnit": "gram",
+      "servingQuantity": 910.0,
+      "weightQuantity": 910.0,
+      "carbs": 207.843994140625,
+      "weightUnit": "g",
+      "protein": 9.918999671936035,
+      "fat": 3.003000020980835
+    },
+    "refCode": "eyJsYWJlbGlkIjoiNzdiYTU3MGEtODk1MS0xMWVhLWE4OTMtNWZiMTNhMjZkZTUwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NTIyNjYiLCJtZXRhZGF0YSI6bnVsbH0="
+  },
+  "packagedFoodItem": {
+    "iconId": "",
+    "scannedId": "",
+    "id": "",
+    "details": "HV FOOD PRODUCTS CO.",
+    "ingredients": [
+      {
+        "name": "Hidden Valley The Original Ranch Spicy",
+        "amount": {
+          "selectedUnit": "tbsp",
+          "servingSizes": [
+            {
+              "quantity": 2.0,
+              "unitName": "tbsp"
+            },
+            {
+              "quantity": 100.0,
+              "unitName": "gram"
+            }
+          ],
+          "selectedQuantity": 2.0,
+          "servingUnits": [
+            {
+              "weight": {
+                "value": 15.0,
+                "unit": "grams"
+              },
+              "unitName": "tbsp"
+            },
+            {
+              "unitName": "tsp",
+              "weight": {
+                "unit": "grams",
+                "value": 5.0
+              }
+            },
+            {
+              "weight": {
+                "value": 240.0,
+                "unit": "grams"
+              },
+              "unitName": "cup"
+            },
+            {
+              "weight": {
+                "unit": "grams",
+                "value": 1.0
+              },
+              "unitName": "gram"
+            }
+          ]
+        },
+        "refCode": "",
+        "referenceNutrients": {
+          "alcohol": null,
+          "chromium": null,
+          "folicAcid": null,
+          "iodine": null,
+          "magnesium": null,
+          "monounsaturatedFat": null,
+          "phosphorus": null,
+          "polyunsaturatedFat": null,
+          "selenium": null,
+          "sugarsAdded": null,
+          "sugarAlcohol": null,
+          "vitaminA": null,
+          "vitaminB6": null,
+          "vitaminB12": null,
+          "vitaminB12Added": null,
+          "vitaminE": null,
+          "vitaminEAdded": null,
+          "vitaminKDihydrophylloquinone": null,
+          "vitaminKMenaquinone4": null,
+          "vitaminKPhylloquinone": null,
+          "zinc": null,
+          "sodium": {
+            "value": 800.0,
+            "unit": "milligrams"
+          },
+          "transFat": {
+            "value": 0.0,
+            "unit": "grams"
+          },
+          "cholesterol": {
+            "unit": "milligrams",
+            "value": 16.666666
+          },
+          "fibers": {
+            "value": 0.0,
+            "unit": "grams"
+          },
+          "calcium": {
+            "value": 23.333334,
+            "unit": "milligrams"
+          },
+          "carbs": {
+            "value": 6.6666665,
+            "unit": "grams"
+          },
+          "calories": {
+            "unit": "kilocalories",
+            "value": 333.33334
+          },
+          "vitaminC": {
+            "value": 0.0,
+            "unit": "milligrams"
+          },
+          "vitaminD": {
+            "unit": "micrograms",
+            "value": 0.0
+          },
+          "sugars": {
+            "value": 3.3333333,
+            "unit": "grams"
+          },
+          "iron": {
+            "unit": "milligrams",
+            "value": 0.0
+          },
+          "potassium": {
+            "value": 56.666668,
+            "unit": "milligrams"
+          },
+          "vitaminARAE": {
+            "unit": "micrograms",
+            "value": 0.0
+          },
+          "proteins": {
+            "unit": "grams",
+            "value": 0.0
+          },
+          "weight": {
+            "value": 100.0,
+            "unit": "grams"
+          },
+          "satFat": {
+            "value": 5.0,
+            "unit": "grams"
+          },
+          "fat": {
+            "value": 36.666668,
+            "unit": "grams"
+          }
+        },
+        "metadata": {
+          "barcode": null,
+          "foodOrigins": [],
+          "tags": null,
+          "ingredientsDescription": "water# vegetable oil (soybean and/or canola)# buttermilk# sugar# less than 2% of: peppers (habanero, arbol, cayenne)# cayenne pepper sauce (cayenne peppers, vinegar, water, salt, garlict)# chili pepper extracts# garlict# onion# egg yolk# salt# natural flavors# spices# red bell peppert# paprika# monosodium glutamate# modified food starch# xanthan gum# vinegar# phosphoric acid# sobric acid and calcium disodium edta added to preserve freshness. †dried# contains: egg, milk, soy."
+        },
+        "iconId": "",
+        "id": ""
+      }
+    ],
+    "name": "Hidden Valley The Original Ranch Spicy",
+    "amount": {
+      "selectedUnit": "tbsp",
+      "selectedQuantity": 2.0,
+      "servingUnits": [
+        {
+          "unitName": "tbsp",
+          "weight": {
+            "unit": "grams",
+            "value": 15.0
+          }
+        },
+        {
+          "weight": {
+            "unit": "grams",
+            "value": 5.0
+          },
+          "unitName": "tsp"
+        },
+        {
+          "unitName": "cup",
+          "weight": {
+            "unit": "grams",
+            "value": 240.0
+          }
+        },
+        {
+          "unitName": "gram",
+          "weight": {
+            "value": 1.0,
+            "unit": "grams"
+          }
+        }
+      ],
+      "servingSizes": [
+        {
+          "unitName": "tbsp",
+          "quantity": 2.0
+        },
+        {
+          "quantity": 100.0,
+          "unitName": "gram"
+        }
+      ]
+    },
+    "refCode": ""
+  },
+  "recognisedName": "banana",
+  "weightGrams": 910.0,
+  "portionSize": "whole",
+  "productCode": null
+}

@@ -55,33 +55,6 @@ class PassioConfiguration {
   });
 }
 
-/// Object that is returned as a result of the configuration process.
-class PassioStatus {
-  /// Indicates the state of the configuration process.
-  final PassioMode mode;
-
-  /// If the SDK is missing files or new files could be used. It will send the
-  /// list of files needed for the update.
-  List<String>? missingFiles;
-
-  /// A string with more verbose information related to the configuration.
-  String? debugMessage;
-
-  /// The error in case the SDK failed to configure
-  PassioSDKError? error;
-
-  /// The version of the latest models that are now used by the SDK.
-  int? activeModels;
-
-  PassioStatus({
-    this.mode = PassioMode.notReady,
-    this.missingFiles,
-    this.debugMessage,
-    this.error,
-    this.activeModels,
-  });
-}
-
 enum PassioMode {
   /// Indicates that the configuration process has not started yet.
   notReady,

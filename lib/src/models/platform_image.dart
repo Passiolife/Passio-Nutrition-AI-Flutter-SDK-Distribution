@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:nutrition_ai/src/converter/platform_output_converter.dart';
 import 'package:nutrition_ai/src/models/enums.dart';
 
 /// Native representation of an image.
@@ -19,7 +20,7 @@ class PlatformImage {
   factory PlatformImage.fromJson(Map<String, dynamic> json) => PlatformImage(
         json["width"] as int,
         json["height"] as int,
-        json["pixels"] as Uint8List,
+        Uint8List.fromList(List<int>.from(json["pixels"])),
       );
 
   /// Compares two `PlatformImage` objects for equality.
@@ -75,4 +76,22 @@ class PassioFoodIcons {
     this.defaultIcon,
     this.cachedIcon,
   );
+
+  factory PassioFoodIcons.fromJson(Map<String, dynamic> json) {
+    return PassioFoodIcons(
+      PlatformImage.fromJson(json['defaultIcon'].cast<String, dynamic>()),
+      json.ifValueNotNull("cachedIcon",
+          (map) => PlatformImage.fromJson(map.cast<String, dynamic>())),
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PassioFoodIcons) return false;
+    return defaultIcon == other.defaultIcon && cachedIcon == other.cachedIcon;
+  }
+
+  @override
+  int get hashCode => Object.hash(defaultIcon, cachedIcon);
 }

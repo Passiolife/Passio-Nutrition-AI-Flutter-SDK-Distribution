@@ -157,12 +157,6 @@ class MockNutritionAiPlatform
   }
 
   @override
-  Future<PassioResult> configure(String key) {
-    // TODO: implement configure
-    throw UnimplementedError();
-  }
-
-  @override
   Future<PassioResult<PassioAdvisorResponse>> fetchIngredients(
       PassioAdvisorResponse response) {
     // TODO: implement fetchIngredients
@@ -264,6 +258,31 @@ class MockNutritionAiPlatform
   Future<List<PassioFoodDataInfo>> predictNextIngredients(
       List<String> currentIngredients) {
     // TODO: implement predictNextIngredients
+    throw UnimplementedError();
+  }
+
+  @override
+  Future startCamera() {
+    // TODO: implement startCamera
+    throw UnimplementedError();
+  }
+
+  @override
+  Future stopCamera() {
+    // TODO: implement stopCamera
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> shutDownPassioSDK() {
+    // TODO: implement shutDownPassioSDK
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PassioResult<PassioUPFRating>> fetchUltraProcessingFoodRating(
+      PassioFoodItem item) {
+    // TODO: implement fetchUltraProcessingFoodRating
     throw UnimplementedError();
   }
 }

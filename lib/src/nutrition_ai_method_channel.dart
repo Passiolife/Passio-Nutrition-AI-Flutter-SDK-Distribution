@@ -20,9 +20,11 @@ import 'models/passio_food_data_info.dart';
 import 'models/passio_food_item.dart';
 import 'models/passio_meal_plan.dart';
 import 'models/passio_meal_plan_item.dart';
-import 'models/passio_result.dart';
+import 'models/passio_status.dart';
+import 'util/passio_result.dart';
 import 'models/passio_search_response.dart';
 import 'models/passio_speech_recognition_model.dart';
+import 'models/passio_upf_rating.dart';
 import 'models/platform_image.dart';
 import 'nutrition_ai_configuration.dart';
 import 'nutrition_ai_detection.dart';
@@ -84,7 +86,7 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
       var responseMap =
           await methodChannel.invokeMethod('configureSDK', configMap);
       Map<String, dynamic> statusMap = responseMap!.cast<String, dynamic>();
-      return mapToPassioStatus(statusMap);
+      return PassioStatus.fromJson(statusMap);
     } on PlatformException catch (e) {
       return PassioStatus(
         mode: PassioMode.failedToConfigure,
@@ -187,7 +189,7 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
 
     var responseMap = await methodChannel.invokeMethod('lookupIconsFor', args);
     Map<String, dynamic> iconMap = responseMap!.cast<String, dynamic>();
-    return mapToPlatformImagePair(iconMap);
+    return PassioFoodIcons.fromJson(iconMap);
   }
 
   @override
@@ -270,7 +272,7 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
       switch (eventType) {
         case 'passioStatusChanged':
           final statusMap = eventData.cast<String, dynamic>();
-          listener.onPassioStatusChanged(mapToPassioStatus(statusMap));
+          listener.onPassioStatusChanged(PassioStatus.fromJson(statusMap));
           break;
         case 'completedDownloadingAllFiles':
           final fileUris =
@@ -498,28 +500,14 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
     return;
   }
 
-  /// Advisor
   @override
-  Future<PassioResult> configure(String key) async {
-    try {
-      Map<String, dynamic> responseMap =
-          (await advisorMethodChannel.invokeMethod('configure', key))!
-              .cast<String, dynamic>();
-      return mapToPassioResult(responseMap);
-    } on PlatformException catch (e) {
-      return Error(e.message ?? '');
-    } on Exception catch (e) {
-      return Error(e.toString());
-    }
-  }
-
-  @override
-  Future<PassioResult> initConversation() async {
+  Future<PassioResult<void>> initConversation() async {
     try {
       Map<String, dynamic> responseMap =
           (await advisorMethodChannel.invokeMethod('initConversation'))!
               .cast<String, dynamic>();
-      return mapToPassioResult(responseMap);
+      return mapToPassioResultGeneric<void, void>(
+          responseMap, (value) => value);
     } on PlatformException catch (e) {
       return Error(e.message ?? '');
     } on Exception catch (e) {
@@ -534,8 +522,10 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
       Map<String, dynamic> responseMap =
           (await advisorMethodChannel.invokeMethod('sendMessage', message))!
               .cast<String, dynamic>();
-      return mapToPassioResult(responseMap)
-          as PassioResult<PassioAdvisorResponse>;
+      return mapToPassioResultGeneric<PassioAdvisorResponse, Map>(
+          responseMap,
+          (value) =>
+              PassioAdvisorResponse.fromJson(value.cast<String, dynamic>()));
     } on PlatformException catch (e) {
       return Error(e.message ?? '');
     } on Exception catch (e) {
@@ -549,8 +539,10 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
       Map<String, dynamic> responseMap =
           (await advisorMethodChannel.invokeMethod('sendImage', bytes))!
               .cast<String, dynamic>();
-      return mapToPassioResult(responseMap)
-          as PassioResult<PassioAdvisorResponse>;
+      return mapToPassioResultGeneric<PassioAdvisorResponse, Map>(
+          responseMap,
+          (value) =>
+              PassioAdvisorResponse.fromJson(value.cast<String, dynamic>()));
     } on PlatformException catch (e) {
       return Error(e.message ?? '');
     } on Exception catch (e) {
@@ -566,8 +558,10 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
       Map<String, dynamic> responseMap =
           (await advisorMethodChannel.invokeMethod('fetchIngredients', args))!
               .cast<String, dynamic>();
-      return mapToPassioResult(responseMap)
-          as PassioResult<PassioAdvisorResponse>;
+      return mapToPassioResultGeneric<PassioAdvisorResponse, Map>(
+          responseMap,
+          (value) =>
+              PassioAdvisorResponse.fromJson(value.cast<String, dynamic>()));
     } on PlatformException catch (e) {
       return Error(e.message ?? '');
     } on Exception catch (e) {
@@ -583,8 +577,9 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
               'fetchHiddenIngredients', foodName))!
           .cast<String, dynamic>();
 
-      return mapToPassioResult(responseMap)
-          as PassioResult<List<PassioAdvisorFoodInfo>>;
+      return mapToPassioResultGeneric<List<PassioAdvisorFoodInfo>, List<Map>>(
+          responseMap,
+          (value) => mapListOfObjects(value, PassioAdvisorFoodInfo.fromJson));
     } on PlatformException catch (e) {
       return Error(e.message ?? '');
     } on Exception catch (e) {
@@ -600,8 +595,9 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
               'fetchVisualAlternatives', foodName))!
           .cast<String, dynamic>();
 
-      return mapToPassioResult(responseMap)
-          as PassioResult<List<PassioAdvisorFoodInfo>>;
+      return mapToPassioResultGeneric<List<PassioAdvisorFoodInfo>, List<Map>>(
+          responseMap,
+          (value) => mapListOfObjects(value, PassioAdvisorFoodInfo.fromJson));
     } on PlatformException catch (e) {
       return Error(e.message ?? '');
     } on Exception catch (e) {
@@ -617,8 +613,9 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
               'fetchPossibleIngredients', foodName))!
           .cast<String, dynamic>();
 
-      return mapToPassioResult(responseMap)
-          as PassioResult<List<PassioAdvisorFoodInfo>>;
+      return mapToPassioResultGeneric<List<PassioAdvisorFoodInfo>, List<Map>>(
+          responseMap,
+          (value) => mapListOfObjects(value, PassioAdvisorFoodInfo.fromJson));
     } on PlatformException catch (e) {
       return Error(e.message ?? '');
     } on Exception catch (e) {
@@ -726,7 +723,9 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
       Map<String, dynamic> responseMap =
           (await methodChannel.invokeMethod('reportFoodItem', args))!
               .cast<String, dynamic>();
-      return mapToPassioResult(responseMap) as PassioResult<bool>;
+
+      return mapToPassioResultGeneric<bool, bool>(
+          responseMap, (value) => value);
     } on PlatformException catch (e) {
       return Error(e.message ?? '');
     } on Exception catch (e) {
@@ -741,7 +740,9 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
       Map<String, dynamic> responseMap =
           (await methodChannel.invokeMethod('submitUserCreatedFood', args))!
               .cast<String, dynamic>();
-      return mapToPassioResult(responseMap) as PassioResult<bool>;
+
+      return mapToPassioResultGeneric<bool, bool>(
+          responseMap, (value) => value);
     } on PlatformException catch (e) {
       return Error(e.message ?? '');
     } on Exception catch (e) {
@@ -779,5 +780,33 @@ class MethodChannelNutritionAI extends NutritionAIPlatform {
 
     // Return the resulting list of PassioSearchResult objects.
     return list;
+  }
+
+  @override
+  Future startCamera() async {
+    await methodChannel.invokeMethod('startCamera');
+  }
+
+  @override
+  Future stopCamera() async {
+    await methodChannel.invokeMethod('stopCamera');
+  }
+
+  @override
+  Future<void> shutDownPassioSDK() async {
+    await methodChannel.invokeMethod('shutDownPassioSDK');
+  }
+
+  @override
+  Future<PassioResult<PassioUPFRating>> fetchUltraProcessingFoodRating(
+      PassioFoodItem item) async {
+    final args = item.toJson();
+
+    final Map<String, dynamic> result = (await methodChannel.invokeMethod(
+            'fetchUltraProcessingFoodRating', args))
+        .cast<String, dynamic>();
+
+    return mapToPassioResultGeneric<PassioUPFRating, Map>(result,
+        (value) => PassioUPFRating.fromJson(value.cast<String, dynamic>()));
   }
 }

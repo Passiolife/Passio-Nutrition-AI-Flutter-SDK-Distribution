@@ -17,19 +17,14 @@ class PassioPreviewFactory: NSObject, FlutterPlatformViewFactory {
                 viewIdentifier viewId: Int64,
                 arguments args: Any?) -> FlutterPlatformView {
         var newFrame = frame
-        var volumeDetectionMode = VolumeDetectionMode.none
         if let params = args as? [String: Any] {
             if let width = params["width"] as? Double,
                let height = params["height"] as? Double {
                 newFrame = CGRect(x: 0, y: 0, width: width, height: height)
             }
-            if let volumeString = params["volumeDetectionMode"] as? String {
-                volumeDetectionMode = InputConverter().mapToVolumeDetectionMode(fromSting: volumeString)
-            }
         }
         let view = PassioPreview(frame: newFrame,
                                  viewIdentifier: viewId,
-                                 volumeDetectionMode: volumeDetectionMode,
                                  binaryMessenger: messenger )
         return view
     }

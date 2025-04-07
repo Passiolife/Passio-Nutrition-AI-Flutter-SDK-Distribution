@@ -5,18 +5,6 @@ abstract class Unit {
   String symbol = "";
 
   Unit(this.value, this.converter, this.symbol);
-
-  Unit operator *(double mult) => times(mult);
-
-  Unit operator +(UnitMass? add) => plus(add);
-
-  double operator /(UnitMass divide) => division(divide);
-
-  Unit times(double mult);
-
-  Unit plus(Unit? add);
-
-  double division(Unit divide);
 }
 
 /// Class that represents a measurement of mass.
@@ -26,15 +14,6 @@ class UnitMass extends Unit {
 
   /// Creates a new `UnitMass` object.
   UnitMass(double value, this.unit) : super(value, unit.converter, unit.symbol);
-
-  /// Converts the mass value to grams.
-  double gramsValue() => value * unit.converter * 1000;
-
-  /// Multiplies the mass value by a scalar.
-  @override
-  Unit times(double mult) {
-    return UnitMass(value * mult, unit);
-  }
 
   /// Creates a `UnitMass` object from a JSON map.
   factory UnitMass.fromJson(Map<String, dynamic> json) =>
@@ -58,10 +37,21 @@ class UnitMass extends Unit {
   @override
   int get hashCode => Object.hash(value, unit);
 
+  /// Converts the mass value to grams.
+  double gramsValue() => value * unit.converter * 1000;
+
+  UnitMass operator *(double mult) => times(mult);
+
+  /// Multiplies the mass value by a scalar.
+  UnitMass times(double mult) {
+    return UnitMass(value * mult, unit);
+  }
+
+  UnitMass operator +(UnitMass? add) => plus(add);
+
   /// Adds another unit to the current unit.
-  @override
-  Unit plus(Unit? add) {
-    if (add == null || (add is! UnitMass)) return this;
+  UnitMass plus(UnitMass? add) {
+    if (add == null) return this;
     return (unit == add.unit)
         ? UnitMass(value + add.value, unit)
         : UnitMass(
@@ -70,10 +60,11 @@ class UnitMass extends Unit {
           );
   }
 
+  double operator /(UnitMass divide) => division(divide);
+
   /// Divides the current unit by another unit.
-  @override
-  double division(Unit divide) {
-    return gramsValue() / (divide as UnitMass).gramsValue();
+  double division(UnitMass divide) {
+    return gramsValue() / divide.gramsValue();
   }
 }
 
@@ -106,26 +97,19 @@ class UnitEnergy extends Unit {
   @override
   int get hashCode => Object.hash(value, unit);
 
+  UnitEnergy operator *(double mult) => times(mult);
+
   /// Multiplies the energy value by a scalar.
-  @override
-  Unit times(double mult) {
+  UnitEnergy times(double mult) {
     return UnitEnergy(value * mult, unit);
   }
 
-  /// Currently not implemented. Throws an exception if called.
-  @override
-  double division(Unit divide) {
-    throw ("UnitEnergy division(Unit divide) has not been implemented.");
-  }
+  UnitEnergy operator +(UnitEnergy? add) => plus(add);
 
   /// Adds another unit to the current unit.
-  @override
-  Unit plus(Unit? add) {
-    if (add == null || add is! UnitEnergy) return this;
-    return (unit == add.unit)
-        ? UnitEnergy(value + add.value, unit)
-        : UnitEnergy(
-            kcalValue() + add.kcalValue(), UnitEnergyType.kilocalories);
+  UnitEnergy plus(UnitEnergy? add) {
+    if (add == null) return this;
+    return UnitEnergy(value + add.value, unit);
   }
 }
 
@@ -148,21 +132,17 @@ class UnitIU extends Unit {
   @override
   int get hashCode => value.hashCode;
 
+  UnitIU operator *(double mult) => times(mult);
+
   /// Multiplies the energy value by a scalar.
-  @override
-  Unit times(double mult) {
+  UnitIU times(double mult) {
     return UnitIU(value * mult);
   }
 
-  /// Currently not implemented. Throws an exception if called.
-  @override
-  double division(Unit divide) {
-    throw ("UnitIU division(Unit divide) has not been implemented.");
-  }
+  UnitIU operator +(UnitIU? add) => plus(add);
 
   /// Adds another unit to the current unit.
-  @override
-  Unit plus(Unit? add) {
+  UnitIU plus(UnitIU? add) {
     if (add == null) return this;
     return UnitIU(value + add.value);
   }

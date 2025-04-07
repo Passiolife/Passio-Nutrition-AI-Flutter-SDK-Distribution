@@ -174,6 +174,14 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
             predictNextIngredients(arguments: call.arguments) { FlutterResult in
                 result(FlutterResult)
             }
+        case "shutDownPassioSDK":
+            shutDownPassioSDK() { FlutterResult in
+                result(FlutterResult)
+            }
+        case "fetchUltraProcessingFoodRating":
+            fetchUltraProcessingFoodRating(arguments: call.arguments) { FlutterResult in
+                result(FlutterResult)
+            }
         default:
             print("call.method = \(call.method) not in the list")
             result(FlutterMethodNotImplemented)
@@ -594,7 +602,7 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
     }
     
     private func searchForFoodSemantic(arguments: Any?, result: @escaping FlutterResult) {
-        guard  let args = arguments as? String
+        guard let args = arguments as? String
                 else {
             result(FlutterError(code: "ERROR", message: "Mapping error", details: nil))
             return
@@ -615,6 +623,18 @@ public class NutritionAiPlugin: NSObject, FlutterPlugin {
                 self.outputConverter.mapFromPassioFoodDataInfo(passioFoodDataInfo: passioFoodDataInfo)
             }
             result(resultList)
+        }
+    }
+    
+    private func fetchUltraProcessingFoodRating(arguments: Any?, result: @escaping FlutterResult) {
+        guard let arguments = arguments as? [String: Any],
+              let passioFoodItem = self.inputConverter.mapToPassioFoodItem(map: arguments)
+            else {
+            result(FlutterError(code: "ERROR", message: "Mapping error", details: nil))
+            return
+        }
+        passioSDK.fetchUltraProcessingFoodRating(passioFoodItem: passioFoodItem) { rating in
+            result(self.outputConverter.mapFromPassioUPFRatingResult(rating))
         }
     }
     

@@ -65,19 +65,6 @@ struct InputConverter {
         }
     }
     
-    func mapToVolumeDetectionMode(fromSting: String) -> VolumeDetectionMode {
-        switch fromSting {
-        case "auto":
-            return .auto
-        case "builtInDualWideCamera":
-            return .dualWideCamera
-        case "none":
-            return .none
-        default:
-            return .none
-        }
-    }
-    
     func mapToFoodDetectionConfiguration(map: [String: Any]) -> FoodDetectionConfiguration {
         
         func mapToFPS(fromString: String) -> PassioNutritionAI.FramesPerSecond {
@@ -106,9 +93,6 @@ struct InputConverter {
         }
         if let framesPerSecondString = map["framesPerSecond"] as? String {
             configuration.framesPerSecond = mapToFPS(fromString: framesPerSecondString)
-        }
-        if let volumeString = map ["volumeDetectionMode"] as? String {
-            configuration.volumeDetectionMode = mapToVolumeDetectionMode(fromSting: volumeString)
         }
         return configuration
     }
@@ -139,7 +123,7 @@ struct InputConverter {
               let foodName = map["foodName"] as? String,
               let score = map["score"] as? Double,
               let brandName = map["brandName"] as? String,
-              let iconId = map["iconId"] as? PassioID,
+              let iconId = map["iconID"] as? PassioID,
               let labelId = map["labelId"] as? String,
               let scoredName = map["scoredName"] as? String,
               let refCode = map["refCode"] as? String,
@@ -335,8 +319,9 @@ struct InputConverter {
         let barcode = map["barcode"] as? Barcode
         let ingredientsDescription = map["ingredientsDescription"] as? String
         let tags = map["tags"] as? [String]
+        let concerns = map["concerns"] as? [Int]
         
-        return PassioFoodMetadata(foodOrigins: foodOrigins, barcode: barcode, ingredientsDescription: ingredientsDescription, tags: tags)
+        return PassioFoodMetadata(foodOrigins: foodOrigins, barcode: barcode, ingredientsDescription: ingredientsDescription, tags: tags, concerns: concerns)
     }
     
     func mapToPassioFoodOrigin(map: [String: Any?]) -> PassioFoodOrigin? {
@@ -346,7 +331,6 @@ struct InputConverter {
         
         return PassioFoodOrigin(id: id, source: source, licenseCopy: licenseCopy)
     }
-    
     
 }
 

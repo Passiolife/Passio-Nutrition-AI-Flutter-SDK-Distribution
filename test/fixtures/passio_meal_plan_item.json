@@ -1,0 +1,29 @@
+{
+  "dayNumber": 1,
+  "dayTitle": "Day 1",
+  "mealTime": "breakfast",
+  "meal": {
+    "iconID": "",
+    "labelId": "6f7e8a61-ed44-11ee-bcc0-d6e0a2f3cb7d",
+    "nutritionPreview": {
+      "calories": 620,
+      "servingQuantity": 1.0,
+      "fat": 60.96572494506836,
+      "protein": 15.632600784301758,
+      "servingUnit": "serving",
+      "carbs": 2.0332999229431152,
+      "weightQuantity": 148.2,
+      "weightUnit": "g",
+      "fiber": 1.0049999952316284
+    },
+    "brandName": "",
+    "refCode": "eyJsYWJlbGlkIjoiNmY3ZThhNjEtZWQ0NC0xMWVlLWJjYzAtZDZlMGEyZjNjYjdkIiwidHlwZSI6InJlY2lwZSIsInJlc3VsdGlkIjoiMGFjMDE5MjAtZjM1NC0xMWVlLTg1M2MtNWUzZTA2ODI2NThhIiwibWV0YWRhdGEiOm51bGx9",
+    "resultId": "0ac01920-f354-11ee-853c-5e3e0682658a",
+    "scoredName": "0-Breakfast",
+    "type": "recipe",
+    "tags": null,
+    "foodName": "Sausage Breakfast Sandwich With Avocado",
+    "score": 0.0,
+    "isShortName": true
+  }
+}

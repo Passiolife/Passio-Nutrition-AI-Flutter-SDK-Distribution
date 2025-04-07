@@ -18,6 +18,7 @@ import ai.passio.nutrition_ai.converter.mapFromPassioSpeechRecognitionModel
 import ai.passio.nutrition_ai.converter.mapFromPassioStatus
 import ai.passio.nutrition_ai.converter.mapFromPassioStatusListener
 import ai.passio.nutrition_ai.converter.mapFromPassioTokenBudget
+import ai.passio.nutrition_ai.converter.mapFromPassioUPFRatingResult
 import ai.passio.nutrition_ai.converter.mapFromSearchResponse
 import ai.passio.nutrition_ai.converter.mapToFetchFoodItemForDataInfo
 import ai.passio.nutrition_ai.converter.mapToFoodDetectionConfiguration
@@ -25,6 +26,7 @@ import ai.passio.nutrition_ai.converter.mapToPassioConfiguration
 import ai.passio.nutrition_ai.converter.mapToPassioFoodItem
 import ai.passio.nutrition_ai.converter.mapToRectF
 import ai.passio.nutrition_ai.converter.passioImageResolutionFromString
+import ai.passio.nutrition_ai.view.NativePreviewFactory
 import ai.passio.passiosdk.core.config.Bridge
 import ai.passio.passiosdk.core.config.PassioMode
 import ai.passio.passiosdk.core.config.PassioStatus
@@ -54,7 +56,7 @@ import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 
 class NutritionAIHandler(
-    private val activity: Activity
+    private val activity: Activity, private val previewFactory: NativePreviewFactory
 ) : MethodChannel.MethodCallHandler, EventChannel.StreamHandler {
 
     @Suppress("UNCHECKED_CAST")
@@ -111,6 +113,10 @@ class NutritionAIHandler(
             "submitUserCreatedFood" -> submitUserCreatedFood(call.arguments as HashMap<String, Any>,  result)
             "searchForFoodSemantic" -> searchForFoodSemantic(call.arguments as String,  result)
             "predictNextIngredients" -> predictNextIngredients(call.arguments as HashMap<String, Any>,  result)
+            "startCamera" -> startCamera(result)
+            "stopCamera" -> stopCamera(result)
+            "shutDownPassioSDK" -> shutDownPassioSDK(result)
+            "fetchUltraProcessingFoodRating" -> fetchUltraProcessingFoodRating(call.arguments as HashMap<String, Any>,  result)
         }
     }
 
@@ -233,6 +239,21 @@ class NutritionAIHandler(
             "startNutritionFactsDetection" -> PassioSDK.instance.stopNutritionFactsDetection()
             "setAccountListener" -> PassioSDK.instance.setAccountListener(null)
         }
+    }
+
+    private  fun startCamera(callback: MethodChannel.Result) {
+        previewFactory.startCamera()
+        callback.success(null)
+    }
+
+    private fun stopCamera(callback: MethodChannel.Result) {
+        previewFactory.stopCamera()
+        callback.success(null)
+    }
+
+    private fun shutDownPassioSDK(callback: MethodChannel.Result) {
+        PassioSDK.instance.shutDownPassioSDK()
+        callback.success(null)
     }
 
     private fun startFoodDetection(args: Map<String, Any>, events: EventChannel.EventSink) {
@@ -727,6 +748,14 @@ class NutritionAIHandler(
         PassioSDK.instance.predictNextIngredients(currentIngredients) { result ->
             val resultListMap = result.map { mapFromPassioFoodDataInfo(it) }
             callback.success(resultListMap)
+        }
+    }
+
+    private fun fetchUltraProcessingFoodRating(args: Map<String, Any>, callback: MethodChannel.Result) {
+        val foodItem = mapToPassioFoodItem(args)
+        PassioSDK.instance.fetchUltraProcessingFoodRating(foodItem) { result ->
+            val resultMap = mapFromPassioUPFRatingResult(result)
+            callback.success(resultMap)
         }
     }
 }

@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:nutrition_ai/src/converter/platform_output_converter.dart';
-import 'package:nutrition_ai/src/nutrition_ai_configuration.dart';
 
+import 'models/passio_status.dart';
 import 'models/platform_image.dart';
 
 /// Identifier of food items in the NutritionAI's database.
@@ -29,16 +29,12 @@ class FoodDetectionConfiguration {
   /// Defines how often the recognition system processes a frame.
   final FramesPerSecond framesPerSecond;
 
-  /// Defines a volume detection mode.
-  final VolumeDetectionMode volumeDetectionMode;
-
   /// Constructs a [FoodDetectionConfiguration] with optional parameters.
   const FoodDetectionConfiguration({
     this.detectVisual = true,
     this.detectBarcodes = false,
     this.detectPackagedFood = false,
     this.framesPerSecond = FramesPerSecond.two,
-    this.volumeDetectionMode = VolumeDetectionMode.none,
   });
 }
 
@@ -58,18 +54,6 @@ enum FramesPerSecond {
 
   /// Process frames at the maximum possible rate.
   max
-}
-
-/// Enumeration for the volume detection mode options.
-enum VolumeDetectionMode {
-  /// Automatic volume detection mode.
-  auto,
-
-  /// Use dual wide cameras for volume detection.
-  dualWideCamera,
-
-  /// No volume detection.
-  none
 }
 
 /// Used as a callback to receive results from analyzing camera frames.
@@ -154,9 +138,6 @@ class DetectedCandidate {
   /// List of alternative detected candidates.
   final List<DetectedCandidate> alternatives;
 
-  /// Estimated amount of the detected food.
-  final AmountEstimate? amountEstimate;
-
   /// Bounding box representing the location of the detected food.
   final Rectangle<double> boundingBox;
 
@@ -179,7 +160,6 @@ class DetectedCandidate {
     required this.confidence,
     required this.foodName,
     required this.passioID,
-    this.amountEstimate,
     this.croppedImage,
   });
 
@@ -197,10 +177,6 @@ class DetectedCandidate {
       boxArray[3],
     );
 
-    // Map the 'amountEstimate' key to an [AmountEstimate] object
-    AmountEstimate? amountEstimate =
-        json.ifValueNotNull('amountEstimate', AmountEstimate.fromJson);
-
     // Converting the mapped croppedImage properties to a PlatformImage
     final croppedImage = json.ifValueNotNull('croppedImage',
         (map) => PlatformImage.fromJson(map.cast<String, dynamic>()));
@@ -213,7 +189,6 @@ class DetectedCandidate {
       croppedImage: croppedImage,
       foodName: json["foodName"],
       passioID: json['passioID'],
-      amountEstimate: amountEstimate,
     );
   }
 
@@ -224,7 +199,6 @@ class DetectedCandidate {
 
     return other is DetectedCandidate &&
         listEquals(alternatives, other.alternatives) &&
-        amountEstimate == other.amountEstimate &&
         boundingBox == other.boundingBox &&
         confidence == other.confidence &&
         croppedImage == other.croppedImage &&
@@ -236,7 +210,6 @@ class DetectedCandidate {
   @override
   int get hashCode => Object.hash(
         alternatives,
-        amountEstimate,
         boundingBox,
         confidence,
         croppedImage,
@@ -283,119 +256,4 @@ class PackagedFoodCandidate {
   factory PackagedFoodCandidate.fromJson(Map<String, dynamic> json) {
     return PackagedFoodCandidate(json['packagedFoodCode'], json['confidence']);
   }
-}
-
-/// Data class that represents the results of the volume detection process.
-class AmountEstimate {
-  /// The quality of the estimate (eventually for feedback to the user or
-  /// SDK-based app developer).
-  final EstimationQuality? estimationQuality;
-
-  /// Hints how to move the device for better estimation.
-  final MoveDirection? moveDevice;
-
-  /// Volume estimate.
-  final double? volumeEstimate;
-
-  /// The Angel in radians from the perpendicular surface.
-  final double? viewingAngle;
-
-  /// Scanned Amount in grams.
-  final double? weightEstimate;
-
-  // Constructor for the AmountEstimate class
-  const AmountEstimate({
-    this.estimationQuality,
-    this.moveDevice,
-    this.volumeEstimate,
-    this.viewingAngle,
-    this.weightEstimate,
-  });
-
-  /// Creates a `AmountEstimate` instance from a JSON map.
-  factory AmountEstimate.fromJson(Map<String, dynamic> json) {
-    // Extract estimationQuality from JSON and convert it to EstimationQuality enum
-    EstimationQuality? estimationQuality = (json['estimationQuality'] != null)
-        ? EstimationQuality.values.firstWhere(
-            (element) => element.name == json['estimationQuality'],
-            orElse: () => EstimationQuality.noEstimation)
-        : null;
-
-    // Extract moveDevice from JSON and convert it to MoveDirection enum
-    MoveDirection? moveDevice = (json['moveDevice'] != null)
-        ? MoveDirection.values.firstWhere(
-            (element) => element.name == json['moveDevice'],
-            orElse: () => MoveDirection.ok)
-        : null;
-
-    // Extract volumeEstimate, viewingAngle, and weightEstimate from JSON
-    double? volumeEstimate = json["volumeEstimate"];
-    double? viewingAngle = json["viewingAngle"];
-    double? weightEstimate = json["weightEstimate"];
-
-    // Create and return an AmountEstimate object with the extracted values
-    return AmountEstimate(
-      estimationQuality: estimationQuality,
-      moveDevice: moveDevice,
-      volumeEstimate: volumeEstimate,
-      viewingAngle: viewingAngle,
-      weightEstimate: weightEstimate,
-    );
-  }
-
-  /// Compares two `AmountEstimate` objects for equality.
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is AmountEstimate &&
-        other.estimationQuality == estimationQuality &&
-        other.moveDevice == moveDevice &&
-        other.volumeEstimate == volumeEstimate &&
-        other.viewingAngle == viewingAngle &&
-        other.weightEstimate == weightEstimate;
-  }
-
-  /// Calculates the hash code for this `AmountEstimate` object.
-  @override
-  int get hashCode => Object.hash(
-        estimationQuality.hashCode,
-        moveDevice.hashCode,
-        volumeEstimate.hashCode,
-        viewingAngle.hashCode,
-        weightEstimate.hashCode,
-      );
-}
-
-/// Enum representing different move directions.
-enum MoveDirection {
-  /// Indicates moving away.
-  away,
-
-  /// Indicates no significant movement.
-  ok,
-
-  /// Indicates moving up.
-  up,
-
-  /// Indicates moving down.
-  down,
-
-  /// Indicates moving around.
-  around
-}
-
-/// Enum representing the quality of an estimation.
-enum EstimationQuality {
-  /// Indicates a good estimation quality.
-  good,
-
-  /// Indicates a fair estimation quality.
-  fair,
-
-  /// Indicates a poor estimation quality.
-  poor,
-
-  /// Indicates that no estimation could be made.
-  noEstimation
 }

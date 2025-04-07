@@ -1,0 +1,1411 @@
+{
+  "results": [
+    {
+      "score": 0.99,
+      "scoredName": "Apple",
+      "isShortName": false,
+      "labelId": "90f84c1e-9a0d-11ea-98a4-b3eebae4841d",
+      "resultId": "1603211585443",
+      "iconID": "VEG0002",
+      "tags": [
+        "NOVA1",
+        "cholesterol free",
+        "fruits and products"
+      ],
+      "type": "synonym",
+      "refCode": "eyJsYWJlbGlkIjoiOTBmODRjMWUtOWEwZC0xMWVhLTk4YTQtYjNlZWJhZTQ4NDFkIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1ODU0NDMiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "foodName": "Apple",
+      "nutritionPreview": {
+        "protein": 0.4731999933719635,
+        "calories": 95,
+        "carbs": 25.134201049804688,
+        "servingQuantity": 1.0,
+        "weightUnit": "g",
+        "weightQuantity": 182.0,
+        "servingUnit": "medium",
+        "fiber": 4.368000507354736,
+        "fat": 0.3094000220298767
+      },
+      "brandName": ""
+    },
+    {
+      "nutritionPreview": {
+        "protein": 0.12400000542402267,
+        "fat": 0.16120000183582306,
+        "servingQuantity": 4.0,
+        "weightQuantity": 124.0,
+        "calories": 57,
+        "carbs": 14.01200008392334,
+        "servingUnit": "fl oz (no ice)",
+        "fiber": 0.24800001084804535,
+        "weightUnit": "g"
+      },
+      "resultId": "1603211207118",
+      "tags": [
+        "cholesterol free",
+        "NOVA3",
+        "beverages"
+      ],
+      "iconID": "BEV0005",
+      "isShortName": false,
+      "refCode": "eyJsYWJlbGlkIjoiY2QyZjNmNmMtOWY4Zi0xMWVhLWE1NmMtMWYyZjgzYmM5MmE1IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTEyMDcxMTgiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "scoredName": "Apple Cider",
+      "labelId": "cd2f3f6c-9f8f-11ea-a56c-1f2f83bc92a5",
+      "type": "synonym",
+      "score": 0.9584895104895105,
+      "brandName": "",
+      "foodName": "Cloudy Apple Juice"
+    },
+    {
+      "foodName": "Apple Juice",
+      "nutritionPreview": {
+        "carbs": 27.0,
+        "calories": 110,
+        "protein": 0.0,
+        "fiber": 0.0,
+        "weightQuantity": 250.0,
+        "weightUnit": "g",
+        "fat": 0.0,
+        "servingUnit": "cup",
+        "servingQuantity": 1.0
+      },
+      "scoredName": "Apple Juice",
+      "brandName": "Rougemont",
+      "isShortName": false,
+      "type": "synonym",
+      "iconID": "BEV0003",
+      "score": 0.9450305143478016,
+      "tags": [
+        "cholesterol free",
+        "NOVA3",
+        "beverages"
+      ],
+      "refCode": "eyJsYWJlbGlkIjoiYzgyMGM1MTgtOWY4Zi0xMWVhLTk3MmEtM2IwMmM3YTBjN2I0IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2NDMzMDQyOTc2ODkiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "labelId": "c820c518-9f8f-11ea-972a-3b02c7a0c7b4",
+      "resultId": "1643304297689"
+    },
+    {
+      "score": 0.9437496750291373,
+      "iconID": "BAK9999",
+      "type": "synonym",
+      "nutritionPreview": {
+        "servingUnit": "piece (1/8 of 9\" dia)",
+        "protein": 3.7200000286102295,
+        "fiber": 0.0,
+        "weightUnit": "g",
+        "calories": 411,
+        "carbs": 57.50499725341797,
+        "fat": 19.375,
+        "servingQuantity": 1.0,
+        "weightQuantity": 155.0
+      },
+      "tags": [
+        "baked goods",
+        "cholesterol free",
+        "NOVA3"
+      ],
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "isShortName": false,
+      "brandName": "",
+      "resultId": "1603211199066",
+      "scoredName": "Apple Pie",
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTExOTkwNjYiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "foodName": "Apple Pie"
+    },
+    {
+      "foodName": "Asian Pears",
+      "resultId": "1603211201439",
+      "labelId": "01a0d67c-9a7a-11ea-a7f7-039988b3c827",
+      "score": 0.8761865967655342,
+      "scoredName": "Apple Pear",
+      "nutritionPreview": {
+        "fiber": 9.899999618530273,
+        "calories": 116,
+        "protein": 1.375,
+        "carbs": 29.287498474121094,
+        "weightUnit": "g",
+        "servingQuantity": 1.0,
+        "weightQuantity": 275.0,
+        "fat": 0.6324999928474426,
+        "servingUnit": "fruit 3-3/8\" high x 3\" diameter"
+      },
+      "refCode": "eyJsYWJlbGlkIjoiMDFhMGQ2N2MtOWE3YS0xMWVhLWE3ZjctMDM5OTg4YjNjODI3IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTEyMDE0MzkiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "iconID": "VEG0026",
+      "type": "synonym",
+      "tags": [
+        "NOVA1",
+        "cholesterol free",
+        "fruits and products"
+      ],
+      "isShortName": false,
+      "brandName": ""
+    },
+    {
+      "foodName": "Apple Crisp",
+      "brandName": "",
+      "scoredName": "Apple Crisp",
+      "iconID": "BAK0170",
+      "labelId": "37ab3d40-a02c-11ea-80c9-3b3abdbbc03d",
+      "nutritionPreview": {
+        "carbs": 75.69419860839844,
+        "fiber": 3.936000108718872,
+        "protein": 4.846199989318848,
+        "servingUnit": "cup",
+        "fat": 8.487000465393066,
+        "calories": 386,
+        "weightQuantity": 246.0,
+        "weightUnit": "g",
+        "servingQuantity": 1.0
+      },
+      "tags": [
+        "baked goods",
+        "cholesterol free",
+        "NOVA3"
+      ],
+      "type": "synonym",
+      "resultId": "1603211208273",
+      "refCode": "eyJsYWJlbGlkIjoiMzdhYjNkNDAtYTAyYy0xMWVhLTgwYzktM2IzYWJkYmJjMDNkIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTEyMDgyNzMiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "score": 0.874816266703769,
+      "isShortName": false
+    },
+    {
+      "score": 0.8682151533540049,
+      "type": "synonym",
+      "brandName": "",
+      "nutritionPreview": {
+        "fat": 0.4334999918937683,
+        "protein": 0.40799999237060547,
+        "servingUnit": "cup, sauce",
+        "carbs": 44.5994987487793,
+        "calories": 173,
+        "weightQuantity": 255.0,
+        "servingQuantity": 1.0,
+        "weightUnit": "g",
+        "fiber": 3.06000018119812
+      },
+      "foodName": "Apple Sauce",
+      "iconID": "XXX0249",
+      "resultId": "1603211581694",
+      "refCode": "eyJsYWJlbGlkIjoiNzdiOGEwNzItODk1MS0xMWVhLWE4OTMtZjdkMjg1NGUwNGFhIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1ODE2OTQiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "scoredName": "Apple Sauce",
+      "labelId": "77b8a072-8951-11ea-a893-f7d2854e04aa",
+      "isShortName": false,
+      "tags": [
+        "fruits and products",
+        "cholesterol free",
+        "NOVA2"
+      ]
+    },
+    {
+      "isShortName": false,
+      "scoredName": "Apple",
+      "type": "synonym",
+      "score": 0.99,
+      "labelId": "90f84c1e-9a0d-11ea-98a4-b3eebae4841d",
+      "foodName": "Apples Raw With Skin",
+      "nutritionPreview": {
+        "fat": 0.3094000220298767,
+        "protein": 0.4731999933719635,
+        "carbs": 25.134201049804688,
+        "servingQuantity": 1.0,
+        "weightQuantity": 182.0,
+        "servingUnit": "medium (3\" dia)",
+        "fiber": 4.368000507354736,
+        "calories": 95,
+        "weightUnit": "g"
+      },
+      "iconID": "VEG0002",
+      "resultId": "1603211581626",
+      "brandName": "",
+      "tags": [
+        "NOVA1",
+        "cholesterol free",
+        "fruits and products"
+      ],
+      "refCode": "eyJsYWJlbGlkIjoiOTBmODRjMWUtOWEwZC0xMWVhLTk4YTQtYjNlZWJhZTQ4NDFkIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1ODE2MjYiLCJtZXRhZGF0YSI6bnVsbH0="
+    },
+    {
+      "score": 0.99,
+      "type": "synonym",
+      "resultId": "1603211201419",
+      "iconID": "VEG0002",
+      "foodName": "Fuji Apple, With Skin",
+      "nutritionPreview": {
+        "servingQuantity": 1.0,
+        "weightUnit": "g",
+        "protein": 0.3840000033378601,
+        "servingUnit": "medium",
+        "weightQuantity": 192.0,
+        "calories": 121,
+        "fat": 0.3456000089645386,
+        "fiber": 4.031999588012695,
+        "carbs": 29.222400665283203
+      },
+      "brandName": "",
+      "scoredName": "Apple",
+      "labelId": "90f84c1e-9a0d-11ea-98a4-b3eebae4841d",
+      "isShortName": false,
+      "tags": [
+        "NOVA1",
+        "fruits and products"
+      ],
+      "refCode": "eyJsYWJlbGlkIjoiOTBmODRjMWUtOWEwZC0xMWVhLTk4YTQtYjNlZWJhZTQ4NDFkIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTEyMDE0MTkiLCJtZXRhZGF0YSI6bnVsbH0="
+    },
+    {
+      "isShortName": false,
+      "tags": [
+        "cholesterol free"
+      ],
+      "iconID": "VEG0002",
+      "score": 0.99,
+      "type": "synonym",
+      "foodName": "Braeburn Apples",
+      "nutritionPreview": {
+        "protein": 0.4999994933605194,
+        "fat": 0.2999997138977051,
+        "weightUnit": "g",
+        "carbs": 25.0,
+        "servingQuantity": 1.0,
+        "calories": 95,
+        "fiber": 4.400001049041748,
+        "servingUnit": "serving",
+        "weightQuantity": 182.0
+      },
+      "brandName": "Nature's Pick ",
+      "labelId": "90f84c1e-9a0d-11ea-98a4-b3eebae4841d",
+      "resultId": "1695222206415",
+      "scoredName": "Apple",
+      "refCode": "eyJsYWJlbGlkIjoiOTBmODRjMWUtOWEwZC0xMWVhLTk4YTQtYjNlZWJhZTQ4NDFkIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2OTUyMjIyMDY0MTUiLCJtZXRhZGF0YSI6bnVsbH0="
+    },
+    {
+      "labelId": "90f84c1e-9a0d-11ea-98a4-b3eebae4841d",
+      "foodName": "Giant Apple",
+      "tags": [
+        "NOVA1",
+        "fruits and products"
+      ],
+      "nutritionPreview": {
+        "protein": 0.4999994933605194,
+        "weightUnit": "g",
+        "servingUnit": "apple",
+        "fat": 0.2999997138977051,
+        "servingQuantity": 1.0,
+        "weightQuantity": 182.0,
+        "carbs": 25.0,
+        "fiber": 4.400001049041748,
+        "calories": 93
+      },
+      "resultId": "1649272368896",
+      "scoredName": "Apple",
+      "iconID": "VEG0002",
+      "type": "synonym",
+      "isShortName": false,
+      "brandName": "Giant Food Stores, LLC",
+      "refCode": "eyJsYWJlbGlkIjoiOTBmODRjMWUtOWEwZC0xMWVhLTk4YTQtYjNlZWJhZTQ4NDFkIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2NDkyNzIzNjg4OTYiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "score": 0.99
+    },
+    {
+      "type": "synonym",
+      "foodName": "Gala Apple, With Skin",
+      "brandName": "",
+      "resultId": "1603211201239",
+      "scoredName": "Apple",
+      "refCode": "eyJsYWJlbGlkIjoiOTBmODRjMWUtOWEwZC0xMWVhLTk4YTQtYjNlZWJhZTQ4NDFkIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTEyMDEyMzkiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "labelId": "90f84c1e-9a0d-11ea-98a4-b3eebae4841d",
+      "nutritionPreview": {
+        "protein": 0.4300000071525574,
+        "fat": 0.20639999210834503,
+        "servingQuantity": 1.0,
+        "calories": 98,
+        "servingUnit": "medium",
+        "weightUnit": "g",
+        "carbs": 23.529600143432617,
+        "fiber": 3.9560000896453857,
+        "weightQuantity": 172.0
+      },
+      "iconID": "VEG0002",
+      "score": 0.99,
+      "isShortName": false,
+      "tags": [
+        "NOVA1",
+        "fruits and products"
+      ]
+    },
+    {
+      "foodName": "Red Delicious Apple, With Skin",
+      "labelId": "90f84c1e-9a0d-11ea-98a4-b3eebae4841d",
+      "resultId": "1603211588753",
+      "refCode": "eyJsYWJlbGlkIjoiOTBmODRjMWUtOWEwZC0xMWVhLTk4YTQtYjNlZWJhZTQ4NDFkIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1ODg3NTMiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "nutritionPreview": {
+        "servingQuantity": 1.0,
+        "weightQuantity": 212.0,
+        "protein": 0.5723999738693237,
+        "servingUnit": "medium",
+        "fat": 0.42399999499320984,
+        "weightUnit": "g",
+        "calories": 125,
+        "fiber": 4.875999450683594,
+        "carbs": 29.807199478149414
+      },
+      "brandName": "",
+      "score": 0.99,
+      "iconID": "VEG0002",
+      "scoredName": "Apple",
+      "type": "synonym",
+      "isShortName": false,
+      "tags": [
+        "NOVA1",
+        "fruits and products"
+      ]
+    },
+    {
+      "isShortName": false,
+      "nutritionPreview": {
+        "servingUnit": "apple",
+        "fiber": 0.0,
+        "servingQuantity": 1.0,
+        "fat": 0.2999997138977051,
+        "calories": 95,
+        "carbs": 25.0,
+        "weightQuantity": 182.0,
+        "weightUnit": "g",
+        "protein": 0.0
+      },
+      "tags": [
+        "NOVA1",
+        "fruits and products"
+      ],
+      "score": 0.99,
+      "foodName": "Tesco Gala Apple",
+      "iconID": "VEG0002",
+      "refCode": "eyJsYWJlbGlkIjoiOTBmODRjMWUtOWEwZC0xMWVhLTk4YTQtYjNlZWJhZTQ4NDFkIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2NTAzODU2MDM5NjkiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "brandName": "Tesco",
+      "resultId": "1650385603969",
+      "type": "synonym",
+      "scoredName": "Apple",
+      "labelId": "90f84c1e-9a0d-11ea-98a4-b3eebae4841d"
+    },
+    {
+      "resultId": "1603211554337",
+      "score": 0.99,
+      "labelId": "90f84c1e-9a0d-11ea-98a4-b3eebae4841d",
+      "refCode": "eyJsYWJlbGlkIjoiOTBmODRjMWUtOWEwZC0xMWVhLTk4YTQtYjNlZWJhZTQ4NDFkIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NTQzMzciLCJtZXRhZGF0YSI6bnVsbH0=",
+      "foodName": "Golden Delicious Apple, With Skin",
+      "iconID": "VEG0002",
+      "brandName": "",
+      "scoredName": "Apple",
+      "tags": [
+        "NOVA1",
+        "fruits and products"
+      ],
+      "type": "synonym",
+      "isShortName": false,
+      "nutritionPreview": {
+        "servingQuantity": 1.0,
+        "protein": 0.3052000105381012,
+        "calories": 62,
+        "fiber": 2.616000175476074,
+        "carbs": 14.82400131225586,
+        "fat": 0.16350001096725464,
+        "servingUnit": "cup, sliced",
+        "weightQuantity": 109.0,
+        "weightUnit": "g"
+      }
+    },
+    {
+      "brandName": "",
+      "resultId": "1603211588754",
+      "refCode": "eyJsYWJlbGlkIjoiOTBmODRjMWUtOWEwZC0xMWVhLTk4YTQtYjNlZWJhZTQ4NDFkIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1ODg3NTQiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "nutritionPreview": {
+        "calories": 63,
+        "protein": 0.4796000123023987,
+        "fat": 0.2071000039577484,
+        "weightQuantity": 109.0,
+        "carbs": 14.83489990234375,
+        "servingQuantity": 1.0,
+        "fiber": 3.052000045776367,
+        "weightUnit": "g",
+        "servingUnit": "cup, sliced"
+      },
+      "scoredName": "Apple",
+      "iconID": "VEG0002",
+      "isShortName": false,
+      "labelId": "90f84c1e-9a0d-11ea-98a4-b3eebae4841d",
+      "foodName": "Granny Smith, With Skin",
+      "type": "synonym",
+      "tags": [
+        "NOVA1",
+        "fruits and products"
+      ],
+      "score": 0.99
+    },
+    {
+      "refCode": "eyJsYWJlbGlkIjoiY2QyZjNmNmMtOWY4Zi0xMWVhLWE1NmMtMWYyZjgzYmM5MmE1IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTEyMDcxMTciLCJtZXRhZGF0YSI6bnVsbH0=",
+      "score": 0.9584895104895105,
+      "brandName": "",
+      "labelId": "cd2f3f6c-9f8f-11ea-a56c-1f2f83bc92a5",
+      "nutritionPreview": {
+        "calories": 14,
+        "carbs": 3.503000020980835,
+        "servingQuantity": 1.0,
+        "servingUnit": "fl oz (no ice)",
+        "fat": 0.040300000458955765,
+        "protein": 0.03100000135600567,
+        "fiber": 0.06200000271201134,
+        "weightQuantity": 31.0,
+        "weightUnit": "g"
+      },
+      "foodName": "Apple Cider",
+      "resultId": "1603211207117",
+      "type": "synonym",
+      "tags": [
+        "cholesterol free"
+      ],
+      "iconID": "BEV0005",
+      "scoredName": "Apple Cider",
+      "isShortName": false
+    },
+    {
+      "type": "synonym",
+      "foodName": "Evolution Fresh, Apple Juice",
+      "iconID": "BEV0005",
+      "nutritionPreview": {
+        "servingQuantity": 8.0,
+        "carbs": 36.35831832885742,
+        "weightUnit": "ml",
+        "calories": 147,
+        "protein": 0.0,
+        "servingUnit": "fl oz",
+        "weightQuantity": 236.4,
+        "fiber": 0.0,
+        "fat": 0.0
+      },
+      "isShortName": false,
+      "tags": [
+        "cholesterol free",
+        "NOVA3",
+        "beverages"
+      ],
+      "resultId": "1603211573903",
+      "labelId": "cd2f3f6c-9f8f-11ea-a56c-1f2f83bc92a5",
+      "brandName": "Evolution Fresh, Inc.",
+      "refCode": "eyJsYWJlbGlkIjoiY2QyZjNmNmMtOWY4Zi0xMWVhLWE1NmMtMWYyZjgzYmM5MmE1IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzM5MDMiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "scoredName": "Apple Cider",
+      "score": 0.9584895104895105
+    },
+    {
+      "refCode": "eyJsYWJlbGlkIjoiYzgyMGM1MTgtOWY4Zi0xMWVhLTk3MmEtM2IwMmM3YTBjN2I0IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1ODIwMzAiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "foodName": "Kroger, Juice, Apple",
+      "resultId": "1603211582030",
+      "nutritionPreview": {
+        "carbs": 35.01000213623047,
+        "fiber": 0.0,
+        "fat": 0.0,
+        "servingUnit": "container",
+        "calories": 141,
+        "weightQuantity": 300.0,
+        "protein": 0.0,
+        "servingQuantity": 1.0,
+        "weightUnit": "ml"
+      },
+      "scoredName": "Apple Juice",
+      "type": "synonym",
+      "tags": [
+        "cholesterol free",
+        "NOVA3",
+        "beverages"
+      ],
+      "score": 0.9450305143478016,
+      "isShortName": false,
+      "labelId": "c820c518-9f8f-11ea-972a-3b02c7a0c7b4",
+      "iconID": "BEV0003",
+      "brandName": "The Kroger Co."
+    },
+    {
+      "iconID": "BEV0003",
+      "brandName": "",
+      "score": 0.9450305143478016,
+      "isShortName": false,
+      "nutritionPreview": {
+        "protein": 0.0,
+        "fiber": 0.0,
+        "weightUnit": "g",
+        "fat": 0.12400000542402267,
+        "servingUnit": "fl oz (no ice)",
+        "calories": 27,
+        "carbs": 6.323999881744385,
+        "servingQuantity": 4.0,
+        "weightQuantity": 124.0
+      },
+      "labelId": "c820c518-9f8f-11ea-972a-3b02c7a0c7b4",
+      "type": "synonym",
+      "tags": [
+        "cholesterol free",
+        "NOVA3",
+        "beverages"
+      ],
+      "foodName": "Apple Juice Beverage, 40-50% Juice, Light",
+      "resultId": "1603211202477",
+      "scoredName": "Apple Juice",
+      "refCode": "eyJsYWJlbGlkIjoiYzgyMGM1MTgtOWY4Zi0xMWVhLTk3MmEtM2IwMmM3YTBjN2I0IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTEyMDI0NzciLCJtZXRhZGF0YSI6bnVsbH0="
+    },
+    {
+      "labelId": "c820c518-9f8f-11ea-972a-3b02c7a0c7b4",
+      "nutritionPreview": {
+        "servingQuantity": 8.0,
+        "protein": 0.0,
+        "weightQuantity": 240.0,
+        "servingUnit": "fl oz",
+        "carbs": 27.000001907348633,
+        "weightUnit": "ml",
+        "fat": 0.0,
+        "calories": 110,
+        "fiber": 0.0
+      },
+      "scoredName": "Apple Juice",
+      "isShortName": false,
+      "tags": [
+        "NOVA3",
+        "beverages"
+      ],
+      "refCode": "eyJsYWJlbGlkIjoiYzgyMGM1MTgtOWY4Zi0xMWVhLTk3MmEtM2IwMmM3YTBjN2I0IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzExMTkiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "foodName": "Santa Cruz Organic, Apple Juice",
+      "iconID": "BEV0003",
+      "type": "synonym",
+      "brandName": "Santa Cruz Natural",
+      "resultId": "1603211571119",
+      "score": 0.9450305143478016
+    },
+    {
+      "isShortName": false,
+      "refCode": "eyJsYWJlbGlkIjoiYzgyMGM1MTgtOWY4Zi0xMWVhLTk3MmEtM2IwMmM3YTBjN2I0IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzA4MzMiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "iconID": "BEV0003",
+      "resultId": "1603211570833",
+      "scoredName": "Apple Juice",
+      "type": "synonym",
+      "foodName": "Minute Maid, 100% Pure Apple Juice",
+      "nutritionPreview": {
+        "calories": 160,
+        "fat": 0.0,
+        "protein": 0.0,
+        "fiber": 0.0,
+        "servingUnit": "can",
+        "weightUnit": "g",
+        "servingQuantity": 1.0,
+        "carbs": 38.999996185302734,
+        "weightQuantity": 360.0
+      },
+      "brandName": "The Minute Maid Company",
+      "score": 0.9450305143478016,
+      "labelId": "c820c518-9f8f-11ea-972a-3b02c7a0c7b4",
+      "tags": [
+        "NOVA3",
+        "beverages"
+      ]
+    },
+    {
+      "resultId": "1643657036956",
+      "tags": [
+        "cholesterol free",
+        "NOVA3",
+        "beverages"
+      ],
+      "labelId": "c820c518-9f8f-11ea-972a-3b02c7a0c7b4",
+      "iconID": "BEV0003",
+      "brandName": "The Coca Cola Company",
+      "refCode": "eyJsYWJlbGlkIjoiYzgyMGM1MTgtOWY4Zi0xMWVhLTk3MmEtM2IwMmM3YTBjN2I0IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2NDM2NTcwMzY5NTYiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "score": 0.9450305143478016,
+      "scoredName": "Apple Juice",
+      "nutritionPreview": {
+        "servingQuantity": 1.0,
+        "fiber": 0.0,
+        "calories": 80,
+        "servingUnit": "juice box",
+        "weightQuantity": 177.0,
+        "carbs": 21.0,
+        "fat": 0.0,
+        "protein": 0.0,
+        "weightUnit": "g"
+      },
+      "type": "synonym",
+      "foodName": "Minute Maid, Apple Juice, 8-6Oz Juice Boxes",
+      "isShortName": false
+    },
+    {
+      "brandName": "Manzana Products Co Inc",
+      "scoredName": "Apple Juice",
+      "labelId": "c820c518-9f8f-11ea-972a-3b02c7a0c7b4",
+      "nutritionPreview": {
+        "servingQuantity": 1.0,
+        "fat": 0.0,
+        "servingUnit": "cup",
+        "calories": 110,
+        "weightQuantity": 240.0,
+        "protein": 0.0,
+        "carbs": 28.00800132751465,
+        "weightUnit": "ml",
+        "fiber": 0.0
+      },
+      "foodName": "North Coast, Organic Apple Juice, 32 Fl Oz",
+      "resultId": "1628606763836",
+      "iconID": "BEV0003",
+      "score": 0.9450305143478016,
+      "type": "synonym",
+      "isShortName": false,
+      "tags": [
+        "cholesterol free",
+        "NOVA3",
+        "beverages"
+      ],
+      "refCode": "eyJsYWJlbGlkIjoiYzgyMGM1MTgtOWY4Zi0xMWVhLTk3MmEtM2IwMmM3YTBjN2I0IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2Mjg2MDY3NjM4MzYiLCJtZXRhZGF0YSI6bnVsbH0="
+    },
+    {
+      "labelId": "c820c518-9f8f-11ea-972a-3b02c7a0c7b4",
+      "iconID": "BEV0003",
+      "type": "synonym",
+      "score": 0.9450305143478016,
+      "tags": [
+        "cholesterol free",
+        "NOVA3",
+        "beverages"
+      ],
+      "foodName": "North Coast, Organic Honeycrisp Apple Juice, 32 Fl Oz",
+      "isShortName": false,
+      "brandName": "Manzana Products Co Inc",
+      "scoredName": "Apple Juice",
+      "resultId": "1603211294918",
+      "refCode": "eyJsYWJlbGlkIjoiYzgyMGM1MTgtOWY4Zi0xMWVhLTk3MmEtM2IwMmM3YTBjN2I0IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTEyOTQ5MTgiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "nutritionPreview": {
+        "carbs": 27.98959732055664,
+        "servingUnit": "fl oz",
+        "servingQuantity": 8.0,
+        "fiber": 0.9439999461174011,
+        "calories": 111,
+        "protein": 0.0,
+        "weightUnit": "ml",
+        "fat": 0.0,
+        "weightQuantity": 236.0
+      }
+    },
+    {
+      "tags": [
+        "cholesterol free",
+        "NOVA3",
+        "beverages"
+      ],
+      "labelId": "c820c518-9f8f-11ea-972a-3b02c7a0c7b4",
+      "refCode": "eyJsYWJlbGlkIjoiYzgyMGM1MTgtOWY4Zi0xMWVhLTk3MmEtM2IwMmM3YTBjN2I0IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTEzMDAxNzUiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "foodName": "North Coast, Organic Grevenstein Apple Juice, 32 Fl Oz",
+      "scoredName": "Apple Juice",
+      "resultId": "1603211300175",
+      "nutritionPreview": {
+        "fiber": 0.9600000381469727,
+        "fat": 0.0,
+        "protein": 0.0,
+        "carbs": 30.000001907348633,
+        "weightQuantity": 240.0,
+        "servingQuantity": 8.0,
+        "weightUnit": "ml",
+        "calories": 120,
+        "servingUnit": "fl oz"
+      },
+      "brandName": "Manzana Products Co Inc",
+      "score": 0.9450305143478016,
+      "type": "synonym",
+      "isShortName": false,
+      "iconID": "BEV0003"
+    },
+    {
+      "labelId": "c820c518-9f8f-11ea-972a-3b02c7a0c7b4",
+      "nutritionPreview": {
+        "fiber": 0.0,
+        "fat": 0.0,
+        "servingUnit": "fl oz",
+        "calories": 113,
+        "protein": 0.7920000553131104,
+        "servingQuantity": 8.0,
+        "weightUnit": "g",
+        "carbs": 27.192001342773438,
+        "weightQuantity": 240.0
+      },
+      "iconID": "BEV0003",
+      "brandName": "QTG",
+      "score": 0.9450305143478016,
+      "isShortName": false,
+      "foodName": "Topicana, 100% Apple Juice, 10 Oz",
+      "type": "synonym",
+      "scoredName": "Apple Juice",
+      "refCode": "eyJsYWJlbGlkIjoiYzgyMGM1MTgtOWY4Zi0xMWVhLTk3MmEtM2IwMmM3YTBjN2I0IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE0MDEwNDQiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "resultId": "1603211401044",
+      "tags": [
+        "cholesterol free",
+        "NOVA3",
+        "beverages"
+      ]
+    },
+    {
+      "refCode": "eyJsYWJlbGlkIjoiYzgyMGM1MTgtOWY4Zi0xMWVhLTk3MmEtM2IwMmM3YTBjN2I0IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6Im9wZW5mb29kMDA3ODc0MjI5NjUyNCIsIm1ldGFkYXRhIjpudWxsfQ==",
+      "foodName": "Great Value, Organic Apple Juice, 8 Boxes",
+      "score": 0.9450305143478016,
+      "type": "synonym",
+      "iconID": "BEV0003",
+      "resultId": "openfood0078742296524",
+      "scoredName": "Apple Juice",
+      "isShortName": false,
+      "nutritionPreview": {
+        "fat": 0.0,
+        "servingQuantity": 1.0,
+        "weightQuantity": 200.0,
+        "weightUnit": "g",
+        "calories": 90,
+        "protein": 0.0,
+        "carbs": 23.0,
+        "fiber": 0.0,
+        "servingUnit": "box"
+      },
+      "labelId": "c820c518-9f8f-11ea-972a-3b02c7a0c7b4",
+      "brandName": "Great Value",
+      "tags": [
+        "fruits and products",
+        "NOVA4",
+        "cholesterol free",
+        "beverages"
+      ]
+    },
+    {
+      "iconID": "BEV0003",
+      "scoredName": "Apple Juice",
+      "labelId": "c820c518-9f8f-11ea-972a-3b02c7a0c7b4",
+      "resultId": "1645726598876",
+      "nutritionPreview": {
+        "fat": 0.0,
+        "weightQuantity": 125.0,
+        "servingUnit": "box",
+        "carbs": 14.0,
+        "servingQuantity": 1.0,
+        "protein": 0.0,
+        "fiber": 0.0,
+        "calories": 60,
+        "weightUnit": "g"
+      },
+      "type": "synonym",
+      "refCode": "eyJsYWJlbGlkIjoiYzgyMGM1MTgtOWY4Zi0xMWVhLTk3MmEtM2IwMmM3YTBjN2I0IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2NDU3MjY1OTg4NzYiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "foodName": "Suncup, Totally Juice, Apple Juice Box",
+      "brandName": "SunCup",
+      "isShortName": false,
+      "score": 0.9450305143478016,
+      "tags": [
+        "cholesterol free",
+        "NOVA3",
+        "beverages"
+      ]
+    },
+    {
+      "nutritionPreview": {
+        "weightQuantity": 250.0,
+        "servingUnit": "cup",
+        "servingQuantity": 1.0,
+        "carbs": 28.0,
+        "fat": 0.0,
+        "calories": 110,
+        "weightUnit": "g",
+        "fiber": 0.0,
+        "protein": 0.0
+      },
+      "score": 0.9450305143478016,
+      "brandName": "President's Choice",
+      "resultId": "1643238176603",
+      "isShortName": false,
+      "scoredName": "Apple Juice",
+      "labelId": "c820c518-9f8f-11ea-972a-3b02c7a0c7b4",
+      "tags": [
+        "cholesterol free",
+        "NOVA3",
+        "beverages"
+      ],
+      "foodName": "Pc Blue Menu, Apple Juice With Added Calcium & Vit D",
+      "iconID": "BEV0003",
+      "type": "synonym",
+      "refCode": "eyJsYWJlbGlkIjoiYzgyMGM1MTgtOWY4Zi0xMWVhLTk3MmEtM2IwMmM3YTBjN2I0IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2NDMyMzgxNzY2MDMiLCJtZXRhZGF0YSI6bnVsbH0="
+    },
+    {
+      "brandName": "Wal-Mart Stores, Inc.",
+      "resultId": "1603211444648",
+      "isShortName": false,
+      "tags": [
+        "NOVA4",
+        "cholesterol free",
+        "beverages"
+      ],
+      "foodName": "Great Value, Organic Honeycrisp Style Apple Juice",
+      "score": 0.9450305143478016,
+      "nutritionPreview": {
+        "weightUnit": "ml",
+        "servingUnit": "oz",
+        "fiber": 0.0,
+        "calories": 110,
+        "fat": 0.0,
+        "carbs": 28.00800132751465,
+        "protein": 0.0,
+        "servingQuantity": 8.0,
+        "weightQuantity": 240.0
+      },
+      "scoredName": "Apple Juice",
+      "type": "synonym",
+      "iconID": "BEV0003",
+      "labelId": "c820c518-9f8f-11ea-972a-3b02c7a0c7b4",
+      "refCode": "eyJsYWJlbGlkIjoiYzgyMGM1MTgtOWY4Zi0xMWVhLTk3MmEtM2IwMmM3YTBjN2I0IiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE0NDQ2NDgiLCJtZXRhZGF0YSI6bnVsbH0="
+    },
+    {
+      "resultId": "1603211505617",
+      "tags": [
+        "baked goods",
+        "NOVA3"
+      ],
+      "iconID": "BAK9999",
+      "brandName": "Yumbana LLC",
+      "isShortName": false,
+      "score": 0.9437496750291373,
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "type": "synonym",
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1MDU2MTciLCJtZXRhZGF0YSI6bnVsbH0=",
+      "nutritionPreview": {
+        "carbs": 56.99479675292969,
+        "calories": 340,
+        "servingUnit": "slice",
+        "fat": 10.996399879455566,
+        "servingQuantity": 1.0,
+        "weightQuantity": 148.0,
+        "fiber": 2.072000026702881,
+        "weightUnit": "g",
+        "protein": 1.9980000257492065
+      },
+      "scoredName": "Apple Pie",
+      "foodName": "Yumbana, Apple Pie"
+    },
+    {
+      "type": "synonym",
+      "iconID": "BAK9999",
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzQ1NDgiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "brandName": "Target Stores",
+      "isShortName": false,
+      "foodName": "Target, Apple Pie",
+      "resultId": "1603211574548",
+      "score": 0.9437496750291373,
+      "tags": [
+        "baked goods",
+        "cholesterol free",
+        "NOVA3",
+        "contains_soy"
+      ],
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "nutritionPreview": {
+        "carbs": 42.995201110839844,
+        "fiber": 1.0240000486373901,
+        "weightQuantity": 128.0,
+        "weightUnit": "g",
+        "servingQuantity": 1.0,
+        "protein": 1.9967998266220093,
+        "servingUnit": "slice",
+        "calories": 300,
+        "fat": 14.003199577331543
+      },
+      "scoredName": "Apple Pie"
+    },
+    {
+      "foodName": "Kroger, Apple Pie",
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "resultId": "1603211574581",
+      "tags": [
+        "baked goods",
+        "cholesterol free",
+        "NOVA3",
+        "contains_soy"
+      ],
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzQ1ODEiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "iconID": "BAK9999",
+      "scoredName": "Apple Pie",
+      "type": "synonym",
+      "nutritionPreview": {
+        "servingQuantity": 1.0,
+        "weightUnit": "g",
+        "fiber": 0.972000002861023,
+        "protein": 1.998000144958496,
+        "calories": 300,
+        "weightQuantity": 108.0,
+        "fat": 15.001200675964355,
+        "carbs": 38.00519943237305,
+        "servingUnit": "slice"
+      },
+      "score": 0.9437496750291373,
+      "isShortName": false,
+      "brandName": "The Kroger Co."
+    },
+    {
+      "foodName": "Safeway, Apple Pie",
+      "resultId": "1603211574577",
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzQ1NzciLCJtZXRhZGF0YSI6bnVsbH0=",
+      "isShortName": false,
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "brandName": "Safeway, Inc.",
+      "nutritionPreview": {
+        "servingUnit": "slice",
+        "weightQuantity": 120.0,
+        "calories": 350,
+        "servingQuantity": 1.0,
+        "weightUnit": "g",
+        "carbs": 42.996002197265625,
+        "fiber": 2.0400002002716064,
+        "fat": 18.996000289916992,
+        "protein": 3.0
+      },
+      "iconID": "BAK9999",
+      "score": 0.9437496750291373,
+      "scoredName": "Apple Pie",
+      "tags": [
+        "baked goods",
+        "cholesterol free",
+        "NOVA3"
+      ],
+      "type": "synonym"
+    },
+    {
+      "brandName": "CHRISTINE'S",
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzQ1NzIiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "resultId": "1603211574572",
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "foodName": "Christine's, Apple Pie",
+      "score": 0.9437496750291373,
+      "type": "synonym",
+      "isShortName": false,
+      "tags": [
+        "baked goods",
+        "NOVA3"
+      ],
+      "iconID": "BAK9999",
+      "nutritionPreview": {
+        "fiber": 2.0339999198913574,
+        "servingQuantity": 1.0,
+        "fat": 14.000699996948242,
+        "weightQuantity": 113.0,
+        "carbs": 44.002197265625,
+        "protein": 2.994500160217285,
+        "calories": 310,
+        "weightUnit": "g",
+        "servingUnit": "slice"
+      },
+      "scoredName": "Apple Pie"
+    },
+    {
+      "tags": [
+        "contains_alcohol",
+        "baked goods",
+        "NOVA3",
+        "contains_soy"
+      ],
+      "scoredName": "Apple Pie",
+      "isShortName": false,
+      "foodName": "Bakery Fresh, Apple Pie",
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1MDU2MTYiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "iconID": "BAK9999",
+      "nutritionPreview": {
+        "protein": 1.9941999912261963,
+        "carbs": 45.00519561767578,
+        "fat": 13.99479866027832,
+        "servingUnit": "slice",
+        "servingQuantity": 1.0,
+        "weightQuantity": 118.0,
+        "weightUnit": "g",
+        "calories": 290,
+        "fiber": 0.9439999461174011
+      },
+      "resultId": "1603211505616",
+      "brandName": "BAKERY FRESH",
+      "score": 0.9437496750291373,
+      "type": "synonym"
+    },
+    {
+      "brandName": "McCain Foods, Inc.",
+      "scoredName": "Apple Pie",
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzQ1ODIiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "score": 0.9437496750291373,
+      "type": "synonym",
+      "tags": [
+        "baked goods",
+        "cholesterol free",
+        "NOVA3",
+        "contains_soy"
+      ],
+      "isShortName": false,
+      "resultId": "1603211574582",
+      "nutritionPreview": {
+        "carbs": 40.99639892578125,
+        "fiber": 2.0339999198913574,
+        "weightUnit": "g",
+        "fat": 20.995399475097656,
+        "calories": 360,
+        "protein": 2.994500160217285,
+        "servingQuantity": 1.0,
+        "servingUnit": "slice",
+        "weightQuantity": 113.0
+      },
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "foodName": "Mccain Foods, Apple Pie",
+      "iconID": "BAK9999"
+    },
+    {
+      "foodName": "Bonert's Inc, Apple Pie",
+      "resultId": "1603211574586",
+      "isShortName": false,
+      "tags": [
+        "baked goods",
+        "cholesterol free",
+        "NOVA3"
+      ],
+      "nutritionPreview": {
+        "servingUnit": "slice",
+        "fiber": 2.0160000324249268,
+        "calories": 350,
+        "carbs": 43.00379943847656,
+        "servingQuantity": 1.0,
+        "protein": 2.0034000873565674,
+        "fat": 19.00079917907715,
+        "weightQuantity": 126.0,
+        "weightUnit": "g"
+      },
+      "iconID": "BAK9999",
+      "score": 0.9437496750291373,
+      "scoredName": "Apple Pie",
+      "type": "synonym",
+      "brandName": "Bonert's Incorporated",
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzQ1ODYiLCJtZXRhZGF0YSI6bnVsbH0="
+    },
+    {
+      "isShortName": false,
+      "type": "synonym",
+      "nutritionPreview": {
+        "fiber": 1.0479999780654907,
+        "servingQuantity": 1.0,
+        "weightUnit": "g",
+        "protein": 2.9998998641967773,
+        "carbs": 44.998497009277344,
+        "fat": 17.003799438476562,
+        "weightQuantity": 131.0,
+        "servingUnit": "slice",
+        "calories": 341
+      },
+      "iconID": "BAK9999",
+      "resultId": "1603211574549",
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "foodName": "Mrs Smith's Apple Pie",
+      "brandName": "The Schwan Food Company",
+      "score": 0.9437496750291373,
+      "scoredName": "Apple Pie",
+      "tags": [
+        "baked goods",
+        "NOVA3",
+        "contains_soy"
+      ],
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzQ1NDkiLCJtZXRhZGF0YSI6bnVsbH0="
+    },
+    {
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "iconID": "BAK9999",
+      "tags": [
+        "baked goods",
+        "cholesterol free",
+        "NOVA3",
+        "contains_soy"
+      ],
+      "brandName": "Bimbo Bakeries USA, Inc.",
+      "score": 0.9437496750291373,
+      "isShortName": false,
+      "type": "synonym",
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzQ1NTQiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "resultId": "1603211574554",
+      "scoredName": "Apple Pie",
+      "foodName": "Entenmann's Apple Pie",
+      "nutritionPreview": {
+        "servingUnit": "pie",
+        "protein": 2.994500160217285,
+        "carbs": 60.00299835205078,
+        "fiber": 1.0169999599456787,
+        "weightQuantity": 113.0,
+        "weightUnit": "g",
+        "servingQuantity": 1.0,
+        "calories": 390,
+        "fat": 16.00079917907715
+      }
+    },
+    {
+      "type": "synonym",
+      "scoredName": "Apple Pie",
+      "foodName": "The Bakery Apple Pie With Cinnamon",
+      "brandName": "Wal-Mart Stores, Inc.",
+      "iconID": "BAK9999",
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzQ1NzAiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "nutritionPreview": {
+        "servingQuantity": 1.0,
+        "protein": 2.000800132751465,
+        "weightQuantity": 122.0,
+        "fat": 17.9950008392334,
+        "weightUnit": "g",
+        "carbs": 45.99400329589844,
+        "servingUnit": "slice",
+        "calories": 350,
+        "fiber": 1.9520000219345093
+      },
+      "resultId": "1603211574570",
+      "isShortName": false,
+      "tags": [
+        "baked goods",
+        "cholesterol free",
+        "NOVA3",
+        "contains_soy"
+      ],
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "score": 0.9437496750291373
+    },
+    {
+      "iconID": "BAK9999",
+      "foodName": "Ralphs, Apple Pie",
+      "brandName": "RALPHS",
+      "score": 0.9437496750291373,
+      "resultId": "1603211574576",
+      "type": "synonym",
+      "scoredName": "Apple Pie",
+      "tags": [
+        "baked goods",
+        "cholesterol free",
+        "NOVA3"
+      ],
+      "nutritionPreview": {
+        "fat": 9.999899864196777,
+        "protein": 3.997499942779541,
+        "weightUnit": "g",
+        "fiber": 0.984000027179718,
+        "carbs": 56.998199462890625,
+        "servingQuantity": 1.0,
+        "servingUnit": "slice",
+        "calories": 339,
+        "weightQuantity": 123.0
+      },
+      "isShortName": false,
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzQ1NzYiLCJtZXRhZGF0YSI6bnVsbH0="
+    },
+    {
+      "nutritionPreview": {
+        "servingUnit": "slice",
+        "protein": 2.994500160217285,
+        "fiber": 1.0169999599456787,
+        "fat": 16.00079917907715,
+        "calories": 390,
+        "carbs": 60.00299835205078,
+        "weightQuantity": 113.0,
+        "weightUnit": "g",
+        "servingQuantity": 1.0
+      },
+      "brandName": "Raley's",
+      "resultId": "1603211574580",
+      "scoredName": "Apple Pie",
+      "isShortName": false,
+      "tags": [
+        "baked goods",
+        "cholesterol free",
+        "NOVA3",
+        "contains_soy"
+      ],
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "score": 0.9437496750291373,
+      "iconID": "BAK9999",
+      "type": "synonym",
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzQ1ODAiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "foodName": "Raley's, Apple Pie"
+    },
+    {
+      "score": 0.9437496750291373,
+      "tags": [
+        "baked goods",
+        "NOVA3"
+      ],
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "scoredName": "Apple Pie",
+      "resultId": "1603211574575",
+      "type": "synonym",
+      "iconID": "BAK9999",
+      "isShortName": false,
+      "nutritionPreview": {
+        "protein": 3.0012001991271973,
+        "servingUnit": "slice",
+        "weightQuantity": 122.0,
+        "fiber": 1.9520000219345093,
+        "fat": 20.996198654174805,
+        "calories": 379,
+        "servingQuantity": 1.0,
+        "carbs": 43.005001068115234,
+        "weightUnit": "g"
+      },
+      "foodName": "Rock Mount Pies, Apple Pie",
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzQ1NzUiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "brandName": "ROCK MOUNT PIES"
+    },
+    {
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzQ1NzQiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "foodName": "Aldi-Benner, Apple Pie",
+      "iconID": "BAK9999",
+      "tags": [
+        "baked goods",
+        "cholesterol free",
+        "NOVA3",
+        "contains_soy"
+      ],
+      "nutritionPreview": {
+        "fiber": 1.0169999599456787,
+        "calories": 400,
+        "protein": 2.994500160217285,
+        "weightQuantity": 113.0,
+        "weightUnit": "g",
+        "fat": 16.99519920349121,
+        "servingUnit": "slice",
+        "carbs": 58.99729919433594,
+        "servingQuantity": 1.0
+      },
+      "scoredName": "Apple Pie",
+      "brandName": "Aldi-Benner Company",
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "resultId": "1603211574574",
+      "isShortName": false,
+      "score": 0.9437496750291373,
+      "type": "synonym"
+    },
+    {
+      "brandName": "Signet Designs, Inc.",
+      "resultId": "1603211574555",
+      "isShortName": false,
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "nutritionPreview": {
+        "weightQuantity": 101.0,
+        "calories": 250,
+        "fiber": 2.0199999809265137,
+        "servingQuantity": 1.0,
+        "servingUnit": "slice",
+        "protein": 1.9997999668121338,
+        "fat": 8.999099731445312,
+        "carbs": 39.99599838256836,
+        "weightUnit": "g"
+      },
+      "foodName": "Silly Zak's Apple Pie",
+      "scoredName": "Apple Pie",
+      "score": 0.9437496750291373,
+      "iconID": "BAK9999",
+      "tags": [
+        "baked goods",
+        "NOVA3"
+      ],
+      "type": "synonym",
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzQ1NTUiLCJtZXRhZGF0YSI6bnVsbH0="
+    },
+    {
+      "tags": [
+        "contains_alcohol",
+        "baked goods",
+        "NOVA3"
+      ],
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzQ1NTYiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "foodName": "Hill & Valley, Apple Pie",
+      "resultId": "1603211574556",
+      "brandName": "Hill & Valley, Inc.",
+      "nutritionPreview": {
+        "weightUnit": "g",
+        "servingUnit": "slice",
+        "carbs": 42.996498107910156,
+        "fiber": 1.0169999599456787,
+        "servingQuantity": 1.0,
+        "protein": 2.994500160217285,
+        "calories": 310,
+        "fat": 14.000699996948242,
+        "weightQuantity": 113.0
+      },
+      "iconID": "BAK9999",
+      "score": 0.9437496750291373,
+      "scoredName": "Apple Pie",
+      "type": "synonym",
+      "isShortName": false
+    },
+    {
+      "resultId": "1603211574578",
+      "foodName": "Table Talk Pies, Apple  Pie",
+      "type": "synonym",
+      "isShortName": false,
+      "tags": [
+        "baked goods",
+        "cholesterol free",
+        "NOVA3"
+      ],
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0",
+      "brandName": "Table Talk Pies, Inc.",
+      "nutritionPreview": {
+        "weightQuantity": 114.0,
+        "fat": 16.005599975585938,
+        "fiber": 5.016000270843506,
+        "servingUnit": "pie",
+        "calories": 300,
+        "weightUnit": "g",
+        "protein": 2.9982001781463623,
+        "carbs": 40.00259780883789,
+        "servingQuantity": 1.0
+      },
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1NzQ1NzgiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "iconID": "BAK9999",
+      "score": 0.9437496750291373,
+      "scoredName": "Apple Pie"
+    },
+    {
+      "iconID": "BAK9999",
+      "scoredName": "Apple Pie",
+      "isShortName": false,
+      "resultId": "1603211199065",
+      "score": 0.9437496750291373,
+      "brandName": "",
+      "tags": [
+        "baked goods",
+        "cholesterol free",
+        "NOVA3"
+      ],
+      "foodName": "Pie, Apple, Commercially Prepared, Enriched Flour",
+      "nutritionPreview": {
+        "protein": 0.5386500358581543,
+        "calories": 67,
+        "fiber": 0.4536000192165375,
+        "fat": 3.118500232696533,
+        "servingUnit": "oz",
+        "weightUnit": "g",
+        "carbs": 9.63900089263916,
+        "weightQuantity": 28.35,
+        "servingQuantity": 1.0
+      },
+      "type": "synonym",
+      "refCode": "eyJsYWJlbGlkIjoiNzdhY2NmMzYtODk1MS0xMWVhLWE4OTMtMGYxYjFiZmM0MGMwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTExOTkwNjUiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "labelId": "77accf36-8951-11ea-a893-0f1b1bfc40c0"
+    }
+  ],
+  "alternateNames": [
+    "apple",
+    "cloudy apple juice",
+    "apple juice",
+    "apple pie",
+    "green apple",
+    "apple crisp",
+    "asian pears",
+    "apple sauce",
+    "red apple",
+    "dried apples",
+    "apple jacks",
+    "apple jam",
+    "java rose apple"
+  ]
+}

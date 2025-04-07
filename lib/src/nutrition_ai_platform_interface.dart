@@ -14,9 +14,11 @@ import 'models/passio_food_data_info.dart';
 import 'models/passio_food_item.dart';
 import 'models/passio_meal_plan.dart';
 import 'models/passio_meal_plan_item.dart';
-import 'models/passio_result.dart';
+import 'models/passio_status.dart';
+import 'util/passio_result.dart';
 import 'models/passio_search_response.dart';
 import 'models/passio_speech_recognition_model.dart';
+import 'models/passio_upf_rating.dart';
 import 'models/platform_image.dart';
 import 'nutrition_ai_configuration.dart';
 import 'nutrition_ai_detection.dart';
@@ -157,10 +159,6 @@ abstract class NutritionAIPlatform extends PlatformInterface {
     throw UnimplementedError('stopNutritionFactsDetection()');
   }
 
-  Future<PassioResult> configure(String key) {
-    throw UnimplementedError('configure(String key)');
-  }
-
   Future<PassioResult> initConversation() {
     throw UnimplementedError('initConversation()');
   }
@@ -246,5 +244,23 @@ abstract class NutritionAIPlatform extends PlatformInterface {
       List<String> currentIngredients) async {
     throw UnimplementedError(
         'predictNextIngredients(List<String> currentIngredients)');
+  }
+
+  Future startCamera() async {
+    throw UnimplementedError('startCamera()');
+  }
+
+  Future stopCamera() async {
+    throw UnimplementedError('stopCamera()');
+  }
+
+  Future<void> shutDownPassioSDK() async {
+    throw UnimplementedError('shutDownPassioSDK()');
+  }
+
+  Future<PassioResult<PassioUPFRating>> fetchUltraProcessingFoodRating(
+      PassioFoodItem item) async {
+    throw UnimplementedError(
+        'fetchUltraProcessingFoodRating(PassioFoodItem item)');
   }
 }

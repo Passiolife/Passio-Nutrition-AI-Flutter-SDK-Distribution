@@ -36,6 +36,7 @@ import ai.passio.passiosdk.passiofood.data.model.PassioServingSize
 import ai.passio.passiosdk.passiofood.data.model.PassioServingUnit
 import ai.passio.passiosdk.passiofood.data.model.PassioSpeechRecognitionModel
 import ai.passio.passiosdk.passiofood.data.model.PassioTokenBudget
+import ai.passio.passiosdk.passiofood.data.model.PassioUPFRating
 import ai.passio.passiosdk.passiofood.nutritionfacts.PassioNutritionFacts
 import android.graphics.Bitmap
 import android.net.Uri
@@ -326,6 +327,7 @@ private fun mapFromPassioFoodMetadata(metadata: PassioFoodMetadata): Map<String,
     metaDataMap["foodOrigins"] = metadata.foodOrigins?.map { mapFromFoodOrigin(it) }
     metaDataMap["ingredientsDescription"] = metadata.ingredientsDescription
     metaDataMap["tags"] = metadata.tags
+    metaDataMap["concerns"] = metadata.concerns
 
     return metaDataMap
 }
@@ -493,6 +495,7 @@ fun mapFromPassioAdvisorFoodInfo(passioAdvisorFoodInfo: PassioAdvisorFoodInfo): 
             // Map the remaining properties directly.
             "packagedFoodItem" to packagedFoodItem?.let { mapFromPassioFoodItem(it) },
             "portionSize" to portionSize,
+            "productCode" to productCode,
             "resultType" to stringToPassioFoodResultType(resultType),
             "recognisedName" to recognisedName,
             "weightGrams" to weightGrams
@@ -628,6 +631,39 @@ fun mapFromMinMaxCameraZoomLevel(minMax: Pair<Float?, Float?>): Map<String, Any?
         "maxZoomLevel" to minMax.second,
     )
 }
+
+fun mapFromPassioUPFRatingResult(result: PassioResult<PassioUPFRating>) : Map<String, Any?> {
+    return mapFromPassioResultType(result) { value ->
+        mapFromPassioUPFRating(value)
+    }
+}
+
+fun mapFromPassioUPFRating(rating: PassioUPFRating) : Map<String, Any?> {
+    return mapOf(
+        "chainOfThought" to rating.chainOfThought,
+        "highlightedIngredients" to rating.highlightedIngredients,
+        "rating" to rating.rating,
+    )
+}
+
+fun <T> mapFromPassioResultType(callback: PassioResult<T>, onSuccess: (T) -> Map<String, Any?>): Map<String, Any?> {
+    val map = mutableMapOf<String, Any?>()
+    when (callback) {
+        is PassioResult.Success -> {
+            map["status"] = "success"
+            map["message"] = null
+            map["value"] = onSuccess(callback.value)
+        }
+
+        is PassioResult.Error -> {
+            map["status"] = "error"
+            map["message"] = callback.message
+            map["value"] = null
+        }
+    }
+    return map
+}
+
 
 fun stringToPassioFoodResultType(value: PassioFoodResultType): String {
     return when (value) {

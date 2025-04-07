@@ -22,15 +22,17 @@ internal class NativePreviewView(
 
     private val previewView: PreviewView = PreviewView(context)
 
-    init {
+    private val cameraViewProvider: PassioCameraViewProvider
+    private val cameraConfigurator: PassioCameraConfigurator
 
+
+    init {
         val activity = getActivity(previewView)!!
-        val cameraViewProvider = object : PassioCameraViewProvider {
+        cameraViewProvider = object : PassioCameraViewProvider {
             override fun requestCameraLifecycleOwner(): LifecycleOwner = activity as LifecycleOwner
             override fun requestPreviewView(): PreviewView = previewView
         }
-        val cameraConfigurator = object : PassioCameraConfigurator {
-
+        cameraConfigurator = object : PassioCameraConfigurator {
             override fun cameraFacing(): Int = CameraSelector.LENS_FACING_BACK
 
             override fun preview(): Preview = Preview.Builder().apply {
@@ -40,13 +42,22 @@ internal class NativePreviewView(
                 it.setSurfaceProvider(previewView.surfaceProvider)
             }
         }
+        startCamera()
+    }
+
+    fun startCamera() {
         PassioSDK.instance.startCamera(cameraViewProvider, cameraConfigurator)
+    }
+
+    fun stopCamera() {
+        PassioSDK.instance.stopCamera()
     }
 
     override fun getView(): View = previewView
 
+
     override fun dispose() {
-        PassioSDK.instance.stopCamera()
+        stopCamera()
     }
 
     override fun onFlutterViewAttached(flutterView: View) {
@@ -55,7 +66,7 @@ internal class NativePreviewView(
 
     override fun onFlutterViewDetached() {
         super.onFlutterViewDetached()
-        PassioSDK.instance.stopCamera()
+        stopCamera()
     }
 
     private fun getActivity(view: View): Activity? {

@@ -1,0 +1,44 @@
+{
+  "selectedUnit": "tbsp",
+  "selectedQuantity": 2.0,
+  "servingUnits": [
+    {
+      "unitName": "tbsp",
+      "weight": {
+        "unit": "grams",
+        "value": 15.0
+      }
+    },
+    {
+      "weight": {
+        "unit": "grams",
+        "value": 5.0
+      },
+      "unitName": "tsp"
+    },
+    {
+      "unitName": "cup",
+      "weight": {
+        "unit": "grams",
+        "value": 240.0
+      }
+    },
+    {
+      "unitName": "gram",
+      "weight": {
+        "value": 1.0,
+        "unit": "grams"
+      }
+    }
+  ],
+  "servingSizes": [
+    {
+      "unitName": "tbsp",
+      "quantity": 2.0
+    },
+    {
+      "quantity": 100.0,
+      "unitName": "gram"
+    }
+  ]
+}

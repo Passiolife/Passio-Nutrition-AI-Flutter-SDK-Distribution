@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:nutrition_ai/src/listeners/nutrition_facts_recognition_listener.dart';
 import 'package:nutrition_ai/src/models/passio_advisor_food_info.dart';
+import 'package:nutrition_ai/src/models/passio_upf_rating.dart';
 
 import 'listeners/passio_account_listener.dart';
 import 'models/enums.dart';
@@ -12,7 +13,8 @@ import 'models/passio_food_data_info.dart';
 import 'models/passio_food_item.dart';
 import 'models/passio_meal_plan.dart';
 import 'models/passio_meal_plan_item.dart';
-import 'models/passio_result.dart';
+import 'models/passio_status.dart';
+import 'util/passio_result.dart';
 import 'models/passio_search_response.dart';
 import 'models/passio_speech_recognition_model.dart';
 import 'models/platform_image.dart';
@@ -51,6 +53,8 @@ class NutritionAI {
   ///
   /// The results will be returned at a frequency defined in the
   /// [FoodDetectionConfiguration.framesPerSecond] field.
+  @Deprecated(
+      "`startFoodDetection` will be removed in a future release. Use `recognizeImageRemote` instead.")
   Future<void> startFoodDetection(FoodDetectionConfiguration detectionConfig,
       FoodRecognitionListener listener) {
     return NutritionAIPlatform.instance
@@ -61,6 +65,8 @@ class NutritionAI {
   ///
   /// After this method is called no results should be delivered to a previously
   /// registered [FoodRecognitionListener].
+  @Deprecated(
+      "`stopFoodDetection` will be removed in a future release. Use `recognizeImageRemote` instead.")
   Future<void> stopFoodDetection() {
     return NutritionAIPlatform.instance.stopFoodDetection();
   }
@@ -100,7 +106,7 @@ class NutritionAI {
   /// URL to download a food icon.
   ///
   /// For a given [PassioID] and [IconSize] returns a URL to download a small
-  /// food image form Passio's backend.
+  /// food image from Passio's backend.
   Future<String> iconURLFor(PassioID passioID,
       {IconSize iconSize = IconSize.px90}) {
     return NutritionAIPlatform.instance.iconURLFor(passioID, iconSize);
@@ -272,6 +278,8 @@ class NutritionAI {
   ///
   /// Parameters:
   /// - [listener]: An instance of [NutritionFactsRecognitionListener] to handle recognition events.
+  @Deprecated(
+      "`startNutritionFactsDetection` will be removed in a future release. Use `recognizeImageRemote` instead.")
   void startNutritionFactsDetection(
       NutritionFactsRecognitionListener listener) {
     return NutritionAIPlatform.instance.startNutritionFactsDetection(listener);
@@ -284,6 +292,8 @@ class NutritionAI {
   ///
   /// Returns:
   /// - A [Future] that completes when the nutrition facts detection has been successfully stopped.
+  @Deprecated(
+      "`stopNutritionFactsDetection` will be removed in a future release. Use `recognizeImageRemote` instead.")
   Future<void> stopNutritionFactsDetection() async {
     return NutritionAIPlatform.instance.stopNutritionFactsDetection();
   }
@@ -487,5 +497,17 @@ class NutritionAI {
       List<String> currentIngredients) async {
     return NutritionAIPlatform.instance
         .predictNextIngredients(currentIngredients);
+  }
+
+  /// Shuts down the Passio SDK.
+  Future<void> shutDownPassioSDK() async {
+    return NutritionAIPlatform.instance.shutDownPassioSDK();
+  }
+
+  /// Fetches the ultra-processing food rating for a given food item.
+  Future<PassioResult<PassioUPFRating>> fetchUltraProcessingFoodRating(
+      PassioFoodItem foodItem) async {
+    return NutritionAIPlatform.instance
+        .fetchUltraProcessingFoodRating(foodItem);
   }
 }

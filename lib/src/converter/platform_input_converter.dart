@@ -24,7 +24,6 @@ Map<String, dynamic> mapOfFoodDetectionConfiguration(
     'detectBarcodes': config.detectBarcodes,
     'detectPackagedFood': config.detectPackagedFood,
     'framesPerSecond': config.framesPerSecond.name,
-    'volumeDetectionMode': config.volumeDetectionMode.name
   };
 }
 

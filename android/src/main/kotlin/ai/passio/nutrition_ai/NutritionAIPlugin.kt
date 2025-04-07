@@ -31,6 +31,8 @@ class NutritionAIPlugin: FlutterPlugin, ActivityAware {
   private var handler: NutritionAIHandler? = null
   private var advisorHandler: NutritionAdvisorHandler? = null
 
+  private val previewFactory = NativePreviewFactory()
+
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     method = MethodChannel(flutterPluginBinding.binaryMessenger, "nutrition_ai/method")
     advisorMethod = MethodChannel(flutterPluginBinding.binaryMessenger, "nutrition_advisor/method")
@@ -41,7 +43,7 @@ class NutritionAIPlugin: FlutterPlugin, ActivityAware {
     accountChannel = EventChannel(flutterPluginBinding.binaryMessenger, "nutrition_ai/event/account")
 
     flutterPluginBinding.platformViewRegistry
-      .registerViewFactory("native-preview-view", NativePreviewFactory())
+      .registerViewFactory("native-preview-view", previewFactory)
   }
 
   override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
@@ -50,7 +52,7 @@ class NutritionAIPlugin: FlutterPlugin, ActivityAware {
 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
     activity = binding
-    handler = NutritionAIHandler(activity!!.activity)
+    handler = NutritionAIHandler(activity!!.activity, previewFactory)
     advisorHandler = NutritionAdvisorHandler(activity!!.activity)
     setStreamHandlers(true)
   }

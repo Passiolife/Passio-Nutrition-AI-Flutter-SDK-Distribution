@@ -17,7 +17,7 @@ class RecognizeSpeechPage extends StatefulWidget {
 }
 
 class _RecognizeSpeechPageState extends State<RecognizeSpeechPage> {
-  final _controller = TextEditingController(text: '');
+  final _controller = TextEditingController(text: 'Blueberries');
 
   final _bloc = RecognizeSpeechBloc();
 

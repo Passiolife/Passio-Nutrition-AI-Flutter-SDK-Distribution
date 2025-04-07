@@ -1,0 +1,185 @@
+{
+  "iconId": "",
+  "id": "openfood0016000188853",
+  "scannedId": "",
+  "refCode": "eyJsYWJlbGlkIjoiMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIiwidHlwZSI6InJlZmVyZW5jZSIsInJlc3VsdGlkIjoib3BlbmZvb2QwMDE2MDAwMTg4ODUzIiwibWV0YWRhdGEiOnsic2hvcnROYW1lIjpmYWxzZX19",
+  "licenseCopy": "This record contains information from Open Food Facts (https://en.openfoodfacts.org), which is made available here under the Open Database License (https://opendatacommons.org/licenses/odbl/1-0)",
+  "name": "Reduced Sugar Cinnamon Granola",
+  "details": "Nature Valley",
+  "amount": {
+    "selectedUnit": "serving (cup)",
+    "selectedQuantity": 1.0,
+    "servingSizes": [
+      {
+        "quantity": 1.0,
+        "unitName": "serving (cup)"
+      },
+      {
+        "quantity": 1.0,
+        "unitName": "oz"
+      },
+      {
+        "quantity": 100.0,
+        "unitName": "gram"
+      },
+      {
+        "quantity": 100.0,
+        "unitName": "gram"
+      }
+    ],
+    "servingUnits": [
+      {
+        "weight": {
+          "unit": "grams",
+          "value": 65.0
+        },
+        "unitName": "serving (cup)"
+      },
+      {
+        "unitName": "oz",
+        "weight": {
+          "unit": "grams",
+          "value": 28.3
+        }
+      },
+      {
+        "weight": {
+          "value": 1.0,
+          "unit": "grams"
+        },
+        "unitName": "gram"
+      }
+    ]
+  },
+  "ingredients": [
+    {
+      "name": "Reduced Sugar Cinnamon Granola",
+      "iconId": "",
+      "metadata": {
+        "tags": [],
+        "barcode": "0016000188853",
+        "foodOrigins": [
+          {
+            "licenseCopy": "This record contains information from Open Food Facts (https://en.openfoodfacts.org), which is made available here under the Open Database License (https://opendatacommons.org/licenses/odbl/1-0)",
+            "source": "openfood",
+            "id": "0016000188853"
+          }
+        ],
+        "ingredientsDescription": "Whole Grain Oats, Soluble Corn Fiber, Rice Flour, Sugar, Canola and/or Sunflower Oil, Molasses, Honey, Cinnamon, Salt, Barley Malt Extract, Baking Soda, Natural Flavor. Vitamin E (mixed tocopherols) Added to Preserve Freshness."
+      },
+      "referenceNutrients": {
+        "proteins": {
+          "unit": "grams",
+          "value": 9.230769
+        },
+        "monounsaturatedFat": {
+          "unit": "grams",
+          "value": 4.769231
+        },
+        "polyunsaturatedFat": {
+          "unit": "grams",
+          "value": 2.307692
+        },
+        "potassium": {
+          "unit": "milligrams",
+          "value": 246.15384000000003
+        },
+        "vitaminD": {
+          "unit": "micrograms",
+          "value": 0.0
+        },
+        "cholesterol": {
+          "unit": "milligrams",
+          "value": 261.5385
+        },
+        "weight": {
+          "unit": "grams",
+          "value": 100.0
+        },
+        "iron": {
+          "unit": "milligrams",
+          "value": 2.923077
+        },
+        "calories": {
+          "value": 384.6154,
+          "unit": "kilocalories"
+        },
+        "calcium": {
+          "unit": "milligrams",
+          "value": 46.153847
+        },
+        "transFat": {
+          "unit": "grams",
+          "value": 9.2308
+        },
+        "sodium": {
+          "unit": "milligrams",
+          "value": 261.53845
+        },
+        "fibers": {
+          "value": 15.384615000000002,
+          "unit": "grams"
+        },
+        "carbs": {
+          "unit": "grams",
+          "value": 76.92308
+        },
+        "fat": {
+          "unit": "grams",
+          "value": 9.230769
+        },
+        "sugarsAdded": {
+          "unit": "grams",
+          "value": 12.307692999999999
+        }
+      },
+      "refCode": "eyJsYWJlbGlkIjoiMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAwIiwidHlwZSI6InJlZmVyZW5jZSIsInJlc3VsdGlkIjoib3BlbmZvb2QwMDE2MDAwMTg4ODUzIiwibWV0YWRhdGEiOnsic2hvcnROYW1lIjpmYWxzZX19",
+      "id": "openfood0016000188853",
+      "amount": {
+        "servingSizes": [
+          {
+            "quantity": 1.0,
+            "unitName": "serving (cup)"
+          },
+          {
+            "unitName": "oz",
+            "quantity": 1.0
+          },
+          {
+            "unitName": "gram",
+            "quantity": 100.0
+          },
+          {
+            "quantity": 100.0,
+            "unitName": "gram"
+          }
+        ],
+        "servingUnits": [
+          {
+            "unitName": "serving (cup)",
+            "weight": {
+              "unit": "grams",
+              "value": 65.0
+            }
+          },
+          {
+            "unitName": "oz",
+            "weight": {
+              "unit": "grams",
+              "value": 28.3
+            }
+          },
+          {
+            "unitName": "gram",
+            "weight": {
+              "unit": "grams",
+              "value": 1.0
+            }
+          }
+        ],
+        "selectedQuantity": 1.0,
+        "selectedUnit": "serving (cup)"
+      }
+    }
+  ]
+}

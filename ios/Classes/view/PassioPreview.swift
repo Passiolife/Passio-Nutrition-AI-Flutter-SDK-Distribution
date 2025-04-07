@@ -12,29 +12,23 @@ class PassioPreview: NSObject, FlutterPlatformView {
 
     init(frame : CGRect,
         viewIdentifier : Int64,
-        volumeDetectionMode: VolumeDetectionMode,
         binaryMessenger : FlutterBinaryMessenger?) {
         _view = UIView(frame: frame)
         super.init()
-        createNativeView(view: _view, volumeDetectionMode: volumeDetectionMode)
+        createNativeView(view: _view)
     }
 
     func view() -> UIView {
         return _view
     }
 
-    func createNativeView(view: UIView, volumeDetectionMode: VolumeDetectionMode) {
-        setupPreviewLayer(view: view, volumeDetectionMode: volumeDetectionMode)
+    func createNativeView(view: UIView) {
+        setupPreviewLayer(view: view)
     }
 
-    private func setupPreviewLayer(view: UIView, volumeDetectionMode: VolumeDetectionMode ) {
+    private func setupPreviewLayer(view: UIView) {
         let passioSDK = PassioNutritionAI.shared
-        if volumeDetectionMode != .none,
-            let videoLayer = passioSDK.getPreviewLayerWithGravity(volumeDetectionMode: volumeDetectionMode) {
-            videoLayer.frame = view.frame
-            view.layer.insertSublayer(videoLayer, at: 0)
-        }
-        else if let videoLayer = passioSDK.getPreviewLayer() {
+        if let videoLayer = passioSDK.getPreviewLayer() {
             videoLayer.frame = view.frame
             view.layer.insertSublayer(videoLayer, at: 0)
         } else {

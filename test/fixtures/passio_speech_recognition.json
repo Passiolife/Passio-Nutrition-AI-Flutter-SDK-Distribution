@@ -1,0 +1,40 @@
+{
+  "action": "add",
+  "mealTime": "breakfast",
+  "advisorInfo": {
+    "packagedFoodItem": null,
+    "foodDataInfo": {
+      "foodName": "boiled eggs",
+      "labelId": "6fbc0d8f-25f7-11ec-a025-1a3f5d843ef0",
+      "tags": [
+        "NOVA1",
+        "eggs and products"
+      ],
+      "resultId": "1603211567715",
+      "nutritionPreview": {
+        "carbs": 1.4335999488830566,
+        "protein": 16.102399826049805,
+        "fiber": 0.0,
+        "calories": 198,
+        "fat": 13.580799102783203,
+        "weightQuantity": 128.0,
+        "servingQuantity": 2.0,
+        "weightUnit": "g",
+        "servingUnit": "large"
+      },
+      "refCode": "eyJsYWJlbGlkIjoiNmZiYzBkOGYtMjVmNy0xMWVjLWEwMjUtMWEzZjVkODQzZWYwIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1Njc3MTUiLCJtZXRhZGF0YSI6bnVsbH0=",
+      "brandName": "",
+      "type": "synonym",
+      "isShortName": true,
+      "iconID": "1001222",
+      "score": 1.0,
+      "scoredName": "eggs"
+    },
+    "productCode": null,
+    "resultType": "foodItem",
+    "recognisedName": "eggs",
+    "weightGrams": 100.0,
+    "portionSize": "large"
+  },
+  "date": "2025-03-25"
+}

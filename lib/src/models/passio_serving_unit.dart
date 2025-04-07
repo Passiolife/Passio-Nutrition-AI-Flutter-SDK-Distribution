@@ -32,5 +32,5 @@ class PassioServingUnit {
 
   /// Calculates the hash code for this `PassioServingUnit` object.
   @override
-  int get hashCode => Object.hash(weight.hashCode, unitName.hashCode);
+  int get hashCode => Object.hash(weight, unitName);
 }

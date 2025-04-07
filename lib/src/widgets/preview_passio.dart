@@ -1,15 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nutrition_ai/nutrition_ai.dart';
 
 /// Widget that is used to display the camera preview and the frames being
 /// processed by the NutritionAI SDK.
 class PassioPreview extends StatelessWidget {
-  final VolumeDetectionMode mode;
-
-  const PassioPreview({Key? key, this.mode = VolumeDetectionMode.none})
-      : super(key: key);
+  const PassioPreview({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +33,11 @@ class PassioPreview extends StatelessWidget {
     final Map<String, dynamic> creationParams = <String, dynamic>{};
 
     return AndroidView(
-        viewType: viewType,
-        layoutDirection: TextDirection.ltr,
-        creationParams: creationParams,
-        creationParamsCodec: const StandardMessageCodec());
+      viewType: viewType,
+      layoutDirection: TextDirection.ltr,
+      creationParams: creationParams,
+      creationParamsCodec: const StandardMessageCodec(),
+    );
   }
 
   Widget _createiOSPreview(BuildContext context) {
@@ -58,7 +55,6 @@ class PassioPreview extends StatelessWidget {
       creationParams: {
         'width': viewWidth,
         'height': viewHeight,
-        'volumeDetectionMode': mode.name,
       },
       creationParamsCodec: const StandardMessageCodec(),
     );

@@ -1,0 +1,153 @@
+{
+  "weight": {
+    "value": 100.0,
+    "unit": "grams"
+  },
+  "alcohol": {
+    "value": 0.0,
+    "unit": "grams"
+  },
+  "calcium": {
+    "value": 6.0,
+    "unit": "milligrams"
+  },
+  "calories": {
+    "value": 52.0,
+    "unit": "kilocalories"
+  },
+  "carbs": {
+    "value": 13.81,
+    "unit": "grams"
+  },
+  "cholesterol": {
+    "value": 0.0,
+    "unit": "milligrams"
+  },
+  "chromium": {
+    "value": 0.5,
+    "unit": "micrograms"
+  },
+  "fat": {
+    "value": 0.17,
+    "unit": "grams"
+  },
+  "fibers": {
+    "value": 2.4,
+    "unit": "grams"
+  },
+  "folicAcid": {
+    "value": 10.0,
+    "unit": "micrograms"
+  },
+  "iodine": {
+    "value": 2.0,
+    "unit": "micrograms"
+  },
+  "iron": {
+    "value": 0.12,
+    "unit": "milligrams"
+  },
+  "magnesium": {
+    "value": 5.0,
+    "unit": "milligrams"
+  },
+  "monounsaturatedFat": {
+    "value": 0.007,
+    "unit": "grams"
+  },
+  "phosphorus": {
+    "value": 11.0,
+    "unit": "milligrams"
+  },
+  "polyunsaturatedFat": {
+    "value": 0.051,
+    "unit": "grams"
+  },
+  "potassium": {
+    "value": 107.0,
+    "unit": "milligrams"
+  },
+  "proteins": {
+    "value": 0.26,
+    "unit": "grams"
+  },
+  "satFat": {
+    "value": 0.028,
+    "unit": "grams"
+  },
+  "selenium": {
+    "value": 0.2,
+    "unit": "micrograms"
+  },
+  "sodium": {
+    "value": 1.0,
+    "unit": "milligrams"
+  },
+  "sugars": {
+    "value": 10.39,
+    "unit": "grams"
+  },
+  "sugarsAdded": {
+    "value": 0.0,
+    "unit": "grams"
+  },
+  "sugarAlcohol": {
+    "value": 0.0,
+    "unit": "grams"
+  },
+  "transFat": {
+    "value": 0.0,
+    "unit": "grams"
+  },
+  "vitaminA": {
+    "value": 3.0
+  },
+  "vitaminB6": {
+    "value": 0.041,
+    "unit": "milligrams"
+  },
+  "vitaminB12": {
+    "value": 0.0,
+    "unit": "micrograms"
+  },
+  "vitaminB12Added": {
+    "value": 0.0,
+    "unit": "micrograms"
+  },
+  "vitaminC": {
+    "value": 4.6,
+    "unit": "milligrams"
+  },
+  "vitaminD": {
+    "value": 0.0,
+    "unit": "micrograms"
+  },
+  "vitaminE": {
+    "value": 0.18,
+    "unit": "milligrams"
+  },
+  "vitaminEAdded": {
+    "value": 0.0,
+    "unit": "milligrams"
+  },
+  "vitaminKDihydrophylloquinone": {
+    "value": 0.1,
+    "unit": "micrograms"
+  },
+  "vitaminKMenaquinone4": {
+    "value": 0.1,
+    "unit": "micrograms"
+  },
+  "vitaminKPhylloquinone": {
+    "value": 2.2,
+    "unit": "micrograms"
+  },
+  "vitaminARAE": {
+    "value": 3.0,
+    "unit": "micrograms"
+  },
+  "zinc": {
+    "value": 0.04,
+    "unit": "milligrams"
+  }
+}

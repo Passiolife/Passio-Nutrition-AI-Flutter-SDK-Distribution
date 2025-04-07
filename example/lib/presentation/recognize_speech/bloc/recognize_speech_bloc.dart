@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutrition_ai/nutrition_ai.dart';
@@ -21,13 +22,11 @@ class RecognizeSpeechBloc
 
   FutureOr<void> _handleDoFetchFoodItemEvent(
       DoFetchFoodItemEvent event, Emitter<RecognizeSpeechState> emit) async {
-    print(event.foodDataInfo.nutritionPreview.calories);
     final result = await NutritionAI.instance.fetchFoodItemForDataInfo(
       event.foodDataInfo,
       servingQuantity: event.foodDataInfo.nutritionPreview.servingQuantity,
       servingUnit: event.foodDataInfo.nutritionPreview.servingUnit,
     );
-    print(result!.ingredients.first.referenceNutrients.calories!.value);
-    print(result);
+    log(result.toString());
   }
 }

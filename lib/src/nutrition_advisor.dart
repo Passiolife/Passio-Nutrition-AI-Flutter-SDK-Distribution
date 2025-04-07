@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:nutrition_ai/src/models/passio_result.dart';
+import 'package:nutrition_ai/src/util/passio_result.dart';
 import 'package:nutrition_ai/src/nutrition_ai_platform_interface.dart';
 
 import 'models/passio_advisor_response.dart';
@@ -8,10 +8,10 @@ import 'models/passio_advisor_response.dart';
 /// A singleton class that provides access to the Nutrition AI Advisor API.
 class NutritionAdvisor {
   // Private constructor
-  NutritionAdvisor._();
+  const NutritionAdvisor._();
 
   // Singleton instance
-  static final NutritionAdvisor _instance = NutritionAdvisor._();
+  static const NutritionAdvisor _instance = NutritionAdvisor._();
 
   /// Gets the singleton instance of [NutritionAdvisor].
   static NutritionAdvisor get instance => _instance;
@@ -19,7 +19,7 @@ class NutritionAdvisor {
   /// Initializes a conversation with the Nutrition AI Advisor.
   ///
   /// Returns a [PassioResult] indicating the success or failure of the initialization.
-  Future<PassioResult> initConversation() async {
+  Future<PassioResult<void>> initConversation() async {
     return NutritionAIPlatform.instance.initConversation();
   }
 

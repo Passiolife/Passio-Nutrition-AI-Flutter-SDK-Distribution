@@ -44,5 +44,6 @@ class PassioSearchResponse {
 
   /// Calculates the hash code for this `PassioSearchResponse` object.
   @override
-  int get hashCode => results.hashCode ^ alternateNames.hashCode;
+  int get hashCode =>
+      Object.hash(Object.hashAll(results), Object.hashAll(alternateNames));
 }

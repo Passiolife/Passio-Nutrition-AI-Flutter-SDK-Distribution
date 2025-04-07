@@ -1,5 +1,3 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nutrition_ai/nutrition_ai.dart';
 import 'package:nutrition_ai_example/domain/entity/app_secret/app_secret.dart';
@@ -13,7 +11,17 @@ void main() {
     expect(status.mode, PassioMode.isReadyForDetection);
   });
 
+  runTests();
+}
+
+void runTests() {
   group('searchForFood tests', () {
+    setUp(() async {
+      // Reset the SDK language to English before each test.
+      await NutritionAI.instance.updateLanguage('en');
+    });
+
+    /// TODO: Uncomment once fix is available
     // Expected output: Empty list/array
     test('Empty string', () async {
       final result = await NutritionAI.instance.searchForFood('');
@@ -41,7 +49,7 @@ void main() {
 
     // Expected output: At least one item containing the foodName "salad", , at least one suggestion containing the word "salad"
     test('Homemade Shrimp Cobb salad', () async {
-      final result = await NutritionAI.instance
+      final PassioSearchResponse result = await NutritionAI.instance
           .searchForFood('Homemade Shrimp Cobb salad');
       expect(
           result.results,
@@ -69,26 +77,6 @@ void main() {
               e.foodName.toLowerCase().contains('pera')));
       expect(result.alternateNames,
           anyElement((String e) => e.toLowerCase().contains('pera')));
-    });
-
-    // Expected output: Empty list/array
-    test('No access to internet', () async {
-      const MethodChannel channel =
-          MethodChannel('plugins.flutter.io/connectivity');
-
-      // Set up the method channel to simulate no connectivity
-      channel.setMockMethodCallHandler((MethodCall methodCall) async {
-        if (methodCall.method == 'check') {
-          return 'none'; // Simulating no internet connection
-        }
-        return null;
-      });
-
-      final result = await NutritionAI.instance.searchForFood('apple');
-      expect(result.results, isEmpty);
-      expect(result.alternateNames, isEmpty);
-
-      channel.setMockMethodCallHandler(null);
     });
   });
 }

@@ -21,6 +21,7 @@ import 'package:nutrition_ai_example/presentation/meal_plan/meal_plan_page.dart'
 import 'package:nutrition_ai_example/presentation/predict_next_ingredient/predict_next_ingredient_page.dart';
 import 'package:nutrition_ai_example/presentation/recognize_speech/recognize_speech_page.dart';
 import 'package:nutrition_ai_example/presentation/suggestion/suggestion_page.dart';
+import 'package:nutrition_ai_example/presentation/third_party_camera/third_party_camera_page.dart';
 import 'package:nutrition_ai_example/router/routes.dart';
 
 import 'presentation/advisor_message/advisor_message_page.dart';
@@ -82,6 +83,8 @@ Future<void> main() async {
                   const SearchFoodSemanticPage(),
               Routes.predictNextIngredient: (context) =>
                   const PredictNextIngredientPage(),
+              Routes.thirdPartyCamera: (context) =>
+                  const ThirdPartyCameraPage(),
             },
             home: const MyApp(),
           );
@@ -309,7 +312,8 @@ class _MyAppState extends State<MyApp> {
 
   void configureSDK() async {
     String passioKey = AppSecret.passioKey;
-    var configuration = PassioConfiguration(passioKey, debugMode: 1);
+    var configuration =
+        PassioConfiguration(passioKey, debugMode: 1, remoteOnly: false);
     var passioStatus = await NutritionAI.instance.configureSDK(configuration);
     if (passioStatus.mode == PassioMode.isReadyForDetection) {
       _sdkIsReady = true;

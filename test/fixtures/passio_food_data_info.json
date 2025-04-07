@@ -1,0 +1,28 @@
+{
+  "brandName": "",
+  "foodName": "Apple",
+  "iconID": "VEG0002",
+  "labelId": "90f84c1e-9a0d-11ea-98a4-b3eebae4841d",
+  "nutritionPreview": {
+    "calories": 95,
+    "carbs": 25.134201049804688,
+    "fat": 0.3094000220298767,
+    "protein": 0.4731999933719635,
+    "fiber": 4.368000507354736,
+    "servingUnit": "medium",
+    "servingQuantity": 1.0,
+    "weightUnit": "g",
+    "weightQuantity": 182.0
+  },
+  "refCode": "eyJsYWJlbGlkIjoiOTBmODRjMWUtOWEwZC0xMWVhLTk4YTQtYjNlZWJhZTQ4NDFkIiwidHlwZSI6InN5bm9ueW0iLCJyZXN1bHRpZCI6IjE2MDMyMTE1ODU0NDMiLCJtZXRhZGF0YSI6bnVsbH0=",
+  "resultId": "1603211585443",
+  "score": 0.99,
+  "scoredName": "Apple",
+  "tags": [
+    "NOVA1",
+    "cholesterol free",
+    "fruits and products"
+  ],
+  "type": "synonym",
+  "isShortName": false
+}

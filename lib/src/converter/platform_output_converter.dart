@@ -1,9 +1,7 @@
 import 'package:nutrition_ai/src/models/passio_advisor_response.dart';
-import 'package:nutrition_ai/src/models/passio_result.dart';
+import 'package:nutrition_ai/src/util/passio_result.dart';
 
 import '../models/passio_advisor_food_info.dart';
-import '../models/platform_image.dart';
-import '../nutrition_ai_configuration.dart';
 
 extension MapExt on Map {
   T? ifValueNotNull<T>(String key, T Function(Map<String, dynamic> map) op) {
@@ -36,18 +34,6 @@ List<T>? mapListOfObjectsOptional<T>(
   return mapListOfObjects(inList, converter);
 }
 
-PassioStatus mapToPassioStatus(Map<String, dynamic> inMap) {
-  var status = PassioStatus(
-      mode: PassioMode.values.byName(inMap['mode']),
-      error: (inMap['error'] != null)
-          ? PassioSDKError.values.byName(inMap['error'])
-          : null,
-      activeModels: inMap['activeModels'],
-      debugMessage: inMap['debugMessage'],
-      missingFiles: mapDynamicListToListOfString(inMap['missingFiles']));
-  return status;
-}
-
 List<String>? mapDynamicListToListOfString(List<dynamic>? dynamicList) {
   if (dynamicList == null) {
     return null;
@@ -57,40 +43,54 @@ List<String>? mapDynamicListToListOfString(List<dynamic>? dynamicList) {
   return stringList;
 }
 
-PassioFoodIcons mapToPlatformImagePair(Map<String, dynamic> inMap) {
-  Map<String, dynamic> defaultIconMap =
-      inMap["defaultIcon"].cast<String, dynamic>();
-  var defaultIcon = PlatformImage.fromJson(defaultIconMap);
-  var cachedIcon =
-      inMap.ifValueNotNull("cachedIcon", (map) => PlatformImage.fromJson(map));
-  return PassioFoodIcons(defaultIcon, cachedIcon);
+PassioAdvisorResponse mapToPassioAdvisorResponse(Map<String, dynamic> inMap) {
+  var response = PassioAdvisorResponse.fromJson(inMap.cast<String, dynamic>());
+  return response;
 }
 
-PassioResult<dynamic> mapToPassioResult(Map<String, dynamic> map) {
-  String status = map["status"];
-  String message = map["message"] ??= '';
-  if (status == "success") {
-    final value = map["value"];
-    final valueType = map["valueType"];
-    if (value != null) {
+extension PassioResultExtension on Map {
+  PassioResult<T> toPassioResult<T>() {
+    Map<String, dynamic> map = cast<String, dynamic>();
+    String status = map["status"];
+    String message = map["message"] ??= '';
+
+    if (status == "success") {
+      final value = map["value"];
+
       if (value is Map) {
-        if (valueType == "PassioAdvisorResponse") {
-          final advisorResponse = PassioAdvisorResponse.fromJson(
-              map["value"].cast<String, dynamic>());
-          return Success<PassioAdvisorResponse>(advisorResponse);
+        if (T == PassioAdvisorResponse) {
+          final response =
+              PassioAdvisorResponse.fromJson(value.cast<String, dynamic>());
+          return Success<T>(response as T);
         }
       } else if (value is List) {
-        if (valueType == "PassioAdvisorFoodInfo") {
+        if (T == List<PassioAdvisorFoodInfo>) {
           final list = mapListOfObjects(
               value, (inMap) => PassioAdvisorFoodInfo.fromJson(inMap));
-          return Success<List<PassioAdvisorFoodInfo>>(list);
+          return Success<T>(list as T);
         }
-      } else if (value is bool) {
-        return Success<bool>(value);
+      } else if (value is bool && T is bool) {
+        return Success<T>(value as T);
       }
+      return Success<T>(value as T);
+    } else {
+      return Error<T>(message);
     }
-    return const Success<VoidType>(VoidType());
-  } else {
-    return Error(message);
+  }
+}
+
+PassioResult<T> mapToPassioResultGeneric<T, E>(
+    Map<String, dynamic> map, T Function(E) converter) {
+  String status = map["status"];
+  String message = map["message"] ??= '';
+  switch (status) {
+    case "success":
+      final value = map["value"];
+      final result = converter(value);
+      return Success<T>(result);
+    case "error":
+      return Error(message);
+    default:
+      return Error("Unknown status: $status");
   }
 }
